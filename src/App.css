@@ -1,0 +1,20 @@
+#background {
+    background-color: #f7eddc;
+    height: 600px;
+    width: 100%;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#header {
+    height: 25%;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    top: 0px;
+}
+
+h1 {
+    color: white;
+}
