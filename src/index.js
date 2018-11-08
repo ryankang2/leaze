@@ -2,6 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 // main app
-import App from "./components/App.js";
+import Home from "./components/Home.js";
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<Home />, document.getElementById("root"))
