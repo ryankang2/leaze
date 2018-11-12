@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./App.css";
+import Register from "./register";
 
 export default class App extends Component {
     render () {
@@ -8,7 +9,7 @@ export default class App extends Component {
                 <h1>Howdy partner</h1>
                 <p>Gary is a ball liker</p>
             </div>  
-            <input></input>
+            <Register />
         </div>
     }
 }
