@@ -12,9 +12,9 @@ class Filters extends Component{
         }
 
     }
-
-
-
+    resetFilters(){
+        console.log("reset");
+    }
     render(){
         return (
             <div className="filtersContainer">
@@ -43,11 +43,7 @@ class Filters extends Component{
                 </div>
             </div>
         )
-    }
-}
-
-resetFilters(){
-    console.log("reset");
+    };
 }
 
 // class Item extends React.Component {
