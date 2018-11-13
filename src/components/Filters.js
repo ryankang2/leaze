@@ -10,11 +10,10 @@ class Filters extends Component{
             tripleRoom: true,
             livingRoom: true,
         }
+
     }
 
-    resetFilters(){
-        console.log("reset");
-    }
+
 
     render(){
         return (
@@ -46,6 +45,58 @@ class Filters extends Component{
         )
     }
 }
+
+resetFilters(){
+    console.log("reset");
+}
+
+// class Item extends React.Component {
+//     constructor (props){
+//       super ();
+  
+//       this.state = {
+//         checked: false
+//       };
+  
+//       this.handleClick = this.handleClick.bind(this);    
+//     }
+//     handleClick (e){
+//       this.setState({
+//         checked: !this.state.checked
+//       });
+  
+//     }
+//     render (){
+//       let text = this.state.checked ? <strike>{this.props.message}</strike> : this.props.message;
+//       return (
+//           <div className="row">
+//             <div className="col-md-12">
+//               <input type="checkbox" onClick={this.handleClick} />&nbsp;{text}
+//               <hr />
+//             </div>
+//           </div>
+//       );
+//     }
+//   }
+  
+//   let item2 = <Item message="Single Room" />;
+//   let item3 = <Item message="Double Room" />;
+//   let item4 = <Item message="Triple Room" />;
+  
+  
+//   let allTheThings = [item2, item3, item4];
+  
+//   class ItemList extends React.Component {
+//     constructor (props){
+//       super ();
+//     }
+//     render (){
+//       let items = allTheThings.map(thing => thing);
+//       return (
+//           <h4>{items}</h4>
+//       );
+//     }
+//   }
 
 
 export default Filters;
