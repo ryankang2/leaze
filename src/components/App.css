@@ -1,6 +1,6 @@
 #background {
     background-color: #f7eddc;
-    height: 600px;
+    height: 700px;
     width: 100%;
     border-color: black;
     border-style: solid;
@@ -12,9 +12,115 @@
     width: 100%;
     background-color: black;
     text-align: center;
-    top: 0px;
+    display: inline-block;
+}
+
+#topBar {
+    display: inline-block;
+    height: 5%;
+    width: 100%;
+    background-color: rgb(182, 168, 168);
+    text-align: center;
+}
+
+#introInfo {
+    float: right;
+    height: 60%;
+    width: 30%;
+    border: none;
+    background: none;
+    text-align: center;
+    margin-right: 5em;
+    margin-left: 2em;
+}
+
+#needSpace {
+    padding-bottom: 2em;
+}
+
+#Register {
+    display: none
+}
+
+#logTabs {
+    float: left;
+    position: relative;
+    width: 50%;
+    height: 60%;
+    margin-left: 2em;
+}
+
+#logContainer {
+    display: block;
+    width: 100%;
+    
+}
+
+#loginButton {
+    font-size: 20px;
+    background-color: lightblue;
+    margin-top: 2em;
+    margin-left: 37%;
+}
+
+#regButton {
+    font-size: 20px;
+    background-color: lightblue;
+    margin-top: 2em;
+    margin-left: 37%;
+}
+
+.tabs {
+    margin-top: 2em; 
+    display: block;
+}
+
+.tablinks {
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+.tabcontent {
+    height: 80%;
+    width: 100%;
+    border: 2px solid black;
+    display: block;
+    position: relative;
+}
+
+form {
+    margin-top: 2em;
+    margin-left: 30%;
+}
+
+label {
+    display: block;
+}
+
+input {
+    display: block;
 }
 
 h1 {
     color: white;
+}
+
+h5 {
+    display: inline;
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+    color: white;
+    position: relative;
+ 
+}
+
+h3 {
+    float: left;
+    margin-left: 2em;
+    font-size: 25px;
+    width: 100%;
+}
+
+p {
+    color: black;
 }
