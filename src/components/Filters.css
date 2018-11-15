@@ -1,0 +1,34 @@
+.filtersContainer{
+    height: 500px;
+    width: 201px;
+    border: 1px solid red;
+    margin-left: 1%;
+}
+
+.titleFilters{
+    text-align: center;
+    height: 16%;
+}
+
+.listOfFilters{
+    border: 1px solid blue;
+    height: 80%;
+    overflow: auto;
+    display: block;
+}
+
+.listOfFilters > li{
+    margin: 5%;
+}
+
+.dropdownContainer{
+    display: none;
+}
+
+.roomType:hover .dropdownContainer{
+    display: block;
+}
+
+.distance:hover .dropdownContainer{
+    display: block;
+}

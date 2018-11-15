@@ -1,0 +1,35 @@
+.searchBox{
+    width: 40vw !important;
+}
+
+.settingsContainer{
+    float: right;
+}
+
+.navbar{
+    height: 110px;
+}
+
+.container-fluid{
+    margin: 2%;
+}
+
+.navbar-left{
+    margin-left: 20%;
+}
+
+
+.profileContainer{
+    display: block;
+    float: right;
+}
+
+.profileContainer > div{
+    color: white;
+}
+
+.nav i{
+    font-size: 18px;
+}
+
+

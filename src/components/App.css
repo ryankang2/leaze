@@ -137,4 +137,86 @@ h3 {
 
 p {
     color: black;
+
+/* #mainContainer {
+    padding: 3.33vh 0vw 3.33vh 0vw;
 }
+
+#profileRow {
+    height: 36vh;
+    padding: 0;
+    margin: 0vh 0.25vw 0vh 0.25vw;
+}
+
+#listingsRow {
+    height: 36vh;
+    margin: 0vh 0.25vw 0vh 0.25vw;
+}
+
+#rowDivider {
+    height: 1.34vh;
+}
+
+hr {
+    display: block;
+    width: 95vw;
+    border: 0.0625vh solid black;
+    margin: 0.5vh 0vh 0vh 0vh;
+    position: relative;
+    left: 2.5vw;
+}
+
+#profilePictureArea {
+    background: red;
+}
+
+#bioArea {
+    background: orange;
+}
+
+#ratingArea {
+    background: yellow;
+}
+
+#progressArea {
+    background: darkgoldenrod;
+}
+
+#postedListings {
+    display: inline-block;
+    background: indigo;
+    overflow-y: scroll;
+    width: 49%;
+    height: 100%;
+    margin: 0% 3% 0% 0.5%;
+}
+
+#favoriteListings {
+    display: inline-block;
+    background: violet;
+    overflow-y: scroll;
+    width: 47%;
+    height: 100%;
+    margin: 0% 0% 0% 0%;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 24px;
+    background: #f7eddc;
+}
+
+::-webkit-scrollbar-track {
+    background: #948e84;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #aca59a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c5bdb0;
+} */
