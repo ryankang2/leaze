@@ -17,8 +17,10 @@ export default class LoginTabs extends Component {
         console.log(password);
     }
 
-    registerSubmit(email) {
+    registerSubmit(name, email, password) {
+        console.log(name);
         console.log(email);
+        console.log(password);
     }
 
     render () {
@@ -45,11 +47,40 @@ export default class LoginTabs extends Component {
             <div class="tabcontent" id="Register">
                 <h3>Register</h3>
                 <div id="logContainer">
-                    <form>
-                        <label for="regEmail">Email</label>
-                        <input id="regEmail"></input>
-                    </form>
-                    <button onClick={(event) => this.registerSubmit(document.getElementById("regEmail").value)} id="regButton">Next</button>
+
+                    {/* This is where the pasted signup code starts */}
+
+                    <div className="FormField">
+                        <label className="FormField__Label" htmlFor="name">Full Name</label>
+                        <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" />
+                    </div>
+
+                    <div className="FormField">
+                        <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
+                        <input type="email" id="email" className="FormField__Input" placeholder="Enter a valid .edu email" name="email" />
+                    </div>
+
+                    <div className="FormField">
+                        <label className="FormField__Label" htmlFor="myPassword">Desired Password</label>
+                        <input type="password" id="myPassword" className="FormField__Input" placeholder="6 characters minimum" name="password"  />
+                    </div>
+
+                    <div className="FormField">
+                        <label className="FormField__Label" htmlFor="birthday">Confirm Password</label>
+                        <input type="text" id="confPassword" className="FormField__Input" placeholder="6 characters minimum" name="confPassword" />
+                    </div>
+
+                    <div className="FormField">
+                        <label className="FormField__CheckboxLabel">
+                        
+                            <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" /> I agree to the<a href="" className="FormField__TermsLink"> terms of service</a>
+                        </label>
+                    </div>
+
+                    <div className="FormField">
+                        <button onClick={(event) => this.registerSubmit(document.getElementById("name").value, document.getElementById("email").value, document.getElementById("myPassword").value)} id="regButton">Sign Up</button>
+                    </div>    
+
                 </div>
             </div>
 
