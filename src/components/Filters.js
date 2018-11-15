@@ -15,6 +15,11 @@ class Filters extends Component{
     resetFilters(){
         console.log("reset");
     }
+    dropdownFilter(e) {
+        e.preventDefault();
+
+
+    }
     render(){
         return (
             <div className="filtersContainer">
