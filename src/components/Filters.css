@@ -32,3 +32,6 @@
 .distance:hover .dropdownContainer{
     display: block;
 }
+ul{
+    list-style-type: none;
+}
