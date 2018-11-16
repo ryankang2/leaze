@@ -25,7 +25,7 @@ export class Profile extends React.Component {
         <div class="row" id="profileRow">
           <div class="col-md-2" id="profilePictureArea">
             {/* User profile pic here */}
-            <img src={ require('./profile.jpg')} id="profilePictureArea" />
+            <img src={ require('./profile.jpg')} id="profilePic" />
             <span class="label-ucsd"> UCSD </span>
           </div>
 
