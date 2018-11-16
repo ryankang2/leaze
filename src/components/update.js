@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import "./update.css";
+import "./Update.css";
 
 class Update extends Component {
     constructor(props){

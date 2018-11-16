@@ -1,57 +1,46 @@
-import React, {Component} from "react";
-import "./profile.css";
-//import "./update.js"
+import React from "react";
+import "./Profile.css";
+import Update from "./Update.js"
+import Navbar from "./Navbar.js"
 
-class Profile extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            name:'',
-            sex:'',
-            age:'',
-            hometown:'',
-            school:'',
-            major:'',
-            hobbies:'',
-        };
-    }
-    render () {
-        return (
-        <div>
-    <div class="container-fluid" id="mainContainer">
+export class Profile extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+        name:'',
+        year:'',
+        age:'',
+        hometown:'',
+        school:'',
+        major:'',
+        hobbies:'',
+    };
+}
+  render() {
+    return(
+      <div>
+      <Navbar />
+      <div class="container-fluid" id="mainContainer">
         {/* here lies the top row - Matt works here */}
-        <div id="background">
-            <div id="header">
-            </div>
-            <h1>{this.state.name}USER's Profile</h1>
-            <div>
-              <img src={ require('./profile.jpg')} id="profilePictureArea" />
-            </div>
-            <div id="info">
-                <p>Sex: {this.state.sex}</p>
-                <p>Age: {this.state.age}</p>
-                <p>Hometown: {this.state.hometown}</p>
-                <p>Current School: {this.state.name}</p>
-                <p> Major: {this.state.major}</p>
-                <p>Hobbies: {this.state.hobbies}</p>
-                <div class="col-md-4" id="bioArea">
-                  Bio:
-                  {/* User Bio Area here  */}
-                  <p rows = "4" cols="50">
-                    {this.state.bio} 
-                  </p>
-                </div>
-              <a href="update.js" float="left">Edit</a>
-            </div>  
-        </div>
         <div class="row" id="profileRow">
           <div class="col-md-2" id="profilePictureArea">
             {/* User profile pic here */}
+            <img src={ require('./profile.jpg')} id="profilePictureArea" />
+            <span class="label-ucsd"> UCSD </span>
           </div>
 
+          <div class="col-md-4" id="bioArea">
+            {/* User Bio Area here  */}
+            <h1 id="userName"> {this.state.name} Full Name </h1>
+            <h2 id="userInfo"> {this.state.major} Major, {this.state.major} Year </h2>
+            <p rows = "4" cols="50" id="biography"> {this.state.bio} biography </p>
+          </div> 
 
           <div className="col-md-2" id="ratingArea">
             {/* User Rating Area goes here */}
+            <p id="ratingString"> Your average rating is: RATING </p>
+            <button onClick="" class="ratingButton"> Edit Preferences </button>
+            <button onClick="./Update.js" class="ratingButton"> Edit Profile</button>
           </div>
 
           <div className="col-md-4" id="progressArea">
@@ -69,17 +58,20 @@ class Profile extends Component {
           <div class="col-md-12">
             <div id="postedListings">
               {/* User's Posted Listings go here */}
+              Posted Listings:
+              <img src={ require('./house.jpg')}  />
             </div>
             <div id="favoriteListings">
               {/* User's Favorite Listings go here */}
-              <img src={ require('./house.jpg')} id="favoriteListings" />
+              Favorite Listings:
             </div>
           </div>
         </div>
-    </div>
-    </div>
-        );
-    }
+      </div>
+      </div>
+
+    );
+  }
 }
 
 export default Profile;

@@ -1,4 +1,24 @@
+#background {
+    background-color: #f7eddc;
+    height: 600px;
+    width: 100%;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    text-align: left;
+}
 
+#header {
+    height: 25%;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    top: 0px;
+}
+
+h1 {
+    color: black;
+}
 #mainContainer {
     padding: 3.33vh 0 3.33vh 0;
     position: fixed;
@@ -6,13 +26,23 @@
 }
 
 #profileRow {
-    border-width: 1px;
     padding: 0;
     margin: 0;
     position: absolute;
     height: 36vh;
     width: 98vw;
     top: 3.33vh;
+    right: 1vw;
+    left: 1vw;
+}
+
+#listingsRow {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 36vh;
+    width: 98vw;
+    bottom: 3.33vh;
     right: 1vw;
     left: 1vw;
 }
@@ -32,36 +62,12 @@ hr {
     margin: 0.5vh 0 0 0;
 }
 
-#listingsRow {
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    height: 36vh;
-    width: 98vw;
-    bottom: 3.33vh;
-    right: 1vw;
-    left: 1vw;
-}
-
-
 #profilePictureArea {
     border: 1px solid red;
-    background: transparent;
     position: absolute;
     left: 0;
     width: 16.33vw;
     height: 36vh;
-}
-
-#profilePic {
-    border: 1px solid black;
-    border-radius: 10vw;
-    width: 8vw;
-    height: 8vw;
-    position: absolute;
-    left: 4.165vw;
-    right: 4.165vw;
-    top: 8vh;
 }
 
 .label-ucsd {
@@ -82,10 +88,9 @@ hr {
     width: 32.66vw;
     height: 36vh;
     font: 18px "Arial";
-    background:transparent;
+    display: block;
     font-weight: normal;
 }
-
 #userName {
     font-size: 2em;
     margin: 8vh 0 0 1vw;
@@ -96,18 +101,15 @@ hr {
     margin: 1vh 0 0 1vw;
 }
 
-#biography {
-    margin: 4vh 0 0 1vw;
-}
-
 #ratingArea {
     border: 1px solid yellow;
-    background:transparent;
-    border-width: 1px;
     position: absolute;
     left: 48.99vw;
     width: 16.33vw;
     height: 36vh;
+}
+#biography {
+    margin: 4vh 0 0 1vw;
 }
 
 #ratingString {
@@ -123,12 +125,10 @@ hr {
     margin: 3vh auto;
     background: #dba8a8;
     border: 1px solid black;
-    font: 12px;
 }
 
 #progressArea {
     border: 1px solid darkgoldenrod;
-    background: transparent;
     position: absolute;
     left: 65.33vw;
     width: 32.66vw;
@@ -137,28 +137,36 @@ hr {
 
 #postedListings {
     display: inline-block;
-    border:1px solid indigo;
-    background: transparent;
+    background: indigo;
+    overflow-y: scroll;
+    width: 48vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     position: absolute;
-    left: 0vw;
-    width: 50vw;
-    height: 36vh;
-    font: 18px "Arial";
-    float: left;
-    font-weight: normal;
+    left: 0;
 }
-
 #favoriteListings {
     display: inline-block;
-    border:1px solid violet;
-    background: transparent;
+    background: violet;
+    overflow-y: scroll;
+    width: 48vw ;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     position: absolute;
-    left: 51vw;
-    width: 100vw;
-    height: 36vh;
-    font: 18px "Arial";
-    float: right;
-    font-weight: normal;
+    right: 0;
+}
+
+
+#info {
+    background-color: #f7eddc;
+    height: 600px;
+    width: 100%;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    float: initial;
 }
 
 /* Scrollbar styles */
