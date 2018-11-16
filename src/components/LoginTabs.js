@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import "./LoginTabs.css";
 
 export default class LoginTabs extends Component {
     switchTab(event, loginTab) {
@@ -17,10 +18,29 @@ export default class LoginTabs extends Component {
         console.log(password);
     }
 
-    registerSubmit(name, email, password) {
-        console.log(name);
-        console.log(email);
-        console.log(password);
+    registerSubmit(fname, lname, email, password, confPassword) {
+        if(password === confPassword) {
+            if(password.length > 5) {
+                if(document.getElementById("checkInput").checked) {
+                    console.log(fname);
+                    console.log(lname);
+                    console.log(email);
+                    console.log(password);
+                }
+
+                else {
+                    console.log("Please agree to terms and services before submitting");
+                }
+            }
+
+            else {
+                console.log("Password length must be at least 6 characters long");
+            }
+        }
+
+        else {
+            console.log("Your two password entries don't match");
+        }
     }
 
     render () {
@@ -50,9 +70,16 @@ export default class LoginTabs extends Component {
 
                     {/* This is where the pasted signup code starts */}
 
-                    <div className="FormField">
-                        <label className="FormField__Label" htmlFor="name">Full Name</label>
-                        <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" />
+                    <div className="FormField_name">
+                        <div>
+                            <label className="FormField__Label" htmlFor="firstName">First Name</label>
+                            <input type="text" id="firstName" className="FormField__Name_Input" placeholder="Enter your first name" name="firstName" />
+                        </div>
+                        
+                        <div id="divLastName">
+                            <label className="FormField__Label" htmlFor="lastName">Last Name</label>
+                            <input type="text" id="lastName" className="FormField__Name_Input" placeholder="Enter your last name" name="lastName" />
+                        </div>
                     </div>
 
                     <div className="FormField">
@@ -67,18 +94,17 @@ export default class LoginTabs extends Component {
 
                     <div className="FormField">
                         <label className="FormField__Label" htmlFor="birthday">Confirm Password</label>
-                        <input type="text" id="confPassword" className="FormField__Input" placeholder="6 characters minimum" name="confPassword" />
+                        <input type="password" id="confPassword" className="FormField__Input" placeholder="6 characters minimum" name="confPassword" />
                     </div>
 
                     <div className="FormField">
                         <label className="FormField__CheckboxLabel">
-                        
-                            <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" /> I agree to the<a href="" className="FormField__TermsLink"> terms of service</a>
+                            <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" id="checkInput" /> I agree to the<a href="" className="FormField__TermsLink"> terms of service</a>
                         </label>
                     </div>
 
                     <div className="FormField">
-                        <button onClick={(event) => this.registerSubmit(document.getElementById("name").value, document.getElementById("email").value, document.getElementById("myPassword").value)} id="regButton">Sign Up</button>
+                        <button onClick={(event) => this.registerSubmit(document.getElementById("firstName").value, document.getElementById("lastName").value, document.getElementById("email").value, document.getElementById("myPassword").value, document.getElementById("confPassword").value)} id="regButton">Sign Up</button>
                     </div>    
 
                 </div>
