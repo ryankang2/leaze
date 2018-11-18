@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import "./Update.css";
+import Navbar from "./Navbar.js"
 
 class Update extends Component {
     constructor(props){
         super(props);
         this.state={
             name:'',
-            sex:'',
             age:'',
-            hometown:'',
             school:'',
             major:'',
-            hobbies:'',
+            year:'',
+            bio:'',
         };
     }
 
@@ -20,59 +19,54 @@ class Update extends Component {
     }
 
     pushToFirebase(event) {
-        const {name, sex, age, hometown, school, major, hobbies} = this.state;
+        const {name, age, school, major, year, bio} = this.state;
         event.preventDefault();
-        this.firebaseRef.child(name).set({name, sex, age, hometown, school, major, hobbies });
-        this.setState({name: '', sex: '', age: '', hometown: '',school: '', major: '', hobbies: ''});
+        this.firebaseRef.child(name).set({name, age, school, major, year, bio });
+        this.setState({name: '', age: '',school: '', major: '', year: '', bio: ''});
     }
 
     render(){
         return(
-            <div id="background">
-            <div id="header">
-                <h1>Edit Your Profile</h1>
+            <div>
+            <Navbar />
+            <div class="container-fluid" id="mainContainer">
+              {/* here lies the top row - Matt works here */}
+              <div class="row" id="profileRow">
+                <div class="col-md-2" id="profilePictureArea">
+                  {/* User profile pic here */}
+                  <img src={ require('./profile.jpg')} id="profilePictureArea" />
+                  <span class="label-ucsd"> UCSD </span>
+                </div>
+      
+                <div class="col-md-4" id="bioArea">
+                  {/* User Bio Area here  */}
+                  <h1 id="userName"> {this.state.name} Full Name </h1>
+                  <input id="userInfo" value={this.state.major} Major/>
+                  <input id="userInfo2" Year value={this.state.year} />
+                  <input type="text" id="biography" Bio value={this.state.bio} write a short bio about yourself/>
+                </div> 
+      
+                <div className="col-md-2" id="ratingArea">
+                  {/* User Rating Area goes here */}
+                  <p id="ratingString"> Your average rating is: RATING </p>
+                  <button onClick="./Preferences.js" class="ratingButton"> Edit Preferences </button>
+                  <button onClick="./Update.js" class="ratingButton"> Edit Profile</button>
+                </div>
+      
+                <div className="col-md-4" id="progressArea">
+                  {/* User Profile Strength Percentage is here */}
+                </div>
+      
+              </div>
+      
+              <div class="row" id="rowDivider">
+                <hr /> {/* This is the pretty row divider */}
+              </div>
+      
             </div>
-                <label>Name:</label>
-                <input
-                    value = { this.state.name }
-                    onChange= {e => this.setState({name: e.target.value})}/>
-                <br />
-                <label>Sex:</label>
-                <input
-                    value = { this.state.sex }
-                    onChange= {e => this.setState({sex: e.target.value})}/>
-                <br />
-                <label>Age:</label>
-                <input
-                    value = { this.state.age }
-                    onChange= {e => this.setState({age: e.target.value})} />
-                <br />
-                <label>Hometown:</label>
-                <input
-                    value = { this.state.hometown }
-                    onChange= {e => this.setState({hometown: e.target.value})}/>
-                <br />
-                <label>School:</label>
-                <input
-                    value = { this.state.school }
-                    onChange= {e => this.setState({school: e.target.value})}/>
-                <br />
-                <label>Major:</label>
-                <input
-                    value = { this.state.major }
-                    onChange= {e => this.setState({major: e.target.value})}/>
-                <br />
-                <label>Hobbies:</label>
-                <input
-                    value = { this.state.hobbies }
-                    onChange= {e => this.setState({hobbies: e.target.value})}/>
-                <br />
-                <textarea rows = "4" cols="50">
-                  </textarea>
-                  <br />
-                {/*</div>/<button onClick={(event) => this.updateSub(document.getElementById('regName').value)}*/}
             </div>
-        );
+      
+          );
     }
 }
 

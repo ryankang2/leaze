@@ -111,8 +111,8 @@ hr {
 }
 
 #ratingString {
-    margin: 4vh 0 6vh 0;
-    font: 18px Arial;
+    margin: 4vh 0 12vh 0;
+    font: 12px Arial;
     text-align: center;
 }
 
@@ -120,10 +120,10 @@ hr {
     display: block;
     width: 7vw;
     height: 5vh;
-    margin: 3vh auto;
+    margin: 1vh auto;
     background: #dba8a8;
     border: 1px solid black;
-    font: 12px;
+    font-size: 10px;
 }
 
 #progressArea {
@@ -131,17 +131,17 @@ hr {
     background: transparent;
     position: absolute;
     left: 65.33vw;
-    width: 32.66vw;
+    width: 27.66vw;
     height: 36vh;
 }
 
 #postedListings {
-    display: inline-block;
+    display: grid;
     border:1px solid indigo;
     background: transparent;
     position: absolute;
     left: 0vw;
-    width: 50vw;
+    width: 42vw;
     height: 36vh;
     font: 18px "Arial";
     float: left;
@@ -149,12 +149,12 @@ hr {
 }
 
 #favoriteListings {
-    display: inline-block;
+    display: grid;
     border:1px solid violet;
     background: transparent;
     position: absolute;
-    left: 51vw;
-    width: 100vw;
+    left: 46vw;
+    width: 47vw;
     height: 36vh;
     font: 18px "Arial";
     float: right;
