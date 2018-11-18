@@ -137,7 +137,7 @@ h3 {
 
 p {
     color: black;
-
+}
 /* #mainContainer {
     padding: 3.33vh 0vw 3.33vh 0vw;
 }
@@ -201,7 +201,7 @@ hr {
 }
 
 /* Scrollbar styles */
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 12px;
     height: 24px;
     background: #f7eddc;
