@@ -1,104 +1,164 @@
-#background {
-    background-color: #f7eddc;
-    height: 600px;
-    width: 100%;
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
-    text-align: left;
-}
 
-#header {
-    height: 25%;
-    width: 100%;
-    background-color: black;
-    text-align: center;
-    top: 0px;
-}
-
-h1 {
-    color: black;
-}
 #mainContainer {
-    padding: 3.33vh 0vw 3.33vh 0vw;
+    padding: 3.33vh 0 3.33vh 0;
+    position: fixed;
+    height: 80vh;
 }
 
 #profileRow {
-    height: 36vh;
+    border-width: 1px;
     padding: 0;
-    margin: 0vh 0.25vw 0vh 0.25vw;
-}
-
-#listingsRow {
+    margin: 0;
+    position: absolute;
     height: 36vh;
-    margin: 0vh 0.25vw 0vh 0.25vw;
+    width: 98vw;
+    top: 3.33vh;
+    right: 1vw;
+    left: 1vw;
 }
 
 #rowDivider {
     height: 1.34vh;
+    position: absolute;
+    top: 39.33vh;
+    left: 2.5vw;
+    right: 2.5vw;
 }
 
 hr {
     display: block;
     width: 95vw;
     border: 0.0625vh solid black;
-    margin: 0.5vh 0vh 0vh 0vh;
-    position: relative;
-    left: 2.5vw;
+    margin: 0.5vh 0 0 0;
 }
 
+#listingsRow {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 36vh;
+    width: 98vw;
+    bottom: 3.33vh;
+    right: 1vw;
+    left: 1vw;
+}
+
+
 #profilePictureArea {
-    height: 150px;
-    width: 150px;
-    align-items: center;
+    border: 1px solid red;
     background: transparent;
-    float: left;
+    position: absolute;
+    left: 0;
+    width: 16.33vw;
+    height: 36vh;
+}
+
+#profilePic {
+    border: 1px solid black;
+    border-radius: 10vw;
+    width: 8vw;
+    height: 8vw;
+    position: absolute;
+    left: 4.165vw;
+    right: 4.165vw;
+    top: 8vh;
+}
+
+.label-ucsd {
+    border: 1px solid black;
+    color: #f4e92d;
+    padding: 8px;
+    background: #1e65a9;
+    font: 24px "Arial Black";
+    position: absolute;
+    left: 6vw;
+    top: 21vh;
 }
 
 #bioArea {
-    background:  #f7eddc;
-    width: 100%;
-    height: 100px;
-    line-height: 1;
+    border: 1px solid orange;
+    position: absolute;
+    left: 16.33vw;
+    width: 32.66vw;
+    height: 36vh;
+    font: 18px "Arial";
+    background:transparent;
+    font-weight: normal;
+}
+
+#userName {
+    font-size: 2em;
+    margin: 8vh 0 0 1vw;
+}
+
+#userInfo {
+    font-size: 1.25em;
+    margin: 1vh 0 0 1vw;
+}
+
+#biography {
+    margin: 4vh 0 0 1vw;
 }
 
 #ratingArea {
-    background: yellow;
+    border: 1px solid yellow;
+    background:transparent;
+    border-width: 1px;
+    position: absolute;
+    left: 48.99vw;
+    width: 16.33vw;
+    height: 36vh;
+}
+
+#ratingString {
+    margin: 4vh 0 12vh 0;
+    font: 20px Arial;
+    text-align: center;
+}
+
+.ratingButton {
+    display: block;
+    width: 7vw;
+    height: 5vh;
+    margin: 1vh auto;
+    background: #dba8a8;
+    border: 1px solid black;
+    font-size: 10px;
 }
 
 #progressArea {
-    background: darkgoldenrod;
+    border: 1px solid darkgoldenrod;
+    background: transparent;
+    position: absolute;
+    left: 65.33vw;
+    width: 27.66vw;
+    height: 36vh;
 }
 
 #postedListings {
-    display: inline-block;
-    background: indigo;
-    overflow-y: scroll;
-    width: 49%;
-    height: 100%;
-    margin: 0% 3% 0% 0.5%;
+    display: grid;
+    border:1px solid indigo;
+    background: transparent;
+    position: absolute;
+    left: 0vw;
+    width: 45vw;
+    height: 36vh;
+    font: 18px "Arial";
+    float: left;
+    font-weight: normal;
 }
 
 #favoriteListings {
-    display: inline-block;
+    display: grid;
+    border:1px solid violet;
     background: transparent;
-    overflow-y: scroll;
-    width: 47%;
-    height: 100%;
-    margin: 0% 0% 0% 0%;
+    position: absolute;
+    left: 50vw;
+    width: 45vw;
+    height: 36vh;
+    font: 18px "Arial";
     float: right;
-    height: 150px;
-    width: 150px;
-}
-
-#info {
-    background-color: #f7eddc;
-    height: 600px;
-    width: 100%;
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
-    float: initial;
+    font-weight: normal;
 }
 
 /* Scrollbar styles */

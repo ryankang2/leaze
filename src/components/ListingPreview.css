@@ -2,3 +2,71 @@
     border: 2px solid rebeccapurple;
     height: 160px;
 }
+.imageBox{
+    position:relative;
+    border: 2px solid deeppink;
+    width: 100%;
+    height: 70%;
+    vertical-align: center;
+
+}
+.leaseName {
+    position:relative;
+    bottom: 20%;
+    left: 0%;
+    color:white;
+    font-weight: bold;
+
+}
+
+.leaseImage{
+    width: 100%;
+    height: 100%;
+    position:relative;
+}
+
+
+.infoBox{
+    border:2px solid grey;
+    width: 100%;
+    display:grid;
+}
+.userPicture{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start:1;
+    grid-row-end:3;
+    border-radius:50%;
+    width:100%;
+    height:100%
+}
+.userName{
+    grid-column-start:3;
+    grid-column-end:4;
+}
+.distance{
+     grid-column-start:4;
+     grid-column-end:5;
+    justify-self: end;
+ }
+.userRating{
+    grid-column-start:3;
+    grid-column-end:4;
+    grid-row-start:2;
+    grid-row-end:3;
+    color:lightpink;
+}
+.dateDiff{
+    grid-column-start:4;
+    grid-column-end:5;
+    grid-row-start:2;
+    grid-row-end:3;
+}
+
+.fa{
+    font-size: 16px;
+}
+
+h3{
+    margin-left: 0 !important;
+}
