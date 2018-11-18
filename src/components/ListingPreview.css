@@ -1,6 +1,6 @@
 .singleListing{
-    border: 2px solid rebeccapurple;
-    height: 160px;
+    /*border: 2px solid rebeccapurple;*/
+    height: 250px;
 }
 .imageBox{
     position:relative;
@@ -8,12 +8,11 @@
     width: 100%;
     height: 70%;
     vertical-align: center;
-
 }
 .leaseName {
-    position:relative;
-    bottom: 20%;
-    left: 0%;
+    position:absolute;
+    bottom: 4%;
+    left: 10%;
     color:white;
     font-weight: bold;
 
@@ -37,7 +36,7 @@
     grid-row-start:1;
     grid-row-end:3;
     border-radius:50%;
-    width:100%;
+    width:50%;
     height:100%
 }
 .userName{
@@ -67,6 +66,14 @@
     font-size: 16px;
 }
 
+.favorite{
+    color:lightpink;
+    left:84.5%;
+    top:1%;
+    position: absolute;
+    /*position:relative;*/
+
+}
 h3{
     margin-left: 0 !important;
 }
