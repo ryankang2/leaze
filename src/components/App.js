@@ -7,6 +7,7 @@ import ListingPreview from "./ListingPreview.js"
 import ResultsContent from "./ResultsContent.js"
 import LandingPage from "./LandingPage";
 
+
 export default class App extends Component {
     render () {
         return (
