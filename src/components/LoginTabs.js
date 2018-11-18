@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./LoginTabs.css";
+import { fail } from "assert";
 
 export default class LoginTabs extends Component {
     switchTab(event, loginTab) {
@@ -14,8 +15,26 @@ export default class LoginTabs extends Component {
     }
 
     loginSubmit(email, password) {
-        console.log(email);
-        console.log(password);
+        let dataObj = { 
+            email: email,
+            password: password
+        }
+        $.ajax({
+            crossDomain: true,
+            data: dataObj,
+            url: "http://localhost:8000/api/queries/sign_in.php",
+            method: "POST",
+            success: (response) => this.handleLoginResponse(response),
+            headers: {
+                "accept": "application/json",
+                "Access-Control-Allow-Origin":"*"
+            }
+            
+        });
+    }
+
+    handleLoginResponse(response){
+        console.log(response);
     }
 
     registerSubmit(fname, lname, email, password, confPassword) {
@@ -26,6 +45,27 @@ export default class LoginTabs extends Component {
                     console.log(lname);
                     console.log(email);
                     console.log(password);
+                    let dataObj = { 
+                        first_name: fname,
+                        last_name: lname,
+                        email: email,
+                        password: password,
+                    }
+                    $.ajax({
+                        crossDomain: true,
+                        data: dataObj,
+                        url: "http://localhost:8000/api/mail_handler.php",
+                        method: "POST",
+                        success: function(msg){
+                            console.log("SUCCESS!!!");
+                        },
+                        headers: {
+                            "accept": "application/json",
+                            "Access-Control-Allow-Origin":"*"
+                        }
+                        
+                    });
+
                 }
 
                 else {
@@ -43,14 +83,15 @@ export default class LoginTabs extends Component {
         }
     }
 
+
     render () {
         return <div id="logTabs">
-            <div class="tabs">
-                <button class="tablinks" onClick={(event) => this.switchTab(this.event, 'Login')} id="defaultOpen">Log in</button>
-                <button class="tablinks" onClick={(event) => this.switchTab(this.event, 'Register')}>Register</button>
+            <div className="tabs">
+                <button className="tablinks" onClick={(event) => this.switchTab(this.event, 'Login')} id="defaultOpen">Log in</button>
+                <button className="tablinks" onClick={(event) => this.switchTab(this.event, 'Register')}>Register</button>
             </div>
 
-            <div class="tabcontent" id="Login">
+            <div className="tabcontent" id="Login">
                 <h3>Log in</h3>
                 <div id="logContainer">
                     <form>
@@ -59,12 +100,12 @@ export default class LoginTabs extends Component {
                     </form>
                     <form>
                         <label for="password">Password</label>
-                        <input id="password"></input>
+                        <input id="password" type="password"></input>
                     </form>
                     <button onClick={(event) => this.loginSubmit(document.getElementById("loginEmail").value, document.getElementById("password").value)} id="loginButton">Log in</button>
                 </div>
             </div>
-            <div class="tabcontent" id="Register">
+            <div className="tabcontent" id="Register">
                 <h3>Register</h3>
                 <div id="logContainer">
 
@@ -73,12 +114,12 @@ export default class LoginTabs extends Component {
                     <div className="FormField_name">
                         <div>
                             <label className="FormField__Label" htmlFor="firstName">First Name</label>
-                            <input type="text" id="firstName" className="FormField__Name_Input" placeholder="Enter your first name" name="firstName" />
+                            <input type="text" id="firstName" className="FormField__Name_Input" placeholder="Enter your first name" name="firstName" value="Ryan" />
                         </div>
                         
                         <div id="divLastName">
                             <label className="FormField__Label" htmlFor="lastName">Last Name</label>
-                            <input type="text" id="lastName" className="FormField__Name_Input" placeholder="Enter your last name" name="lastName" />
+                            <input type="text" id="lastName" className="FormField__Name_Input" placeholder="Enter your last name" name="lastName" value="Kang"/>
                         </div>
                     </div>
 
@@ -89,12 +130,12 @@ export default class LoginTabs extends Component {
 
                     <div className="FormField">
                         <label className="FormField__Label" htmlFor="myPassword">Desired Password</label>
-                        <input type="password" id="myPassword" className="FormField__Input" placeholder="6 characters minimum" name="password"  />
+                        <input type="password" id="myPassword" className="FormField__Input" placeholder="6 characters minimum" name="password" value="123123" />
                     </div>
 
                     <div className="FormField">
                         <label className="FormField__Label" htmlFor="birthday">Confirm Password</label>
-                        <input type="password" id="confPassword" className="FormField__Input" placeholder="6 characters minimum" name="confPassword" />
+                        <input type="password" id="confPassword" className="FormField__Input" placeholder="6 characters minimum" name="confPassword" value="123123"/>
                     </div>
 
                     <div className="FormField">

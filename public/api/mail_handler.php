@@ -1,9 +1,13 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 require_once('email_config.php');
 require('phpmailer/PHPMailer/PHPMailerAutoload.php');
 foreach($_POST as $key=>$value){
     $_POST[$key] = htmlentities(addslashes($value));
 }
+
+print_r($_POST);
 
 $mail = new PHPMailer;
 $mail->SMTPDebug = 3;           // Enable verbose debug output. Change to 0 to disable debugging output.
@@ -26,7 +30,7 @@ $options = array(
 );
 $mail->smtpConnect($options);
 $mail->From = 'leazehousing@gmail.com';  // sender's email address (shows in "From" field)
-$mail->FromName = 'mailer deamon';   // sender's name (shows in "From" field)
+$mail->FromName = 'LeazeHousing Security Code';   // sender's name (shows in "From" field)
 $mail->addAddress($_POST['email'], 'First Recipient');  // Add a recipient
 //$mail->addAddress('ellen@example.com');                        // Name is optional
 $mail->addReplyTo($_POST["email"]);                          // Add a reply-to address
@@ -37,13 +41,17 @@ $mail->addReplyTo($_POST["email"]);                          // Add a reply-to a
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = "Here is the subject from ". $_POST["name"];
+$mail->Subject = "Here is the subject from LeazeHousing";
 $mail->Body    = "
-    name: {$_POST["name"]}<br>
-    email: {$_POST["email"]}<br>
-    subject: {$_POST["subject"]}<br>
-    message: Thanks for signing up for leaze!    
-";
+    Hey {$_POST["first_name"]}, <br>
+    Thanks for signing up for Leaze! With your Leaze account, you are able to: <br><br>
+    -View student housing postings and chat with the leasers directly! <br><br>
+    -Upload housing postings <br><br>
+    -View other students looking for housing<br><br>
+    If you have any questions, send us an email to leazehousing@gmail.com and we will be 
+    happy to help. <br> <br>
+
+    Thank you!";
 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if(!$mail->send()) {
