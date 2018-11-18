@@ -2,7 +2,7 @@
 
 #background {
     background-color: #f7eddc;
-    height: 700px;
+    height: 750px;
     width: 100%;
     border-color: black;
     border-style: solid;
@@ -33,12 +33,34 @@
     background: none;
     text-align: center;
     margin-right: 5em;
-    margin-left: 2em;
+    margin-left: 7%;
+    margin-top: 2em;
 }
 
-#needSpace {
+h5 {
+    display: inline;
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+    color: white;
+    position: relative;
+ 
+}
+
+h1 {
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.needSpace {
     padding-bottom: 2em;
 }
+
+p {
+    color: black;
+}
+
+
+/* Under this is just for login tabs */
 
 #Register {
     display: none
@@ -49,7 +71,7 @@
     position: relative;
     width: 50%;
     height: 75%;
-    margin-right: 2em;
+    margin-right: 7%;
 }
 
 #logContainer {
@@ -69,7 +91,10 @@
     font-size: 20px;
     background-color: lightblue;
     margin-top: 2em;
-    margin-left: 37%;
+}
+
+#divLastName {
+    margin-left: 3em;
 }
 
 .tabs {
@@ -93,39 +118,33 @@
 
 .FormField {
     margin-top: 1em;
-    margin-left: 30%;
+    margin-left: 25%;
 }
 
-.FormField__Checkbox {
-    display: inline;
+.FormField_name {
+    display: -webkit-inline-box;
+    margin-left: 25%;
+}
+
+.FormField__Label {
+    display: block;
+}
+
+.FormField__Input {
+    min-width: 68%;
 }
 
 form {
     margin-top: 2em;
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
-label {
+.FormField__Input {
     display: block;
 }
 
-input {
-    display: block;
-    min-width: 60%;
-}
-
-h1 {
-    color: white;
-    font-family: 'Permanent Marker', cursive;
-}
-
-h5 {
+#checkInput {
     display: inline;
-    text-align: center;
-    vertical-align: -webkit-baseline-middle;
-    color: white;
-    position: relative;
- 
 }
 
 h3 {
@@ -135,88 +154,3 @@ h3 {
     width: 100%;
 }
 
-p {
-    color: black;
-
-/* #mainContainer {
-    padding: 3.33vh 0vw 3.33vh 0vw;
-}
-
-#profileRow {
-    height: 36vh;
-    padding: 0;
-    margin: 0vh 0.25vw 0vh 0.25vw;
-}
-
-#listingsRow {
-    height: 36vh;
-    margin: 0vh 0.25vw 0vh 0.25vw;
-}
-
-#rowDivider {
-    height: 1.34vh;
-}
-
-hr {
-    display: block;
-    width: 95vw;
-    border: 0.0625vh solid black;
-    margin: 0.5vh 0vh 0vh 0vh;
-    position: relative;
-    left: 2.5vw;
-}
-
-#profilePictureArea {
-    background: red;
-}
-
-#bioArea {
-    background: orange;
-}
-
-#ratingArea {
-    background: yellow;
-}
-
-#progressArea {
-    background: darkgoldenrod;
-}
-
-#postedListings {
-    display: inline-block;
-    background: indigo;
-    overflow-y: scroll;
-    width: 49%;
-    height: 100%;
-    margin: 0% 3% 0% 0.5%;
-}
-
-#favoriteListings {
-    display: inline-block;
-    background: violet;
-    overflow-y: scroll;
-    width: 47%;
-    height: 100%;
-    margin: 0% 0% 0% 0%;
-}
-
-/* Scrollbar styles */
-::-webkit-scrollbar {
-    width: 12px;
-    height: 24px;
-    background: #f7eddc;
-}
-
-::-webkit-scrollbar-track {
-    background: #948e84;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: #aca59a;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #c5bdb0;
-} */
