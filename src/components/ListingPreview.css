@@ -63,3 +63,10 @@
     grid-row-end:3;
 }
 
+.fa{
+    font-size: 16px;
+}
+
+h3{
+    margin-left: 0 !important;
+}
