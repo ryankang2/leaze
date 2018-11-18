@@ -13,7 +13,7 @@
 .ppopup {
     position: fixed;
     width: 100%;
-    height: 180vh;
+    height: 130vh;
     top: 0;
     left: 0;
     right: 0;
@@ -75,6 +75,27 @@
   width: 7vw;
   height: 5vh;
   margin: 1vh auto;
+  background: #dba8a8;
+  border: 1px solid black;
+  font-size: 12px;
+  left: 50vw;
+  top: 50vh;
+}
+#savePButton {
+  display: block;
+  width: 7vw;
+  height: 5vh;
+  background: #dba8a8;
+  border: 1px solid black;
+  font-size: 12px;
+  margin: 10vh;
+}
+
+#cancelPButton {
+  display: block;
+  width: 7vw;
+  height: 5vh;
+  margin: 7vh;
   background: #dba8a8;
   border: 1px solid black;
   font-size: 12px;

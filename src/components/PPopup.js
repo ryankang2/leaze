@@ -24,8 +24,8 @@ class PPopup extends React.Component {
         <div class='ppopup'>
           <div class='popup_inner'>
             <h1>Update Your Preferences</h1>
-            <div class="row-md-12" id="info">
-              <label>Email: </label>
+            <div class="col-sm-4" id="info">
+              <label>Email (must end with ".edu"): </label>
               <input class="inputs" value = {this.state.email}
                 onChange={e=> this.setState({email:e.target.value})}/>
               <label>How many guests days per week?: </label>
@@ -40,6 +40,10 @@ class PPopup extends React.Component {
               <label>Early Riser?: </label>
               <input class="inputs" value = {this.state.earlyrise}
                 onChange={e=> this.setState({earlyrise:e.target.value})}/>
+              <button onClick=
+                {this.props.closePPopup} id="cancelPButton">Cancel</button>
+            </div>
+            <div class="col-sm-4" id="info">
               <label>How Messy? (1-5): </label>
               <input class="inputs" value = {this.state.messy}
                 onChange={e=> this.setState({messy:e.target.value})}/>
@@ -52,6 +56,8 @@ class PPopup extends React.Component {
               <label>Substances? (Alcohol=1, Marijuana=2, Cigarettes=3, Other=5) Put all numbers that apply: </label>
               <input class="inputs" value = {this.state.drugs}
                 onChange={e=> this.setState({drugs:e.target.value})}/>
+            </div>
+            <div class="col-sm-4" id="info">
               <label>Study Noise Level? (1-5): </label>
               <input class="inputs" value = {this.state.noise}
                 onChange={e=> this.setState({noise:e.target.value})}/>
@@ -62,10 +68,11 @@ class PPopup extends React.Component {
               <input class="inputs" value = {this.state.relations}
                   onChange={e=> this.setState({relations:e.target.value})}/>
               <button onClick=
-                {this.props.closePPopup}>Save Changes</button>
+                  {this.props.closePPopup} id="savePButton">Save Updates</button>
             </div>
           </div>
         </div>
+
       );
     }
   }

@@ -112,7 +112,7 @@ hr {
 
 #ratingString {
     margin: 4vh 0 12vh 0;
-    font: 12px Arial;
+    font: 20px Arial;
     text-align: center;
 }
 
@@ -141,7 +141,7 @@ hr {
     background: transparent;
     position: absolute;
     left: 0vw;
-    width: 42vw;
+    width: 45vw;
     height: 36vh;
     font: 18px "Arial";
     float: left;
@@ -153,8 +153,8 @@ hr {
     border:1px solid violet;
     background: transparent;
     position: absolute;
-    left: 46vw;
-    width: 47vw;
+    left: 50vw;
+    width: 45vw;
     height: 36vh;
     font: 18px "Arial";
     float: right;

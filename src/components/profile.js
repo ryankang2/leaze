@@ -3,6 +3,7 @@ import "./Profile.css";
 import Navbar from "./Navbar.js"
 import UPopup from "./UPopup.js"
 import PPopup from "./PPopup.js"
+import ListingPreview from "./ListingPreview.js"
 
 export class Profile extends React.Component {
   constructor(props){
@@ -72,33 +73,24 @@ export class Profile extends React.Component {
 
           {/* here lies the bottom row - Drexler works here */}
           <div class="row" id="listingsRow">
-            <div class="col-md-12">
-              <div id="postedListings">
-                {/* User's Posted Listings go here */}
-                Posted Listings:
+            <div class="col-sm-8" id="postedListings">
+              {/* User's Posted Listings go here */}
+              Posted Listings:
                   {/*Ariane's code goes here*/}
-              </div>
-              <div id="favoriteListings">
-                {/* Ariane's code goes here */}
-                Favorite Listings:
-              </div>
+              <ListingPreview />
+            </div>
+            <div class="col-sm-8" id="favoriteListings">
+              {/* Ariane's code goes here */}
+              Favorite Listings:
+                  <ListingPreview />
             </div>
           </div>
         </div>
         {this.state.showUPopup ?
-                <UPopup
-                  closeUPopup={this.toggleUPopup.bind(this)}
-                />
-                : null
-              }
-              {this.state.showPPopup ?
-                <PPopup
-                  closePPopup={this.togglePPopup.bind(this)}
-                />
-                : null
-              }
+          <UPopup closeUPopup={this.toggleUPopup.bind(this)}/>: null}
+        {this.state.showPPopup ?
+          <PPopup closePPopup={this.togglePPopup.bind(this)}/>: null}
       </div>
-
 
     );
   }
