@@ -14,10 +14,10 @@ class ResultsContent extends Component{
             <div className="container">
                 <h2> Explore Housing</h2>
                 <div className="row">
-                    <div className="col-sm-4">
+                    <div className="col-sm-2">
                         <Filters />
                     </div>
-                    <div className="col-sm-8 listingPreviewContainer">
+                    <div className="col-sm-10 listingPreviewContainer">
                         <ListingPreview />      
                     </div>
                 </div>
