@@ -18,6 +18,19 @@ export default class LoginTabs extends Component {
     }
 
     registerSubmit(name, email, password) {
+        fetch('./user_reg.php', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              full_name: name,
+              email: email,
+              password: password
+            })
+ 
+        })
         console.log(name);
         console.log(email);
         console.log(password);
