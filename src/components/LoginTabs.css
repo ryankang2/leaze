@@ -1,0 +1,99 @@
+#Register {
+    display: none
+}
+
+#logTabs {
+    float: right;
+    position: relative;
+    width: 50%;
+    height: 75%;
+    margin-right: 7%;
+}
+
+#logContainer {
+    display: block;
+    width: 100%;
+    
+}
+
+#loginButton {
+    font-size: 20px;
+    background-color: lightblue;
+    margin-top: 2em;
+    margin-left: 37%;
+}
+
+#regButton {
+    font-size: 20px;
+    background-color: lightblue;
+    margin-top: 2em;
+}
+
+#divLastName {
+    margin-left: 3em;
+}
+
+.tabs {
+    margin-top: 2em; 
+    display: block;
+}
+
+.tablinks {
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+.tabcontent {
+    height: 80%;
+    width: 100%;
+    border: 2px solid black;
+    display: block;
+    position: relative;
+    float: right;
+}
+
+.FormField {
+    margin-top: 1em;
+    margin-left: 25%;
+}
+
+.FormField_name {
+    display: -webkit-inline-box;
+    margin-left: 25%;
+}
+
+.FormField__Label {
+    display: block;
+}
+
+.FormField__Input {
+    min-width: 68%;
+}
+
+form {
+    margin-top: 2em;
+    margin-left: 20%;
+}
+
+.FormField__Input {
+    display: block;
+}
+
+#checkInput {
+    display: inline;
+}
+
+h3 {
+    float: left;
+    margin-left: 2em;
+    font-size: 20px;
+    width: 100%;
+}
+
+#password{
+    display: block;
+}
+
+#loginEmail{
+    display: block;
+}

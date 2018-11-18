@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import Navbar from "./Navbar";
 import Filters from "./Filters";
+import ListingPreview from "./ListingPreview";
+import ResultsContent from "./ResultsContent";
 
 class ResultsPage extends Component{
     constructor(props){
@@ -14,7 +16,7 @@ class ResultsPage extends Component{
         return (
             <div>
                 <Navbar />
-                <Filters />
+                <ResultsContent />
             </div>
 
         )

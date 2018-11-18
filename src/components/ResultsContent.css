@@ -1,0 +1,11 @@
+h2{
+    color: black !important;
+    font-size: 30px;
+    margin-bottom: 18px !important;
+}
+
+.listingPreviewContainer{
+    border: 1px solid red;
+    position: relative;
+    height: 500px;
+}
