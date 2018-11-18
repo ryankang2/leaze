@@ -1,85 +1,100 @@
-import React, {Component} from "react";
-import "./profile.css";
-//import "./update.js"
+import React from "react";
+import "./Profile.css";
+import Navbar from "./Navbar.js"
+import UPopup from "./UPopup.js"
+import PPopup from "./PPopup.js"
+import ListingPreview from "./ListingPreview.js"
 
-class Profile extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            name:'',
-            sex:'',
-            age:'',
-            hometown:'',
-            school:'',
-            major:'',
-            hobbies:'',
-        };
-    }
-    render () {
-        return (
-        <div>
-    <div class="container-fluid" id="mainContainer">
-        {/* here lies the top row - Matt works here */}
-        <div id="background">
-            <div id="header">
+export class Profile extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+        firstname:'',
+        lastname:'',
+        age:'',
+        school:'',
+        major:'',
+        year:'',
+        bio:'',
+        picture:null,
+        showUPopup: false,
+        showPPopup: false,
+    };
+  }
+  toggleUPopup(){
+    this.setState({
+      showUPopup: !this.state.showUPopup
+    });
+  }
+  togglePPopup(){
+    this.setState({
+      showPPopup: !this.state.showPPopup
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <div class="container-fluid" id="mainContainer">
+        
+          {/* here lies the top row - Matt works here */}
+          <div class="row" id="profileRow">
+            <div class="col-md-2" id="profilePictureArea">
+              {/* User profile pic here */}
+              <img src={require('./profile.jpg')} id="profilePictureArea" />
+              <span class="label-ucsd"> UCSD </span>
             </div>
-            <h1>{this.state.name}USER's Profile</h1>
-            <div>
-              <img src={ require('./profile.jpg')} id="profilePictureArea" />
+
+            <div class="col-md-4" id="bioArea">
+              {/* User Bio Area here  */}
+              <h1 id="userName"> {this.state.firstname} {this.state.lastname} Full Name </h1>
+              <h2 id="userInfo"> {this.state.major} Major, {this.state.year} Year </h2>
+              <p rows="4" cols="50" id="biography"> {this.state.bio} biography </p>
             </div>
-            <div id="info">
-                <p>Sex: {this.state.sex}</p>
-                <p>Age: {this.state.age}</p>
-                <p>Hometown: {this.state.hometown}</p>
-                <p>Current School: {this.state.name}</p>
-                <p> Major: {this.state.major}</p>
-                <p>Hobbies: {this.state.hobbies}</p>
-                <div class="col-md-4" id="bioArea">
-                  Bio:
-                  {/* User Bio Area here  */}
-                  <p rows = "4" cols="50">
-                    {this.state.bio} 
-                  </p>
-                </div>
-              <a href="update.js" float="left">Edit</a>
-            </div>  
-        </div>
-        <div class="row" id="profileRow">
-          <div class="col-md-2" id="profilePictureArea">
-            {/* User profile pic here */}
+
+            <div className="col-md-2" id="ratingArea">
+              {/* User Rating Area goes here */}
+              <p id="ratingString"> Your average rating is: RATING </p>
+              <button onClick={this.toggleUPopup.bind(this)} class="ratingButton">Edit Profile</button>
+              <button onClick={this.togglePPopup.bind(this)} class="ratingButton">Edit Preferences</button>
+
+            </div>
+
+            <div className="col-md-4" id="progressArea">
+              {/* User Profile Strength Percentage is here */}
+            </div>
+
           </div>
 
-
-          <div className="col-md-2" id="ratingArea">
-            {/* User Rating Area goes here */}
+          <div class="row" id="rowDivider">
+            <hr /> {/* This is the pretty row divider */}
           </div>
 
-          <div className="col-md-4" id="progressArea">
-            {/* User Profile Strength Percentage is here */}
-          </div>
-
-        </div>
-
-        <div class="row" id="rowDivider">
-          <hr /> {/* This is the pretty row divider */}
-        </div>
-
-        {/* here lies the bottom row - Drexler works here */}
-        <div class="row" id="listingsRow">
-          <div class="col-md-12">
-            <div id="postedListings">
+          {/* here lies the bottom row - Drexler works here */}
+          <div class="row" id="listingsRow">
+            <div class="col-sm-8" id="postedListings">
               {/* User's Posted Listings go here */}
+              Posted Listings:
+                  {/*Ariane's code goes here*/}
+              <ListingPreview />
             </div>
-            <div id="favoriteListings">
-              {/* User's Favorite Listings go here */}
-              <img src={ require('./house.jpg')} id="favoriteListings" />
+            <div class="col-sm-8" id="favoriteListings">
+              {/* Ariane's code goes here */}
+              Favorite Listings:
+                  <ListingPreview />
             </div>
           </div>
         </div>
-    </div>
-    </div>
-        );
-    }
-}
+        {this.state.showUPopup ?
+          <UPopup closeUPopup={this.toggleUPopup.bind(this)}/>: null}
+        {this.state.showPPopup ?
+          <PPopup closePPopup={this.togglePPopup.bind(this)}/>: null}
+      </div>
+
+    );
+  }
+};
+
 
 export default Profile;

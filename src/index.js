@@ -1,10 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./components/App";
 
 // main app
-import App from "./components/App.js";
-import Profile from "./components/profile.js";
-import Update from "./components/update.js";
 
 ReactDOM.render(<App/>, document.getElementById("root"));
 
