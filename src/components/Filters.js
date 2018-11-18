@@ -7,31 +7,23 @@ class Filters extends Component{
     constructor(props){
         super(props);
         this.state = {
-            singleRoom: false,
-            doubleRoom: false,
-            tripleRoom: false,
-            livingRoom: false,
-            mi2: false,
-            mi5: false,
-            mi10: false,
-            mi20plus: false,
+            checkedItems: new Map(),
         }
 
+        this.handleChange = this.handleChange.bind(this);
     }
     resetFilters(){
         console.log("reset");
     }
     listClicked(e) {
-        e.preventDefault();
 
         console.log('You clicked the list header');
     }
 
-    handleClick(e) {
-        this.setState(state => ({
-
-        }))
-        console.log('Clicked checkbox');
+    handleChange(e) {
+        const item = e.target.name;
+        const isChecked = e.target.checked;
+        this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
     }
     render(){
         return (
@@ -41,27 +33,24 @@ class Filters extends Component{
                     <button className="btn btn-link" onClick={this.resetFilters}>Clear All</button>
                 </div>
                 <div className="listOfFilters">
-                    <li className="roomType" onClick={this.listClicked}><a href="#">Room Type</a>
-                        <ul className="dropdownContainer">
-                            <li><input 
-                                    type="checkbox" 
-                                    checked={this.state.singleRoom}
-                                    onClick={this.handleClick} 
-                                />Single Room</li>
-                            <li><input type="checkbox" checked={this.state.doubleRoom} />Double Room</li>
-                            <li><input type="checkbox" checked={this.state.tripleRoom} />Triple Room</li>
-                            <li><input type="checkbox" checked={this.state.livingRoom} />Living Room</li>
-                        </ul>
-                    </li>
-                    <li className="distance" onClick={this.listClicked} ><a href="#">Distance Within</a>
-                        <ul className="dropdownContainer">
-                            <li><input type="checkbox" onClick={this.handleChecked} />2 mi</li>
-                            <li><input type="checkbox" onClick={this.handleChecked} />5 mi</li>
-                            <li><input type="checkbox" onClick={this.handleChecked} />10 mi</li>
-                            <li><input type="checkbox" onClick={this.handleChecked} />20+ mi</li>
-                        </ul>
-                    </li>
-
+                    <li className="roomType" onClick={this.listClicked}><a href="#">Room Type</a></li>
+                        {
+                            roomTypeList.map(item => (
+                                <label key={item.key} className="checkbox">
+                                    <Checkbox name={item.name} checked={this.state.checkedItems.get(item.name)} onChange={this.handleChange} />
+                                    {item.name}
+                                </label>
+                            ))
+                        }
+                    <li className="distance" onClick={this.listClicked} ><a href="#">Distance Within</a></li>
+                        {
+                            distanceList.map(item => (
+                                <label key={item.key} className="checkbox">
+                                    <Checkbox name={item.name} checked={this.state.checkedItems.get(item.name)} onChange={this.handleChange} />
+                                    {item.name}
+                                </label>
+                            ))
+                        }
                 </div>
             </div>
         )
