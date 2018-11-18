@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./Filters.css";
 import {roomTypeList, distanceList} from './FilterItems';
+import Checkbox from './Checkbox';
 
 class Filters extends Component{
     constructor(props){

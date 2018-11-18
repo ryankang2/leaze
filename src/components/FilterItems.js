@@ -42,3 +42,8 @@ const distanceList = [
         label: '20+ Miles',
     },
 ];
+
+export {
+    roomTypeList,
+    distanceList
+}
