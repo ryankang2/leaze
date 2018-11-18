@@ -32,11 +32,12 @@ class ListingPreview extends Component{
                             <div className="userName"> ARIBERRy:P</div>
                             <div className="distance"> 0.69MI</div>
                             <div className="userRating">
-                                <span className="fa fa-star checked"></span>
-                                <span className="fa fa-star checked"></span>
-                                <span className="fa fa-star checked"></span>
-                                <span className="fa fa-star"></span>
-                                <span className="fa fa-star"></span>
+                               <i className="fa fa-star"></i>
+                               <i className="fa fa-star"></i>
+                               <i className="fa fa-star"></i>
+                               <i className="fa fa-star-o"></i>
+                               <i className="fa fa-star-o"></i>
+
 
                             </div>
                             <div className="dateDiff"> 1 Day Ag0</div>
