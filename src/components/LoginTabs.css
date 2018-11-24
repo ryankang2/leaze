@@ -10,27 +10,19 @@
     margin-right: 7%;
 }
 
-#logContainer {
+.logContainer {
     display: block;
-    width: 100%;
-    
+    width: 100%;   
 }
 
-#loginButton {
-    font-size: 20px;
-    background-color: lightblue;
-    margin-top: 2em;
-    margin-left: 37%;
-}
-
-#regButton {
+.btnSubmit {
     font-size: 20px;
     background-color: lightblue;
     margin-top: 2em;
 }
 
 #divLastName {
-    margin-left: 3em;
+    margin-left: 5%;
 }
 
 .tabs {
@@ -54,20 +46,14 @@
 
 .FormField {
     margin-top: 1em;
-    margin-left: 25%;
 }
 
 .FormField_name {
-    display: -webkit-inline-box;
-    margin-left: 25%;
+    display: -webkit-inline-box; 
 }
 
 .FormField__Label {
     display: block;
-}
-
-.FormField__Input {
-    min-width: 68%;
 }
 
 form {
@@ -77,6 +63,7 @@ form {
 
 .FormField__Input {
     display: block;
+    min-width: 70%;
 }
 
 #checkInput {

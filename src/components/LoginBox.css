@@ -1,0 +1,13 @@
+#logContainer {
+    display: block;
+    width: 100%;   
+    margin-top: 15%;
+}
+
+#forgotPassword {
+    color: blue;
+    margin-top: 1em;
+    border: none;
+    background: none;
+    margin-left: 20%;
+}
