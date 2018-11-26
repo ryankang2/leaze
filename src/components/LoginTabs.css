@@ -36,7 +36,7 @@
 }
 
 .tabcontent {
-    height: 80%;
+    height: 85%;
     width: 100%;
     border: 2px solid black;
     display: block;
@@ -66,8 +66,28 @@ form {
     min-width: 70%;
 }
 
+.formField_Input_Error{
+    display: block;
+    min-width: 70%;
+    border: 1px solid orange;
+}
+#ToS{
+    margin:0;
+}
+#regButton{
+    margin:1px;
+}
+
 #checkInput {
     display: inline;
+}
+
+.hidden{
+    display: block;
+}
+
+.show{
+
 }
 
 h3 {

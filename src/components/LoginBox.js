@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./LoginBox.css";
+import { fail } from "assert";
 
 export default class LoginBox extends Component {
 
@@ -27,16 +28,36 @@ export default class LoginBox extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.loginSubmit(this.state.email, this.state.password);
         
-        if(this.infoChecks(this.state.email, this.state.password) === true) {
-            console.log('The form was submitted with the following data:');
-            console.log(this.state);
-        }
+        //if(this.infoChecks(this.state.email, this.state.password) === true) {
+        //    console.log('The form was submitted with the following data:');
+        //    console.log(this.state);
+        //}
     }
+    loginSubmit(email, password) {
+        let dataObj = { 
+            email: email,
+            password: password
+        }
+        $.ajax({
+            crossDomain: true,
+            data: dataObj,
+            url: "http://localhost:8000/api/queries/sign_in.php",
+            method: "POST",
+            success: (response) => this.handleLoginResponse(response),
+            headers: {
+                "accept": "application/json",
+                "Access-Control-Allow-Origin":"*"
+            }
+            
+        });
+    }
+    
 
-    infoChecks(email, password) {
-        return true;
-    } 
+    //infoChecks(email, password) {
+    //    return true;
+    //} 
 
     forgotPassword(e) {
         console.log("forgot password");
