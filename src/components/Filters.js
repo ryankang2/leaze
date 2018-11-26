@@ -24,10 +24,20 @@ class Filters extends Component{
         const item = e.target.name;
         const isChecked = e.target.checked;
         this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
+        console.log(item);
+        console.log(isChecked);
+    }
+
+    submitFormData(e) {
+        e.preventDefault();
+        console.log('Submitted');
+
+        console.log(checkedItems);
+
     }
     render(){
         return (
-            <div className="filtersContainer">
+            <form className="filtersContainer" onSubmit={this.submitFormData}>
                 <div className="titleFilters">
                     <h3>Refine</h3>
                     <button className="btn btn-link" onClick={this.resetFilters}>Clear All</button>
@@ -52,7 +62,8 @@ class Filters extends Component{
                             ))
                         }
                 </div>
-            </div>
+                <button>Submit</button>
+            </form>
         )
     };
 }
