@@ -57,6 +57,7 @@ class Filters extends Component{
         console.log('Submitted');
     }
     render(){
+        console.log(this.state);
         return (
             <form className="filtersContainer" onSubmit={this.submitFormData}>
                 <div className="titleFilters">
@@ -77,7 +78,7 @@ class Filters extends Component{
                        <option value = '1000'> $1K+</option>
                    </Input>
                 </Row>
-                {/* <Row  >
+                <Row  >
                     <Input s={12} type ='select' label = 'Distance' name='distance' defaultValue ={this.state.distance} onChange={this.handleChange.bind(this)}>
                        <option value = '15'>15 miles</option>
                        <option value = '30'>30 miles</option>
@@ -103,7 +104,7 @@ class Filters extends Component{
                            <option value = '30'>30 miles</option>
                            <option value = '45'>45 miles</option>
                        </Input>
-                </Row> */}
+                </Row>
                 <button>Submit</button>
             </form>
         )
