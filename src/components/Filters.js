@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import "./Filters.css";
 import {Row, Input} from 'react-materialize';
+import {formatPostData} from "../helpers/formatPostData";
+import axios from "axios";
 
 class Filters extends Component{
     constructor(props){
@@ -50,14 +52,16 @@ class Filters extends Component{
            })
         }
     }
+
     async submitFormData(event){
         event.preventDefault();
-
-
-        console.log(this.state);
+        const params = formatPostData(this.state);
+        const response = await axios.post("http://localhost:8000/api/queries/filters.php", params);
+        this.props.getFilterData(response, params);
+        // console.log(response.data);
     }
+
     render(){
-        console.log(this.state);
         return (
             <form className="filtersContainer" onSubmit={this.submitFormData}>
                 <div className="titleFilters">
@@ -108,7 +112,7 @@ class Filters extends Component{
                 <button>Submit</button>
             </form>
         )
-    };
+    }
 }
 
 
