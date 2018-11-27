@@ -22,15 +22,27 @@ export class Profile extends React.Component {
         showPPopup: false,
     };
   }
+
   toggleUPopup(){
     this.setState({
       showUPopup: !this.state.showUPopup
     });
   }
+
   togglePPopup(){
     this.setState({
       showPPopup: !this.state.showPPopup
     });
+  }
+
+  percentFill(n){
+    if (this.state.rating >= n + 1) {
+      return String(100);
+    } else if (this.state.rating < n - 1) {
+      return String(0);
+    } else {
+      return String((this.state.rating - n) * 100);
+    }
   }
 
   render() {
@@ -70,28 +82,42 @@ export class Profile extends React.Component {
 
               <div id={'starContainer'}>
                 <svg style={stylesProfile.gradient} aria-hidden="true" focusable={'false'}>
-                  <linearGradient id="ratingGradient">
-                    {/*<stop offset={String(this.state.rating) + '%'} stop-color="black" />*/}
-                    {/*<stop offset={String(this.state.rating) + '%'} stop-color="#f7eddc" />*/}
-                    <stop offset={String(50) + '%'} stop-color="black" />
-                    <stop offset={String(50) + '%'} stop-color="#f7eddc" />
+                  <linearGradient id="ratingGradient0">
+                    <stop offset={this.percentFill(0) + '%'} stop-color="black" />
+                    <stop offset={this.percentFill(0) + '%'} stop-color="#f7eddc" />
+                  </linearGradient>
+                  <linearGradient id="ratingGradient1">
+                    <stop offset={this.percentFill(1) + '%'} stop-color="black" />
+                    <stop offset={this.percentFill(1) + '%'} stop-color="#f7eddc" />
+                  </linearGradient>
+                  <linearGradient id="ratingGradient2">
+                    <stop offset={this.percentFill(2) + '%'} stop-color="black" />
+                    <stop offset={this.percentFill(2) + '%'} stop-color="#f7eddc" />
+                  </linearGradient>
+                  <linearGradient id="ratingGradient3">
+                    <stop offset={this.percentFill(3) + '%'} stop-color="black" />
+                    <stop offset={this.percentFill(3) + '%'} stop-color="#f7eddc" />
+                  </linearGradient>
+                  <linearGradient id="ratingGradient4">
+                    <stop offset={this.percentFill(4) + '%'} stop-color="black" />
+                    <stop offset={this.percentFill(4) + '%'} stop-color="#f7eddc" />
                   </linearGradient>
                 </svg>
 
                 <svg viewBox={'0 0 25 25'} class="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient'} stroke={'black'}/>
+                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient0'} stroke={'black'}/>
                 </svg>
                 <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient'} stroke={'black'}/>
+                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient1'} stroke={'black'}/>
                 </svg>
                 <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient'} stroke={'black'}/>
+                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient2'} stroke={'black'}/>
                 </svg>
                 <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient'} stroke={'black'}/>
+                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient3'} stroke={'black'}/>
                 </svg>
                 <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient'} stroke={'black'}/>
+                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient4'} stroke={'black'}/>
                 </svg>
 
               </div>
