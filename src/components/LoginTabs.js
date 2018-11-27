@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./LoginTabs.css";
 import "./LoginBox.js";
 import LoginBox from "./LoginBox.js";
+import { fail } from "assert";
 
 export default class LoginTabs extends Component {
 
@@ -37,6 +38,10 @@ export default class LoginTabs extends Component {
             console.log('Register successful with the following data:');
             console.log(this.state);
         }
+    }
+
+    handleLoginResponse(response){
+        console.log(response);
     }
 
     registerSubmit(password, confPassword, email) {
@@ -95,11 +100,12 @@ export default class LoginTabs extends Component {
         }
     }
 
+
     render () {
         return <div id="logTabs">
-            <div class="tabs">
-                <button class="tablinks" onClick={(event) => this.switchTab(this.event, 'Login')} id="defaultOpen">Log in</button>
-                <button class="tablinks" onClick={(event) => this.switchTab(this.event, 'Register')}>Register</button>
+            <div className="tabs">
+                <button className="tablinks" onClick={(event) => this.switchTab(this.event, 'Login')} id="defaultOpen">Log in</button>
+                <button className="tablinks" onClick={(event) => this.switchTab(this.event, 'Register')}>Register</button>
             </div>
             
             <LoginBox />
@@ -121,7 +127,6 @@ export default class LoginTabs extends Component {
                                 <label className="FormField__Label" htmlFor="lastName">Last Name</label>
                                 <input type="text" id="lastName" className="FormField__Name_Input" placeholder="Enter your last name" name="lname" value={this.state.lname} onChange={this.handleChange}/>
                             </div>
-                        </div>
 
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
@@ -137,6 +142,7 @@ export default class LoginTabs extends Component {
                             <label className="FormField__Label" htmlFor="confPassword">Confirm Password</label>
                             <input type="password" id="confPassword" className="FormField__Input" placeholder="6 characters minimum" name="confPassword" value={this.state.confPassword} onChange={this.handleChange}/>
                         </div>
+
 
                         <div className="FormField">
                             <label className="FormField__CheckboxLabel">

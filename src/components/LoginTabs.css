@@ -75,3 +75,11 @@ h3 {
     font-size: 20px;
     width: 100%;
 }
+
+#password{
+    display: block;
+}
+
+#loginEmail{
+    display: block;
+}
