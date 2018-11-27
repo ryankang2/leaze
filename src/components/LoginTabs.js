@@ -31,9 +31,6 @@ export default class LoginTabs extends Component {
         });
     }
 
-<<<<<<< HEAD
->>>>>>> d7e7515198a7478080d3399a63fb91b124396042
-
     registerSubmit(password, confPassword, email) {
         if(password === confPassword) {
             if(password.length > 5) {
