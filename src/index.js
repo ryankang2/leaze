@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./components/App";
 
 // main app
-import ResultsPage from "./components/ResultsPage";
 
-ReactDOM.render(<ResultsPage />, document.getElementById("root"))
+ReactDOM.render(<App/>, document.getElementById("root"));
+
