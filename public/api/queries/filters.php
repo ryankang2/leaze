@@ -23,6 +23,7 @@
             $userResult = mysqli_query($conn, $userQuery);
             if(mysqli_num_rows($userResult) > 0){
                 $userRow = mysqli_fetch_assoc($userResult);
+                $userRow["password"] = "XXX";
                 $output["listings"][$count]["user"] = $userRow;
             }
             $count++;

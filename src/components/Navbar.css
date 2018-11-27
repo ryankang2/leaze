@@ -3,7 +3,7 @@
 }
 
 .settingsContainer{
-    float: right;
+    /* float: right; */
 }
 
 .navbar{
@@ -15,22 +15,37 @@
 }
 
 .navbar-left{
-    margin-left: 20%;
+    /* margin-left: 20%; */
 }
 
 
 .profileContainer{
     display: block;
+    bottom: 2vw;
+    left: 2%;
     float: right;
 }
 
 .profileContainer > div{
     color: white;
+    height: 35px;
 }
 
 .nav i{
     font-size: 18px;
 }
 
+.logoPic{
+    height: 50px;
+    width: 50px;
+}
+
+.welcome{
+    height: 20px;
+}
+
+ul:not(.browser-default) li {
+    width: 35px;
+}
 
 

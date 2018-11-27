@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./Navbar.css";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+
 class Navbar extends Component{
     constructor(props){
         super(props);
@@ -34,25 +35,27 @@ class Navbar extends Component{
         const {searchQuery} = this.state;
         return (
             <nav className="navbar navbar-inverse">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                        <a className="navbar-brand" href="#">Leaze</a>
-                        </div>
-                        <form className="navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>
-                            <div className="form-group">
-                                <input type="text" value={searchQuery} name="userInput" className="form-control searchBox" placeholder="Search..." onChange={(event) => this.handleInput(event)}/>
+                    <div className="container container-fluid">
+                        <div className="row">
+                            <div className="col-xs-1 col-sm-1 col-md-1 navbar-header">
+                                <img className="logoPic" src={require('./logo.png')} alt=""/>
                             </div>
-                            <button type="submit" className="btn btn-default">
-                                <i className="glyphicon glyphicon-search"></i>
-                            </button>
-                        </form>
-                        <div className="profileContainer">
-                            <div>Welcome, USER</div>
-                            <ul className="nav navbar-nav settingsContainer">
-                                <li><a href="#"><i className="glyphicon glyphicon-edit"></i></a></li>
-                                <li><a href="#"><i className="glyphicon glyphicon-envelope"></i></a></li>
-                                <li><a href="#"><i className="glyphicon glyphicon-bell"></i></a></li>
-                            </ul>
+                            <form className="col-xs-5 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>
+                                <div className="form-group">
+                                    <input type="text" value={searchQuery} name="userInput" className="form-control searchBox" placeholder="Search..." onChange={(event) => this.handleInput(event)}/>
+                                </div>
+                                <button type="submit" className="btn btn-default">
+                                    <i className="glyphicon glyphicon-search"></i>
+                                </button>
+                            </form>
+                            <div className="col-xs- 2 col-sm-2 col-md-2 profileContainer">
+                                <div className="welcome">Welcome, USER</div>
+                                <ul className="nav navbar-nav settingsContainer">
+                                    <li><a href="#"><i className="glyphicon glyphicon-edit"></i></a></li>
+                                    <li><a href="#"><i className="glyphicon glyphicon-envelope"></i></a></li>
+                                    <li><a href="#"><i className="glyphicon glyphicon-bell"></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>

@@ -5,9 +5,7 @@
     $output = [
         "success" => false,
     ];
-
-    $output["success"] = true;
-    $output["message"] = "this is from the backend";
+    
 
     print_r(json_encode($output));
 ?>
