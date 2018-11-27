@@ -15,7 +15,7 @@
     // assuming comes in as an associative array, hopefully this is what frontend can give us
     $changed = $_POST["changed_fields"];
 
-    foreach ($arr as $key => $value) {
+    foreach ($changed as $key => $value) {
         $updateQuery = "UPDATE `preferences` SET '$key'='$value' WHERE `preferences_id`='$user'";
         if (!mysqli_query($conn, $updateQuery)) {
             $output["success"] = false

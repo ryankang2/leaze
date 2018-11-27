@@ -22,6 +22,8 @@
 
     $prefQuery= "SELECT * from `preferences` WHERE `preferences_id`='$user'";
     $result = mysqli_query($conn, $checkUserQuery);
+    
+    // should only return one row (make sure to delete upon user 
     if(mysqli_num_rows($result) == 1){
         $row = mysqli_fetch_assoc($result)
         $output["guests_per_week"] = $row["guests_per_week"];
