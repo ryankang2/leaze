@@ -127,7 +127,7 @@ export default class LoginTabs extends Component {
                                 <label className="FormField__Label" htmlFor="lastName">Last Name</label>
                                 <input type="text" id="lastName" className="FormField__Name_Input" placeholder="Enter your last name" name="lname" value={this.state.lname} onChange={this.handleChange}/>
                             </div>
-
+                        </div>
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
                             <input type="email" id="email" className="FormField__Input" placeholder="Enter a valid .edu email" name="email" value={this.state.email} onChange={this.handleChange}/>
@@ -157,7 +157,6 @@ export default class LoginTabs extends Component {
 
                 </div>
             </div>
-
         </div>
     }
 }
