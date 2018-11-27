@@ -109,7 +109,7 @@ class Filters extends Component{
                            <option value = '45'>45 miles</option>
                        </Input>
                 </Row>
-                <button>Submit</button>
+                <button className="btn btn-primary">Submit</button>
             </form>
         )
     }
