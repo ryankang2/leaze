@@ -54,7 +54,7 @@ class Filters extends Component{
         event.preventDefault();
 
 
-        console.log('Submitted');
+        console.log(this.state);
     }
     render(){
         console.log(this.state);
