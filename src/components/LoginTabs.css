@@ -6,7 +6,6 @@
     float: right;
     position: relative;
     width: 50%;
-    height: 75%;
     margin-right: 7%;
 }
 
@@ -18,16 +17,16 @@
 .btnSubmit {
     font-size: 20px;
     background-color: lightblue;
-    margin-top: 2em;
+    margin-top: 5%;
 }
 
 #divLastName {
-    margin-left: 5%;
+    margin-left: 10%;
 }
 
 .tabs {
     margin-top: 2em; 
-    display: block;
+    /* display: block; */
 }
 
 .tablinks {
@@ -36,12 +35,13 @@
 }
 
 .tabcontent {
-    height: 85%;
+
     width: 100%;
     border: 2px solid black;
-    display: block;
+    /* display: block; */
     position: relative;
     float: right;
+    padding-bottom: 5%;
 }
 
 .FormField {
@@ -83,11 +83,11 @@ form {
 }
 
 .hidden{
-    display: block;
+    display: hidden;
 }
 
 .show{
-
+    display: block;
 }
 
 h3 {
@@ -95,4 +95,12 @@ h3 {
     margin-left: 2em;
     font-size: 20px;
     width: 100%;
+}
+
+#password{
+    display: block;
+}
+
+#loginEmail{
+    display: block;
 }

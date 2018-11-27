@@ -7,11 +7,11 @@ import LoginBox from "./LoginBox.js";
 
 export default class LoginTabs extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor(mn  ) {
+        super();
         
 
-        this.state = {
+        this.state = {u
             fname: '',
             lname: '',
             email: '',
@@ -42,14 +42,14 @@ export default class LoginTabs extends Component {
         e.preventDefault();
 
         
-        this.toggler(email);
-        if(this.registerSubmit(this.state.password, this.state.confPassword, this.state.email) === true) {
+        this.toggler();
+        if(this.registerSubmit() === true) {
             console.log('Register successful with the following data:');
             console.log(this.state);
         }
     }
 
-    registerSubmit(password, confPassword, email) {
+    registerSubmit() {
         
         if(document.getElementById("checkInput").checked) {
             document.getElementById("ToS").className = "hidden";
@@ -95,7 +95,7 @@ export default class LoginTabs extends Component {
         }
     }
     //turns on error handling, is called when form submits
-    toggler(field){
+    toggler(){
         this.setState({active: true});
     }
     /* Method to validate the values within each state.
@@ -199,8 +199,7 @@ export default class LoginTabs extends Component {
 
                 </div>
             </div>
-
-        </div>
+   
     }
     
 }
