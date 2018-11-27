@@ -6,6 +6,7 @@ import Navbar from "./Navbar.js"
 import ListingPreview from "./ListingPreview.js"
 import ResultsContent from "./ResultsContent.js"
 import LandingPage from "./LandingPage";
+import MessagingPage from "./MessagingPage";
 
 
 export default class App extends Component {
@@ -14,6 +15,7 @@ export default class App extends Component {
             <div>
                 <ResultsPage />
                 {/* <LandingPage /> */}
+                {/* <Profile /> */}
             </div>
         )
     }

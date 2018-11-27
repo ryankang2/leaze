@@ -17,9 +17,9 @@
     if(mysqli_num_rows($result) > 0){
         $output["correctUser"] = true;
         while($row = mysqli_fetch_assoc($result)){
-            $output["success"] = true;
             $dbPassword = $row["password"];
             if($dbPassword == $password){
+                $output["success"] = true;
                 $output["correctPassword"] = true;
             }
         }
