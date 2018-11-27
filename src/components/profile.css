@@ -55,13 +55,13 @@ hr {
 
 #profilePic {
     border: 1px solid black;
-    border-radius: 10vw;
-    width: 8vw;
-    height: 8vw;
+    border-radius: 20vw;
+    width: 12vw;
+    height: 12vw;
     position: absolute;
-    left: 4.165vw;
+    left: 2.165vw;
     right: 4.165vw;
-    top: 8vh;
+    top: 6vh;
 }
 
 .label-ucsd {
@@ -69,7 +69,7 @@ hr {
     color: #f4e92d;
     padding: 8px;
     background: #1e65a9;
-    font: 24px "Arial Black";
+    font: 1.25em "Arial Black";
     position: absolute;
     left: 6vw;
     top: 21vh;
@@ -81,7 +81,7 @@ hr {
     left: 16.33vw;
     width: 32.66vw;
     height: 36vh;
-    font: 18px "Arial";
+    font: 1.25em "Arial";
     background:transparent;
     font-weight: normal;
 }
