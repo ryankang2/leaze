@@ -10,13 +10,14 @@
   },
   "proxy": {
     "/api/*": {
-      "target": "http://localhost:8000/api" 
+      "target": "http://localhost:8000/api"
     }
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-materialize": "^2.4.8",
+    "react-materialize": "^2.5.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1"
   },
