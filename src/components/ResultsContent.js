@@ -29,10 +29,10 @@ class ResultsContent extends Component{
             <div className="container">
                 <h2> Explore Housing</h2>
                 <div className="row">
-                    <div className="col-sm-2">
+                    <div className="col-sm-3 col-md-3">
                         <Filters getFilterData={this.getFilterResponseData.bind(this)}/>
                     </div>
-                    <div className="col-sm-10 listingPreviewContainer">
+                    <div className="col-sm-9 col-md-9 listingPreviewContainer">
                         {/* <ListingPreview />       */}
                         <div className="list">
                             <div className="row">
