@@ -9,5 +9,5 @@
     $output["success"] = true;
     $output["message"] = "this is from the backend";
 
-    return json_encode($output);
+    print_r(json_encode($output));
 ?>
