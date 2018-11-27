@@ -16,9 +16,7 @@ class Filters extends Component{
             roomTriple: false,
             roomLiving: false,
             roomApart: false,
-            roomCondo: false,
             roomHouse: false,
-            roomStudio: false,
             roomPets: false,
             newestFirst: false,
         }
@@ -66,7 +64,7 @@ class Filters extends Component{
             <form className="filtersContainer" onSubmit={this.submitFormData}>
                 <div className="titleFilters">
                     <h3>Refine</h3>
-                    <button className="btn btn-link" onClick={this.resetFilters}>Clear All</button>
+                    <button type="button" className="btn btn-link" onClick={this.resetFilters}>Clear All</button>
                 </div>
                 <Row>
                     <Input s={6} type ='select' label = 'Min Price' name="minPrice" defaultValue = {this.state.minPrice} onChange={this.handleChange.bind(this)}>
@@ -97,9 +95,7 @@ class Filters extends Component{
                 </Row>
                 <Row  >
                        <Input s={6} name='roomApart' type='checkbox' checked={this.state.roomApart} value = 'roomApart' label='Apartment'  onChange={this.handleCheckBox.bind(this)} />
-                       <Input s={6} name='roomCondo' type='checkbox' checked={this.state.roomCondo} value = 'roomCondo' label='Condomenium'  onChange={this.handleCheckBox.bind(this)} />
                        <Input s={6} name='roomHouse' type='checkbox' checked={this.state.roomHouse} value = 'roomHouse' label='House'  onChange={this.handleCheckBox.bind(this)}/>
-                       <Input s={6} name='roomStudio' type='checkbox' checked={this.state.roomStudio} value = 'roomStudio' label='Studio'  onChange={this.handleCheckBox.bind(this)}/>
                        <Input s={6} name='roomPets' type='checkbox' checked={this.state.roomPets} value = 'roomPets' label='Pet Friendly'  onChange={this.handleCheckBox.bind(this)}/>
                 </Row>
                <Row  >
@@ -109,7 +105,7 @@ class Filters extends Component{
                            <option value = '45'>45 miles</option>
                        </Input>
                 </Row>
-                <button>Submit</button>
+                <button type="button" className="btn btn-primary">Submit</button>
             </form>
         )
     }
