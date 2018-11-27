@@ -1,7 +1,9 @@
 .filtersContainer{
-    height: 500px;
+    height: 80%;
     border: 1px solid red;
-    margin-left: 1%;
+    margin-top: 0;
+    margin-left: 0;
+    width: 80%
 }
 
 .titleFilters{
