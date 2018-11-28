@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import "./LoginBox.css";
+import {formatPostData} from "../helpers/formatPostData";
+import axios from "axios";
 
 export default class LoginBox extends Component {
 
@@ -25,12 +27,14 @@ export default class LoginBox extends Component {
         });
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
         
         if(this.infoChecks(this.state.email, this.state.password) === true) {
-            console.log('The form was submitted with the following data:');
-            console.log(this.state);
+            const params = formatPostData(this.state);
+            const response = await axios.post("http://localhost:8000/api/queries/sign_in.php", params);
+            // this.props.getFilterData(response, params);
+            console.log(response.data);
         }
     }
 
