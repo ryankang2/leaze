@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import "./LoginTabs.css";
-import "./LoginBox.js";
 import LoginBox from "./LoginBox.js";
-import { fail } from "assert";
+// import { fail } from "assert";
 
 export default class LoginTabs extends Component {
 

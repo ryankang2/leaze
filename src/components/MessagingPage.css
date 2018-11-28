@@ -8,7 +8,6 @@
 }
 
 #topBar {
-    display: inline-block;
     height: 5%;
     width: 100%;
     background-color: rgb(182, 168, 168);
@@ -19,35 +18,90 @@
     height: 20%;
     width: 100%;
     background-color: black;
+    display: block;
 }
 
 #conversations {
     height: 75%;
     width: 25%;
-    border: black solid 2px;
+    border: black solid 1px;
     overflow: auto;
-    display: inline-block;
+    float: left;
+}
+
+#convoList {
+    border-right: black solid 1px;
+    border-top: black solid 1px;
+    border-bottom: black solid 1px;
+    height: 90%;
+}
+
+#currentConvo {
+    border-top: black solid 1px;
+    border-bottom: black solid 1px;
+    height: 90%;
+    position: relative;
 }
 
 #messageContainer {
     height: 75%;
     width: 75%;
-    border: black solid 2px;
+    border: black solid 1px;
     float: right;
 }
 
+#currentListing {
+    float: right;
+    width: 20%;
+    height: 85%;
+}
+
+#typeBox {
+    height: 15%;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+}
+
+#myCurConvo {
+    position: absolute;
+    top: 0px;
+    width: 80%;
+    height: 85%;
+    /* border: gray solid 1px; */
+}
+
 #messagesTitle {
-    display: inline;
     text-align: center;
     vertical-align: -webkit-baseline-middle;
     color: white;
     position: relative;
+    font-size: 100%;
 }
 
-h2 {
+.containerTitles {
+    height: 10%;
+}
+
+.msgh2 {
     text-align: center;
+    margin-top: 0%;
 }
 
 #centerLogo {
     float: left;
+}
+
+#between-hor {
+    border: 1px solid gray;
+    width: 90%;
+    margin-left: 5%;
+}
+
+#between-vert {
+    border: 1px solid gray;
+    width: 0px;
+    height: 90%;
+    float: right;
+    margin-top: 2%;
 }
