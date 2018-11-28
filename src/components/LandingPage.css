@@ -37,7 +37,7 @@
     margin-top: 2em;
 }
 
-h5 {
+#welcomeTop {
     display: inline;
     text-align: center;
     vertical-align: -webkit-baseline-middle;
@@ -46,9 +46,10 @@ h5 {
  
 }
 
-h1 {
+#headerMsg {
     color: white;
     font-family: 'Permanent Marker', cursive;
+    font-size: 300%
 }
 
 .needSpace {

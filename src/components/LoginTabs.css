@@ -26,7 +26,6 @@
 
 .tabs {
     margin-top: 2em; 
-    /* display: block; */
 }
 
 .tablinks {
@@ -37,7 +36,6 @@
 .tabcontent {
     width: 100%;
     border: 2px solid black;
-    /* display: block; */
     position: relative;
     float: right;
     padding-bottom: 5%;
@@ -71,7 +69,6 @@ form {
 
 h3 {
     float: left;
-    margin-left: 2em;
     font-size: 20px;
     width: 100%;
 }
