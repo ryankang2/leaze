@@ -31,19 +31,6 @@ export default class LoginTabs extends Component {
         });
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-
-        if(this.registerSubmit(this.state.password, this.state.confPassword, this.state.email) === true) {
-            console.log('Register successful with the following data:');
-            console.log(this.state);
-        }
-    }
-
-    handleLoginResponse(response){
-        console.log(response);
-    }
-
     registerSubmit(password, confPassword, email) {
         if(password === confPassword) {
             if(password.length > 5) {
