@@ -19,7 +19,7 @@ class Filters extends Component{
             roomHouse: false,
             roomPets: false,
             hasInUnitLaundry: false,
-            numParkingSpots: 0,
+            numParkingSpots: "0",
             isFurnished: false,
             hasGym: false,
             hasPool: false,
