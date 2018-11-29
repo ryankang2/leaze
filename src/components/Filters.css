@@ -1,18 +1,22 @@
 .filtersContainer{
     height: 80%;
-    border: 1px solid red;
     margin-top: 0;
     margin-left: 0;
-    width: 80%
+    width: 100%;
+    padding-right: 25px;
+    font-size: 12;
+    /* overflow: auto; */
 }
+.caret {
+    border-color: transparent !important;
+  }
 
-.roomTypeElement > input{
-    font-size: 3px;
+.roomType > Input{
     display: block;
 }
 
-.homeType{
-    font-size: 8px;
+.homeType > Input{
+    display: block;
 }
 
 .titleFilters{
