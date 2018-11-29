@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import LoginTabs from "./LoginTabs"
+import ForgotPassword from "./ForgotPassword.js"
 import "./LandingPage.css";
 
 export default class LandingPage extends Component {
@@ -12,7 +13,10 @@ export default class LandingPage extends Component {
                 <img src= {require('./logo.png')} alt="logo" width="50" height="50" />
                 <h1>Your new home. Just the way you like it.</h1>
             </div>  
+
+            <ForgotPassword />
             <LoginTabs />
+            
             <div id="introInfo">
                 <h4 className="needSpace">Why join LEaze?</h4>
                 <p className="needSpace">
