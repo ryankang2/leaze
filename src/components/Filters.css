@@ -6,6 +6,15 @@
     width: 80%
 }
 
+.roomTypeElement > input{
+    font-size: 3px;
+    display: block;
+}
+
+.homeType{
+    font-size: 8px;
+}
+
 .titleFilters{
     text-align: center;
     height: 16%;
@@ -38,12 +47,4 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.roomType:hover .dropdownContainer{
-    display: block;
-}
-
-.distance:hover .dropdownContainer{
-    display: block;
 }

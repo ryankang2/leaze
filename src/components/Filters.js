@@ -67,7 +67,7 @@ class Filters extends Component{
                     <button type="button" className="btn btn-link" onClick={this.resetFilters}>Clear All</button>
                 </div>
                 <Row>
-                    <Input s={6} type ='select' label = 'Min Price' name="minPrice" defaultValue = {this.state.minPrice} onChange={this.handleChange.bind(this)}>
+                    <Input s={6} type='select' label='Min Price' name="minPrice" defaultValue={this.state.minPrice} onChange={this.handleChange.bind(this)}>
                        <option value = '0'> $0</option>
                        <option value = '400'> $400</option>
                        <option value = '600'> $600</option>
@@ -87,23 +87,16 @@ class Filters extends Component{
                        <option value = '45'>45 miles</option>
                    </Input>
                </Row>
-               <Row  >
-                       <Input s={6} name='roomSingle' type='checkbox' checked={this.state.roomSingle} value = 'roomSingle' label='Single Room'  onChange={this.handleCheckBox.bind(this)} />
-                       <Input s={6} name='roomDouble' type='checkbox' checked={this.state.roomDouble} value = 'roomDouble' label='Double Room'  onChange={this.handleCheckBox.bind(this)} />
-                       <Input s={6} name='roomTriple' type='checkbox' checked={this.state.roomTriple} value = 'roomTriple' label='Triple Room'  onChange={this.handleCheckBox.bind(this)}/>
-                       <Input s={6} name='roomLiving' type='checkbox' checked={this.state.roomLiving} value = 'roomLiving' label='Living Room'  onChange={this.handleCheckBox.bind(this)}/>
-                </Row>
-                <Row  >
+               <div className="roomTypeElement">
+                       <input name='roomSingle' type='checkbox' checked={this.state.roomSingle} value='roomSingle' label='Single Room'  onChange={this.handleCheckBox.bind(this)} />
+                       <input name='roomDouble' type='checkbox' checked={this.state.roomDouble} value = 'roomDouble' label='Double Room'  onChange={this.handleCheckBox.bind(this)} />
+                       <input name='roomTriple' type='checkbox' checked={this.state.roomTriple} value = 'roomTriple' label='Triple Room'  onChange={this.handleCheckBox.bind(this)}/>
+                       <input name='roomLiving' type='checkbox' checked={this.state.roomLiving} value = 'roomLiving' label='Living Room'  onChange={this.handleCheckBox.bind(this)}/>
+                </div>
+                <Row className="homeType">
                        <Input s={6} name='roomApart' type='checkbox' checked={this.state.roomApart} value = 'roomApart' label='Apartment'  onChange={this.handleCheckBox.bind(this)} />
                        <Input s={6} name='roomHouse' type='checkbox' checked={this.state.roomHouse} value = 'roomHouse' label='House'  onChange={this.handleCheckBox.bind(this)}/>
                        <Input s={6} name='roomPets' type='checkbox' checked={this.state.roomPets} value = 'roomPets' label='Pet Friendly'  onChange={this.handleCheckBox.bind(this)}/>
-                </Row>
-               <Row  >
-                       <Input s={12} type ='select' label = 'Newest First' name='distance' defaultValue ='Nearby' onChange={this.handleChange.bind(this)}>
-                           <option value = '15'>15 miles</option>
-                           <option value = '30'>30 miles</option>
-                           <option value = '45'>45 miles</option>
-                       </Input>
                 </Row>
                 <button className="btn btn-primary">Submit</button>
             </form>
