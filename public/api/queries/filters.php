@@ -7,8 +7,6 @@
         "noListings" => false
     ];
 
-    $noneSet = true;
-
     // expecting input of current value of each filter (pass in "" if not set)
     $filters = [
         "dist_to_campus" => $_POST["dist_to_campus"],
@@ -24,66 +22,55 @@
         "room_type" => $_POST["room_type"]
     ];
 
-    // see if no filters are set
-    foreach($filters as $key => $value) {
-        if ($value != "") {
-            $noneSet = false;
-            break;
-        }
-    } 
-
     // build the listings query based on the filters the user has set
-    $getListings = "SELECT * FROM `listings`";
-    if ($noneSet == false) {
-         $getListings .= " WHERE ";
+    $getListings = "SELECT * FROM `listings` WHERE `archived`=0 AND ";
 
-        if ($filters["dist_to_campus"] != "") {
-            $getListings .= "`dist_to_campus`<=" . $filters["dist_to_campus"] . " AND ";
-        }
-
-        if ($filters["price_low"] != "") {
-            $getListings .= "`price`>=" . $filters["price_low"] . " AND ";
-        }
-
-        if ($filters["price_high"] != "") {
-            $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
-        }
-
-        if ($filters["pet"] != "") {
-            $getListings .= "`pets`==" . $filters["pet"] . " AND ";
-        }
-
-        if ($filters["laundry"] != "") {
-            $getListings .= "`in_unit_laundry`==" . $filters["laundry"] . " AND ";
-        }
-
-        if ($filters["furnished"] != "") {
-            $getListings .= "`furnished`==" . $filters["furnished"] . " AND ";
-        }
-
-        if ($filters["gym"] != "") {
-            $getListings .= "`gym`==" . $filters["gym"] . " AND ";
-        }
-
-        if ($filters["pool"] != "") {
-            $getListings .= "`pool`==" . $filters["pool"] . " AND ";
-        }
-
-        if ($filters["parking_spots"] != "") {
-            $getListings .= "`parking_spot`>=" . $filters["parking_spots"] . " AND ";
-        }
-
-        if ($filters["home_type"] != "") {
-            $getListings .= "`home_type`==" . $filters["home_type"] . " AND ";
-        }
-
-        if ($filters["room_type"] != "") {
-            $getListings .= "`room_type`==" . $filters["room_type"] . " AND ";
-        }
-
-        // remove last " AND " in the query string
-        $getListings = substr($getListings, 0, -5);
+    if ($filters["dist_to_campus"] != "") {
+        $getListings .= "`dist_to_campus`<=" . $filters["dist_to_campus"] . " AND ";
     }
+
+    if ($filters["price_low"] != "") {
+        $getListings .= "`price`>=" . $filters["price_low"] . " AND ";
+    }
+
+    if ($filters["price_high"] != "") {
+        $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
+    }
+
+    if ($filters["pet"] != "") {
+        $getListings .= "`pets`==" . $filters["pet"] . " AND ";
+    }
+
+    if ($filters["laundry"] != "") {
+        $getListings .= "`in_unit_laundry`==" . $filters["laundry"] . " AND ";
+    }
+
+    if ($filters["furnished"] != "") {
+        $getListings .= "`furnished`==" . $filters["furnished"] . " AND ";
+    }
+
+    if ($filters["gym"] != "") {
+        $getListings .= "`gym`==" . $filters["gym"] . " AND ";
+    }
+
+    if ($filters["pool"] != "") {
+        $getListings .= "`pool`==" . $filters["pool"] . " AND ";
+    }
+
+    if ($filters["parking_spots"] != "") {
+        $getListings .= "`parking_spot`>=" . $filters["parking_spots"] . " AND ";
+    }
+
+    if ($filters["home_type"] != "") {
+        $getListings .= "`home_type`==" . $filters["home_type"] . " AND ";
+    }
+
+    if ($filters["room_type"] != "") {
+        $getListings .= "`room_type`==" . $filters["room_type"] . " AND ";
+    }
+
+    // remove last " AND " in the query string
+    $getListings = substr($getListings, 0, -5);
 
     // now make the query
     $listings = mysqli_query($conn, $getListings);
