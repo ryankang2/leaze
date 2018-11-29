@@ -30,10 +30,6 @@ class Filters extends Component{
     resetFilters(){
         console.log("reset");
     }
-    listClicked(e) {
-
-        console.log("You clicked the list header");
-    }
 
     handleChange(event) {
         const {name, value} = event.currentTarget;
