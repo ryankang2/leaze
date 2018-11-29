@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import "./LoginBox.css";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 
@@ -34,7 +33,7 @@ export default class LoginBox extends Component {
             const params = formatPostData(this.state);
             const response = await axios.post("http://localhost:8000/api/queries/sign_in.php", params);
             // this.props.getFilterData(response, params);
-            console.log(response.data);
+            console.log(response.data);       
         }
     }
 

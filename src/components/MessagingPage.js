@@ -9,7 +9,7 @@ export default class MessagingPage extends Component {
                 <h5 id="messagesTitle">Message-LEaze</h5>
             </div>
             <div id="header">
-                <img id="centerLogo" src= {require('./logo.png')} alt="logo" width="50" height="50"/>
+                <img id="centerLogo" src= {require('./logo_transparent.png')} alt="logo" width="50" height="50"/>
             </div>  
 
             <div id="conversations">

@@ -43,7 +43,7 @@
 
 .FormField__Label {
     display: block;
-    color: #ee6e73;
+    color: black;
 }
 
 form {
@@ -69,4 +69,30 @@ form {
 
 .FormField__TermsLink {
     margin-left: 5px;
+}
+
+#logContainer {
+    display: block;
+    width: 100%;   
+    margin-top: 5%;
+}
+
+#forgotPassword {
+    color: blue;
+    margin-top: 1em;
+    border: none;
+    background: none;
+    margin-left: 10%;
+}
+
+.tabs .tab a {
+    color: black;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    color: black;
+}
+
+.tabs .indicator {
+    background-color: #37916e;
 }
