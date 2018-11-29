@@ -34,6 +34,7 @@
 .info {
     left:25vw;
     max-height: 150px;
+    font-size: 30px !important;
 }
 
 #displayPic {
