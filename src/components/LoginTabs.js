@@ -7,11 +7,11 @@ import LoginBox from "./LoginBox.js";
 
 export default class LoginTabs extends Component {
 
-    constructor(mn  ) {
+    constructor() {
         super();
         
 
-        this.state = {u
+        this.state = {
             fname: '',
             lname: '',
             email: '',
@@ -51,8 +51,8 @@ export default class LoginTabs extends Component {
 
     registerSubmit() {
         
-        if(document.getElementById("checkInput").checked) {
-            document.getElementById("ToS").className = "hidden";
+        if(true) {
+            document.getElementById("wrongInput").className = "hidden";
             const errors = this.vali(this.state.fname, this.state.lname,
                                 this.state.email, this.state.password,
                                 this.state.confPassword);
@@ -62,11 +62,16 @@ export default class LoginTabs extends Component {
                 return true;
             }
             else{
+                if(errors["password"]){
+                    document.getElementById("wrongInput").className = "show";
+                    document.getElementById("wrongInput").innerText = "Password Must be at least 6 characters";
+                }
+                    
                 return false;
             }
         }
         else {
-            document.getElementById("ToS").className = "show";
+            document.getElementById("wrongInput").className = "show";
             return false;
         }
 
@@ -103,12 +108,14 @@ export default class LoginTabs extends Component {
     *  false otherwise.
     */
     vali(fname, lname, email, password, confPassword){
+        
         return{
             fname: fname.length === 0,
             lname: lname.length === 0,
             email: this.validEmail(email),
-            password: password.length === 0,
-            confPassword: !(password === confPassword),
+            password: password.length === 0 || password.length < 6,
+            confPassword: confPassword.length === 0 || !(password === confPassword),
+            
         };
     }
     /* Method to check whether the current value of the state
@@ -120,10 +127,10 @@ export default class LoginTabs extends Component {
                             this.state.email, this.state.password, this.state.confPassword);
         const hasError = errors[field];
         if(hasError){
-            return "formField_Input_Error";
+            return "invalid";
         }
         else{
-            return "FormField__Input";
+            return "validate";
         }
     }
 
@@ -149,7 +156,7 @@ export default class LoginTabs extends Component {
                             
                                 <label className="FormField__Label" htmlFor="fname">First Name</label>
                                 <input type="text" id="firstName" className={this.state.active ? this.checkError("fname") : "FormField__Input"} placeholder="Enter your first name" name="fname" value={this.state.fname} onChange={this.handleChange} />
-
+                                
                             </div>
                             
                             <div id="divLastName">
@@ -165,17 +172,20 @@ export default class LoginTabs extends Component {
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
                             <input type="email" id="email" className={this.state.active ? this.checkError("email") : "FormField__Input"} placeholder="Enter a valid .edu email" name="email" value={this.state.email} onChange={this.handleChange}/>
+                            <span class="helper-text" data-error="wrong" data-success="right"></span>
                         </div>
                         
 
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="myPassword">Desired Password</label>
                             <input type="password" id="myPassword" className={this.state.active ? this.checkError("password"): "FormField__Input"} placeholder="6 characters minimum" name="password"  value={this.state.password} onChange={this.handleChange}/>
+                            
                         </div>
 
                         <div className="FormField">
                             <label className="FormField__Label" htmlFor="confPassword">Confirm Password</label>
                             <input type="password" id="confPassword" className={this.state.active ? this.checkError("confPassword"): "FormField__Input"} placeholder="6 characters minimum" name="confPassword" value={this.state.confPassword} onChange={this.handleChange}/>
+                            
                             
                            
                         </div>
@@ -187,8 +197,8 @@ export default class LoginTabs extends Component {
                                 <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" id="checkInput" /> I agree to the<a href="" className="FormField__TermsLink"> terms of service</a>
                             </label>
                         </div>
-                        <span id="ToS" className="hidden" style={{color:"orange"}}>Please agree to the terms of service </span> 
-
+                        
+                        <span id="wrongInput" className="hidden" style={{color:"red"}}>no change</span> 
                         
 
                         <div className="FormField">
@@ -199,6 +209,8 @@ export default class LoginTabs extends Component {
 
                 </div>
             </div>
+
+        </div>
    
     }
     

@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "react": "^16.5.2",
+    "materialize": "^1.0.0",
+    "react": "^16.6.3",
     "react-dom": "^16.5.2",
     "react-materialize": "^2.5.0",
     "react-redux": "^5.0.7",
