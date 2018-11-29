@@ -31,6 +31,15 @@ export default class LoginTabs extends Component {
         });
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+
+        if(this.registerSubmit(this.state.password, this.state.confPassword, this.state.email) === true) {
+            console.log('Register successful with the following data:');
+            console.log(this.state);
+        }
+    }
+
     registerSubmit(password, confPassword, email) {
         if(password === confPassword) {
             if(password.length > 5) {
@@ -141,7 +150,6 @@ export default class LoginTabs extends Component {
                             <button type="Submit" id="regButton" className="btnSubmit">Sign Up</button>
                         </div>    
                     </form>
-
                 </div>
             </div>
         </div>
