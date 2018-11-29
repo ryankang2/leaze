@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import {Input} from "react-materialize";
+import axios from "axios";
+import {formatPostData} from "../helpers/formatPostData";
 
 export default class RegisterBox extends Component {
 
@@ -29,12 +31,13 @@ export default class RegisterBox extends Component {
         });
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
 
         if(this.registerSubmit(this.state.password, this.state.confPassword, this.state.email) === true) {
-            console.log('Register successful with the following data:');
-            console.log(this.state);
+            const params = formatPostData(this.state);
+            const response = await axios.post("http://localhost:8000/api/mail_handler.php", params);
+            console.log(response);
         }
     }
 
