@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import "./LoginTabs.css";
 import LoginBox from "./LoginBox.js";
+import {Tabs, Tab} from "react-materialize"
+import {Input} from "react-materialize"
 // import { fail } from "assert";
 
 export default class LoginTabs extends Component {
@@ -22,12 +24,15 @@ export default class LoginTabs extends Component {
 
     handleChange(e) {
         let target = e.target;
+        console.log(e.currentTarget);
         let value = target.type === 'checkbox' ? target.checked : target.value;
         let name = target.name;
+        
 
         this.setState({
           [name]: value
         });
+        console.log(this.state);
     }
 
     handleSubmit(e) {
@@ -88,74 +93,60 @@ export default class LoginTabs extends Component {
         }
     }
 
-    switchTab(event, loginTab) {
-        if (loginTab === 'Login') {
-            document.getElementById("Register").style.display = "none";
-            document.getElementById("Login").style.display = "block"
-        }
-        else {
-            document.getElementById("Login").style.display = "none";
-            document.getElementById("Register").style.display = "block";
-        }
-    }
-
-
     render () {
         return <div id="logTabs">
-            <div className="tabs">
-                <button className="tablinks" onClick={(event) => this.switchTab(this.event, 'Login')} id="defaultOpen">Log in</button>
-                <button className="tablinks" onClick={(event) => this.switchTab(this.event, 'Register')}>Register</button>
-            </div>
-            
-            <LoginBox />
+            <Tabs>
+                <Tab title="Log In" active>
+                    <LoginBox />
+                </Tab>
 
-            <div class="tabcontent" id="Register">
-                <h3>Register</h3>
-                <div className="logContainer">
+                <Tab title="Register">
+                    <div class="tabcontent" id="Register">
+                        <div className="logContainer">
 
-                    {/* This is where the pasted signup code starts */}
-                    <form onSubmit={this.handleSubmit} className="FormFields">
+                            {/* This is where the pasted signup code starts */}
+                            <form onSubmit={this.handleSubmit} className="FormFields">
 
-                        <div className="FormField_name">
-                            <div>
-                                <label className="FormField__Label" htmlFor="fname">First Name</label>
-                                <input type="text" id="firstName" className="FormField__Name_Input" placeholder="Enter your first name" name="fname" value={this.state.fname} onChange={this.handleChange} />
-                            </div>
-                            
-                            <div id="divLastName">
-                                <label className="FormField__Label" htmlFor="lastName">Last Name</label>
-                                <input type="text" id="lastName" className="FormField__Name_Input" placeholder="Enter your last name" name="lname" value={this.state.lname} onChange={this.handleChange}/>
-                            </div>
+                                <div className="FormField_name">
+                                    <div>
+                                        <label className="FormField__Label" htmlFor="fname">First Name</label>
+                                        <input type="text" id="firstName" className="FormField__Name_Input" placeholder="Enter your first name" name="fname" value={this.state.fname} onChange={this.handleChange} />
+                                    </div>
+                                    
+                                    <div id="divLastName">
+                                        <label className="FormField__Label" htmlFor="lastName">Last Name</label>
+                                        <input type="text" id="lastName" className="FormField__Name_Input" placeholder="Enter your last name" name="lname" value={this.state.lname} onChange={this.handleChange}/>
+                                    </div>
+                                </div>
+                                <div className="FormField">
+                                    <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
+                                    <input type="email" id="email" className="FormField__Input" placeholder="Enter a valid .edu email" name="email" value={this.state.email} onChange={this.handleChange}/>
+                                </div>
+
+                                <div className="FormField">
+                                    <label className="FormField__Label" htmlFor="myPassword">Desired Password</label>
+                                    <input type="password" id="myPassword" className="FormField__Input" placeholder="6 characters minimum" name="password"  value={this.state.password} onChange={this.handleChange}/>
+                                </div>
+
+                                <div className="FormField">
+                                    <label className="FormField__Label" htmlFor="confPassword">Confirm Password</label>
+                                    <input type="password" id="confPassword" className="FormField__Input" placeholder="6 characters minimum" name="confPassword" value={this.state.confPassword} onChange={this.handleChange}/>
+                                </div>
+
+                                <div className="FormField">
+                                    <Input id="checkInput" name='terms' type='checkbox' value='checked' label='I Agree to the ' /><a href="" className="FormField__TermsLink">terms of service</a>
+                                </div>
+
+                                <div className="FormField" id="submitDiv">
+                                    <button type="Submit" id="regButton" className="btnSubmit">Sign Up</button>
+                                </div>    
+                            </form>
+
                         </div>
-                        <div className="FormField">
-                            <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                            <input type="email" id="email" className="FormField__Input" placeholder="Enter a valid .edu email" name="email" value={this.state.email} onChange={this.handleChange}/>
-                        </div>
+                    </div>
+                </Tab>
 
-                        <div className="FormField">
-                            <label className="FormField__Label" htmlFor="myPassword">Desired Password</label>
-                            <input type="password" id="myPassword" className="FormField__Input" placeholder="6 characters minimum" name="password"  value={this.state.password} onChange={this.handleChange}/>
-                        </div>
-
-                        <div className="FormField">
-                            <label className="FormField__Label" htmlFor="confPassword">Confirm Password</label>
-                            <input type="password" id="confPassword" className="FormField__Input" placeholder="6 characters minimum" name="confPassword" value={this.state.confPassword} onChange={this.handleChange}/>
-                        </div>
-
-
-                        <div className="FormField">
-                            <label className="FormField__CheckboxLabel">
-                                <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" id="checkInput" /> I agree to the<a href="" className="FormField__TermsLink"> terms of service</a>
-                            </label>
-                        </div>
-
-                        <div className="FormField">
-                            <button type="Submit" id="regButton" className="btnSubmit">Sign Up</button>
-                        </div>    
-                    </form>
-
-                </div>
-            </div>
+            </Tabs>
         </div>
     }
 }

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import LoginTabs from "./LoginTabs"
 import ForgotPassword from "./ForgotPassword.js"
-import "./LandingPage.css";
+import "./LandingPage.css"
 
 export default class LandingPage extends Component {
     render () {

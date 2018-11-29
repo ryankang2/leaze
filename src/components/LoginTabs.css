@@ -1,7 +1,3 @@
-#Register {
-    display: none
-}
-
 #logTabs {
     float: right;
     position: relative;
@@ -17,7 +13,7 @@
 .btnSubmit {
     font-size: 20px;
     background-color: lightblue;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 #divLastName {
@@ -41,36 +37,18 @@
     padding-bottom: 5%;
 }
 
-.FormField {
-    margin-top: 1em;
-}
-
 .FormField_name {
     display: -webkit-inline-box; 
 }
 
 .FormField__Label {
     display: block;
+    color: #ee6e73;
 }
 
 form {
     margin-top: 2em;
-    margin-left: 20%;
-}
-
-.FormField__Input {
-    display: block;
-    min-width: 70%;
-}
-
-#checkInput {
-    display: inline;
-}
-
-h3 {
-    float: left;
-    font-size: 20px;
-    width: 100%;
+    margin-left: 10%;
 }
 
 #password{
@@ -79,4 +57,16 @@ h3 {
 
 #loginEmail{
     display: block;
+}
+
+#submitDiv {
+    margin-top: 2%;
+}
+
+.FormField .col {
+    padding: 0px !important;
+}
+
+.FormField__TermsLink {
+    margin-left: 5px;
 }

@@ -50,7 +50,6 @@ export default class LoginBox extends Component {
 
     render() {
         return <div class="tabcontent" id="Login">
-            <h3>Log in</h3>
             <div className="logContainer" id="logContainer">
                 <form onSubmit={this.handleSubmit} className="FormFields">
                     <div className="FormField">
