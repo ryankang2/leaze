@@ -96,3 +96,7 @@ form {
 .tabs .indicator {
     background-color: #37916e;
 }
+
+.tab:hover {
+    background-color: #37916e;
+}

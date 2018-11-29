@@ -84,7 +84,7 @@ export default class RegisterBox extends Component {
     }
 
     render() {
-        return <div class="tabcontent" id="Register">
+        return <div className="tabcontent" id="Register">
         <div className="logContainer">
 
             {/* This is where the pasted signup code starts */}

@@ -33,7 +33,24 @@ export default class LoginBox extends Component {
             const params = formatPostData(this.state);
             const response = await axios.post("http://localhost:8000/api/queries/sign_in.php", params);
             // this.props.getFilterData(response, params);
-            console.log(response.data);       
+            console.log(response.data);  
+            this.handleResponse(response.data);     
+        }
+    }
+
+    handleResponse(data) {
+        if(data.success === false) {
+            if(data.correctUser === true) {
+                console.log("Incorrect password. Please try again or click 'Forgot Password'");
+            }
+
+            else {
+                console.log("User not found. Please sign in with a different account or register before signing in");
+            }
+        }
+
+        else {
+            console.log("Login successful. User will be redirected to the explore page");
         }
     }
 
@@ -48,7 +65,7 @@ export default class LoginBox extends Component {
     }
 
     render() {
-        return <div class="tabcontent" id="Login">
+        return <div className="tabcontent" id="Login">
             <div className="logContainer" id="logContainer">
                 <form onSubmit={this.handleSubmit} className="FormFields">
                     <div className="FormField">
