@@ -1,26 +1,16 @@
 <?php
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
-   require "../mysql_connect.php";
 
-    function getMatchingPercentage($user1, $user2) {
+    function getMatchingPercentage($user1, $user2, $conn) {
+        // rating starts at 100%, can only go down
         $percentage = 100;
-        $user1int  = intval($user1);
-        $user2int  = intval($user2);
 
-        // // get the preferences for each user
-        $user1PrefQuery = "SELECT * FROM `preferences` WHERE `user_id`=$user1int";
-        print($user1PrefQuery);
+        // get the preferences for each user
+        $user1PrefQuery = "SELECT * FROM `preferences` WHERE `user_id`=$user1";
         $user1PrefResults = mysqli_query($conn, $user1PrefQuery);
-        if(!$user1PrefResults){
-            print("user 1 query is wrong");
-        }
-        $user2PrefQuery = "SELECT * FROM `preferences` WHERE `user_id`=$user2int";
-        $user2PrefResults = mysqli_query($conn, $user2PrefQuery);
-
-        print_r(json_encode($user1PrefResults));
-        print_r(json_encode($user2PrefResults));
-        
+        $user2PrefQuery = "SELECT * FROM `preferences` WHERE `user_id`=$user2";
+        $user2PrefResults = mysqli_query($conn, $user2PrefQuery);  
 
         // now compare the preferences for each user
         if(mysqli_num_rows($user1PrefResults) > 0 && mysqli_num_rows($user2PrefResults) > 0) {

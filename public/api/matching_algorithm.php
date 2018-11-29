@@ -1,9 +1,8 @@
 <?php
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
-    require "./mysql_connect.php";
-    include_once "./queries/matching_algorithm_func.php";
-
+    require_once("./mysql_connect.php");
+    include "./queries/matching_algorithm_func.php";
 
     // expecting input of the user id of the main user
     //$mainUser = $_POST["mainUser"];
@@ -17,7 +16,7 @@
     ];
 
     foreach($otherUsers as $other) {
-        $output[$other] = getMatchingPercentage($mainUser, $other);
+        $output[$other] = getMatchingPercentage($mainUser, $other, $conn);
     }
     
     // print final output array
