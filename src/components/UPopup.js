@@ -42,7 +42,7 @@ class UPopup extends React.Component {
                 <input class="inputsB" value = {this.state.bio}
                   onChange={e=> this.setState({bio:e.target.value})}/>
                 <button onClick=
-                  {this.props.closeUPopup} id="cancelButton">Cancel</button>
+                  {this.props.closeUPopup} className="btn btn-primary">Cancel</button>
               </div>
               <img id="displayPic" src={require("./profile.jpg")} />
               <div class="col-sm-6" id="pic">
@@ -50,7 +50,7 @@ class UPopup extends React.Component {
                 <input type="file" onChange={this.fileChangedHandler}></input>
                 <button onClick={this.uploadHandler}>Upload</button>
                 <button onClick=
-                  {this.props.closeUPopup} id="saveButton">Save Updates</button>
+                  {this.props.closeUPopup} className="btn btn-primary">Save Updates</button>
               </div>    
           </div>
         </div>

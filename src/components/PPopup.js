@@ -41,7 +41,7 @@ class PPopup extends React.Component {
               <input class="inputs" value = {this.state.earlyrise}
                 onChange={e=> this.setState({earlyrise:e.target.value})}/>
               <button onClick=
-                {this.props.closePPopup} id="cancelPButton">Cancel</button>
+                {this.props.closePPopup} className="btn btn-primary">Cancel</button>
             </div>
             <div class="col-sm-4" id="info">
               <label>How Messy? (1-5): </label>
@@ -68,7 +68,7 @@ class PPopup extends React.Component {
               <input class="inputs" value = {this.state.relations}
                   onChange={e=> this.setState({relations:e.target.value})}/>
               <button onClick=
-                  {this.props.closePPopup} id="savePButton">Save Updates</button>
+                  {this.props.closePPopup} className="btn btn-primary">Save Updates</button>
             </div>
           </div>
         </div>

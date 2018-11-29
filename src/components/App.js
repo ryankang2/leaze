@@ -12,7 +12,7 @@ export default class App extends Component {
         return (
             <div>
                 {/* <ResultsPage /> */}
-                <LandingPage />
+                <Profile />
             </div>
         )
     }

@@ -56,8 +56,8 @@ export class Profile extends React.Component {
             <div className="col-md-2" id="ratingArea">
               {/* User Rating Area goes here */}
               <p id="ratingString"> Your average rating is: RATING </p>
-              <button onClick={this.toggleUPopup.bind(this)} class="ratingButton">Edit Profile</button>
-              <button onClick={this.togglePPopup.bind(this)} class="ratingButton">Edit Preferences</button>
+              <button onClick={this.toggleUPopup.bind(this)} className="btn btn-primary">Edit Profile</button>
+              <button onClick={this.togglePPopup.bind(this)} className="btn btn-primary">Edit Preferences</button>
 
             </div>
 
@@ -77,12 +77,12 @@ export class Profile extends React.Component {
               {/* User's Posted Listings go here */}
               Posted Listings:
                   {/*Ariane's code goes here*/}
-              <ListingPreview />
+              {/*<ListingPreview />*/}
             </div>
             <div class="col-sm-8" id="favoriteListings">
               {/* Ariane's code goes here */}
               Favorite Listings:
-                  <ListingPreview />
+                  {/*<ListingPreview />*/}
             </div>
           </div>
         </div>
