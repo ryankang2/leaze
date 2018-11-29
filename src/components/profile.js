@@ -48,7 +48,7 @@ export class Profile extends React.Component {
 
             <div class="col-md-4" id="bioArea">
               {/* User Bio Area here  */}
-              <h1 id="userName"> {this.state.firstname} {this.state.lastname} Full Name </h1>
+              <h1 id="userName" > {this.state.firstname} {this.state.lastname} Full Name </h1>
               <h2 id="userInfo"> {this.state.major} Major, {this.state.year} Year </h2>
               <p rows="4" cols="50" id="biography"> {this.state.bio} biography </p>
             </div>
@@ -56,8 +56,8 @@ export class Profile extends React.Component {
             <div className="col-md-2" id="ratingArea">
               {/* User Rating Area goes here */}
               <p id="ratingString"> Your average rating is: RATING </p>
-              <button onClick={this.toggleUPopup.bind(this)} className="btn btn-primary">Edit Profile</button>
-              <button onClick={this.togglePPopup.bind(this)} className="btn btn-primary">Edit Preferences</button>
+              <button id="buttonU" onClick={this.toggleUPopup.bind(this)} className="btn btn-primary">Edit Profile</button>
+              <button id="buttonP" onClick={this.togglePPopup.bind(this)} className="btn btn-primary">Edit Preferences</button>
 
             </div>
 

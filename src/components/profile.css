@@ -116,15 +116,15 @@ hr {
     text-align: center;
 }
 
-.ratingButton {
-    display: block;
-    width: 7vw;
-    height: 5vh;
-    margin: 1vh auto;
-    background: #dba8a8;
-    border: 1px solid black;
-    font-size: 10px;
+#buttonU{
+    margin-left: 2.5vw;
 }
+
+#buttonP{
+    margin-top:1vh;
+    margin-left:1vw;
+}
+
 
 #progressArea {
     border: 1px solid darkgoldenrod;
