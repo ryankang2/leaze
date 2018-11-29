@@ -2,6 +2,7 @@
     padding: 3.33vh 0 3.33vh 0;
     position: fixed;
     height: 80vh;
+    width: 100vw;
 }
 
 #profileRow {
@@ -72,7 +73,7 @@ hr {
     font: 24px "Arial Black";
     position: absolute;
     left: 6vw;
-    top: 21vh;
+    top: 28vh;
 }
 
 #bioArea {
@@ -96,10 +97,10 @@ hr {
 
 #biography {
     margin: 4vh 0 0 1vw;
+    overflow-y: scroll;
 }
 
 #ratingArea {
-    border: 1px solid red;
     background:transparent;
     position: absolute;
     left: 48.99vw;
@@ -128,11 +129,36 @@ hr {
 
 #progressArea {
     border: 1px solid black;
-    background: transparent;
+    background: #f9f3e7;
     position: absolute;
     left: 65.33vw;
-    width: 27.66vw;
-    height: 36vh;
+    width: 25.66vw;
+    height: 20vh;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#progressAreaInner {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#progressTextArea {
+    text-align: center;
+    padding-top: 0.5vh;
+    font-size: 1.125em;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#progressMessage {
+    padding-top: 1vh;
+    text-align: left;
 }
 
 #postedListings {
@@ -178,11 +204,4 @@ hr {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #c5bdb0;
-}
-
-/* TESTING AVG RATING HERE*/
-.meter {
-    height: 20px;  /* Can be anything */
-    position: relative;
-    background: linear-gradient(.25turn, black 76.2%, #f7eddc 76.2%);
 }

@@ -16,7 +16,8 @@ export class Profile extends React.Component {
         major:'',
         year:'',
         bio:'',
-        rating:'',
+        rating:'', //added by Matt
+        progress:'60', //added by Matt
         picture:null,
         showUPopup: false,
         showPPopup: false,
@@ -53,15 +54,25 @@ export class Profile extends React.Component {
         height: '0',
         position: 'absolute',
       },
-      points: '12.5,0.5 15.75,8.25 24.75,8.75 17.5,14.5 19.75,22.5 12.5,17.75 5.25,22.5 7.5,14.4 0.5,8.75 9.25,8.25 12.5,0.5'
+      meter: {
+        border: '1px solid black',
+        width: '100%',
+        height: '2vh',
+        position: 'relative',
+        background: 'linear-gradient(.25turn, black '+ this.state.progress +'%, #f7eddc '+ this.state.progress +'%)',
+      },
+      boldLink: {
+        fontWeight: 'bold',
+        fontFamily: 'Verdana, Geneva, sans-serif\t\n'
+      }
     };
+
+    let points = '12.5,0.5 15.75,8.25 24.75,8.75 17.5,14.5 19.75,22.5 12.5,17.75 5.25,22.5 7.5,14.4 0.5,8.75 9.25,8.25 12.5,0.5';
 
     return (
       <div>
         <Navbar />
         <div class="container-fluid" id="mainContainer">
-        
-          {/* here lies the top row - Matt works here */}
           <div class="row" id="profileRow">
             <div class="col-md-2" id="profilePictureArea">
               {/* User profile pic here */}
@@ -105,41 +116,49 @@ export class Profile extends React.Component {
                 </svg>
 
                 <svg viewBox={'0 0 25 25'} class="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient0'} stroke={'black'}/>
+                  <polygon points={points} fill={'url(#ratingGradient0'} stroke={'black'}/>
                 </svg>
                 <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient1'} stroke={'black'}/>
+                  <polygon points={points} fill={'url(#ratingGradient1'} stroke={'black'}/>
                 </svg>
                 <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient2'} stroke={'black'}/>
+                  <polygon points={points} fill={'url(#ratingGradient2'} stroke={'black'}/>
                 </svg>
                 <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient3'} stroke={'black'}/>
+                  <polygon points={points} fill={'url(#ratingGradient3'} stroke={'black'}/>
                 </svg>
                 <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={stylesProfile.points} fill={'url(#ratingGradient4'} stroke={'black'}/>
+                  <polygon points={points} fill={'url(#ratingGradient4'} stroke={'black'}/>
                 </svg>
 
               </div>
 
-              {/*<div className="meter"> </div>*/}
-
+              <button onClick={this.togglePPopup.bind(this)} className="ratingButton">Edit Preferences</button>
               <button onClick={this.toggleUPopup.bind(this)} class="ratingButton">Edit Profile</button>
-              <button onClick={this.togglePPopup.bind(this)} class="ratingButton">Edit Preferences</button>
 
             </div>
 
             <div className="col-md-4" id="progressArea">
               {/* User Profile Strength Percentage is here */}
+              <div id="progressAreaInner">
+                <div style={stylesProfile.meter}> </div>
+                <div id="progressTextArea">
+                  {this.state.progress}% <br />
+                  <p id="progressMessage">
+                    Getting there! The stronger your profile is, the better results you'll get.
+                    Click <a href={'#link'} style={stylesProfile.boldLink}>here</a> for a checklist to strengthen your profile!
+                  </p>
+                </div>
+              </div>
+
             </div>
 
           </div>
 
           <div class="row" id="rowDivider">
-            <hr /> {/* This is the pretty row divider */}
+            <hr />
           </div>
 
-          {/* here lies the bottom row - Drexler works here */}
           <div class="row" id="listingsRow">
             <div class="col-sm-8" id="postedListings">
               {/* User's Posted Listings go here */}
