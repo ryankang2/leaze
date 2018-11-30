@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import "./ListingPreview.css"
+import Profile from "./profile";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 class ListingPreview extends Component{
     constructor(props){
@@ -55,6 +58,7 @@ class ListingPreview extends Component{
         var month = todayDate.getMonth() + 1;
         var listing_day = parseInt(separatedDate[2]);
         var listing_month = parseInt(separatedDate[1]);
+        var linkQuery = "/profile/" + this.props.information.user.user_id;
 
         return (
             // <div className="list">
@@ -69,21 +73,28 @@ class ListingPreview extends Component{
                                 <div className="leaseName"  onClick={ this.leasePopup}>
                                     {title}
                                 </div>
-                                <img className="userPicture" onClick={(event) => this.goToProfile(event)}
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
-                                <div className="userName" onClick={(event) => this.goToProfile(event)}>{full_name}</div>
-                                {/*<div className="distance"> {dist_to_campus} mi</div>*/}
 
+                                <Link to = {linkQuery}>
+                                    <img className="userPicture" onClick={(event) => this.goToProfile(event)}
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                                </Link>
+
+                                <Link to = {linkQuery} information={this.props.information}>
+                                    <div className="userName" onClick={(event) => this.goToProfile(event)}>{full_name}</div>
+                                </Link>
+
+                                {/*<div className="distance"> {dist_to_campus} mi</div>*/}
+                                {/*</Link>*/}
                                 <div className="address"> {address}</div>
                                 <div className="price"> ${price}/month</div>
 
-                                <div className="userRating">
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star-o"></i>
-                                <i className="fa fa-star-o"></i>
-                                </div>
+                                {/*<div className="userRating">*/}
+                                {/*<i className="fa fa-star"></i>*/}
+                                {/*<i className="fa fa-star"></i>*/}
+                                {/*<i className="fa fa-star"></i>*/}
+                                {/*<i className="fa fa-star-o"></i>*/}
+                                {/*<i className="fa fa-star-o"></i>*/}
+                                {/*</div>*/}
                                 {/*<div className="dateDiff">{this.getDiffPostDate(day, month, listing_day, listing_month)}</div>*/}
                             </div>
                         </div>
