@@ -3,34 +3,43 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
 
+    //expecting input of a user id
+    //$user_id = $_POST["user_id"];
+    $user_id = 3; //test, delete after
     $output = [
         "noListings" => false
     ];
 
     $noneSet = true;
-
-    // expecting input of current value of each filter (pass in "" if not set)
     $filters = [
-        "dist_to_campus" => $_POST["dist_to_campus"],
-        "price_low" => $_POST["price_low"],
-        "price_high" => $_POST["price_high"],
-        "pet" => $_POST["pet"],
-        "laundry" => $_POST["laundry"],
-        "furnished" => $_POST["furnished"],
-        "gym" => $_POST["gym"],
-        "pool" => $_POST["pool"],
-        "parking_spots" => $_POST["parking_spots"],
-        "home_type" => $_POST["home_type"],
-        "room_type" => $_POST["room_type"]
+        "dist_to_campus" => "",
+        "price_low" => "",
+        "price_high" => "",
+        "pet" => "",
+        "laundry" => "",
+        "furnished" => "",
+        "gym" => "",
+        "pool" => "",
+        "parking_spots" => "",
+        "home_type" => "",
+        "room_type" => ""
     ];
 
-    // see if no filters are set
-    foreach($filters as $key => $value) {
-        if ($value != "") {
-            $noneSet = false;
-            break;
-        }
-    } 
+    // get the user's saved default filters
+    $userFiltersQuery = "SELECT * FROM `filters` WHERE `user_id`=$user_id";
+    $userFiltersResults = mysqli_query($conn, $userFiltersQuery);
+
+    // determine which filters user has actually set
+    if(mysqli_num_rows($userFiltersResults) > 0){
+        $userRow = mysqli_fetch_assoc($userFiltersResults);
+        foreach($userRow as $key => $value) {
+            // if the current filter is not null (user has set it)
+            if ($value) {
+                $filters[$key] = $value;
+                $noneSet = false;
+            }
+        } 
+    }
 
     // build the listings query based on the filters the user has set
     $getListings = "SELECT * FROM `listings`";
@@ -84,7 +93,6 @@
         // remove last " AND " in the query string
         $getListings = substr($getListings, 0, -5);
     }
-
     // now make the query
     $listings = mysqli_query($conn, $getListings);
 

@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+import {Link} from "react-router-dom";
+import "./LoginBox.css";
 
 export default class LoginBox extends Component {
 
