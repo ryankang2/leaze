@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
-import {Link} from "react-router-dom";
-import "./LoginBox.css";
+import store from "store";
+import { Link, Router, RouterContext, browserHistory, hashHistory } from 'react-router';
 
 export default class LoginBox extends Component {
 
@@ -41,6 +41,7 @@ export default class LoginBox extends Component {
     }
 
     handleResponse(data) {
+        const {history} = this.props;
         if(data.success === false) {
             if(data.correctUser === true) {
                 console.log("Incorrect password. Please try again or click 'Forgot Password'");
@@ -53,6 +54,9 @@ export default class LoginBox extends Component {
 
         else {
             console.log("Login successful. User will be redirected to the explore page");
+            localStorage.setItem("user_id", data.id);
+            browserHistory.push("/home");
+            window.location.reload();
         }
     }
 
