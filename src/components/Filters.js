@@ -19,7 +19,7 @@ class Filters extends Component{
             roomHouse: false,
             roomPets: false,
             hasInUnitLaundry: false,
-            numParkingSpots: "0",
+            hasParking: false,
             isFurnished: false,
             hasGym: false,
             hasPool: false,
@@ -93,14 +93,6 @@ class Filters extends Component{
                        <Input name="roomTriple" type="checkbox" checked={this.state.roomTriple} value = "roomTriple" label="Triple Room"  onChange={this.handleCheckBox.bind(this)}/>
                        <Input name="roomLiving" type="checkbox" checked={this.state.roomLiving} value = "roomLiving" label="Living Room"  onChange={this.handleCheckBox.bind(this)}/>
                 </Row>
-                <Row>
-                    <Input s={12} type ="select" label = "# of Parking Spots" name="numParkingSpots" defaultValue ={this.state.numParkingSpots} onChange={this.handleChange.bind(this)}>
-                       <option value = "0">0 spots</option>
-                       <option value = "1">1 spot</option>
-                       <option value = "2">2 spots</option>
-                       <option value = "3">3+ spots</option>
-                   </Input>
-               </Row>
                 <Row className="homeType">
                        <Input name="roomApart" type="checkbox" checked={this.state.roomApart} value = "roomApart" label="Apartment"  onChange={this.handleCheckBox.bind(this)} />
                        <Input name="roomHouse" type="checkbox" checked={this.state.roomHouse} value = "roomHouse" label="House"  onChange={this.handleCheckBox.bind(this)}/>
@@ -108,9 +100,10 @@ class Filters extends Component{
                 <Row className="homeMisc">
                     <Input name="roomPets" type="checkbox" checked={this.state.roomPets} value = "roomPets" label="Pet Friendly"  onChange={this.handleCheckBox.bind(this)}/>
                     <Input name="hasInUnitLaundry" type="checkbox" checked={this.state.hasInUnitLaundry} value="hasInUnitLaundry" label="In-unit Laundry"  onChange={this.handleCheckBox.bind(this)} />
+                    <Input name="hasParking" type="checkbox" checked={this.state.hasParking} value = "hasParking" label="Has Parking"  onChange={this.handleCheckBox.bind(this)}/>
                     <Input name="isFurnished" type="checkbox" checked={this.state.isFurnished} value="isFurnished" label="Furnished Room"  onChange={this.handleCheckBox.bind(this)} />
-                    <Input name="hasGym" type="checkbox" checked={this.state.hasGym} value = "hasGym" label="Contains Gym"  onChange={this.handleCheckBox.bind(this)} />
-                    <Input name="hasPool" type="checkbox" checked={this.state.hasPool} value="hasPool" label="Contains Pool"  onChange={this.handleCheckBox.bind(this)} />
+                    <Input name="hasGym" type="checkbox" checked={this.state.hasGym} value = "hasGym" label="Has Gym"  onChange={this.handleCheckBox.bind(this)} />
+                    <Input name="hasPool" type="checkbox" checked={this.state.hasPool} value="hasPool" label="Has Pool"  onChange={this.handleCheckBox.bind(this)} />
                 </Row>
                 <button className="btn btn-primary">Submit</button>
             </form>
