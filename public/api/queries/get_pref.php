@@ -38,7 +38,7 @@
         $output["sharing_belongings"] = $row["sharing_belongings"];
         $output["roommate_relationship"] = $row["roommate_relationship"];
         $output["substances"] = $row["substances"];
-        $ourput["success"] = true;
+        $output["success"] = true;
     }
     mysqli_close($conn);
     print_r(json_encode($output));
