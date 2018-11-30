@@ -89,12 +89,13 @@ hr {
 
 #userName {
     font-size: 2em;
-    margin: 8vh 0 0 1vw;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #userInfo {
     font-size: 1.25em;
-    margin: 1vh 0 0 1vw;
+    margin: 0%;
 }
 
 #biography {

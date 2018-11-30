@@ -50,7 +50,7 @@ class PPopup extends React.Component {
           <h1 className="title">Update Your Preferences</h1>
           <div className="col-sm-4">
             <label>How many guests days per week?: </label>
-            <Input s={12} className="inputs" type='select' name='gpd' defaultValue={this.state.gpd}
+            <Input s={12} className="inputs" type='select' name='gpd' value={this.state.gpd}
               onChange={this.handleChange.bind(this)} >
               <option value='-1'>0 Days</option>
               <option value='1'>1 Day</option>

@@ -42,36 +42,48 @@ class UPopup extends React.Component {
   }
     render() {
       return (
-        <div class='popup'>
-          <div class='popup_inner'>
+        <div className='popup'>
+          <div className='popup_inner'>
             <h1 className="title">Update Your Profile</h1>
               <div className="col-sm-6">
                 <label>First Name: </label>
-                <input class="inputs" value = {this.state.firstname}
+                <input className="inputs" value = {this.state.firstname}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Last Name: </label>
-                <input class="inputs" value = {this.state.lastname}
+                <input className="inputs" value = {this.state.lastname}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Age: </label>
-                <input class="inputs" value = {this.state.age}
+                <input className="inputs" value = {this.state.age}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Email (must end with ".edu"): </label>
-                <input class="inputs" value = {this.state.email}
+                <input className="inputs" value = {this.state.email}
+                  onChange={this.handleChange.bind(this)}/>
+                <label>School: </label>
+                <input className="inputs" value = {this.state.school}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Major: </label>
-                <input class="inputs" value = {this.state.major}
+                <input className="inputs" value = {this.state.major}
                   onChange={this.handleChange.bind(this)}/>
+                <label>Year: </label>
+                <Input className="inputs" type='select' name='year' value = {this.state.year}
+                  onChange={this.handleChange.bind(this)}>
+                  <option value='1'>First</option>
+                  <option value='2'>Second</option>
+                  <option value='3'>Third</option>
+                  <option value='4'>Fourth</option>
+                  <option value='5'>Other</option>
+                </Input>
                 <label>Bio: </label>
-                <input class="inputsB" value = {this.state.bio}
+                <input className="inputsB" value = {this.state.bio}
                   onChange={this.handleChange.bind(this)}/>
                 <button onClick=
-                  {this.props.closeUPopup} id="button3" className="btn btn-primary">Cancel</button>
+                  {this.props.closeUPopup} className="btn btn-primary">Cancel</button>
               </div>
               <img id="displayPic" src={require("./profile.jpg")} />
               <div className="col-sm-6" id="pic">
                 <label>Profile Picture: </label>
                 <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler}/>
-                <Button onClick={this.uploadHandler}>Upload</Button>
+                <Button id="uploadButton" onClick={this.uploadHandler}>Upload</Button>
                 <button onClick=
                   {this.props.closeUPopup} id="button4" className="btn btn-primary">Save Updates</button>
               </div>    
