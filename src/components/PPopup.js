@@ -48,10 +48,11 @@ class PPopup extends React.Component {
       <div className='ppopup'>
         <div className='popup_inner'>
           <h1 className="title">Update Your Preferences</h1>
-          <div className="col-sm-4" id="info">
+          <div className="col-sm-4">
             <label>How many guests days per week?: </label>
             <Input s={12} className="inputs" type='select' name='gpd' defaultValue={this.state.gpd}
               onChange={this.handleChange.bind(this)} >
+              <option value='-1'>0 Days</option>
               <option value='1'>1 Day</option>
               <option value='2'>2 Days</option>
               <option value='3'>3 Days</option>
@@ -81,7 +82,7 @@ class PPopup extends React.Component {
             <button onClick=
               {this.props.closePPopup} id="button1" className="btn btn-primary">Cancel</button>
           </div>
-          <div className="col-sm-4" id="info">
+          <div className="col-sm-4">
             <label>How Messy?: </label>
             <Input s={12} className="inputs" type='select' name='messy' value={this.state.messy}
               onChange={this.handleChange.bind(this)}>
@@ -114,7 +115,7 @@ class PPopup extends React.Component {
             <Input s={6} name='cigarettes' className="inputs" type='checkbox' checked={this.state.cigarettes} value='3' label='Cigarettes' onChange={this.handleCheckBox.bind(this)} />
             <Input s={6} name='other' className="inputs" type='checkbox' checked={this.state.other} value='5' label='Other' onChange={this.handleCheckBox.bind(this)} />
           </div>
-          <div className="col-sm-4" id="info">
+          <div className="col-sm-4">
             <label>Study Noise Level?: </label>
             <Input s={12} className="inputs" type='select' name='noise' value={this.state.noise}
               onChange={this.handleChange.bind(this)}>

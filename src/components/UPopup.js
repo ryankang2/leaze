@@ -1,5 +1,6 @@
 import React from "react";
 import "./Popup.css";
+import {Input,Button} from "react-materialize"
 
 class UPopup extends React.Component {
   constructor(props){
@@ -44,7 +45,7 @@ class UPopup extends React.Component {
         <div class='popup'>
           <div class='popup_inner'>
             <h1 className="title">Update Your Profile</h1>
-              <div class="col-sm-3" id="info">
+              <div className="col-sm-6">
                 <label>First Name: </label>
                 <input class="inputs" value = {this.state.firstname}
                   onChange={this.handleChange.bind(this)}/>
@@ -67,10 +68,10 @@ class UPopup extends React.Component {
                   {this.props.closeUPopup} id="button3" className="btn btn-primary">Cancel</button>
               </div>
               <img id="displayPic" src={require("./profile.jpg")} />
-              <div class="col-sm-6" id="pic">
+              <div className="col-sm-6" id="pic">
                 <label>Profile Picture: </label>
-                <input type="file" onChange={this.fileChangedHandler}></input>
-                <button onClick={this.uploadHandler}>Upload</button>
+                <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler}/>
+                <Button onClick={this.uploadHandler}>Upload</Button>
                 <button onClick=
                   {this.props.closeUPopup} id="button4" className="btn btn-primary">Save Updates</button>
               </div>    

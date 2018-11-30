@@ -31,42 +31,37 @@
     background: white;
     font-family: 'Times New Roman', Times, serif;
 }
-.info {
-    left:25vw;
-    max-height: 150px;
-    font-size: 30px !important;
-}
 
 .title{
   color:blue;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .caret {
   border-color:transparent !important;
 }
 
 #button1{ 
-  margin:1vh !important;
+  margin:5% !important;
 }
 
 #button2{ 
-  margin-top: 11vh !important;
-  margin-left: 2vw !important;
+  margin-top: 40% !important;
+  margin-left: 15% !important;
 }
-
-#button3{ 
-  
+#chooseButton{
+  margin:0%;
 }
-
 #button4{ 
-  margin-top:30vh !important;
+  margin-top:50% !important;
+  margin-left:20%;
 }
 #displayPic {
   background: transparent;
   position: absolute;
-  left: 25vw;
-  width: 10.66vw;
+  left: 30vw;
+  width: 12vw;
   height: 24vh;
-  top: 15vh;
+  top: 18vh;
   flex:right;
 }
 #pic {
