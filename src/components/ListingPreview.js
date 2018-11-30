@@ -16,8 +16,9 @@ class ListingPreview extends Component{
         }
     }
 
-    enlargePicture(){
+    leasePopup(){
         console.log("PICTURE CLICKED");
+
     }
 
     goToProfile(event){
@@ -27,24 +28,27 @@ class ListingPreview extends Component{
         console.log("GO TO PROFILE");
     }
 
+    toggleHeart(x) {
+        x.classList.toggle("fa fa-heart");
+    }
     getDiffPostDate(currentDay, currentMonth, postedDay, postedMonth){
         if(currentMonth === postedMonth){
             let dayDifference = currentDay - postedDay;
-            return `${dayDifference} Days Ago` 
+            return `${dayDifference}d ago`
         } else {
           let daysAfterMonthChange =  currentDay - 0;
           let daysBeforeMonthChange = 30 - postedDay;
           if(daysBeforeMonthChange == '-1'){
               daysBeforeMonthChange = 1;
           }
-          return `${daysAfterMonthChange+daysBeforeMonthChange} Days Ago`
+          // return `${daysAfterMonthChange+daysBeforeMonthChange}d ago`
         }
     }
 
     render(){
         console.log(this.props.information);
-        const {title, dist_to_campus, date_posted} = this.props.information;
-        const {full_name} = this.props.information.user;
+        const {title, dist_to_campus, date_posted, address, price} = this.props.information;
+        const {full_name,rating} = this.props.information.user;
         var todayDate = new Date();
         var separatedDate = date_posted.split("-");
         var day = todayDate.getDate();
@@ -57,16 +61,22 @@ class ListingPreview extends Component{
             //     <div className="row">
                     <div className="col-sm-4 singleListing">
                         <div className="imageBox">
-                            <img className="leaseImage" onClick={ this.enlargePicture} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
-                            <i className="fa fa-star-o favorite"></i>
-                            <div className="leaseName">
-                                {title}
-                            </div>
+                            <img className="leaseImage" onClick={ this.leasePopup} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                            {/*<i className="fa fa-star-o favorite"></i>*/}
+                            <i className="fa fa-heart-o favorite" onClick={(event) => this.toggleHeart(event)}> </i>
+
                             <div className = "infoBox">
+                                <div className="leaseName"  onClick={ this.leasePopup}>
+                                    {title}
+                                </div>
                                 <img className="userPicture" onClick={(event) => this.goToProfile(event)}
                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                                 <div className="userName" onClick={(event) => this.goToProfile(event)}>{full_name}</div>
-                                <div className="distance"> {dist_to_campus} mi</div>
+                                {/*<div className="distance"> {dist_to_campus} mi</div>*/}
+
+                                <div className="address"> {address}</div>
+                                <div className="price"> ${price}/month</div>
+
                                 <div className="userRating">
                                 <i className="fa fa-star"></i>
                                 <i className="fa fa-star"></i>
@@ -74,7 +84,7 @@ class ListingPreview extends Component{
                                 <i className="fa fa-star-o"></i>
                                 <i className="fa fa-star-o"></i>
                                 </div>
-                                <div className="dateDiff">{this.getDiffPostDate(day, month, listing_day, listing_month)}</div>
+                                {/*<div className="dateDiff">{this.getDiffPostDate(day, month, listing_day, listing_month)}</div>*/}
                             </div>
                         </div>
                     </div>

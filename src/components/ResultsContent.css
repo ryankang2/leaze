@@ -5,12 +5,18 @@ h2{
 }
 
 .listingPreviewContainer{
-    border: 1px solid red;
+    /*border: 1px solid red;*/
+    background: antiquewhite;
     position: relative;
-    height: 500px;
+    height: 100%;
 }
 
 
 .container{
     width: 100% !important;
 }
+
+
+/*.resultsContainer{*/
+    /*background-color: antiquewhite;*/
+/*}*/

@@ -26,7 +26,7 @@ class ResultsContent extends Component{
 
     render(){
         return (
-            <div className="container">
+            <div className="resultsContainer container">
                 <h2> Explore Housing</h2>
                 <div className="row">
                     <div className="col-sm-3 col-md-3">
