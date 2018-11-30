@@ -3,7 +3,7 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
     $output = [
-        "success" = false;
+        "success" = false
     ];
 
     //assume we can pass in the user id, and we output the information in output
@@ -17,8 +17,8 @@
 
     foreach ($changed as $key => $value) {
         $updateQuery = "UPDATE `preferences` SET '$key'='$value' WHERE `preferences_id`='$user'";
-        if (!mysqli_query($conn, $updateQuery)) {
-            $output["success"] = false
+        if (!mysqli_query($conn, $updat eQuery)) {
+            $output["success"] = false;
             break;
         }
     }
