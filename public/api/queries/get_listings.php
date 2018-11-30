@@ -17,7 +17,7 @@
         "furnished" => $_POST["furnished"],
         "gym" => $_POST["gym"],
         "pool" => $_POST["pool"],
-        "parking_spots" => $_POST["parking_spots"],
+        "parking" => $_POST["parking"],
         "home_type" => $_POST["home_type"],
         "room_type" => $_POST["room_type"]
     ];
@@ -57,16 +57,26 @@
         $getListings .= "`pool`==" . $filters["pool"] . " AND ";
     }
 
-    if ($filters["parking_spots"] != "") {
-        $getListings .= "`parking_spot`>=" . $filters["parking_spots"] . " AND ";
+    if ($filters["parking"] != "") {
+        $getListings .= "`parking`==" . $filters["parking"] . " AND ";
     }
 
-    if ($filters["home_type"] != "") {
+    if (strlen($filters["home_type"]) == 1) {
         $getListings .= "`home_type`==" . $filters["home_type"] . " AND ";
     }
+    elseif (strlen($filters["home_type"]) == 2) {
+        $getListings .= "`home_type` IN ('h', 'a') AND ";
+    }
 
-    if ($filters["room_type"] != "") {
-        $getListings .= "`room_type`==" . $filters["room_type"] . " AND ";
+    if (strlen($filters["room_type"]) > 0) {
+        $getListings .= "`room_type` IN (";
+        $arr = str_split($filters["room_type"]);
+        for ($i=0; $i<count($arr); $i++){
+            $getListings .= "'" . $arr[i] . "',";
+        }
+        //remove last comma and close parantheses
+        $getListings = substr($getListings, 0, -1);
+        $getListings .= ") AND ";
     }
 
     // remove last " AND " in the query string
