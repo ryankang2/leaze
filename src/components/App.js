@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Switch, Route, BrowserRouter as Router, Link, withRouter} from "react-router-dom";
 import ResultsPage from "./ResultsPage";
-import "./App.css";
 import Profile from "./Profile";
 import ResultsContent from "./ResultsContent.js"
 import LandingPage from "./LandingPage";
@@ -15,9 +14,9 @@ const App = () => (
                     <Route exact path="/" component={LandingPage}></Route>
                     <Route exact path="/home" component={ResultsPage}></Route>
                 </Switch>
-                {/* <ResultsPage /> */}
+                {/* <ResultsPage />  */}
                 {/* <LandingPage /> */}
-                {/* <Profile /> */}
+                {/* <Profile />*/}
             </div>
 );
 

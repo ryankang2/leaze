@@ -59,9 +59,7 @@ export default class LoginBox extends Component {
                         <label className="FormField__Label" htmlFor="loginPassword">Password</label>
                         <input type="password" id="loginPassword" className="FormField__Input" placeholder="6 characters minimum" name="password" value={this.state.password} onChange={this.handleChange} />
                     </div>
-                    <Link to="/home">
-                        <button type="Submit" id="loginButton" className="btnSubmit">Log in</button>
-                    </Link>
+                    <button type="Submit" id="loginButton" className="btnSubmit">Log in</button>
                 </form>
                 <button onClick={this.forgotPassword} id="forgotPassword">Forgot Password</button>
             </div>
