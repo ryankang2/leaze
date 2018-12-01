@@ -7,7 +7,31 @@
         "noListings" => false
     ];
 
-    // expecting input of current value of each filter (pass in "" if not set)
+    // build the home string to match how it is stored internally in database
+    $home = "";
+    if ($_POST["roomHouse"]) {
+        $home .= "h";
+    }
+    if ($_POST["roomApart"]) {
+        $home .= "a";
+    }
+
+    // build the room string to match how it is stored internally in database
+    $room = "";
+    if ($_POST["roomSingle"]) {
+        $room .= "s";
+    }
+    if ($_POST["roomDouble"]) {
+        $room .= "d";
+    }
+    if ($_POST["roomTriple"]) {
+        $room .= "t";
+    }
+    if ($_POST["roomLiving"]) {
+        $room .= "l";
+    }
+
+    // expecting input of current value of each filter
     $filters = [
         "dist_to_campus" => $_POST["dist_to_campus"],
         "price_low" => $_POST["price_low"],
@@ -18,46 +42,46 @@
         "gym" => $_POST["gym"],
         "pool" => $_POST["pool"],
         "parking" => $_POST["parking"],
-        "home_type" => $_POST["home_type"],
-        "room_type" => $_POST["room_type"]
+        "home_type" => $home,
+        "room_type" => $room
     ];
 
     // build the listings query based on the filters the user has set
     $getListings = "SELECT * FROM `listings` WHERE `archived`=0 AND ";
 
-    if ($filters["dist_to_campus"] != "") {
+    if ($filters["dist_to_campus"]) {
         $getListings .= "`dist_to_campus`<=" . $filters["dist_to_campus"] . " AND ";
     }
 
-    if ($filters["price_low"] != "") {
+    if ($filters["price_low"]) {
         $getListings .= "`price`>=" . $filters["price_low"] . " AND ";
     }
 
-    if ($filters["price_high"] != "") {
+    if ($filters["price_high"]) {
         $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
     }
 
-    if ($filters["pet"] != "") {
+    if ($filters["pet"]) {
         $getListings .= "`pets`==" . $filters["pet"] . " AND ";
     }
 
-    if ($filters["laundry"] != "") {
+    if ($filters["laundry"]) {
         $getListings .= "`in_unit_laundry`==" . $filters["laundry"] . " AND ";
     }
 
-    if ($filters["furnished"] != "") {
+    if ($filters["furnished"]) {
         $getListings .= "`furnished`==" . $filters["furnished"] . " AND ";
     }
 
-    if ($filters["gym"] != "") {
+    if ($filters["gym"]) {
         $getListings .= "`gym`==" . $filters["gym"] . " AND ";
     }
 
-    if ($filters["pool"] != "") {
+    if ($filters["pool"]) {
         $getListings .= "`pool`==" . $filters["pool"] . " AND ";
     }
 
-    if ($filters["parking"] != "") {
+    if ($filters["parking"]) {
         $getListings .= "`parking`==" . $filters["parking"] . " AND ";
     }
 
@@ -106,7 +130,7 @@
         }
     }
     mysqli_close($conn);
-    
+
     // print final output array
     print_r(json_encode($output));
 ?>

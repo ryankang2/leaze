@@ -6,7 +6,31 @@
     //expecting input of a user id
     $user_id = $_POST["user_id"];
 
-    // expecting input of value for each filter (pass "" for filter not set)
+    // build the home string to match how it is stored internally in database
+    $home = "";
+    if ($_POST["roomHouse"]) {
+        $home .= "h";
+    }
+    if ($_POST["roomApart"]) {
+        $home .= "a";
+    }
+
+    // build the room string to match how it is stored internally in database
+    $room = "";
+    if ($_POST["roomSingle"]) {
+        $room .= "s";
+    }
+    if ($_POST["roomDouble"]) {
+        $room .= "d";
+    }
+    if ($_POST["roomTriple"]) {
+        $room .= "t";
+    }
+    if ($_POST["roomLiving"]) {
+        $room .= "l";
+    }
+
+    // expecting input of value for each filter
     $filters = [
         "dist_to_campus" => $_POST["dist_to_campus"],
         "price_low" => $_POST["price_low"],
@@ -17,12 +41,12 @@
         "gym" => $_POST["gym"],
         "pool" => $_POST["pool"],
         "parking" => $_POST["parking"],
-        "home_type" => $_POST["home_type"],
-        "room_type" => $_POST["room_type"]
+        "home_type" => $home,
+        "room_type" => $room
     ];
 
     foreach($filters as $key => $value) {
-        if ($value != "") {
+        if ($value) {
             $updateQuery = "UPDATE `filters` SET $key=$value WHERE `user_id`=$user_id";
             mysqli_query($conn, $updateQuery);
         }
