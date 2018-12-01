@@ -10,7 +10,7 @@
 
     //need to sha1 password
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $password = hash("sha512", $_POST["password"]);
 
     $checkUserQuery = "SELECT * from `users` WHERE `email`='$email'";
     $result = mysqli_query($conn, $checkUserQuery);
@@ -28,7 +28,7 @@
         $output["correctUser"] = false;
     }
 
-
+    mysqli_close($conn);
     print_r(json_encode($output));
 
 

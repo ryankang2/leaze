@@ -14,7 +14,6 @@ export default class LoginTabs extends Component {
                 <Tab title="Log In" active>
                     <LoginBox />
                 </Tab>
-
                 <Tab title="Register">
                     <RegisterBox />
                 </Tab>
