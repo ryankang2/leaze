@@ -56,7 +56,7 @@ class Filters extends Component{
     async submitFormData(event){
         event.preventDefault();
         const params = formatPostData(this.state);
-        const response = await axios.post("http://localhost:8000/api/queries/filters.php", params);
+        const response = await axios.post("http://localhost:8000/api/queries/get_listings.php", params);
         this.props.getFilterData(response, params);
         // console.log(response.data);
     }
