@@ -48,9 +48,9 @@
     height: 20px;
 }
 
-.fa-user-circle-o{
-    margin-left: 3%;
-}
+/* ul:not(.browser-default) li {
+    width: 35px;
+} */
 
 
 .searchIcon{
