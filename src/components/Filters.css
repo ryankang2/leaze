@@ -1,8 +1,22 @@
 .filtersContainer{
-    height: 500px;
-    border: 1px solid red;
-    margin-left: 1%;
-    margin: 0 0;
+    height: 80%;
+    margin-top: 0;
+    margin-left: 0;
+    width: 100%;
+    padding-right: 25px;
+    font-size: 12;
+    /* overflow: auto; */
+}
+.caret {
+    border-color: transparent !important;
+  }
+
+.roomType > Input{
+    display: block;
+}
+
+.homeType > Input{
+    display: block;
 }
 
 .titleFilters{
@@ -37,12 +51,4 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.roomType:hover .dropdownContainer{
-    display: block;
-}
-
-.distance:hover .dropdownContainer{
-    display: block;
 }

@@ -13,15 +13,21 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 export default class App extends Component {
     render () {
         return (
-            <Router>
-                <div>
-                    {/*<ResultsPage />*/}
-                    {/* <LandingPage /> */}
-                     {/*<Profile />*/}
-                     <Route exact path = "/" component={ResultsPage}/>
-                    <Route path = "/profile/:number" component = {Profile}/>
-                </div>
-            </Router>
+//             <Router>
+//                 <div>
+//                     {/*<ResultsPage />*/}
+//                     {/* <LandingPage /> */}
+//                      {/*<Profile />*/}
+//                      <Route exact path = "/" component={ResultsPage}/>
+//                     <Route path = "/profile/:number" component = {Profile}/>
+//                 </div>
+//             </Router>
+// =======
+            <div>
+                {/* <ResultsPage /> */}
+                {/* <LandingPage /> */}
+                <Profile />
+            </div>
         )
     }
 }
