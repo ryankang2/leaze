@@ -1,9 +1,9 @@
 import React from "react";
 import "./Profile.css";
-import Navbar from "./Navbar.js"
-import UPopup from "./UPopup.js"
-import PPopup from "./PPopup.js"
-import ListingPreview from "./ListingPreview.js"
+import Navbar from "./Navbar"
+import UPopup from "./UPopup"
+import PPopup from "./PPopup"
+// import ListingPreview from "./ListingPreview.js"
 
 export class Profile extends React.Component {
   constructor(props){
@@ -98,7 +98,7 @@ export class Profile extends React.Component {
 
     );
   }
-};
+}
 
 
 export default Profile;

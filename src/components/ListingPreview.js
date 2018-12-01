@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./ListingPreview.css"
-import Profile from "./profile";
+import Profile from "./Profile";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
