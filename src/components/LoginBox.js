@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
-import store from "store";
 import { Link, Router, RouterContext, browserHistory, hashHistory } from 'react-router';
 import {Input, Row, Icon} from "react-materialize";
 
