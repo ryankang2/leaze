@@ -10,7 +10,7 @@ class Filters extends Component{
         this.state = {
             price_low: "0",
             price_high: "1000",
-            dist_to_campus: "0",
+            dist_to_campus: "500",
             roomSingle: false,
             roomDouble: false,
             roomTriple: false,
@@ -95,7 +95,7 @@ class Filters extends Component{
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
-                       <option value = "1000"> $1K+</option>
+                       <option value = "5000"> $1K+</option>
                    </Input>
                 </Row>
                 <Row>
