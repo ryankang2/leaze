@@ -86,6 +86,14 @@ export default class RegisterBox extends Component {
         }
     }
 
+    termsPopup(e) {
+        document.getElementById("termsModal").style.display = "block";
+    }
+
+    closeTerms(e) {
+        document.getElementById("termsModal").style.display = "none";
+    }
+
     render() {
         return <div className="tabcontent" id="Register">
         <div className="logContainer">
@@ -120,13 +128,18 @@ export default class RegisterBox extends Component {
                 </div>
 
                 <div className="FormField">
-                    <Input id="checkInput" name='terms' type='checkbox' value='checked' label='I Agree to the ' /><a href="" className="FormField__TermsLink">terms of service</a>
+                    <Input id="checkInput" name='terms' type='checkbox' value='checked' label='I Agree to the ' /><a onClick={this.termsPopup} className="FormField__TermsLink">terms of service</a>
                 </div>
 
                 <div className="FormField" id="submitDiv">
                     <button type="Submit" id="regButton" className="btnSubmit">Sign Up</button>
                 </div>    
             </form>
+
+            <div className="modal" id="termsModal">
+                <p id="termsP">These will be the terms of service that a user of LEaze must sign and adhere to.</p>
+                <button onClick={this.closeTerms} id="closeTerms">Sounds good</button>
+            </div>
 
         </div>
     </div>

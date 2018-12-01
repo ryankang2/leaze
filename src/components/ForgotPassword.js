@@ -57,7 +57,7 @@ export default class ForgotPassword extends Component {
     }
     
     render() {
-        return <div className="modalBox">
+        return <div className="fpmodalBox">
             <div className="modal" id="forgotModal1">
                 <h3>Forgot Password</h3>
                 <div className="FPinputs">

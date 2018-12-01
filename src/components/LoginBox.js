@@ -59,7 +59,6 @@ export default class LoginBox extends Component {
     } 
 
     forgotPassword(e) {
-        console.log("forgot password");
         let modal = document.getElementById("forgotModal1");
         modal.style.display = "block"
     }

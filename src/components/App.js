@@ -13,8 +13,8 @@ export default class App extends Component {
     render () {
         return (
             <div>
-                {/* <ResultsPage /> */}
-                <LandingPage />
+                <ResultsPage />
+                {/* <LandingPage /> */}
                 {/* <Profile /> */}
                 {/* <MessagingPage /> */}
             </div>

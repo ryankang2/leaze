@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./Navbar.css";
+import MakePost from "./MakePost";
 
 class Navbar extends Component{
     constructor(props){
@@ -29,6 +30,7 @@ class Navbar extends Component{
         const {searchQuery} = this.state;
         return (
             <nav className="navbar navbar-inverse">
+                <MakePost />
                 <div className="container-fluid">
                     <div className="navbar-header">
                     <a className="navbar-brand" href="#">Leaze</a>
