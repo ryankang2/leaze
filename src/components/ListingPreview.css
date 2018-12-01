@@ -167,7 +167,7 @@
 }
 
 .modal-content{
-    height:100%;
+    /* height:100%; */
     width: 100%;
     border-radius: 0px !important;
 }
@@ -192,8 +192,75 @@
     cursor: pointer;
 }
 
-/* h3{
-    margin-left: 0 !important;
-} */
+.leasingImagesContainer{
+    height: 250px;
+    width: 100%;
+    border: 2px solid red;
+
+}
+
+.fa-home, .fa-money{
+    font-size: 24px;
+    margin-right: 4%;
+}
+
+.pricePerMonth, .roomHome{
+    font-size: 24px;
+}
+
+.carousel-inner img{
+    height: 100%;
+}
+
+#myCarousel{
+    height: 100%
+}
+
+.carousel-inner > .item{
+        /* height: 100%; */
+        height: 260px;
+        width: 280px;
+        align-content: center; 
+        display: flex;
+        left: 50% !important;
+        transform: translate(-50%) !important;
+        /* top: 50%;
+        position: relative;*/
+}
+
+.addressInModal{
+    border: 1px solid blue;
+    font-size: 22px;
+}
+
+.distanceInModal{
+    border: 1px solid purple;
+    font-size: 18px;
+}
+
+.description{
+    border: 1px solid brown;
+}
+
+.fa-map-marker{
+    font-size: 18px;
+    margin-right: 2%;
+}
+
+.featuresText{
+    border: 1px solid turquoise;
+    font-size: 22px;
+}
+
+.feature{
+    border: 1px solid green;
+}
+
+.feature > i{
+    font-size: 36px;
+    margin-right: 2%;
+}
+
+
 
 
