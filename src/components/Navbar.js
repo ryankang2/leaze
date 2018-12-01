@@ -13,7 +13,6 @@ class Navbar extends Component{
     }
 
     componentDidMount(){
-        console.log("mounted");
         var userID = sessionStorage.getItem("user_id");
         this.getUserName(userID);
     }
