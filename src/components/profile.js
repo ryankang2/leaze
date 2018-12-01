@@ -21,6 +21,9 @@ export class Profile extends React.Component {
         showPPopup: false,
     };
   }
+  componentDidMount(){
+    console.log("profileismounted")
+  }
   toggleUPopup(){
     this.setState({
       showUPopup: !this.state.showUPopup

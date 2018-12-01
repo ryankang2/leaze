@@ -1,6 +1,6 @@
 import React from "react";
 import "./Popup.css";
-import { Row, Input } from "react-materialize"
+import { Input } from "react-materialize"
 
 class PPopup extends React.Component {
   constructor(props) {
