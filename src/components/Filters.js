@@ -8,9 +8,10 @@ class Filters extends Component{
     constructor(props){
         super(props);
         this.state = {
+            user_id: 3,
             price_low: "0",
             price_high: "1000",
-            dist_to_campus: "0",
+            dist_to_campus: "45",
             roomSingle: false,
             roomDouble: false,
             roomTriple: false,
@@ -27,6 +28,7 @@ class Filters extends Component{
         this.handleChangeFilter = this.handleChangeFilter.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.handleChangeForm = this.handleChangeForm.bind(this);
+        this.saveFilterData = this.saveFilterData.bind(this);
     }
     resetFilters(){
         console.log("reset");
@@ -42,7 +44,6 @@ class Filters extends Component{
 
     handleCheckBox(event) {
         const {name, checked} = event.currentTarget;
-        console.log(this.state);
         if(checked !== false){
            this.setState({
                [name]:true
@@ -52,11 +53,9 @@ class Filters extends Component{
                [name]:false
            })
         }
-        console.log(this.state);
     }
 
     async handleChangeForm(event) {
-        console.log(event.currentTarget);
         // const type = event.currentTarget.type;
         // if( type == "select" ) {
         //     this.handleChangeFilter;
@@ -68,30 +67,30 @@ class Filters extends Component{
         const params = formatPostData(this.state);
         const response = await axios.post("http://localhost:8000/api/queries/get_listings.php", params);
         this.props.getFilterData(response, params);
-        // console.log(response.data);
     }
 
-    submitFilterData(event) {
+    async saveFilterData(event) {
         event.preventDefault();
 
-        console.log("Submitted");
+        const params = formatPostData(this.state);
+        const response = await axios.post("http://localhost:8000/api/queries/set_filters.php", params);
     }
 
     render(){
         return (
-            <form className="filtersContainer" onChange={this.handleChangeForm}>
+            <form className="filtersContainer" onChange={this.handleChangeForm} onSubmit={this.saveFilterData}>
                 <div className="titleFilters">
                     <h3>Refine</h3>
                     <button type="button" className="btn btn-link" onClick={this.resetFilters}>Clear All</button>
                 </div>
                 <Row>
-                    <Input s={6} className="browser-default" type="select" label="Min Price" name="price_low" defaultValue={this.state.price_low} onChange={this.handleChangeFilter}>
+                    <Input s={6} className="browser-default" type="select" label="Min Price Per Month" name="price_low" defaultValue={this.state.price_low} onChange={this.handleChangeFilter}>
                        <option value = "0"> $0</option>
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
                    </Input>
-                   <Input s={6} className="browser-default" type ="select" label = "Max Price" name="price_high"  defaultValue = {this.state.price_high} onChange={this.handleChangeFilter} >
+                   <Input s={6} className="browser-default" type ="select" label = "Max Price Per Month" name="price_high"  defaultValue = {this.state.price_high} onChange={this.handleChangeFilter} >
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
@@ -99,7 +98,7 @@ class Filters extends Component{
                    </Input>
                 </Row>
                 <Row>
-                    <Input s={12} className="browser-default" type ="select" label = "dist_to_campus" name="dist_to_campus" defaultValue ={this.state.dist_to_campus} onChange={this.handleChangeFilter}>
+                    <Input s={12} className="browser-default" type ="select" label = "Distance To UCSD in Miles" name="dist_to_campus" defaultValue ={this.state.dist_to_campus} onChange={this.handleChangeFilter}>
                        <option value = "15">15 miles</option>
                        <option value = "30">30 miles</option>
                        <option value = "45">45 miles</option>
@@ -123,7 +122,7 @@ class Filters extends Component{
                     <Input name="gym" type="checkbox" checked={this.state.gym} value = "gym" label="Has Gym"  onChange={this.handleCheckBox} />
                     <Input name="pool" type="checkbox" checked={this.state.pool} value="pool" label="Has Pool"  onChange={this.handleCheckBox} />
                 </Row>
-                <button className="btn btn-primary">Submit</button>
+                <button className="btn btn-primary">Save Filters</button>
             </form>
         )
     }
