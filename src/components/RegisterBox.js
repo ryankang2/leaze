@@ -38,6 +38,8 @@ export default class RegisterBox extends Component {
             const params = formatPostData(this.state);
             const response = await axios.post("http://localhost:8000/api/mail_handler.php", params);
             console.log(response);
+            response = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
+            console.log(response);
         }
     }
 
