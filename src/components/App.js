@@ -1,32 +1,25 @@
 import React, {Component} from "react";
+import {Switch, Route, BrowserRouter as Router, Link, withRouter} from "react-router-dom";
 import ResultsPage from "./ResultsPage";
-import "./App.css";
 import Profile from "./Profile";
-import Navbar from "./Navbar.js"
-import ListingPreview from "./ListingPreview.js"
 import ResultsContent from "./ResultsContent.js"
 import LandingPage from "./LandingPage";
 import MessagingPage from "./MessagingPage";
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 
-export default class App extends Component {
-    render () {
-        return (
-            <Router>
-                <div>
-                    {/*<ResultsPage />*/}
-                    {/* <LandingPage /> */}
-                     {/*<Profile />*/}
-                     <Route exact path = "/" component={ResultsPage}/>
-                    <Route path = "/profile/:number" component = {Profile}/>
-                </div>
-            </Router>
-            // <div>
-            //     {/* <ResultsPage /> */}
-            //     {/* <LandingPage /> */}
-            //     <Profile />
-            // </div>
-        )
-    }
-}
+// export default class App 
+const App = () => (
+            <div>
+                {/* <Switch>
+                    <Route exact path="/" component={LandingPage}></Route>
+                    <Route exact path="/home" component={ResultsPage}></Route>
+                    <Route exact path="/home/profile/:number" component={Profile}></Route>
+                </Switch> */}
+                {/* <ResultsPage />  */}
+                {/* <LandingPage /> */}
+                <Profile />
+            </div>
+);
+
+export default withRouter(App);

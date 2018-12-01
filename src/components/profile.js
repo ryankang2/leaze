@@ -81,7 +81,7 @@ export class Profile extends React.Component {
               {/* User's Posted Listings go here */}
               Posted Listings:
                   {/*Ariane's code goes here*/}
-              {/*<ListingPreview />*/}
+                  {/* <ListingPreview /> */}
             </div>
             <div className="col-sm-8" id="favoriteListings">
               {/* Ariane's code goes here */}
