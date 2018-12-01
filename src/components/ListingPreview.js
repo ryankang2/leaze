@@ -65,7 +65,7 @@ class ListingPreview extends Component{
                 <div>
                     <div className="col-sm-4 singleListing">
                         <div className="imageBox">
-                            <img className="leaseImage" onClick={ this.leasePopup} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                            <img className="leaseImage" data-toggle="modal" data-target="#myModal" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
                             <i className="fa fa-heart-o favorite" onClick={(event) => this.toggleHeart(event)}> </i>
 
