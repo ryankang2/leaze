@@ -15,6 +15,7 @@ class UPopup extends React.Component {
         picture: null,
     };
   }
+
   handleChange(event) {
     const { name, value } = event.currentTarget;
     this.setState({
@@ -47,22 +48,22 @@ class UPopup extends React.Component {
             <h1 className="title">Update Your Profile</h1>
               <div className="col-sm-6">
                 <label>First Name: </label>
-                <input className="inputs" value = {this.state.firstname}
+                <input className="inputs" name="firstname" value = {this.state.firstname}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Last Name: </label>
-                <input className="inputs" value = {this.state.lastname}
+                <input className="inputs" name="lastname" value = {this.state.lastname}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Age: </label>
-                <input className="inputs" value = {this.state.age}
+                <input className="inputs" name="age" value = {this.state.age}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Email (must end with ".edu"): </label>
-                <input className="inputs" value = {this.state.email}
+                <input className="inputs" name="email" value = {this.state.email}
                   onChange={this.handleChange.bind(this)}/>
                 <label>School: </label>
-                <input className="inputs" value = {this.state.school}
+                <input className="inputs" name="school" value = {this.state.school}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Major: </label>
-                <input className="inputs" value = {this.state.major}
+                <input className="inputs" name="major" value = {this.state.major}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Year: </label>
                 <Input className="inputs" type='select' name='year' value = {this.state.year}
@@ -74,12 +75,12 @@ class UPopup extends React.Component {
                   <option value='5'>Other</option>
                 </Input>
                 <label>Bio: </label>
-                <input className="inputsB" value = {this.state.bio}
+                <input className="inputsB" name="bio" value = {this.state.bio}
                   onChange={this.handleChange.bind(this)}/>
                 <button onClick=
                   {this.props.closeUPopup} className="btn btn-primary">Cancel</button>
               </div>
-              <img id="displayPic" src={require("./profile.jpg")} />
+              <img id="displayPic" src={(this.state.picture)} />
               <div className="col-sm-6" id="pic">
                 <label>Profile Picture: </label>
                 <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler}/>
