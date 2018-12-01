@@ -8,21 +8,21 @@ class Filters extends Component{
     constructor(props){
         super(props);
         this.state = {
-            minPrice: "0",
-            maxPrice: "1000",
-            distance: "0",
+            price_low: "0",
+            price_high: "1000",
+            dist_to_campus: "0",
             roomSingle: false,
             roomDouble: false,
             roomTriple: false,
             roomLiving: false,
             roomApart: false,
             roomHouse: false,
-            roomPets: false,
-            hasInUnitLaundry: false,
-            hasParking: false,
-            isFurnished: false,
-            hasGym: false,
-            hasPool: false,
+            pet: false,
+            laundry: false,
+            parking: false,
+            furnished: false,
+            gym: false,
+            pool: false,
         }
         this.handleChangeFilter = this.handleChangeFilter.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
@@ -42,6 +42,7 @@ class Filters extends Component{
 
     handleCheckBox(event) {
         const {name, checked} = event.currentTarget;
+        console.log(this.state);
         if(checked !== false){
            this.setState({
                [name]:true
@@ -51,18 +52,19 @@ class Filters extends Component{
                [name]:false
            })
         }
+        console.log(this.state);
     }
 
     async handleChangeForm(event) {
         console.log(event.currentTarget);
-        event.preventDefault();
-        const type = event.currentTarget.type;
-        if( type == "select" ) {
-            this.handleChangeFilter;
-        }
-        if( type == "checkbox" ) {
-            this.handleCheckBox;
-        }
+        // const type = event.currentTarget.type;
+        // if( type == "select" ) {
+        //     this.handleChangeFilter;
+        // }
+        // if( type == "checkbox" ) {
+        //     this.handleCheckBox;
+        // }
+
         const params = formatPostData(this.state);
         const response = await axios.post("http://localhost:8000/api/queries/filters.php", params);
         this.props.getFilterData(response, params);
@@ -77,19 +79,19 @@ class Filters extends Component{
 
     render(){
         return (
-            <form className="filtersContainer" onSubmit={this.submitFilterData}>
+            <form className="filtersContainer" onChange={this.handleChangeForm}>
                 <div className="titleFilters">
                     <h3>Refine</h3>
                     <button type="button" className="btn btn-link" onClick={this.resetFilters}>Clear All</button>
                 </div>
                 <Row>
-                    <Input s={6} className="browser-default" type="select" label="Min Price" name="minPrice" defaultValue={this.state.minPrice} onChange={this.handleChangeFilter}>
+                    <Input s={6} className="browser-default" type="select" label="Min Price" name="price_low" defaultValue={this.state.price_low} onChange={this.handleChangeFilter}>
                        <option value = "0"> $0</option>
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
                    </Input>
-                   <Input s={6} className="browser-default" type ="select" label = "Max Price" name="maxPrice"  defaultValue = {this.state.maxPrice} onChange={this.handleChangeFilter} >
+                   <Input s={6} className="browser-default" type ="select" label = "Max Price" name="price_high"  defaultValue = {this.state.price_high} onChange={this.handleChangeFilter} >
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
@@ -97,7 +99,7 @@ class Filters extends Component{
                    </Input>
                 </Row>
                 <Row>
-                    <Input s={12} className="browser-default" type ="select" label = "Distance" name="distance" defaultValue ={this.state.distance} onChange={this.handleChangeFilter}>
+                    <Input s={12} className="browser-default" type ="select" label = "dist_to_campus" name="dist_to_campus" defaultValue ={this.state.dist_to_campus} onChange={this.handleChangeFilter}>
                        <option value = "15">15 miles</option>
                        <option value = "30">30 miles</option>
                        <option value = "45">45 miles</option>
@@ -114,12 +116,12 @@ class Filters extends Component{
                        <Input name="roomHouse" type="checkbox" checked={this.state.roomHouse} value = "roomHouse" label="House"  onChange={this.handleCheckBox}/>
                 </Row>
                 <Row className="homeMisc">
-                    <Input name="roomPets" type="checkbox" checked={this.state.roomPets} value = "roomPets" label="Pet Friendly"  onChange={this.handleCheckBox}/>
-                    <Input name="hasInUnitLaundry" type="checkbox" checked={this.state.hasInUnitLaundry} value="hasInUnitLaundry" label="In-unit Laundry"  onChange={this.handleCheckBox} />
-                    <Input name="hasParking" type="checkbox" checked={this.state.hasParking} value = "hasParking" label="Has Parking"  onChange={this.handleCheckBox}/>
-                    <Input name="isFurnished" type="checkbox" checked={this.state.isFurnished} value="isFurnished" label="Furnished Room"  onChange={this.handleCheckBox} />
-                    <Input name="hasGym" type="checkbox" checked={this.state.hasGym} value = "hasGym" label="Has Gym"  onChange={this.handleCheckBox} />
-                    <Input name="hasPool" type="checkbox" checked={this.state.hasPool} value="hasPool" label="Has Pool"  onChange={this.handleCheckBox} />
+                    <Input name="pet" type="checkbox" checked={this.state.pet} value = "pet" label="Pet Friendly"  onChange={this.handleCheckBox}/>
+                    <Input name="laundry" type="checkbox" checked={this.state.laundry} value="laundry" label="In-unit Laundry"  onChange={this.handleCheckBox} />
+                    <Input name="parking" type="checkbox" checked={this.state.parking} value = "parking" label="Has Parking"  onChange={this.handleCheckBox}/>
+                    <Input name="furnished" type="checkbox" checked={this.state.furnished} value="furnished" label="Furnished Room"  onChange={this.handleCheckBox} />
+                    <Input name="gym" type="checkbox" checked={this.state.gym} value = "gym" label="Has Gym"  onChange={this.handleCheckBox} />
+                    <Input name="pool" type="checkbox" checked={this.state.pool} value="pool" label="Has Pool"  onChange={this.handleCheckBox} />
                 </Row>
                 <button className="btn btn-primary">Submit</button>
             </form>
