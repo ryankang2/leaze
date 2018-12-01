@@ -1,6 +1,6 @@
 import React from "react";
 import "./Popup.css";
-import { Row, Input } from "react-materialize"
+import { Input } from "react-materialize"
 
 class PPopup extends React.Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class PPopup extends React.Component {
           <h1 className="title">Update Your Preferences</h1>
           <div className="col-sm-4">
             <label>How many guests days per week?: </label>
-            <Input s={12} className="inputs" type='select' name='gpd' defaultValue={this.state.gpd}
+            <Input s={12} className="inputs" type='select' name='gpd' value={this.state.gpd}
               onChange={this.handleChange.bind(this)} >
               <option value='-1'>0 Days</option>
               <option value='1'>1 Day</option>
@@ -126,7 +126,7 @@ class PPopup extends React.Component {
               <option value='5'>Very Loud</option>
             </Input>
             <label>Are you willing to share belongings?: </label>
-            <Input s={12} className="inputs" type='select' value={this.state.share}
+            <Input s={12} className="inputs" type='select' name="share" value={this.state.share}
               onChange={this.handleChange.bind(this)}>
               <option value='1'>Not at All</option>
               <option value='2'>A Little</option>
@@ -135,7 +135,7 @@ class PPopup extends React.Component {
               <option value='5'>Very Willing</option>
             </Input>
             <label>What relationship do you expect from a roommate? </label>
-            <Input className="inputs" type='select' value={this.state.relations}
+            <Input className="inputs" type='select' name="relations" value={this.state.relations}
               onChange={this.handleChange.bind(this)}>
               <option value='1'>Find Friends Elsewhere</option>
               <option value='2'>Get Along</option>

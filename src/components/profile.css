@@ -3,7 +3,7 @@
     padding: 3.33vh 0 3.33vh 0;
     position: fixed;
     height: 80vh;
-    background-color: #f7eddc;
+    background-color: rgb(182, 168, 168);
 }
 
 #profileRow {
@@ -89,12 +89,13 @@ hr {
 
 #userName {
     font-size: 2em;
-    margin: 8vh 0 0 1vw;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #userInfo {
     font-size: 1.25em;
-    margin: 1vh 0 0 1vw;
+    margin: 0%;
 }
 
 #biography {
