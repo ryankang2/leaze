@@ -100,3 +100,14 @@ form {
 .tab:hover {
     background-color: #37916e;
 }
+
+.hidden{
+    display:none;
+}
+.show{
+    display:block;
+}
+
+#wrongInput{
+    color: red
+}
