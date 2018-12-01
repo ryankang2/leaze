@@ -90,7 +90,7 @@
         $getListings .= "`room_type` IN (";
         $arr = str_split($filters["room_type"]);
         for ($i=0; $i<count($arr); $i++){
-            $getListings .= "'" . $arr[i] . "',";
+            $getListings .= "'" . $arr[$i] . "',";
         }
         //remove last comma and close parantheses
         $getListings = substr($getListings, 0, -1);

@@ -9,25 +9,25 @@
 
     // build the home string to match how it is stored internally in database
     $home = "";
-    if ($_POST["roomHouse"]) {
+    if ($_POST["roomHouse"] == "true") {
         $home .= "h";
     }
-    if ($_POST["roomApart"]) {
+    if ($_POST["roomApart"] == "true") {
         $home .= "a";
     }
 
     // build the room string to match how it is stored internally in database
     $room = "";
-    if ($_POST["roomSingle"]) {
+    if ($_POST["roomSingle"] == "true") {
         $room .= "s";
     }
-    if ($_POST["roomDouble"]) {
+    if ($_POST["roomDouble"] == "true") {
         $room .= "d";
     }
-    if ($_POST["roomTriple"]) {
+    if ($_POST["roomTriple"] == "true") {
         $room .= "t";
     }
-    if ($_POST["roomLiving"]) {
+    if ($_POST["roomLiving"] == "true") {
         $room .= "l";
     }
 
@@ -49,44 +49,36 @@
     // build the listings query based on the filters the user has set
     $getListings = "SELECT * FROM `listings` WHERE `archived`=0 AND ";
 
-    if ($filters["dist_to_campus"]) {
-        $getListings .= "`dist_to_campus`<=" . $filters["dist_to_campus"] . " AND ";
+    $getListings .= "`dist_to_campus`<=" . $filters["dist_to_campus"] . " AND ";
+    $getListings .= "`price`>=" . $filters["price_low"] . " AND ";
+    $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
+
+    if ($filters["pet"] == "true") {
+        $getListings .= "`pets`=1 AND ";
     }
 
-    if ($filters["price_low"]) {
-        $getListings .= "`price`>=" . $filters["price_low"] . " AND ";
+    if ($filters["laundry"] == "true") {
+        $getListings .= "`in_unit_laundry`=1 AND ";
     }
 
-    if ($filters["price_high"]) {
-        $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
+    if ($filters["furnished"] == "true") {
+        $getListings .= "`furnished`=1 AND ";
     }
 
-    if ($filters["pet"]) {
-        $getListings .= "`pets`==" . $filters["pet"] . " AND ";
+    if ($filters["gym"] == "true") {
+        $getListings .= "`gym`=1 AND ";
     }
 
-    if ($filters["laundry"]) {
-        $getListings .= "`in_unit_laundry`==" . $filters["laundry"] . " AND ";
+    if ($filters["pool"] == "true") {
+        $getListings .= "`pool`=1 AND ";
     }
 
-    if ($filters["furnished"]) {
-        $getListings .= "`furnished`==" . $filters["furnished"] . " AND ";
-    }
-
-    if ($filters["gym"]) {
-        $getListings .= "`gym`==" . $filters["gym"] . " AND ";
-    }
-
-    if ($filters["pool"]) {
-        $getListings .= "`pool`==" . $filters["pool"] . " AND ";
-    }
-
-    if ($filters["parking"]) {
-        $getListings .= "`parking`==" . $filters["parking"] . " AND ";
+    if ($filters["parking"] == "true") {
+        $getListings .= "`parking`=1 AND ";
     }
 
     if (strlen($filters["home_type"]) == 1) {
-        $getListings .= "`home_type`==" . $filters["home_type"] . " AND ";
+        $getListings .= "`home_type`=1" . $filters["home_type"] . " AND ";
     }
     elseif (strlen($filters["home_type"]) == 2) {
         $getListings .= "`home_type` IN ('h', 'a') AND ";
@@ -96,7 +88,7 @@
         $getListings .= "`room_type` IN (";
         $arr = str_split($filters["room_type"]);
         for ($i=0; $i<count($arr); $i++){
-            $getListings .= "'" . $arr[i] . "',";
+            $getListings .= "'" . $arr[$i] . "',";
         }
         //remove last comma and close parantheses
         $getListings = substr($getListings, 0, -1);
