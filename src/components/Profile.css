@@ -6,15 +6,12 @@
 }
 
 #profileRow {
-    border-width: 1px;
-    padding: 0;
-    margin: 0;
     position: absolute;
     height: 36vh;
-    width: 98vw;
+    width: 65.33vw;
     top: 3.33vh;
-    right: 1vw;
-    left: 1vw;
+    right: 17.33vw;
+    left: 17.33vw;
 }
 
 #rowDivider {
@@ -48,7 +45,7 @@ hr {
     background: transparent;
     position: absolute;
     left: 0;
-    width: 16.33vw;
+    min-width: 16.33vw;
     height: 36vh;
 }
 
@@ -79,7 +76,7 @@ hr {
 #bioArea {
     position: absolute;
     left: 16.33vw;
-    width: 32.66vw;
+    min-width: 32.66vw;
     height: 36vh;
     background:transparent;
     font-size: 1.125em;
@@ -104,7 +101,7 @@ hr {
     background:transparent;
     position: absolute;
     left: 48.99vw;
-    width: 16.33vw;
+    min-width: 16.33vw;
     height: 36vh;
 }
 
@@ -125,40 +122,6 @@ hr {
     display: inline-block;
     height: 1.25vw;
     width: 1.25vw;
-}
-
-#progressArea {
-    border: 1px solid black;
-    background: #f9f3e7;
-    position: absolute;
-    left: 65.33vw;
-    width: 25.66vw;
-    height: 20vh;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-#progressAreaInner {
-    position: absolute;
-    left: 5%;
-    right: 5%;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-#progressTextArea {
-    text-align: center;
-    padding-top: 0.5vh;
-    font-size: 1.125em;
-    height: 100%;
-    overflow-y: scroll;
-}
-
-#progressMessage {
-    padding-top: 1vh;
-    text-align: left;
 }
 
 #postedListings {

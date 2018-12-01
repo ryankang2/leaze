@@ -130,29 +130,12 @@ export class Profile extends React.Component {
                 <svg viewBox={'0 0 25 25'} className="ratingStars">
                   <polygon points={points} fill={'url(#ratingGradient4'} stroke={'black'}/>
                 </svg>
-
               </div>
 
               <button onClick={this.togglePPopup.bind(this)} className="ratingButton">Edit Preferences</button>
               <button onClick={this.toggleUPopup.bind(this)} class="ratingButton">Edit Profile</button>
 
             </div>
-
-            <div className="col-md-4" id="progressArea">
-              {/* User Profile Strength Percentage is here */}
-              <div id="progressAreaInner">
-                <div style={stylesProfile.meter}> </div>
-                <div id="progressTextArea">
-                  {this.state.progress}% <br />
-                  <p id="progressMessage">
-                    Getting there! The stronger your profile is, the better results you'll get.
-                    Click <a href={'#link'} style={stylesProfile.boldLink}>here</a> for a checklist to strengthen your profile!
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
           </div>
 
           <div class="row" id="rowDivider">
