@@ -63,9 +63,9 @@ form {
     margin-top: 2%;
 }
 
-.FormField .col {
+/* .FormField .col {
     padding: 0px !important;
-}
+} */
 
 .FormField__TermsLink {
     margin-left: 5px;
@@ -83,6 +83,18 @@ form {
     border: none;
     background: none;
     margin-left: 10%;
+    position: relative;
+    left: 15%;
+}
+
+#loginButton{
+    left: 17%;
+    position: relative;
+}
+
+#regButton{
+    position: relative;
+    left: 32%;
 }
 
 .tabs .tab a {

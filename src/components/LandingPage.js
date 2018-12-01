@@ -6,9 +6,6 @@ import "./LandingPage.css"
 export default class LandingPage extends Component {
     render () {
         return <div id="background">
-            <div id="topBar">
-                <p id="welcomeTop">Welcome to LEaze</p>
-            </div>
             <div id="header">
                 <img src= {require('./logo_transparent.png')} alt="logo" width="125" height="125" />
                 <h1 id="headerMsg">Your new home. Just the way you like it.</h1>

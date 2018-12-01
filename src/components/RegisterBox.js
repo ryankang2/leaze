@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Input} from "react-materialize";
+import {Input, Row, Icon} from "react-materialize";
 import axios from "axios";
 import {formatPostData} from "../helpers/formatPostData";
 
@@ -89,34 +89,49 @@ export default class RegisterBox extends Component {
     render() {
         return <div className="tabcontent" id="Register">
         <div className="logContainer">
-
             {/* This is where the pasted signup code starts */}
             <form onSubmit={this.handleSubmit} className="FormFields">
-
-                <div className="FormField_name">
-                    <div>
-                        <label className="FormField__Label" htmlFor="fname">First Name</label>
-                        <input type="text" id="firstName" className="FormField__Name_Input" placeholder="Enter your first name" name="fname" value={this.state.fname} onChange={this.handleChange} />
-                    </div>
-                    
-                    <div id="divLastName">
-                        <label className="FormField__Label" htmlFor="lastName">Last Name</label>
-                        <input type="text" id="lastName" className="FormField__Name_Input" placeholder="Enter your last name" name="lname" value={this.state.lname} onChange={this.handleChange}/>
-                    </div>
-                </div>
-                <div className="FormField">
-                    <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                    <input type="email" id="email" className="FormField__Input" placeholder="Enter a valid .edu email" name="email" value={this.state.email} onChange={this.handleChange}/>
-                </div>
+                <h4>Create a LEaZe Account</h4>
 
                 <div className="FormField">
-                    <label className="FormField__Label" htmlFor="myPassword">Desired Password</label>
-                    <input type="password" id="myPassword" className="FormField__Input" placeholder="6 characters minimum" name="password"  value={this.state.password} onChange={this.handleChange}/>
+                    <Row>
+                        <Input s={5} label="First Name" type="text" id="firstName" className="FormField__Name_Input" placeholder="Enter your first name"
+                            name="fname" value={this.state.fname} onChange={this.handleChange}>
+                        <Icon>face</Icon>
+                        </Input>
+                        <Input s={5} label="Last Name" type="text" id="lastName" className="FormField__Name_Input" placeholder="Enter your last name"
+                            name="lname" value={this.state.lname} onChange={this.handleChange}>
+                        </Input>
+                    </Row>
+
+                </div>
+                <div className="FormField">
+                    <Row>
+                        <Input s={8} label="Email" type="email" id="email" className="FormField__Input" placeholder="Enter a valid .edu email"
+                            name="email" value={this.state.email} onChange={this.handleChange}>
+                            <Icon>email</Icon>
+                        </Input>
+                    </Row>
                 </div>
 
                 <div className="FormField">
-                    <label className="FormField__Label" htmlFor="confPassword">Confirm Password</label>
-                    <input type="password" id="confPassword" className="FormField__Input" placeholder="6 characters minimum" name="confPassword" value={this.state.confPassword} onChange={this.handleChange}/>
+                    <Row>
+                        <Input s={8} label="Enter desired password" type="password" id="myPassword" className="FormField__Input" placeholder="6 characters minimum" 
+                            name="password"  value={this.state.password} onChange={this.handleChange}>
+                            <Icon>lock</Icon>
+                        </Input>
+                    </Row>
+
+                </div>
+
+                <div className="FormField">
+                    <Row>
+                        <Input s={8} label="   Confirm password" type="password" id="confPassword" className="FormField__Input" placeholder="" 
+                            name="confPassword" value={this.state.confPassword} onChange={this.handleChange}>
+                            <Icon>check_circle</Icon>
+                        </Input>
+                    </Row>
+                   
                 </div>
 
                 <div className="FormField">
@@ -124,7 +139,7 @@ export default class RegisterBox extends Component {
                 </div>
 
                 <div className="FormField" id="submitDiv">
-                    <button type="Submit" id="regButton" className="btnSubmit">Sign Up</button>
+                    <button type="Submit" id="regButton" className="btn btn-primary">Sign Up</button>
                 </div>    
             </form>
 

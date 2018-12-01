@@ -16,13 +16,6 @@
     display: inline-block;
 }
 
-#topBar {
-    display: inline-block;
-    width: 100%;
-    background-color: rgb(182, 168, 168);
-    text-align: center;
-}
-
 #introInfo {
     float: left;
     height: 60%;

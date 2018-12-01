@@ -3,6 +3,7 @@ import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import store from "store";
 import { Link, Router, RouterContext, browserHistory, hashHistory } from 'react-router';
+import {Input, Row, Icon} from "react-materialize";
 
 export default class LoginBox extends Component {
 
@@ -74,16 +75,25 @@ export default class LoginBox extends Component {
         return <div className="tabcontent" id="Login">
             <div className="logContainer" id="logContainer">
                 <form onSubmit={this.handleSubmit} className="FormFields">
+                    <h4>Sign in to access your LEaZe account</h4>
                     <div className="FormField">
-                        <label className="FormField__Label" htmlFor="loginEmail">E-Mail Address</label>
-                        <input type="email" id="loginEmail" className="FormField__Input" placeholder="Enter a valid .edu email" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <Row>
+                            <Input s={8} label="Email" type="email" id="loginEmail" className="FormField__Input" 
+                                name="email" value={this.state.email} onChange={this.handleChange}> 
+                                <Icon>account_circle</Icon> 
+                            </Input>
+                        </Row>
                     </div>
 
                     <div className="FormField">
-                        <label className="FormField__Label" htmlFor="loginPassword">Password</label>
-                        <input type="password" id="loginPassword" className="FormField__Input" placeholder="6 characters minimum" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <Row>
+                            <Input s={8} label="Password" type="password" id="loginPassword" className="FormField__Input" 
+                                name="password" value={this.state.password} onChange={this.handleChange}>
+                                <Icon>lock</Icon>
+                            </Input>
+                        </Row>
                     </div>
-                    <button type="Submit" id="loginButton" className="btnSubmit">Log in</button>
+                    <button type="Submit" id="loginButton" className="btn btn-primary">Log in</button>
                 </form>
                 <button onClick={this.forgotPassword} id="forgotPassword">Forgot Password</button>
             </div>
