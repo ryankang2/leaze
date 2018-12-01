@@ -71,7 +71,7 @@ class ListingPreview extends Component{
                             <img className="leaseImage" data-toggle="modal" data-target="#myModal" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
                             {/*{this.state.favorite &&  <i className="fa fa-heart favorite_fill"> </i>}*/}
-                            <i className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} onClick={this.toggleHeart.bind(this)}> </i>
+                            <i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} onClick={this.toggleHeart.bind(this)}> </i>
 
                             <div className = "infoBox">
                                 <div className="leaseName" data-toggle="modal" data-target="#myModal" >
