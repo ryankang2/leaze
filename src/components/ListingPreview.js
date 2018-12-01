@@ -15,7 +15,7 @@ class ListingPreview extends Component{
             distance: "",
             dateDiff: "",
             postTitle: "",
-            favorited: false,
+            favorite: false,
         }
     }
 
@@ -25,6 +25,7 @@ class ListingPreview extends Component{
 
     }
 
+
     goToProfile(event){
         console.log(event.target.innerText);
         var userName = event.target.innerText;
@@ -32,9 +33,12 @@ class ListingPreview extends Component{
         console.log("GO TO PROFILE");
     }
 
-    toggleHeart(x) {
-        x.classList.toggle("fa fa-heart");
+    toggleHeart(){
+        this.setState({favorite: !this.state.favorite})
+        console.log("heart clicked");
+        // x.classList.toggle("fa fa-heart");
     }
+
     getDiffPostDate(currentDay, currentMonth, postedDay, postedMonth){
         if(currentMonth === postedMonth){
             let dayDifference = currentDay - postedDay;
@@ -52,7 +56,7 @@ class ListingPreview extends Component{
     render(){
         console.log(this.props.information);
         const {title, dist_to_campus, date_posted, address, price} = this.props.information;
-        const {full_name,rating} = this.props.information.user;
+        const {full_name,rating,favorite} = this.props.information.user;
         var todayDate = new Date();
         var separatedDate = date_posted.split("-");
         var day = todayDate.getDate();
@@ -67,7 +71,8 @@ class ListingPreview extends Component{
                         <div className="imageBox">
                             <img className="leaseImage" data-toggle="modal" data-target="#myModal" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
-                            <i className="fa fa-heart-o favorite" onClick={(event) => this.toggleHeart(event)}> </i>
+                            {/*{this.state.favorite &&  <i className="fa fa-heart favorite_fill"> </i>}*/}
+                            <i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} onClick={this.toggleHeart.bind(this)}> </i>
 
                             <div className = "infoBox">
                                 <div className="leaseName" data-toggle="modal" data-target="#myModal" >
