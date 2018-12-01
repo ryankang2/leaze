@@ -1,6 +1,6 @@
 import React from "react";
 import "./Popup.css";
-import { Input } from "react-materialize"
+import { Input, Row } from "react-materialize"
 
 class PPopup extends React.Component {
   constructor(props) {
@@ -23,7 +23,9 @@ class PPopup extends React.Component {
       relations: '',
     };
   }
+  
   handleChange(event) {
+    console.log(event.currentTarget);
     const { name, value } = event.currentTarget;
     this.setState({
       [name]: value
@@ -50,7 +52,7 @@ class PPopup extends React.Component {
           <h1 className="title">Update Your Preferences</h1>
           <div className="col-sm-4">
             <label>How many guests days per week?: </label>
-            <Input s={12} className="inputs" type='select' name='gpd' value={this.state.gpd}
+            <Input s={12} className="browser-default" type='select' name='gpd' value={this.state.gpd}
               onChange={this.handleChange.bind(this)} >
               <option value='-1'>0 Days</option>
               <option value='1'>1 Day</option>
@@ -62,19 +64,19 @@ class PPopup extends React.Component {
               <option value='7'>7 Days</option>
             </Input>
             <label>Late Sleeper?: </label>
-            <Input s={12} className="inputs" type='select' name='latesleep' value={this.state.latesleep}
+            <Input s={12} className="browser-default" type='select' name='latesleep' value={this.state.latesleep}
               onChange={this.handleChange.bind(this)} >
               <option value='-1'>No</option>
               <option value='1'>Yes</option>
             </Input>
             <label>Deep Sleeper?: </label>
-            <Input s={12} className="inputs" type='select' name='deepsleep' value={this.state.deepsleep} 
+            <Input s={12} className="browser-default" type='select' name='deepsleep' value={this.state.deepsleep} 
               onChange={this.handleChange.bind(this)}>
               <option value='-1'>No</option>
               <option value='1'>Yes</option>
             </Input>
             <label>Early Riser?: </label>
-            <Input s={12} className="inputs" type='select' name='earlyrise' value={this.state.earlyrise}
+            <Input s={12} className="browser-default" type='select' name='earlyrise' value={this.state.earlyrise}
               onChange={this.handleChange.bind(this)}>
               <option value='-1'>No</option>
               <option value='1'>Yes</option>
@@ -84,7 +86,7 @@ class PPopup extends React.Component {
           </div>
           <div className="col-sm-4">
             <label>How Messy?: </label>
-            <Input s={12} className="inputs" type='select' name='messy' value={this.state.messy}
+            <Input s={12} className="browser-default" type='select' name='messy' value={this.state.messy}
               onChange={this.handleChange.bind(this)}>
               <option value='1'>Not at All</option>
               <option value='2'>A Little</option>
@@ -93,7 +95,7 @@ class PPopup extends React.Component {
               <option value='5'>Extremely</option>
             </Input>
             <label>Video Games?: </label>
-            <Input s={12} className="inputs" type='select' name='videogames' value={this.state.videogames}
+            <Input s={12} className="browser-default" type='select' name='videogames' value={this.state.videogames}
               onChange={this.handleChange.bind(this)}>
               <option value='-1'>Never</option>
               <option value='1'>Rarely</option>
@@ -101,7 +103,7 @@ class PPopup extends React.Component {
               <option value='3'>Often</option>
             </Input>
             <label>Extroverted?: </label>
-            <Input s={12} className="inputs" type='select' name='extro' value={this.state.extro}
+            <Input s={12} className="browser-default" type='select' name='extro' value={this.state.extro}
               onChange={this.handleChange.bind(this)}>
               <option value='1'>Not at All</option>
               <option value='2'>A Little</option>
@@ -117,7 +119,7 @@ class PPopup extends React.Component {
           </div>
           <div className="col-sm-4">
             <label>Study Noise Level?: </label>
-            <Input s={12} className="inputs" type='select' name='noise' value={this.state.noise}
+            <Input s={12} className="browser-default" type='select' name='noise' value={this.state.noise}
               onChange={this.handleChange.bind(this)}>
               <option value='1'>Very Quiet</option>
               <option value='2'>Quiet</option>
@@ -126,7 +128,7 @@ class PPopup extends React.Component {
               <option value='5'>Very Loud</option>
             </Input>
             <label>Are you willing to share belongings?: </label>
-            <Input s={12} className="inputs" type='select' name="share" value={this.state.share}
+            <Input s={12} className="browser-default" type='select' name="share" value={this.state.share}
               onChange={this.handleChange.bind(this)}>
               <option value='1'>Not at All</option>
               <option value='2'>A Little</option>
@@ -135,7 +137,7 @@ class PPopup extends React.Component {
               <option value='5'>Very Willing</option>
             </Input>
             <label>What relationship do you expect from a roommate? </label>
-            <Input className="inputs" type='select' name="relations" value={this.state.relations}
+            <Input className="browser-default" type='select' name="relations" value={this.state.relations}
               onChange={this.handleChange.bind(this)}>
               <option value='1'>Find Friends Elsewhere</option>
               <option value='2'>Get Along</option>
