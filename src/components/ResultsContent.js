@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ListingPreview from "./ListingPreview";
+// import ListingPreview from "./ListingPreview";
 import Filters from "./Filters";
 import "./ResultsContent.css";
 import SingleListing from "./ListingPreview";
@@ -33,7 +33,6 @@ class ResultsContent extends Component{
                         <Filters getFilterData={this.getFilterResponseData.bind(this)}/>
                     </div>
                     <div className="col-sm-9 col-md-9 listingPreviewContainer">
-                        {/* <ListingPreview />       */}
                         <div className="list">
                             <div className="row">
                                 {this.state.listings}

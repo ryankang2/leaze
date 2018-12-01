@@ -5,20 +5,19 @@ import Profile from "./Profile";
 import ResultsContent from "./ResultsContent.js"
 import LandingPage from "./LandingPage";
 import MessagingPage from "./MessagingPage";
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 
 // export default class App 
 const App = () => (
             <div>
-                {/* <Switch>
+                <Switch>
                     <Route exact path="/" component={LandingPage}></Route>
                     <Route exact path="/home" component={ResultsPage}></Route>
                     <Route exact path="/home/profile/:number" component={Profile}></Route>
-                </Switch> */}
+                </Switch>
                 {/* <ResultsPage />  */}
                 {/* <LandingPage /> */}
-                <Profile />
+                {/* <Profile /> */}
             </div>
 );
 
