@@ -97,7 +97,6 @@
 
     // remove last " AND " in the query string
     $getListings = substr($getListings, 0, -5);
-    echo $getListings;
     // now make the query
     $listings = mysqli_query($conn, $getListings);
 
