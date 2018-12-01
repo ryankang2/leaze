@@ -43,7 +43,7 @@ $mail->isHTML(true);                                  // Set email format to HTM
 
 $mail->Subject = "Here is the subject from LeazeHousing";
 $mail->Body    = "
-    Hey {$_POST["first_name"]}, <br>
+    Hey {$_POST["fname"]}, <br>
     Thanks for signing up for Leaze! With your Leaze account, you are able to: <br><br>
     -View student housing postings and chat with the leasers directly! <br><br>
     -Upload housing postings <br><br>

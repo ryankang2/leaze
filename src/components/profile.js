@@ -1,9 +1,9 @@
 import React from "react";
 import "./Profile.css";
-import Navbar from "./Navbar.js"
-import UPopup from "./UPopup.js"
-import PPopup from "./PPopup.js"
-import ListingPreview from "./ListingPreview.js"
+import Navbar from "./Navbar"
+import UPopup from "./UPopup"
+import PPopup from "./PPopup"
+// import ListingPreview from "./ListingPreview.js"
 
 export class Profile extends React.Component {
   constructor(props){
@@ -81,7 +81,7 @@ export class Profile extends React.Component {
               {/* User's Posted Listings go here */}
               Posted Listings:
                   {/*Ariane's code goes here*/}
-              {/*<ListingPreview />*/}
+                  {/* <ListingPreview /> */}
             </div>
             <div className="col-sm-8" id="favoriteListings">
               {/* Ariane's code goes here */}
@@ -98,7 +98,7 @@ export class Profile extends React.Component {
 
     );
   }
-};
+}
 
 
 export default Profile;

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./ListingPreview.css"
-import Profile from "./profile";
+import Profile from "./Profile";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
@@ -63,7 +63,8 @@ class ListingPreview extends Component{
         var month = todayDate.getMonth() + 1;
         var listing_day = parseInt(separatedDate[2]);
         var listing_month = parseInt(separatedDate[1]);
-        var linkQuery = "/profile/" + this.props.information.user.user_id;
+        var linkQuery = "/home/profile/" + this.props.information.user.user_id;
+
         return (
                 <div>
                     <div className="col-sm-4 singleListing">

@@ -10,7 +10,8 @@
 
     //need to sha1 password
     $email = $_POST["email"];
-    $password = hash("sha512", $_POST["password"]);
+    // $password = hash("sha512", $_POST["password"]);
+    $password = $_POST["password"];
 
     $checkUserQuery = "SELECT * from `users` WHERE `email`='$email'";
     $result = mysqli_query($conn, $checkUserQuery);
@@ -21,6 +22,7 @@
             if($dbPassword == $password){
                 $output["success"] = true;
                 $output["correctPassword"] = true;
+                $output["id"] = $row["user_id"];
             }
         }
     }
@@ -30,7 +32,6 @@
 
     mysqli_close($conn);
     print_r(json_encode($output));
-
 
 
 ?>

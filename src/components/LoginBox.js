@@ -1,5 +1,8 @@
 import React, {Component} from "react";
-import "./LoginBox.css";
+import {formatPostData} from "../helpers/formatPostData";
+import axios from "axios";
+import store from "store";
+import { Link, Router, RouterContext, browserHistory, hashHistory } from 'react-router';
 
 export default class LoginBox extends Component {
 
@@ -25,12 +28,35 @@ export default class LoginBox extends Component {
         });
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
         
         if(this.infoChecks(this.state.email, this.state.password) === true) {
-            console.log('The form was submitted with the following data:');
-            console.log(this.state);
+            const params = formatPostData(this.state);
+            const response = await axios.post("http://localhost:8000/api/queries/sign_in.php", params);
+            // this.props.getFilterData(response, params);
+            console.log(response.data);  
+            this.handleResponse(response.data);     
+        }
+    }
+
+    handleResponse(data) {
+        const {history} = this.props;
+        if(data.success === false) {
+            if(data.correctUser === true) {
+                console.log("Incorrect password. Please try again or click 'Forgot Password'");
+            }
+
+            else {
+                console.log("User not found. Please sign in with a different account or register before signing in");
+            }
+        }
+
+        else {
+            console.log("Login successful. User will be redirected to the explore page");
+            sessionStorage.setItem("user_id", data.id);
+            browserHistory.push("/home");
+            window.location.reload();
         }
     }
 
@@ -45,8 +71,7 @@ export default class LoginBox extends Component {
     }
 
     render() {
-        return <div class="tabcontent" id="Login">
-            <h3>Log in</h3>
+        return <div className="tabcontent" id="Login">
             <div className="logContainer" id="logContainer">
                 <form onSubmit={this.handleSubmit} className="FormFields">
                     <div className="FormField">
