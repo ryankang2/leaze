@@ -3,7 +3,7 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
     $output = [
-        "success" => false,
+        "success" => false
     ];
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];

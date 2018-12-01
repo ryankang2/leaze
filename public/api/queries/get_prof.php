@@ -3,9 +3,9 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
     $output = [
-        "success" = false;
-        "firstname" = "";
-        "lastname" = "";
+        "success" = false,
+        "firstname" = "",
+        "lastname" = "",
         "age" = "",
         "school" = "",
         "major" = "",
@@ -16,24 +16,23 @@
     //assume we can pass in the user id, and we output the information in output
     $user = $_POST["user_id"];
 
-    $prefQuery= "SELECT * from `profile` WHERE `preferences_id`='$user'";
-    $result = mysqli_query($conn, $checkUserQuery);
+    $userQuery= "SELECT * from `user` WHERE `user_id`='$user'";
+    $profQuery= "SELECT * from `profile` WHERE `user_id`='$user'";
+    $resultUser = mysqli_query($conn, $userQuery);
+    $resultProf = mysqli_query($conn, $prefQuery);
     
     // should only return one row (make sure to delete upon user 
     if(mysqli_num_rows($result) == 1){
-        $row = mysqli_fetch_assoc($result);
-        $output["guests_per_week"] = $row["guests_per_week"];
-        $output["late_sleeper"] = $row["late_sleeper"];
-        $output["deep_sleeper"] = $row["deep_sleeper"];
-        $output["early_bird"] = $row["early_bird"];
-        $output["messiness"] = $row["messiness"];
-        $output["video_games"] = $row["video_games"];
-        $output["extrovert"] = $row["extrovert"];
-        $output["study_noise_level"] = $row["study_noise_level"];
-        $output["sharing_belongings"] = $row["sharing_belongings"];
-        $output["roommate_relationship"] = $row["roommate_relationship"];
-        $output["substances"] = $row["substances"];
-        $ourput["success"] = true;
+        $userRow = mysqli_fetch_assoc($resultUser);
+        $profRow = mysqli_fetch_assoc($resultProf);
+        $output["firstname"] = $userRow["first_name"];
+        $output["lastname"] = $userRow["last_name"];
+        $output["age"] = $userRow["age"];
+        $output["school"] = $profRow["school"];
+        $output["major"] = $profRow["major"];
+        $output["year"] = $profRow["year"];
+        $output["bio"] = $profRow["about_me"];
+        $output["success"] = true;
     }
 
     mysqli_close($conn);

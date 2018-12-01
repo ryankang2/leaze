@@ -17,7 +17,7 @@
 
     foreach ($changed as $key => $value) {
         $updateQuery = "UPDATE `preferences` SET '$key'='$value' WHERE `preferences_id`='$user'";
-        if (!mysqli_query($conn, $updat eQuery)) {
+        if (!mysqli_query($conn, $updateQuery)) {
             $output["success"] = false;
             break;
         }
@@ -25,6 +25,4 @@
 
     mysqli_close($conn);
     print_r(json_encode($output));
-
-
 ?>
