@@ -18,7 +18,8 @@
     foreach($otherUsers as $other) {
         $output[$other] = getMatchingPercentage($mainUser, $other, $conn);
     }
-    
+    mysqli_close($conn);
+
     // print final output array
     print_r(json_encode($output));
 ?>
