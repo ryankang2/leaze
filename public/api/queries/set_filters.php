@@ -27,4 +27,6 @@
             mysqli_query($conn, $updateQuery);
         }
     }
+
+    mysqli_close($conn);
 ?>

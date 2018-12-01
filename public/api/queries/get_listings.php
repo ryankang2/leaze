@@ -105,7 +105,8 @@
             $count++;
         }
     }
-
+    mysqli_close($conn);
+    
     // print final output array
     print_r(json_encode($output));
 ?>
