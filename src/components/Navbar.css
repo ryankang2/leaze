@@ -48,10 +48,6 @@
     height: 20px;
 }
 
-ul:not(.browser-default) li {
-    width: 35px;
-}
-
 .fa-user-circle-o{
     margin-left: 3%;
 }

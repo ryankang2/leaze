@@ -54,7 +54,7 @@ export default class LoginBox extends Component {
 
         else {
             console.log("Login successful. User will be redirected to the explore page");
-            localStorage.setItem("user_id", data.id);
+            sessionStorage.setItem("user_id", data.id);
             browserHistory.push("/home");
             window.location.reload();
         }
