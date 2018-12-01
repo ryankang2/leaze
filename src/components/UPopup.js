@@ -1,5 +1,6 @@
 import React from "react";
 import "./Popup.css";
+import {Input,Button} from "react-materialize"
 
 class UPopup extends React.Component {
   constructor(props){
@@ -14,6 +15,25 @@ class UPopup extends React.Component {
         picture: null,
     };
   }
+  handleChange(event) {
+    const { name, value } = event.currentTarget;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleCheckBox(event) {
+    const { name, checked } = event.currentTarget;
+    if (checked !== false) {
+      this.setState({
+        [name]: true
+      })
+    } else {
+      this.setState({
+        [name]: false
+      })
+    }
+  }
   fileChangedHandler=(event)=>{
     this.setState({picture:event.target.files[0]})
   }
@@ -24,33 +44,36 @@ class UPopup extends React.Component {
       return (
         <div class='popup'>
           <div class='popup_inner'>
-            <h1>Update Your Profile</h1>
-              <div class="col-sm-3" id="info">
+            <h1 className="title">Update Your Profile</h1>
+              <div className="col-sm-6">
                 <label>First Name: </label>
                 <input class="inputs" value = {this.state.firstname}
-                  onChange={e=> this.setState({firstname:e.target.value})}/>
+                  onChange={this.handleChange.bind(this)}/>
                 <label>Last Name: </label>
                 <input class="inputs" value = {this.state.lastname}
-                  onChange={e=> this.setState({lastname:e.target.value})}/>
+                  onChange={this.handleChange.bind(this)}/>
                 <label>Age: </label>
                 <input class="inputs" value = {this.state.age}
-                  onChange={e=> this.setState({age:e.target.value})}/>
+                  onChange={this.handleChange.bind(this)}/>
+                <label>Email (must end with ".edu"): </label>
+                <input class="inputs" value = {this.state.email}
+                  onChange={this.handleChange.bind(this)}/>
                 <label>Major: </label>
                 <input class="inputs" value = {this.state.major}
-                  onChange={e=> this.setState({major:e.target.value})}/>
+                  onChange={this.handleChange.bind(this)}/>
                 <label>Bio: </label>
                 <input class="inputsB" value = {this.state.bio}
-                  onChange={e=> this.setState({bio:e.target.value})}/>
+                  onChange={this.handleChange.bind(this)}/>
                 <button onClick=
-                  {this.props.closeUPopup} className="btn btn-primary">Cancel</button>
+                  {this.props.closeUPopup} id="button3" className="btn btn-primary">Cancel</button>
               </div>
               <img id="displayPic" src={require("./profile.jpg")} />
-              <div class="col-sm-6" id="pic">
+              <div className="col-sm-6" id="pic">
                 <label>Profile Picture: </label>
-                <input type="file" onChange={this.fileChangedHandler}></input>
-                <button onClick={this.uploadHandler}>Upload</button>
+                <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler}/>
+                <Button onClick={this.uploadHandler}>Upload</Button>
                 <button onClick=
-                  {this.props.closeUPopup} className="btn btn-primary">Save Updates</button>
+                  {this.props.closeUPopup} id="button4" className="btn btn-primary">Save Updates</button>
               </div>    
           </div>
         </div>
