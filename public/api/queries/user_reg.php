@@ -5,8 +5,8 @@
     $output = [
         "success" => false
     ];
-    $first_name = $_POST["first_name"];
-    $last_name = $_POST["last_name"];
+    $first_name = $_POST["fname"];
+    $last_name = $_POST["lname"];
     $email = $_POST["email"];
     $password = hash("sha512", $_POST["password"]);
     $full_name = $first_name . ' ' . $last_name;
