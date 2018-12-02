@@ -56,7 +56,7 @@ class Filters extends Component{
     }
 
     async handleChangeForm(event) {
-        console.log(event.currentTarget);
+        // console.log(event.currentTarget);
         // const type = event.currentTarget.type;
         // if( type == "select" ) {
         //     this.handleChangeFilter;
@@ -66,6 +66,7 @@ class Filters extends Component{
         // }
 
         const params = formatPostData(this.state);
+        console.log("this.state", this.state);
         const response = await axios.post("http://localhost:8000/api/queries/get_listings.php", params);
         this.props.getFilterData(response, params);
         // console.log(response.data);

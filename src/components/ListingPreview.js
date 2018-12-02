@@ -99,7 +99,7 @@ class ListingPreview extends Component{
 
         return (
                 <div>
-                    <div className="col-sm-4 singleListing">
+                    <div className="col-sm-4 singleListing" onClick={this.openModal.bind(this)}>
                         <div className="imageBox">
                             <img className="leaseImage" data-toggle="modal" onClick={this.openModal.bind(this)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
