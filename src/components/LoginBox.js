@@ -50,23 +50,23 @@ export default class LoginBox extends Component {
         if(data.success === false) {
             if(data.correctUser === true) {
                 console.log("Incorrect password. Please try again or click 'Forgot Password'");
-                document.getElementById("wrongInput").className = "show";
-                document.getElementById("wrongInput").innerText = "Incorrect password. Please try again or click 'Forgot Password";
+                document.getElementById("wrongInputLogin").className = "show";
+                document.getElementById("wrongInputLogin").innerText = "Incorrect password. Please try again or click 'Forgot Password";
                 this.setState({classPassword:"invalid"});
                 this.setState({classEmail:"valid"})
             }
 
             else {
                 console.log("User not found. Please sign in with a different account or register before signing in");
-                document.getElementById("wrongInput").className = "show";
-                document.getElementById("wrongInput").innerText = "User not found. Please sign in with a different account or register before signing in";
+                document.getElementById("wrongInputLogin").className = "show";
+                document.getElementById("wrongInputLogin").innerText = "User not found. Please sign in with a different account or register before signing in";
                 this.setState({classEmail:"invalid"});
             }
         }
 
         else {
             console.log("Login successful. User will be redirected to the explore page");
-            document.getElementById("wrongInput").className="hidden";
+            document.getElementById("wrongInputLogin").className="hidden";
             this.setState({classPassword:"valid"});
             this.setState({classPassword:"valid"});
         }
@@ -94,7 +94,7 @@ export default class LoginBox extends Component {
                         <label className="FormField__Label" htmlFor="loginPassword">Password</label>
                         <input type="password" id="loginPassword" className={this.state.active ? this.state.classPassword: "FormField__Input"} placeholder="6 characters minimum" name="password" value={this.state.password} onChange={this.handleChange} />
                     </div>
-                    <span id="wrongInput" className="hidden"></span>
+                    <span id="wrongInputLogin" className="hidden"></span>
                     <button type="Submit" id="loginButton" className="btnSubmit">Log in</button>
                 </form>
                 <button onClick={this.forgotPassword} id="forgotPassword">Forgot Password</button>
