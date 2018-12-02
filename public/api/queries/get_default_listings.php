@@ -55,27 +55,27 @@
         $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
     }
 
-    if ($filters["pet"] != "") {
-        $getListings .= "`pets`=1 AND ";
+    if ($filters["pet"] == "1") {
+        $getListings .= "`pet`=1 AND ";
     }
 
-    if ($filters["laundry"] != "") {
+    if ($filters["laundry"] == "1") {
         $getListings .= "`in_unit_laundry`=1 AND ";
     }
 
-    if ($filters["furnished"] != "") {
+    if ($filters["furnished"] == "1") {
         $getListings .= "`furnished`=1 AND ";
     }
 
-    if ($filters["gym"] != "") {
+    if ($filters["gym"] == "1") {
         $getListings .= "`gym`=1 AND ";
     }
 
-    if ($filters["pool"] != "") {
+    if ($filters["pool"] == "1") {
         $getListings .= "`pool`=1 AND ";
     }
 
-    if ($filters["parking"] != "") {
+    if ($filters["parking"] == "1") {
         $getListings .= "`parking`=1 AND " ;
     }
 
