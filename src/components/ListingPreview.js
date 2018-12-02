@@ -107,9 +107,8 @@ class ListingPreview extends Component{
                             <i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} onClick={this.toggleHeart.bind(this)}> </i>
 
                             <div className = "infoBox">
-                                <div className="leaseName" data-toggle="modal" data-target="#myModal" >
+                                <div className="leaseName" data-toggle="modal" onClick={this.openModal.bind(this)} >
                                     {title}
-                                    {/*data-toggle="modal" data-target="#myModal"*/}
                                 </div>
                                 
                                 <Link to = {linkQuery}>
