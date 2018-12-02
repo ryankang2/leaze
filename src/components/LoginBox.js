@@ -50,16 +50,16 @@ export default class LoginBox extends Component {
         if(data.success === false) {
             if(data.correctUser === true) {
                 console.log("Incorrect password. Please try again or click 'Forgot Password'");
-                document.getElementById("wrongInputLogin").className = "show";
-                document.getElementById("wrongInputLogin").innerText = "Incorrect password. Please try again or click 'Forgot Password";
+                document.getElementById("wrongInputLogin").className = "FormFieldsError";
+                document.getElementById("wrongInputLogin").innerText = "Incorrect password. Please try again or click 'Forgot Password'.";
                 this.setState({classPassword:"invalid"});
                 this.setState({classEmail:"valid"})
             }
 
             else {
                 console.log("User not found. Please sign in with a different account or register before signing in");
-                document.getElementById("wrongInputLogin").className = "show";
-                document.getElementById("wrongInputLogin").innerText = "User not found. Please sign in with a different account or register before signing in";
+                document.getElementById("wrongInputLogin").className = "FormFieldsError";
+                document.getElementById("wrongInputLogin").innerText = "Email Address not found.";
                 this.setState({classEmail:"invalid"});
             }
         }
@@ -106,6 +106,7 @@ export default class LoginBox extends Component {
                             </Input>
                         </Row>
                     </div>
+                    <p id="wrongInputLogin"></p>
                     <button type="Submit" id="loginButton" className="btn btn-primary">Log in</button>
                 </form>
                 <button onClick={this.forgotPassword} id="forgotPassword">Forgot Password</button>
