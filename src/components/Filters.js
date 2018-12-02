@@ -143,6 +143,8 @@ class Filters extends Component{
     async saveFilterData(event) {
         event.preventDefault();
 
+        console.log("save filters", this.state);
+
         const params = formatPostData(this.state);
         const response = await axios.post("http://localhost:8000/api/queries/set_filters.php", params);
     }
@@ -192,8 +194,8 @@ class Filters extends Component{
                     <Input name="gym" type="checkbox" checked={this.state.gym} value = "gym" label="Has Gym"  onChange={this.handleCheckBox} />
                     <Input name="pool" type="checkbox" checked={this.state.pool} value="pool" label="Has Pool"  onChange={this.handleCheckBox} />
                 </Row>
-                <button className="btn btn-primary">Save Filters</button>
-                <button type="button" className="btn btn-link" onClick={this.resetFilters}>Clear All Filters</button>
+                <button type="button" className="btn btn-primary" onClick={this.saveFilterData}>Save Filters</button>
+                <button className="btn btn-link" onClick={this.resetFilters}>Clear All Filters</button>
             </form>
         )
     }
