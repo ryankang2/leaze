@@ -16,7 +16,7 @@ class ResultsContent extends Component{
         console.log("responseObject: ", responseObject);
         var array = [];
         for(var i = 0; i < responseObject.data.listings.length; i++){
-            var singleListing = <SingleListing information = {responseObject.data.listings[i]}{...this.props}/>
+            var singleListing = <SingleListing information = {responseObject.data.listings[i]}{...this.props} key={responseObject.data.listings[i].user_id_posted}/>
             array.push(singleListing);
         }
         this.setState({
