@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import {Button, Input, Row} from "react-materialize";
+import {Button, Icon, Input, Row} from "react-materialize";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import "./ForgotPassword.css";
+
 
 export default class ForgotPassword extends Component { 
     constructor(props){
@@ -10,6 +11,19 @@ export default class ForgotPassword extends Component {
         this.state = {
             email: "",
         }
+        this.handleChange = this.handleChange.bind(this);
+
+    }
+
+    handleChange(e) {
+        let target = e.target;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+        let name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+        console.log("email: ", this.state.email);
     }
 
     cancelReset(e) {      
@@ -22,20 +36,12 @@ export default class ForgotPassword extends Component {
         document.getElementById("myConfPassword").value = "";
     }
 
-    async confirmCode(code, email){
-        var confirmObj = {
-            code_to_confirm: code,
-            email_of_user: email,
+    async sendCode(email){
+        var emailObj = {
+            email_of_user: email
         };
-        const params = formatPostData(confirmObj);
-        const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php");
-        console.log("RESPONSE FROM BACKEND", response);
-        if(1){
-            console.log("hello " + document.getElementById("forgotModal3").innerText);
-            document.getElementById("forgotModal3").style.display='none';
-            document.getElementById("forgotModal4").style.display = "block"
-
-        }
+        const params = formatPostData(emailObj);
+        const response = await axios.post("http://localhost:8000/api/email_recovery.php", params);
     }
 
     async confirmCode(code, email){
@@ -107,10 +113,13 @@ export default class ForgotPassword extends Component {
                 <h3>Forgot Password</h3>
                 <div>Enter your email address to receive 4-digit confirmation code</div>
                 <div className="FPinputs">
-                    <input className="FPinputbox" type="email" id="forgotEmail" placeholder="Email" />
+                    <Input s={8} label="Email" type="email" id="forgotEmail" className="FormField__Input"
+                           name="email" value={this.state.email} onChange={this.handleChange}>
+                        <Icon>account_circle</Icon>
+                    </Input>
                 </div>
-                <button onClick={this.cancelReset} className="FPcancel">Cancel</button>
-                <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpEmailSubmit">Submit</button>
+                <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
+                <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpEmailSubmit">Submit</Button>
             </div>
             
             <div className="modal" id="forgotModal2">
@@ -118,11 +127,17 @@ export default class ForgotPassword extends Component {
                 <p id="codeResent">A code has been resent to your email</p>
                 <div className="FPinputs">
                     <label htmlFor="forgotCode">4-Digit Code</label>
-                    <input className="FPinputbox" id="forgotCode" placeholder="Enter the code that was sent to you" />
+                    <Row>
+                    <Input s={10} label="Enter the code" id="forgotCode"
+                           name="code" onChange={this.handleChange}>
+                            <Icon> check_circle_outline</Icon>
+                    </Input>
+
+                    </Row>
                 </div>
-                <button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</button>
-                <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</button>
-                <button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</button>
+                <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
+                <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
+                <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</Button>
             </div>
 
             <div className="modal" id="forgotModal3">
@@ -136,8 +151,8 @@ export default class ForgotPassword extends Component {
                     <label htmlFor="myConfPassword">Confirm New Password</label>
                     <input type="password" className="FPinputbox" id="myConfPassword" placeholder="Re-enter your new password" />
                 </div>
-                <button onClick={this.FPsubmit} className="FPsubmit" id="fpSubmitPassword">Submit</button>
-                <button onClick={this.cancelReset} className="FPcancel">Cancel</button>
+                <Button onClick={this.FPsubmit} className="FPsubmit" id="fpSubmitPassword">Submit</Button>
+                <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
             </div>
 
             <div className="modal" id="forgotModal4">
@@ -148,9 +163,9 @@ export default class ForgotPassword extends Component {
                     <label htmlFor="forgotCode">4-Digit Code</label>
                     <input className="FPinputbox" id="forgotCode" placeholder="Enter the code that was sent to you" />
                 </div>
-                <button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</button>
-                <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</button>
-                <button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</button>
+                <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
+                <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
+                <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</Button>
             </div>
         </div>
     }
