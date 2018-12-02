@@ -16,10 +16,10 @@ class PPopup extends React.Component {
       messy: '',
       videogames: '',
       extro: '',
-      alcohol: false,
-      marijuana: false,
-      cigarettes: false,
-      other: false,
+      alcohol: '',
+      marijuana: '',
+      cigarettes: '',
+      other: '',
       noise: '',
       share: '',
       relations: '',
@@ -74,11 +74,11 @@ class PPopup extends React.Component {
     const { name, checked } = event.currentTarget;
     if (checked !== false) {
       this.setState({
-        [name]: true
+        [name]: 1
       })
     } else {
       this.setState({
-        [name]: false
+        [name]: -1
       })
     }
   }
@@ -157,10 +157,10 @@ class PPopup extends React.Component {
               <option value='5'>Extremely</option>
             </Input>
             <label>Substances?: </label>
-            <Input s={6} id='alc' name='alcohol' className="inputs" type='checkbox' checked={this.state.alcohol} value='1' label='Alcohol' onChange={this.handleCheckBox.bind(this)} />
-            <Input s={6} id='weed' name='marijuana' className="inputs" type='checkbox' checked={this.state.marijuana} value='2' label='Marijuana' onChange={this.handleCheckBox.bind(this)} />
-            <Input s={6} id='stoges' name='cigarettes' className="inputs" type='checkbox' checked={this.state.cigarettes} value='3' label='Cigarettes' onChange={this.handleCheckBox.bind(this)} />
-            <Input s={6} id='heroin' name='other' className="inputs" type='checkbox' checked={this.state.other} value='5' label='Other' onChange={this.handleCheckBox.bind(this)} />
+            <Input s={6} id='alc' name='alcohol' className="inputs" type='checkbox' checked={this.state.alcohol} label='Alcohol' onChange={this.handleCheckBox.bind(this)} />
+            <Input s={6} id='weed' name='marijuana' className="inputs" type='checkbox' checked={this.state.marijuana} label='Marijuana' onChange={this.handleCheckBox.bind(this)} />
+            <Input s={6} id='stoges' name='cigarettes' className="inputs" type='checkbox' checked={this.state.cigarettes} label='Cigarettes' onChange={this.handleCheckBox.bind(this)} />
+            <Input s={6} id='heroin' name='other' className="inputs" type='checkbox' checked={this.state.other} label='Other' onChange={this.handleCheckBox.bind(this)} />
           </div>
           <div className="col-sm-4">
             <label>Study Noise Level?: </label>
