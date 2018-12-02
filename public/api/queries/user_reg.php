@@ -24,6 +24,7 @@
     }
 
     mysqli_close($conn);
-    print_r(json_encode($output);
+
+    print_r(json_encode($output));
 
 ?>
