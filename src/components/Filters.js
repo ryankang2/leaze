@@ -36,10 +36,8 @@ class Filters extends Component{
     }
 
     async componentDidMount(){
-        console.log("filters are mounted")
         const params = formatPostData(this.state);
         const response = await axios.post("http://localhost:8000/api/queries/get_listings.php", params);
-        console.log(response.data);
         $("#price_low").text(response.data.price_low)
         this.setState({price_low: response.data.price_low})
         $("#price_high").text(response.data.price_high)
@@ -106,11 +104,10 @@ class Filters extends Component{
     }
 
     handleChangeFilter(event) {
-        console.log(event.currentTarget);
         const {name, value} = event.currentTarget;
-       this.setState({
-           [name]:value
-       })
+        this.setState({
+            [name]:value
+        })
     }
 
     handleCheckBox(event) {
@@ -127,13 +124,6 @@ class Filters extends Component{
     }
 
     async handleChangeForm(event) {
-        // const type = event.currentTarget.type;
-        // if( type == "select" ) {
-        //     this.handleChangeFilter;
-        // }
-        // if( type == "checkbox" ) {
-        //     this.handleCheckBox;
-        // }
 
         const params = formatPostData(this.state);
         const response = await axios.post("http://localhost:8000/api/queries/get_listings.php", params);
@@ -142,8 +132,6 @@ class Filters extends Component{
 
     async saveFilterData(event) {
         event.preventDefault();
-
-        console.log("save filters", this.state);
 
         const params = formatPostData(this.state);
         const response = await axios.post("http://localhost:8000/api/queries/set_filters.php", params);
@@ -156,13 +144,13 @@ class Filters extends Component{
                     Filters
                 </div>
                 <Row>
-                    <Input s={6} className="browser-default" type="select" label="Min Price Per Month" name="price_low" defaultValue={this.state.price_low} onChange={this.handleChangeFilter}>
+                    <Input s={6} className="browser-default" type="select" label="Min Price Per Month" name="price_low" value={this.state.price_low} onChange={this.handleChangeFilter}>
                        <option value = "0"> $0</option>
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
                    </Input>
-                   <Input s={6} className="browser-default" type ="select" label = "Max Price Per Month" name="price_high"  defaultValue = {this.state.price_high} onChange={this.handleChangeFilter} >
+                   <Input s={6} className="browser-default" type ="select" label = "Max Price Per Month" name="price_high"  value = {this.state.price_high} onChange={this.handleChangeFilter} >
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
@@ -170,7 +158,7 @@ class Filters extends Component{
                    </Input>
                 </Row>
                 <Row>
-                    <Input s={12} className="browser-default" type ="select" label = "Distance To UCSD in Miles" name="dist_to_campus" defaultValue ={this.state.dist_to_campus} onChange={this.handleChangeFilter}>
+                    <Input s={12} className="browser-default" type ="select" label = "Distance To UCSD in Miles" name="dist_to_campus" value ={this.state.dist_to_campus} onChange={this.handleChangeFilter}>
                        <option value = "15">15 miles</option>
                        <option value = "30">30 miles</option>
                        <option value = "45">45 miles+</option>
