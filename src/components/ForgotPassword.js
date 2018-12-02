@@ -53,13 +53,13 @@ export default class ForgotPassword extends Component {
         const params = formatPostData(confirmObj);
         const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php");
         console.log("RESPONSE FROM BACKEND", response);
-        // if(!response.data.success){
-        //     document.getElementById("forgotModal4").style.display = "block";
-        //     document.getElementById("forgotModal3").style.display = "none";
-        // } else {
-        //     document.getElementById("forgotModal3").style.display = "block";
-        //     document.getElementById("forgotModal4").style.display = "none";
-        // }
+        if(!response.data.success){
+            document.getElementById("forgotModal4").style.display = "block";
+            document.getElementById("forgotModal3").style.display = "none";
+        } else {
+            document.getElementById("forgotModal3").style.display = "block";
+            document.getElementById("forgotModal4").style.display = "none";
+        }
     }
 
     FPsubmit(e) {   
@@ -157,7 +157,7 @@ export default class ForgotPassword extends Component {
                         {/*<Icon>lock</Icon>*/}
                     {/*</Input>*/}
                     <Input s={8} label="Password must be at least 6 characters long" type="password" id="myNewPassword"
-                           name="password" value={this.state.password} onChange={this.handleChange}>
+                           name="password" onChange={this.handleChange}>
                         <Icon>lock</Icon>
                     </Input>
                     {/*<input type="password" className="FPinputbox" id="myNewPassword" placeholder="Password must be at least 6 characters long" />*/}
@@ -165,8 +165,8 @@ export default class ForgotPassword extends Component {
 
                 <div className="FPinputs">
                     <label htmlFor="myConfPassword">Confirm New Password</label>
-                    <Input s={8} label="Re-enter your new password" type="password" id="myNewPassword"
-                           name="password" value={this.state.password} onChange={this.handleChange}>
+                    <Input s={8} label="Re-enter your new password" type="password" id="myNewPassword2"
+                           name="password" onChange={this.handleChange}>
                         <Icon>lock</Icon>
                     </Input>
                 </div>
