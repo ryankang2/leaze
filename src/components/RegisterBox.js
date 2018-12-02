@@ -57,7 +57,6 @@ export default class RegisterBox extends Component {
 
        
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
-            alert("works!")
             const params = formatPostData(this.state);
             const response = await axios.post("http://localhost:8000/api/mail_handler.php", params);
             console.log(response);
@@ -73,9 +72,7 @@ export default class RegisterBox extends Component {
                                     this.state.password, this.state.confPassword);
         
         let isValid = Object.keys(errors).some(i => errors[i]);
-        //if(!document.getElementById("checkInput").checked){
-        //    isValid = true;
-        //}
+       
         if(!isValid){
             document.getElementById("wrongInputRegister").className = "hidden";
             return true;
@@ -102,6 +99,7 @@ export default class RegisterBox extends Component {
 
     closeTerms(e) {
         document.getElementById("termsModal").style.display = "none";
+    }
     checkError(field){
 
         const errors = this.validate(this.state.fname, this.state.lname, 
