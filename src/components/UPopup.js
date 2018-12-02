@@ -1,13 +1,18 @@
 import React from "react";
 import "./Popup.css";
 import {Input,Button} from "react-materialize"
+import {formatPostData} from "../helpers/formatPostData";
+import axios from "axios";
 
 class UPopup extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        name:'',
+        user_id:3, 
+        firstname:'',
+        lastname:'',
         age:'',
+        email: '',
         school:'',
         major:'',
         year:'',
@@ -15,7 +20,16 @@ class UPopup extends React.Component {
         picture: null,
     };
   }
-
+  async componentDidMount(){
+    console.log("profileismounted")
+    const params = formatPostData(this.state);
+    const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
+    console.log(response.data);
+    $("#lastName").text(response.data.firstname)
+    this.setState({firstname: response.data.firstname})
+    $("#lastName").text(response.data.firstname)
+    this.setState({lastname: response.data.lastname})
+  }
   handleChange(event) {
     const { name, value } = event.currentTarget;
     this.setState({
@@ -48,7 +62,7 @@ class UPopup extends React.Component {
             <h1 className="title">Update Your Profile</h1>
               <div className="col-sm-6">
                 <label>First Name: </label>
-                <input className="inputs" name="firstname" value = {this.state.firstname}
+                <input id="firstName" className="inputs" name="firstname" defaultValue={this.state.firstname}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Last Name: </label>
                 <input className="inputs" name="lastname" value = {this.state.lastname}
@@ -66,7 +80,7 @@ class UPopup extends React.Component {
                 <input className="inputs" name="major" value = {this.state.major}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Year: </label>
-                <Input className="inputs" type='select' name='year' value = {this.state.year}
+                <Input id='classYear' className="inputs" type='select' name='year' value = {this.state.year}
                   onChange={this.handleChange.bind(this)}>
                   <option value='1'>First</option>
                   <option value='2'>Second</option>

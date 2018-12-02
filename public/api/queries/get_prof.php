@@ -3,14 +3,14 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
     $output = [
-        "success" = false,
-        "firstname" = "",
-        "lastname" = "",
-        "age" = "",
-        "school" = "",
-        "major" = "",
-        "year" = "",
-        "bio" = ""
+        "success" => false,
+        "firstname" => "drex",
+        "lastname" => "",
+        "age" => "",
+        "school" => "",
+        "major" => "",
+        "year" => "",
+        "bio" => ""
     ];
 
     //assume we can pass in the user id, and we output the information in output

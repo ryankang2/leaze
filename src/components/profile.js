@@ -4,11 +4,14 @@ import Navbar from "./Navbar.js"
 import UPopup from "./UPopup.js"
 import PPopup from "./PPopup.js"
 import ListingPreview from "./ListingPreview.js"
+import {formatPostData} from "../helpers/formatPostData";
+import axios from "axios";
 
 export class Profile extends React.Component {
   constructor(props){
     super(props);
     this.state={
+        user_id: 3,
         firstname:'',
         lastname:'',
         age:'',
@@ -21,8 +24,14 @@ export class Profile extends React.Component {
         showPPopup: false,
     };
   }
-  componentDidMount(){
+  async componentDidMount(){
     console.log("profileismounted")
+    const params = formatPostData(this.state);
+    const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
+    console.log(response.data);
+    $("#userName").text(response.data.firstname +' ' + response.data.lastname)
+    $("#userInfo").text(response.data.major + ', ' + response.data.year)
+    $("#biography").text(response.data.bio)
   }
   toggleUPopup(){
     this.setState({
@@ -50,9 +59,9 @@ export class Profile extends React.Component {
 
             <div className="col-md-4" id="bioArea">
               {/* User Bio Area here  */}
-              <h1 id="userName" > {this.state.firstname} {this.state.lastname} Full Name </h1>
-              <h2 id="userInfo"> {this.state.major} Major, {this.state.year} Year </h2>
-              <p rows="4" cols="50" id="biography"> {this.state.bio} biography </p>
+              <h1 id="userName" > {this.state.firstname} {this.state.lastname} </h1>
+              <h2 id="userInfo"> {this.state.major} {this.state.year}</h2>
+              <p rows="4" cols="50" id="biography"> {this.state.bio} </p>
             </div>
 
             <div className="col-md-2" id="ratingArea">
