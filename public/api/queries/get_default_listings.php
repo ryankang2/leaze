@@ -56,31 +56,31 @@
     }
 
     if ($filters["pet"] != "") {
-        $getListings .= "`pets`==" . $filters["pet"] . " AND ";
+        $getListings .= "`pets`=1 AND ";
     }
 
     if ($filters["laundry"] != "") {
-        $getListings .= "`in_unit_laundry`==" . $filters["laundry"] . " AND ";
+        $getListings .= "`in_unit_laundry`=1 AND ";
     }
 
     if ($filters["furnished"] != "") {
-        $getListings .= "`furnished`==" . $filters["furnished"] . " AND ";
+        $getListings .= "`furnished`=1 AND ";
     }
 
     if ($filters["gym"] != "") {
-        $getListings .= "`gym`==" . $filters["gym"] . " AND ";
+        $getListings .= "`gym`=1 AND ";
     }
 
     if ($filters["pool"] != "") {
-        $getListings .= "`pool`==" . $filters["pool"] . " AND ";
+        $getListings .= "`pool`=1 AND ";
     }
 
     if ($filters["parking"] != "") {
-        $getListings .= "`parking`==" . $filters["parking"] . " AND ";
+        $getListings .= "`parking`=1 AND " ;
     }
 
     if (strlen($filters["home_type"]) == 1) {
-        $getListings .= "`home_type`==" . $filters["home_type"] . " AND ";
+        $getListings .= "`home_type`=" . $filters["home_type"] . " AND ";
     }
     elseif (strlen($filters["home_type"]) == 2) {
         $getListings .= "`home_type` IN ('h', 'a') AND ";
