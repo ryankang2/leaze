@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import "./Navbar.css";
-<<<<<<< HEAD
+
 import MakePost from "./MakePost";
-=======
+
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
->>>>>>> 57c30c5895a3dc1c6df3f5ac2811fabbc4b355a8
+
 
 class Navbar extends Component{
     constructor(props){
@@ -42,7 +42,7 @@ class Navbar extends Component{
                     <div className="container container-fluid">
                         <div className="row">
                             <div className="col-xs-3 col-sm-3 col-md-3 navbar-header">
-                                <img className="logoPic" src={require('./logo.png')} alt=""/>
+                                <img className="logoPic" src={require('./logo_transparent.png')} alt=""/>
                             </div>
                             <form className="col-xs-3 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>
                                 <div className="form-group">
