@@ -44,14 +44,14 @@ class PPopup extends React.Component {
     this.setState({videogames: response.data.video_games})
     $("social").text(response.data.extrovert)
     this.setState({extro: response.data.extrovert})
-    // $("alc").text(response.data.guests_per_week)
-    // this.setState({alcohol: response.data.guests_per_week})
-    // $("weed").text(response.data.guests_per_week)
-    // this.setState({marijuana: response.data.guests_per_week})
-    // $("stoges").text(response.data.guests_per_week)
-    // this.setState({cigarettes: response.data.guests_per_week})
-    // $("heroin").text(response.data.guests_per_week)
-    // this.setState({other: response.data.guests_per_week})
+    // $("alc").text(response.data.fill this is pls)
+    // this.setState({alcohol: response.data.fill this in pls})
+    // $("weed").text(response.data.fill this in pls)
+    // this.setState({marijuana: response.data.fill this in pls})
+    // $("stoges").text(response.data.fill this in pls)
+    // this.setState({cigarettes: response.data.fill this in pls})
+    // $("heroin").text(response.data.fill this in pls)
+    // this.setState({other: response.data.fill this in pls})
     $("studynoise").text(response.data.study_noise_level)
     this.setState({noise: response.data.study_noise_level})
     $("guests").text(response.data.sharing_belongings)
@@ -64,6 +64,10 @@ class PPopup extends React.Component {
     this.setState({
       [name]: value
     })
+  }
+  async submitPref(event){
+    const params = formatPostData(this.state);
+    const response = await axios.post("http://localhost:8000/api/queries/set_pref.php", params);
   }
 
   handleCheckBox(event) {
@@ -178,7 +182,7 @@ class PPopup extends React.Component {
               <option value='3'>Close Friends</option>
             </Input>
             <button onClick=
-              {this.props.closePPopup} id="button2" className="btn btn-primary">Save Updates</button>
+              {this.submitPref.bind(this)} id="button2" className="btn btn-primary">Save Updates</button>
           </div>
         </div>
       </div>

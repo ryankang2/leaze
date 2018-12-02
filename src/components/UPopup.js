@@ -18,6 +18,7 @@ class UPopup extends React.Component {
         year:'',
         bio:'',
         picture: null,
+        imageURL:'',
     };
   }
   async componentDidMount(){
@@ -61,8 +62,20 @@ class UPopup extends React.Component {
       })
     }
   }
+  async submitProf(event){
+    const params = formatPostData(this.state);
+    const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
+  }
   fileChangedHandler=(event)=>{
     this.setState({picture:event.target.files[0]})
+    let reader = new FileReader();
+    let file=event.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        imageURL: reader.result
+      });
+    }
+    reader.readAsDataURL(file)
   }
   uploadHandler=()=> {
     console.log(this.state.picture)
@@ -106,13 +119,13 @@ class UPopup extends React.Component {
                 <button onClick=
                   {this.props.closeUPopup} className="btn btn-primary">Cancel</button>
               </div>
-              <img id="displayPic" src={(this.state.picture)} />
+              <img id="displayPic" src={this.state.imageURL} />
               <div className="col-sm-6" id="pic">
                 <label>Profile Picture: </label>
-                <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler}/>
+                <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler.bind(this)}/>
                 <Button id="uploadButton" onClick={this.uploadHandler}>Upload</Button>
                 <button onClick=
-                  {this.props.closeUPopup} id="button4" className="btn btn-primary">Save Updates</button>
+                  {this.submitProf.bind(this)} id="button4" className="btn btn-primary">Save Updates</button>
               </div>    
           </div>
         </div>
