@@ -102,6 +102,7 @@ export default class RegisterBox extends Component {
 
     closeTerms(e) {
         document.getElementById("termsModal").style.display = "none";
+    }
     checkError(field){
 
         const errors = this.validate(this.state.fname, this.state.lname, 
