@@ -19,6 +19,7 @@
     grid-column-end: 5;
     text-align: left;
     cursor: pointer;
+    font-size:16px;
 
 }
 
@@ -57,33 +58,34 @@
     grid-row-start: 4;
     font-size: 12px;
     text-align: left;
-    margin-left: -10%;
     cursor: pointer;
+    color: black;
+    font-weight: 600;
 
 }
-.distance{
-    grid-column-start:4;
+.match {
+    grid-column-start:2;
     grid-column-end:5;
-    grid-row-start:2;
-    grid-row-end:3;
+    grid-row-start:5;
     font-size: 12px;
-    justify-self: end;
-
+    text-align: left;
+    margin-top: -10%;
 }
 .address{
     grid-row-start: 2;
-    grid-row-end: 3;
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 5;
 
-    font-size: 12px;
+    font-size: 15px;
     text-align: left;
 
 }
 .price{
     grid-row-start: 3;
-    font-size: 12px;
-    text-align: center;
+    grid-column-start:1;
+    grid-column-end:5;
+    font-size: 15px;
+    text-align: left;
 
 }
 .userRating{

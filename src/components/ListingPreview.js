@@ -2,8 +2,9 @@ import React, {Component} from "react";
 import "./ListingPreview.css"
 import Profile from "./Profile";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from "axios";
+import {formatPostData} from "../helpers/formatPostData";
 import ListingModal from "./ListingModal";
-
 
 
 
@@ -42,6 +43,37 @@ class ListingPreview extends Component{
         }
     }
 
+    async handleMatchPercentage(user_id) {
+        const userIDs = {
+            mainUser: sessionStorage.getItem("user_id"),
+            other: user_id,
+        }
+        const params = formatPostData(userIDs);
+        const response = await axios.post("http://localhost:8000/api/matching_algorithm.php", params);
+        var str = "Match: " + response.data.result + "%";
+        $(`.match-${this.props.information.listing_id}`).text(str);
+        $(`.match-${this.props.information.listing_id}`).css({
+            "grid-column-start":"2",
+            "grid-column-end":"5",
+            "grid-row-start":"5",
+            "font-size": "12px",
+            "text-align": "left",
+            "margin-top": "-10%",
+         });
+
+        if(response.data.result >= 70) {
+            $(`.match-${this.props.information.listing_id}`).css({
+                "color": "green"
+            });
+        }
+
+    }
+
+    render(){
+        console.log(this.props.information);
+        const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
+        const {full_name,rating,favorite,user_id} = this.props.information.user;
+      
     openModal(){
         $(`.leaseImage-${this.props.information.listing_id}`).css("display", "block");
     }
@@ -58,6 +90,8 @@ class ListingPreview extends Component{
         var listing_day = parseInt(separatedDate[2]);
         var listing_month = parseInt(separatedDate[1]);
         var linkQuery = "/home/profile/" + this.props.information.user.user_id;
+        // console.log("Response: ", this.handleMatchPercentage(user_id) );
+        var matchPercentage = this.handleMatchPercentage(user_id);
         //changed data-target="#myModal"    {`modal-${this.props.pullId}`}
 
         return (
@@ -84,7 +118,8 @@ class ListingPreview extends Component{
                                     <div className="userName" onClick={(event) => this.goToProfile(event)}>{full_name}</div>
                                 </Link>
 
-                                {/*<div className="distance"> {dist_to_campus} mi</div>*/}
+                                <div className={`match-${this.props.information.listing_id}`}></div>
+
                                 {/*</Link>*/}
                                 <div className="address"> {address}</div>
                                 <div className="price"> ${price}/month</div>
