@@ -5,7 +5,8 @@
 
     //expecting input of a user id
     //$user_id = $_POST["user_id"];
-    $user_id = 3; //test, delete after
+    // $user_id = 3; 
+    // //test, delete after
 
     $output = [
         "noListings" => false

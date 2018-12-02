@@ -34,7 +34,6 @@ export default class LoginBox extends Component {
         if(this.infoChecks(this.state.email, this.state.password) === true) {
             const params = formatPostData(this.state);
             const response = await axios.post("http://localhost:8000/api/queries/sign_in.php", params);
-            // this.props.getFilterData(response, params);
             console.log(response.data);  
             this.handleResponse(response.data);     
         }
