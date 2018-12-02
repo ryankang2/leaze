@@ -99,7 +99,6 @@ class Filters extends Component{
     resetFilters(event){
         event.preventDefault();
         
-        console.log("reset");
         this.setState(initialState);
     }
 
