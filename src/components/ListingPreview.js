@@ -53,11 +53,11 @@ class ListingPreview extends Component{
         $(`.match-${this.props.information.listing_id}`).text(str);
         $(`.match-${this.props.information.listing_id}`).css({
             "grid-column-start":"2",
-        "grid-column-end":"5",
-        "grid-row-start":"5",
-        "font-size": "12px",
-        "text-align": "left",
-        "margin-top": "-10%",
+            "grid-column-end":"5",
+            "grid-row-start":"5",
+            "font-size": "12px",
+            "text-align": "left",
+            "margin-top": "-10%",
          });
 
         if(response.data.result >= 70) {
