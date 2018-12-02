@@ -49,9 +49,17 @@ export default class ForgotPassword extends Component {
             code_to_confirm: code,
             email_of_user: email,
         };
+        console.log(confirmObj.code_to_confirm);
         const params = formatPostData(confirmObj);
         const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php");
         console.log("RESPONSE FROM BACKEND", response);
+        // if(!response.data.success){
+        //     document.getElementById("forgotModal4").style.display = "block";
+        //     document.getElementById("forgotModal3").style.display = "none";
+        // } else {
+        //     document.getElementById("forgotModal3").style.display = "block";
+        //     document.getElementById("forgotModal4").style.display = "none";
+        // }
     }
 
     FPsubmit(e) {   
@@ -128,7 +136,7 @@ export default class ForgotPassword extends Component {
                 <div className="FPinputs">
                     <label htmlFor="forgotCode">4-Digit Code</label>
                     <Row>
-                    <Input s={10} label="Enter the code" id="forgotCode"
+                    <Input s={10} label="Enter the code that was sent to you" id="forgotCode"
                            name="code" onChange={this.handleChange}>
                             <Icon> check_circle_outline</Icon>
                     </Input>
@@ -144,12 +152,23 @@ export default class ForgotPassword extends Component {
                 <h3>Success!</h3>
                 <div className="FPinputs">
                     <label htmlFor="myNewPassword">New Password</label>
-                    <input type="password" className="FPinputbox" id="myNewPassword" placeholder="Password must be at least 6 characters long" />
+                    {/*<Input s={8} label="Password" type="password" id="loginPassword"*/}
+                           {/*name="password" onChange={this.handleChange}>*/}
+                        {/*<Icon>lock</Icon>*/}
+                    {/*</Input>*/}
+                    <Input s={8} label="Password must be at least 6 characters long" type="password" id="myNewPassword"
+                           name="password" value={this.state.password} onChange={this.handleChange}>
+                        <Icon>lock</Icon>
+                    </Input>
+                    {/*<input type="password" className="FPinputbox" id="myNewPassword" placeholder="Password must be at least 6 characters long" />*/}
                 </div>
 
                 <div className="FPinputs">
                     <label htmlFor="myConfPassword">Confirm New Password</label>
-                    <input type="password" className="FPinputbox" id="myConfPassword" placeholder="Re-enter your new password" />
+                    <Input s={8} label="Re-enter your new password" type="password" id="myNewPassword"
+                           name="password" value={this.state.password} onChange={this.handleChange}>
+                        <Icon>lock</Icon>
+                    </Input>
                 </div>
                 <Button onClick={this.FPsubmit} className="FPsubmit" id="fpSubmitPassword">Submit</Button>
                 <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
@@ -161,7 +180,10 @@ export default class ForgotPassword extends Component {
                 <p id="codeResent">A code has been resent to your email</p>
                 <div className="FPinputs">
                     <label htmlFor="forgotCode">4-Digit Code</label>
-                    <input className="FPinputbox" id="forgotCode" placeholder="Enter the code that was sent to you" />
+                    <Input s={10} label="Enter the code that was sent to you" id="forgotCode"
+                           name="code" onChange={this.handleChange}>
+                        <Icon> check_circle_outline</Icon>
+                    </Input>
                 </div>
                 <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
                 <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
