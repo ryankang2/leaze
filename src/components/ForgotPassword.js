@@ -36,8 +36,17 @@ export default class ForgotPassword extends Component {
             email_of_user: email,
         };
         const params = formatPostData(confirmObj);
-        const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php");
-        console.log("RESPONSE FROM BACKEND", response);
+        const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php", params);
+    }
+
+    async updatePassword(email, password){
+        var emailPassObj = {
+            email: email,
+            password: password,
+        }
+        const params = formatPostData(emailPassObj);
+        const response = await axios.post("http://localhost:8000/api/queries/change_password.php", params);
+        console.log("response from backend: ", response);
     }
 
     FPsubmit(e) {   
@@ -68,6 +77,8 @@ export default class ForgotPassword extends Component {
             if(document.getElementById("myNewPassword").value.toString().length > 5) {
                 if(document.getElementById("myNewPassword").value === document.getElementById("myConfPassword").value) {
                     console.log("Password has successfully been changed!");
+                    var password = document.getElementById("myNewPassword").value;
+                    this.updatePassword(this.state.email, password);
                 }
 
                 else {
@@ -89,8 +100,8 @@ export default class ForgotPassword extends Component {
     resendCode(e) {
         document.getElementById("forgotCode").value = "";
         document.getElementById("codeResent").style.display = "block";
-
         console.log("Confirmation code resent to: " + document.getElementById("forgotEmail").value);
+        this.sendCode(this.state.email);
     }
     
     render() {
@@ -128,8 +139,8 @@ export default class ForgotPassword extends Component {
                     <label htmlFor="myConfPassword">Confirm New Password</label>
                     <input type="password" className="FPinputbox" id="myConfPassword" placeholder="Re-enter your new password" />
                 </div>
-                <button onClick={this.FPsubmit} className="FPsubmit" id="fpSubmitPassword">Submit</button>
-                <button onClick={this.cancelReset} className="FPcancel">Cancel</button>
+                <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpSubmitPassword">Submit</button>
+                <button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</button>
             </div>
 
         </div>
