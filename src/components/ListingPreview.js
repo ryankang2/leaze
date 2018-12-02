@@ -69,11 +69,6 @@ class ListingPreview extends Component{
 
     }
 
-    render(){
-        console.log(this.props.information);
-        const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
-        const {full_name,rating,favorite,user_id} = this.props.information.user;
-      
     openModal(){
         $(`.leaseImage-${this.props.information.listing_id}`).css("display", "block");
     }
@@ -81,8 +76,8 @@ class ListingPreview extends Component{
 
     render(){
         // console.log(this.props.information);
-        const {title, dist_to_campus, date_posted, address, price} = this.props.information;
-        const {full_name,rating,favorite} = this.props.information.user;
+        const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
+        const {full_name,rating,favorite,user_id} = this.props.information.user;
         var todayDate = new Date();
         var separatedDate = date_posted.split("-");
         var day = todayDate.getDate();
