@@ -22,12 +22,20 @@ export default class ForgotPassword extends Component {
         document.getElementById("myConfPassword").value = "";
     }
 
-    async sendCode(email){
-        var emailObj = {
-            email_of_user: email
+    async confirmCode(code, email){
+        var confirmObj = {
+            code_to_confirm: code,
+            email_of_user: email,
         };
-        const params = formatPostData(emailObj);
-        const response = await axios.post("http://localhost:8000/api/email_recovery.php", params);
+        const params = formatPostData(confirmObj);
+        const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php");
+        console.log("RESPONSE FROM BACKEND", response);
+        if(1){
+            console.log("hello " + document.getElementById("forgotModal3").innerText);
+            document.getElementById("forgotModal3").style.display='none';
+            document.getElementById("forgotModal4").style.display = "block"
+
+        }
     }
 
     async confirmCode(code, email){
@@ -143,6 +151,18 @@ export default class ForgotPassword extends Component {
                 <button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</button>
             </div>
 
+            <div className="modal" id="forgotModal4">
+                <h3>Forgot Password</h3>
+                <p id="wrongCode"> The number you entered doesn’t match your code. Please try again. </p>
+                <p id="codeResent">A code has been resent to your email</p>
+                <div className="FPinputs">
+                    <label htmlFor="forgotCode">4-Digit Code</label>
+                    <input className="FPinputbox" id="forgotCode" placeholder="Enter the code that was sent to you" />
+                </div>
+                <button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</button>
+                <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</button>
+                <button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</button>
+            </div>
         </div>
     }
 }
