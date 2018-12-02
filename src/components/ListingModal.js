@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "./ListingModal.css"
 
 export default class ListingModal extends Component{
 
@@ -15,6 +17,8 @@ export default class ListingModal extends Component{
 
     render(){
         console.log("FROM LISTING MODAL: ", this.props.information);
+        var linkQuery = "/home/profile/" + this.props.information.user.user_id;
+
         return (
             <div className={`modal leaseImage-${this.props.information.listing_id}`} id="myModal">
                         <div className="modal-dialog">
@@ -145,9 +149,21 @@ export default class ListingModal extends Component{
                                             </div>
                                         </div>
                                         <div className="row">
-                                                <div>
-                                                    {this.props.information.user.full_name}
-                                                </div>
+
+                                           <div className="profileBox col-sm-8 col-md-8" >
+                                                <Link to = {linkQuery}>
+                                                    <img className="userPictureModal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                                                </Link>
+                                                <Link to = {linkQuery}>
+                                                    <div className="userNameModal" >{this.props.information.user.full_name}</div>
+                                                </Link>
+
+
+                                                <div className={`match-${this.props.information.listing_id}`} id="matchModal"></div>
+
+                                        </div>
+
+
                                         </div>
                                     </div>
                                 </div>
