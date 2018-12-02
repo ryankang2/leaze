@@ -10,19 +10,10 @@
 }
 
 #header {
-    height: 20%;
     width: 100%;
     background-color: black;
     text-align: center;
     display: inline-block;
-}
-
-#topBar {
-    display: inline-block;
-    height: 5%;
-    width: 100%;
-    background-color: rgb(182, 168, 168);
-    text-align: center;
 }
 
 #introInfo {
@@ -37,7 +28,7 @@
     margin-top: 2em;
 }
 
-h5 {
+#welcomeTop {
     display: inline;
     text-align: center;
     vertical-align: -webkit-baseline-middle;
@@ -46,9 +37,11 @@ h5 {
  
 }
 
-h1 {
+#headerMsg {
     color: white;
     font-family: 'Permanent Marker', cursive;
+    font-size: 250%;
+    margin: 0px;
 }
 
 .needSpace {

@@ -17,6 +17,20 @@
             $user1Row = mysqli_fetch_assoc($user1PrefResults);
             $user2Row = mysqli_fetch_assoc($user2PrefResults);
 
+            // substance preferences first, different format than rest
+            if (abs(intval($user1Row["alcohol"]) - intval($user2Row["alcohol"])) == 2) {
+                $percentage -= 1;
+            }
+            if (abs(intval($user1Row["marijuana"]) - intval($user2Row["marijuana"])) == 2) {
+                $percentage -= 2;
+            }
+            if (abs(intval($user1Row["cigarettes"]) - intval($user2Row["cigarettes"])) == 2) {
+                $percentage -= 3;
+            }
+            if (abs(intval($user1Row["otherdrug"]) - intval($user2Row["otherdrug"])) == 2) {
+                $percentage -= 5;
+            }
+
             foreach($user1Row as $key => $value) {               
                 switch($key) {
                     case "deep_sleeper":
@@ -42,11 +56,6 @@
                     case "extrovert":
                         if($value && $user2Row[$key]) {
                             $percentage -= abs(intval($value) - intval($user2Row[$key])) * 2;
-                        }
-                        break;
-                    case "substances":
-                        if($value && $user2Row[$key]) {
-                            $percentage -= abs(intval($value) - intval($user2Row[$key]));
                         }
                         break;
                     case "sharing_belongings":

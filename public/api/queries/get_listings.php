@@ -54,7 +54,7 @@
     $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
 
     if ($filters["pet"] == "true") {
-        $getListings .= "`pets`=1 AND ";
+        $getListings .= "`pet`=1 AND ";
     }
 
     if ($filters["laundry"] == "true") {
@@ -97,7 +97,6 @@
 
     // remove last " AND " in the query string
     $getListings = substr($getListings, 0, -5);
-    echo $getListings;
     // now make the query
     $listings = mysqli_query($conn, $getListings);
 

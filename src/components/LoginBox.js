@@ -1,5 +1,8 @@
 import React, {Component} from "react";
-import "./LoginBox.css";
+import {formatPostData} from "../helpers/formatPostData";
+import axios from "axios";
+import { Link, Router, RouterContext, browserHistory, hashHistory } from 'react-router';
+import {Input, Row, Icon} from "react-materialize";
 
 export default class LoginBox extends Component {
 
@@ -25,12 +28,34 @@ export default class LoginBox extends Component {
         });
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
         
         if(this.infoChecks(this.state.email, this.state.password) === true) {
-            console.log('The form was submitted with the following data:');
-            console.log(this.state);
+            const params = formatPostData(this.state);
+            const response = await axios.post("http://localhost:8000/api/queries/sign_in.php", params);
+            console.log(response.data);  
+            this.handleResponse(response.data);     
+        }
+    }
+
+    handleResponse(data) {
+        const {history} = this.props;
+        if(data.success === false) {
+            if(data.correctUser === true) {
+                console.log("Incorrect password. Please try again or click 'Forgot Password'");
+            }
+
+            else {
+                console.log("User not found. Please sign in with a different account or register before signing in");
+            }
+        }
+
+        else {
+            console.log("Login successful. User will be redirected to the explore page");
+            sessionStorage.setItem("user_id", data.id);
+            browserHistory.push("/home");
+            window.location.reload();
         }
     }
 
@@ -45,20 +70,28 @@ export default class LoginBox extends Component {
     }
 
     render() {
-        return <div class="tabcontent" id="Login">
-            <h3>Log in</h3>
+        return <div className="tabcontent" id="Login">
             <div className="logContainer" id="logContainer">
                 <form onSubmit={this.handleSubmit} className="FormFields">
+                    <h4>Sign in to access your LEaZe account</h4>
                     <div className="FormField">
-                        <label className="FormField__Label" htmlFor="loginEmail">E-Mail Address</label>
-                        <input type="email" id="loginEmail" className="FormField__Input" placeholder="Enter a valid .edu email" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <Row>
+                            <Input s={8} label="Email" type="email" id="loginEmail" className="FormField__Input" 
+                                name="email" value={this.state.email} onChange={this.handleChange}> 
+                                <Icon>account_circle</Icon> 
+                            </Input>
+                        </Row>
                     </div>
 
                     <div className="FormField">
-                        <label className="FormField__Label" htmlFor="loginPassword">Password</label>
-                        <input type="password" id="loginPassword" className="FormField__Input" placeholder="6 characters minimum" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <Row>
+                            <Input s={8} label="Password" type="password" id="loginPassword" className="FormField__Input" 
+                                name="password" value={this.state.password} onChange={this.handleChange}>
+                                <Icon>lock</Icon>
+                            </Input>
+                        </Row>
                     </div>
-                    <button type="Submit" id="loginButton" className="btnSubmit">Log in</button>
+                    <button type="Submit" id="loginButton" className="btn btn-primary">Log in</button>
                 </form>
                 <button onClick={this.forgotPassword} id="forgotPassword">Forgot Password</button>
             </div>

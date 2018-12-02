@@ -35,7 +35,7 @@ class Filters extends Component{
     handleChangeFilter(event) {
         console.log(event.currentTarget);
         const {name, value} = event.currentTarget;
-       this.setState({
+        this.setState({
            [name]:value
        })
     }

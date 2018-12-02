@@ -9,13 +9,35 @@ export default class MessagingPage extends Component {
                 <h5 id="messagesTitle">Message-LEaze</h5>
             </div>
             <div id="header">
-                <img id="centerLogo" src= {require('./logo.png')} alt="logo" width="50" height="50" />
+                <img id="centerLogo" src= {require('./logo_transparent.png')} alt="logo" width="50" height="50"/>
             </div>  
+
             <div id="conversations">
-                <h2>Messages</h2>
+                <div className="containerTitles">
+                    <h2 className="msgh2">Messages</h2>
+                </div>
+                <div id="convoList">
+
+                </div>
             </div>
+
             <div id="messageContainer">
-                <h2 id="personName">Name of Person</h2>
+                <div className="containerTitles">
+                    <h2 className="msgh2" id="personName">Name of Person</h2>
+                </div>
+                <div id="currentConvo">
+                    <div id="myCurConvo">
+
+                        <hr id="between-vert"/>
+                    </div>                  
+                    <div id="currentListing">
+                        
+                    </div>
+                    <hr id="between-hor" />
+                    <div id="typeBox">
+
+                    </div>
+                </div>
             </div>
         </div>
     }
