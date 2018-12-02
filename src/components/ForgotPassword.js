@@ -44,22 +44,36 @@ export default class ForgotPassword extends Component {
         const response = await axios.post("http://localhost:8000/api/email_recovery.php", params);
     }
 
+
     async confirmCode(code, email){
         var confirmObj = {
             code_to_confirm: code,
             email_of_user: email,
         };
-        console.log(confirmObj.code_to_confirm);
         const params = formatPostData(confirmObj);
-        const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php");
+        const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php", params);
         console.log("RESPONSE FROM BACKEND", response);
         if(!response.data.success){
-            document.getElementById("forgotModal4").style.display = "block";
-            document.getElementById("forgotModal3").style.display = "none";
-        } else {
+            console.log("hello " + document.getElementById("forgotModal3").innerText);
+            document.getElementById("forgotModal3").style.display='none';
+            document.getElementById("forgotModal4").style.display = "block"
+
+        }
+        else{
             document.getElementById("forgotModal3").style.display = "block";
             document.getElementById("forgotModal4").style.display = "none";
         }
+    }
+
+
+    async updatePassword(email, password){
+        var emailPassObj = {
+            email: email,
+            password: password,
+        }
+        const params = formatPostData(emailPassObj);
+        const response = await axios.post("http://localhost:8000/api/queries/change_password.php", params);
+        console.log("response from backend: ", response);
     }
 
     FPsubmit(e) {   
@@ -90,6 +104,8 @@ export default class ForgotPassword extends Component {
             if(document.getElementById("myNewPassword").value.toString().length > 5) {
                 if(document.getElementById("myNewPassword").value === document.getElementById("myConfPassword").value) {
                     console.log("Password has successfully been changed!");
+                    var password = document.getElementById("myNewPassword").value;
+                    this.updatePassword(this.state.email, password);
                 }
 
                 else {
@@ -111,8 +127,8 @@ export default class ForgotPassword extends Component {
     resendCode(e) {
         document.getElementById("forgotCode").value = "";
         document.getElementById("codeResent").style.display = "block";
-
         console.log("Confirmation code resent to: " + document.getElementById("forgotEmail").value);
+        this.sendCode(this.state.email);
     }
     
     render() {
@@ -172,6 +188,7 @@ export default class ForgotPassword extends Component {
                 </div>
                 <Button onClick={this.FPsubmit} className="FPsubmit" id="fpSubmitPassword">Submit</Button>
                 <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
+
             </div>
 
             <div className="modal" id="forgotModal4">
