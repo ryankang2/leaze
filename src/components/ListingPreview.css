@@ -1,20 +1,25 @@
 .singleListing{
-    /*border: 2px solid rebeccapurple;*/
     height: 250px;
+    margin-bottom: 55px;
 }
 .imageBox{
     position:relative;
-    border: 2px solid deeppink;
+    /*border:2px solid grey;*/
     width: 100%;
     height: 70%;
     vertical-align: center;
+    margin-top: 0;
 }
 .leaseName {
-    position:absolute;
-    bottom: 4%;
-    left: 10%;
-    color:white;
+    position: relative;
+    color: black;
     font-weight: bold;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    text-align: left;
+    cursor: pointer;
+    font-size:16px;
 
 }
 
@@ -22,60 +27,242 @@
     width: 100%;
     height: 100%;
     position:relative;
+    cursor: pointer;
+}
+
+.leaseImage:hover, .leaseName:hover{
+    text-decoration: underline;
 }
 
 
 .infoBox{
-    border:2px solid grey;
-    width: 100%;
-    display:grid;
+    width: 102%;
+    /* border: 6px solid grey; */
+    display: grid;
+    position: relative;
+    margin: -2px;
+    padding-top: 5%;
+    padding: 5%;
+    grid-template-columns: 63px;
+    background: floralwhite;
 }
 .userPicture{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start:1;
-    grid-row-end:3;
-    border-radius:50%;
-    width:50%;
-    height:100%
+    grid-row-start: 4;
+    grid-row-end: 6;
+    grid-col-start:1;
+    grid-col-end:2;
+    border-radius: 50%;
+    max-height: 35px;
+    min-height: 35px;
+    cursor: pointer;
 }
 .userName{
-    grid-column-start:3;
-    grid-column-end:4;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+    color: black;
+    font-weight: 600;
+
 }
-.distance{
-     grid-column-start:4;
-     grid-column-end:5;
-    justify-self: end;
- }
+.match {
+    grid-column-start:2;
+    grid-column-end:5;
+    grid-row-start:5;
+    font-size: 12px;
+    text-align: left;
+    margin-top: -10%;
+}
+.address{
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 5;
+
+    font-size: 15px;
+    text-align: left;
+
+}
+.price{
+    grid-row-start: 3;
+    grid-column-start:1;
+    grid-column-end:5;
+    font-size: 15px;
+    text-align: left;
+
+}
 .userRating{
-    grid-column-start:3;
-    grid-column-end:4;
-    grid-row-start:2;
-    grid-row-end:3;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 5;
     color:lightpink;
+    font-size: 12px;
+    text-align: left;
+    margin-left: -10%;
 }
 .dateDiff{
     grid-column-start:4;
     grid-column-end:5;
-    grid-row-start:2;
-    grid-row-end:3;
+    justify-self: end;
+    font-size: 12px;
+
+
 }
 
-/* .fa{
-    font-size: 16px;
-} */
+.fa{
+    font-size: 10px;
+}
 
 .favorite{
-    color:lightpink;
-    left:84.5%;
-    top:1%;
+    color: lightpink;
+    left: 88.5%;
+    top: 5%;
+    font-size: large;
     position: absolute;
-    /*position:relative;*/
 
 }
 
-/* h3{
-    margin-left: 0 !important;
-} */
+.favorite_fill{
+    color: lightpink;
+    left: 88.5%;
+    top: 5%;
+    font-size: large;
+    position: absolute;
+}
+
+/*.modal {*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*background: none !important;*/
+/*}*/
+
+
+
+.show {
+    /* display: block!important; */
+    background: none;
+    height:500px;
+}
+
+
+.modal-backdrop{
+    /* opacity:0.5 !important; */
+    display: none
+}
+
+
+
+.modal{
+    margin: auto;
+    position:fixed;
+    right:0;
+    left:0;
+    z-index:1050;
+}
+
+.modal-dialog{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.modal-content{
+    /* height:100%; */
+    width: 100%;
+    border-radius: 0px !important;
+}
+
+.modal-body{
+    position: relative;
+    padding: 10px;
+    height: 70%;
+}
+
+.modal .modal-footer{
+    /* padding:13px!important;
+    position: relative;
+    right: 5%;
+    height: 73px;
+    bottom: 1%;
+    width: 600px; */
+    background-color: white !important;
+}
+
+#fav{
+    cursor: pointer;
+}
+
+.leasingImagesContainer{
+    height: 250px;
+    width: 100%;
+    border: 2px solid red;
+
+}
+
+.fa-home, .fa-money{
+    font-size: 24px;
+    margin-right: 4%;
+}
+
+.pricePerMonth, .roomHome{
+    font-size: 24px;
+}
+
+.carousel-inner img{
+    height: 100%;
+}
+
+#myCarousel{
+    height: 100%
+}
+
+.carousel-inner > .item{
+        /* height: 100%; */
+        height: 260px;
+        width: 280px;
+        align-content: center; 
+        display: flex;
+        left: 50% !important;
+        transform: translate(-50%) !important;
+        /* top: 50%;
+        position: relative;*/
+}
+
+.addressInModal{
+    border: 1px solid blue;
+    font-size: 22px;
+}
+
+.distanceInModal{
+    border: 1px solid purple;
+    font-size: 18px;
+}
+
+.description{
+    border: 1px solid brown;
+}
+
+.fa-map-marker{
+    font-size: 18px;
+    margin-right: 2%;
+}
+
+.featuresText{
+    border: 1px solid turquoise;
+    font-size: 22px;
+}
+
+.feature{
+    border: 1px solid green;
+}
+
+.feature > i{
+    font-size: 36px;
+    margin-right: 2%;
+}
+
+
+
+
 

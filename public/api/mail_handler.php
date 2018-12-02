@@ -30,7 +30,7 @@ $options = array(
 );
 $mail->smtpConnect($options);
 $mail->From = 'leazehousing@gmail.com';  // sender's email address (shows in "From" field)
-$mail->FromName = 'LeazeHousing Security Code';   // sender's name (shows in "From" field)
+$mail->FromName = 'Welcome to LeazeHousing!';   // sender's name (shows in "From" field)
 $mail->addAddress($_POST['email'], 'First Recipient');  // Add a recipient
 //$mail->addAddress('ellen@example.com');                        // Name is optional
 $mail->addReplyTo($_POST["email"]);                          // Add a reply-to address

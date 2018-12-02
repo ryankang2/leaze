@@ -10,14 +10,14 @@ import MessagingPage from "./MessagingPage";
 // export default class App 
 const App = () => (
             <div>
-                {/* <Switch>
+                <Switch>
                     <Route exact path="/" component={LandingPage}></Route>
                     <Route exact path="/home" component={ResultsPage}></Route>
-                </Switch> */}
+                    <Route exact path="/home/profile/:number" component={Profile}></Route>
+                </Switch>
                 {/* <ResultsPage />  */}
-                <LandingPage />
-                {/* <Profile />*/}
-                {/* <MessagingPage /> */}
+                {/* <LandingPage /> */}
+                {/* <Profile /> */}
             </div>
 );
 

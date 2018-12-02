@@ -11,6 +11,7 @@
 .navbar{
     height: 110px;
     background-color: black;
+    border-radius: 0;
 }
 
 .container-fluid{
@@ -48,13 +49,9 @@
     height: 20px;
 }
 
-ul:not(.browser-default) li {
+/* ul:not(.browser-default) li {
     width: 35px;
-}
-
-.fa-user-circle-o{
-    margin-left: 3%;
-}
+} */
 
 
 .searchIcon{

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Input} from "react-materialize";
+import {Input, Row, Icon} from "react-materialize";
 import axios from "axios";
 import {formatPostData} from "../helpers/formatPostData";
 
@@ -58,10 +58,9 @@ export default class RegisterBox extends Component {
        
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
             const params = formatPostData(this.state);
-            const response = await axios.post("http://localhost:8000/api/mail_handler.php", params);
-            console.log(response);
-            response = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
-            console.log(response);
+            const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
+            const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
+
         }
     }
 
@@ -141,35 +140,48 @@ export default class RegisterBox extends Component {
     render() {
         return <div className="tabcontent" id="Register">
         <div className="logContainer">
-
             {/* This is where the pasted signup code starts */}
             <form onSubmit={this.handleSubmit} className="FormFields">
-
-                <div className="FormField_name">
-                    <div>
-                        <label className="FormField__Label" htmlFor="fname">First Name</label>
-                        <input type="text" id="firstName" className={this.state.active ? this.checkError("fname") : "FormField__Input"} placeholder="Enter your first name" name="fname" value={this.state.fname} onChange={this.handleChange} />
-                    </div>
-                    
-                    <div id="divLastName">
-                        <label className="FormField__Label" htmlFor="lastName">Last Name</label>
-                        <input type="text" id="lastName" className={this.state.active ? this.checkError("lname") : "FormField__Input"} placeholder="Enter your last name" name="lname" value={this.state.lname} onChange={this.handleChange}/>
-                    </div>
-                </div>
-                <div className="FormField">
-                    <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                    <input type="email" id="email" className={this.state.active ? this.checkError("email") : "FormField__Input"} placeholder="Enter a valid .edu email" name="email" value={this.state.email} onChange={this.handleChange}/>
-                </div>
+                <h4>Create a LEaZe Account</h4>
 
                 <div className="FormField">
-                    <label className="FormField__Label" htmlFor="myPassword">Desired Password</label>
-                    <input type="password" id="myPassword" className={this.state.active ? this.checkError("password") : "FormField__Input"} placeholder="6 characters minimum" name="password"  value={this.state.password} onChange={this.handleChange}/>
+                    <Row>
+                        <Input s={5} label="First Name" type="text" id="firstName" className={this.state.active ? this.checkError("fname") : "FormField__Input"} placeholder="Enter your first name"
+                            name="fname" value={this.state.fname} onChange={this.handleChange}>
+                        <Icon>face</Icon>
+                        </Input>
+                        <Input s={5} label="Last Name" type="text" id="lastName" className={this.state.active ? this.checkError("lname") : "FormField__Input"} placeholder="Enter your last name"
+                            name="lname" value={this.state.lname} onChange={this.handleChange}>
+                        </Input>
+                    </Row>
+                </div>
+                <div className="FormField">
+                    <Row>
+                        <Input s={8} label="Email" type="email" id="email" className={this.state.active ? this.checkError("email") : "FormField__Input"} placeholder="Enter a valid .edu email"
+                            name="email" value={this.state.email} onChange={this.handleChange}>
+                            <Icon>email</Icon>
+                        </Input>
+                    </Row>
                 </div>
 
                 <div className="FormField">
-                    <label className="FormField__Label" htmlFor="confPassword">Confirm Password</label>
-                    <input type="password" id="confPassword" className={this.state.active ? this.checkError("confPassword") : "FormField__Input"} placeholder="6 characters minimum" name="confPassword" value={this.state.confPassword} onChange={this.handleChange}/>
+                    <Row>
+                        <Input s={8} label="Enter desired password" type="password" id="myPassword" className={this.state.active ? this.checkError("password") : "FormField__Input"} placeholder="6 characters minimum" 
+                            name="password"  value={this.state.password} onChange={this.handleChange}>
+                            <Icon>lock</Icon>
+                        </Input>
+                    </Row>
+
                 </div>
+
+                <div className="FormField">
+                    <Row>
+                        <Input s={8} label="   Confirm password" type="password" id="confPassword" className={this.state.active ? this.checkError("confPassword") : "FormField__Input"} placeholder="" 
+                            name="confPassword" value={this.state.confPassword} onChange={this.handleChange}>
+                            <Icon>check_circle</Icon>
+                        </Input>
+                    </Row>             
+      </div>
 
                 <div className="FormField">
                     <Input id="checkInput" name='terms' type='checkbox' onClick={this.handleChange} value='checked' label='I Agree to the ' /><a href="" className="FormField__TermsLink" >terms of service</a>
@@ -179,7 +191,7 @@ export default class RegisterBox extends Component {
                 <span id="wrongInputRegister" className="hidden"></span>
 
                 <div className="FormField" id="submitDiv">
-                    <button type="Submit" id="regButton" className="btnSubmit">Sign Up</button>
+                    <button type="Submit" id="regButton" className="btn btn-primary">Sign Up</button>
                 </div>    
             </form>
 

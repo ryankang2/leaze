@@ -3,81 +3,78 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
 
-    //expecting input of a user id
-    //$user_id = $_POST["user_id"];
-    // $user_id = 3; 
-    // //test, delete after
-
     $output = [
         "noListings" => false
     ];
 
-    $filters = [
-        "dist_to_campus" => "",
-        "price_low" => "",
-        "price_high" => "",
-        "pet" => "",
-        "laundry" => "",
-        "furnished" => "",
-        "gym" => "",
-        "pool" => "",
-        "parking" => "",
-        "home_type" => "",
-        "room_type" => ""
-    ];
-
-    // get the user's saved default filters
-    $userFiltersQuery = "SELECT * FROM `filters` WHERE `user_id`=$user_id";
-    $userFiltersResults = mysqli_query($conn, $userFiltersQuery);
-
-    // determine which filters user has actually set
-    if(mysqli_num_rows($userFiltersResults) > 0){
-        $userRow = mysqli_fetch_assoc($userFiltersResults);
-        foreach($userRow as $key => $value) {
-            // if the current filter is not null (user has set it)
-            if ($value) {
-                $filters[$key] = $value;
-            }
-        } 
+    // build the home string to match how it is stored internally in database
+    $home = "";
+    if ($_POST["roomHouse"] == "true") {
+        $home .= "h";
     }
+    if ($_POST["roomApart"] == "true") {
+        $home .= "a";
+    }
+
+    // build the room string to match how it is stored internally in database
+    $room = "";
+    if ($_POST["roomSingle"] == "true") {
+        $room .= "s";
+    }
+    if ($_POST["roomDouble"] == "true") {
+        $room .= "d";
+    }
+    if ($_POST["roomTriple"] == "true") {
+        $room .= "t";
+    }
+    if ($_POST["roomLiving"] == "true") {
+        $room .= "l";
+    }
+
+    // expecting input of current value of each filter
+    $filters = [
+        "dist_to_campus" => $_POST["dist_to_campus"],
+        "price_low" => $_POST["price_low"],
+        "price_high" => $_POST["price_high"],
+        "pet" => $_POST["pet"],
+        "laundry" => $_POST["laundry"],
+        "furnished" => $_POST["furnished"],
+        "gym" => $_POST["gym"],
+        "pool" => $_POST["pool"],
+        "parking" => $_POST["parking"],
+        "home_type" => $home,
+        "room_type" => $room
+    ];
 
     // build the listings query based on the filters the user has set
     $getListings = "SELECT * FROM `listings` WHERE `archived`=0 AND ";
 
-    if ($filters["dist_to_campus"] != "") {
-        $getListings .= "`dist_to_campus`<=" . $filters["dist_to_campus"] . " AND ";
-    }
+    $getListings .= "`dist_to_campus`<=" . $filters["dist_to_campus"] . " AND ";
+    $getListings .= "`price`>=" . $filters["price_low"] . " AND ";
+    $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
 
-    if ($filters["price_low"] != "") {
-        $getListings .= "`price`>=" . $filters["price_low"] . " AND ";
-    }
-
-    if ($filters["price_high"] != "") {
-        $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
-    }
-
-    if ($filters["pet"] == "1") {
+    if ($filters["pet"] == "true") {
         $getListings .= "`pet`=1 AND ";
     }
 
-    if ($filters["laundry"] == "1") {
+    if ($filters["laundry"] == "true") {
         $getListings .= "`in_unit_laundry`=1 AND ";
     }
 
-    if ($filters["furnished"] == "1") {
+    if ($filters["furnished"] == "true") {
         $getListings .= "`furnished`=1 AND ";
     }
 
-    if ($filters["gym"] == "1") {
+    if ($filters["gym"] == "true") {
         $getListings .= "`gym`=1 AND ";
     }
 
-    if ($filters["pool"] == "1") {
+    if ($filters["pool"] == "true") {
         $getListings .= "`pool`=1 AND ";
     }
 
-    if ($filters["parking"] == "1") {
-        $getListings .= "`parking`=1 AND " ;
+    if ($filters["parking"] == "true") {
+        $getListings .= "`parking`=1 AND ";
     }
 
     if (strlen($filters["home_type"]) == 1) {
@@ -100,7 +97,6 @@
 
     // remove last " AND " in the query string
     $getListings = substr($getListings, 0, -5);
-
     // now make the query
     $listings = mysqli_query($conn, $getListings);
 
@@ -125,7 +121,7 @@
         }
     }
     mysqli_close($conn);
-    
+
     // print final output array
     print_r(json_encode($output));
 ?>
