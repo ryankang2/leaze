@@ -105,12 +105,12 @@ class ListingPreview extends Component{
                                 </div>
                                 
                                 <Link to = {linkQuery}>
-                                    <img className="userPicture" onClick={(event) => this.goToProfile(event)}
+                                    <img className="userPicture"
                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                                 </Link>
 
                                 <Link to = {linkQuery} information={this.props.information}>
-                                    <div className="userName" onClick={(event) => this.goToProfile(event)}>{full_name}</div>
+                                    <div className="userName">{full_name}</div>
                                 </Link>
 
                                 <div className={`match-${this.props.information.listing_id}`}></div>
