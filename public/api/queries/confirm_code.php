@@ -10,6 +10,12 @@
     $email = $_POST["email_of_user"];
     $query = "SELECT * FROM `users` WHERE `code`=$code AND `email`='$email'";
     $result = mysqli_query($conn, $query);
+    if(mysqli_num_rows($result) > 0){
+        $output["success"] = true;
+    }
+    else{
+        $output["success"] = false;
+    }
 
     print_r(json_encode($output));
 
