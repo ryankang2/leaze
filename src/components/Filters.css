@@ -3,7 +3,7 @@
     margin-top: 0;
     margin-left: 0;
     width: 100%;
-    padding-right: 25px;
+    padding-right: 25%;
     font-size: 12;
     /* overflow: auto; */
 }
@@ -15,6 +15,10 @@
 }
 .titleFilters{
     padding-bottom: 20%;
+    text-align: left;
+    font-size: 16pt;
+    height: 10%
+
 }
 .roomType > Input{
     display: block;
@@ -22,11 +26,6 @@
 
 .homeType > Input{
     display: block;
-}
-
-.titleFilters{
-    text-align: center;
-    height: 16%;
 }
 
 .listOfFilters{

@@ -4,27 +4,31 @@ import {Row, Input} from "react-materialize";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 
+const initialState = {
+    user_id: 3,
+    price_low: "0",
+    price_high: "1000",
+    dist_to_campus: "45",
+    roomSingle: false,
+    roomDouble: false,
+    roomTriple: false,
+    roomLiving: false,
+    roomApart: false,
+    roomHouse: false,
+    pet: false,
+    laundry: false,
+    parking: false,
+    furnished: false,
+    gym: false,
+    pool: false,
+}
+
 class Filters extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            user_id: 3,
-            price_low: "0",
-            price_high: "1000",
-            dist_to_campus: "45",
-            roomSingle: false,
-            roomDouble: false,
-            roomTriple: false,
-            roomLiving: false,
-            roomApart: false,
-            roomHouse: false,
-            pet: false,
-            laundry: false,
-            parking: false,
-            furnished: false,
-            gym: false,
-            pool: false,
-        }
+        this.state = initialState;
+
+        this.resetFilters = this.resetFilters.bind(this);
         this.handleChangeFilter = this.handleChangeFilter.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.handleChangeForm = this.handleChangeForm.bind(this);
@@ -94,8 +98,11 @@ class Filters extends Component{
         this.setState({pool: response.data.pool})
     }
     
-    resetFilters(){
+    resetFilters(event){
+        event.preventDefault();
+        
         console.log("reset");
+        this.setState(initialState);
     }
 
     handleChangeFilter(event) {
@@ -144,6 +151,7 @@ class Filters extends Component{
         return (
             <form className="filtersContainer" onChange={this.handleChangeForm} onSubmit={this.saveFilterData}>
                 <div className="titleFilters">
+                    Filters
                 </div>
                 <Row>
                     <Input s={6} className="browser-default" type="select" label="Min Price Per Month" name="price_low" defaultValue={this.state.price_low} onChange={this.handleChangeFilter}>
@@ -163,7 +171,7 @@ class Filters extends Component{
                     <Input s={12} className="browser-default" type ="select" label = "Distance To UCSD in Miles" name="dist_to_campus" defaultValue ={this.state.dist_to_campus} onChange={this.handleChangeFilter}>
                        <option value = "15">15 miles</option>
                        <option value = "30">30 miles</option>
-                       <option value = "45">45 miles</option>
+                       <option value = "45">45 miles+</option>
                    </Input>
                </Row>
                <Row className="roomType">
