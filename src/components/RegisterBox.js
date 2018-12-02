@@ -46,7 +46,7 @@ export default class RegisterBox extends Component {
         });
         if(this.state.active){
             if(this.checkError(name)=== "valid"){
-                document.getElementById("wrongInput").className = "hidden";
+                document.getElementById("wrongInputRegister").className = "hidden";
             }
         }
         
@@ -57,7 +57,6 @@ export default class RegisterBox extends Component {
 
        
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
-            alert("works!")
             const params = formatPostData(this.state);
             const response = await axios.post("http://localhost:8000/api/mail_handler.php", params);
             console.log(response);
@@ -73,11 +72,9 @@ export default class RegisterBox extends Component {
                                     this.state.password, this.state.confPassword);
         
         let isValid = Object.keys(errors).some(i => errors[i]);
-        //if(!document.getElementById("checkInput").checked){
-        //    isValid = true;
-        //}
+       
         if(!isValid){
-            document.getElementById("wrongInput").className = "hidden";
+            document.getElementById("wrongInputRegister").className = "hidden";
             return true;
         }
         else{
@@ -112,29 +109,29 @@ export default class RegisterBox extends Component {
         
         if(hasError){
             if(errors["email"]){
-                document.getElementById("wrongInput").className = "show";
-                document.getElementById("wrongInput").innerText = "You must enter a valid .edu email address";
+                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").innerText = "You must enter a valid .edu email address";
             }
             else if(errors["password"]){
-                document.getElementById("wrongInput").className = "show";
-                document.getElementById("wrongInput").innerText = "Password must be at least six characters long";
+                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").innerText = "Password must be at least six characters long";
                 
             }
             else if(errors["confPassword"]){
-                document.getElementById("wrongInput").className = "show";
-                document.getElementById("wrongInput").innerText = "Passwords must match";  
+                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").innerText = "Passwords must match";  
             }
             else if(errors["fname"]||errors["lname"]){
-                document.getElementById("wrongInput").className = "show";
-                document.getElementById("wrongInput").innerText = "All fields must be filled";
+                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").innerText = "All fields must be filled";
             }
             return "invalid";
         }
         else{
             let isValid = Object.keys(errors).some(i => errors[i]);
             if(!document.getElementById("checkInput").checked&&!isValid){
-                document.getElementById("wrongInput").className = "show";
-                document.getElementById("wrongInput").innerText = "Please agree to the terms of service";
+                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").innerText = "Please agree to the terms of service";
             }
             
             return "valid";
@@ -179,7 +176,7 @@ export default class RegisterBox extends Component {
                 </div>
 
                 <br/>
-                <span id="wrongInput" className="hidden"></span>
+                <span id="wrongInputRegister" className="hidden"></span>
 
                 <div className="FormField" id="submitDiv">
                     <button type="Submit" id="regButton" className="btnSubmit">Sign Up</button>

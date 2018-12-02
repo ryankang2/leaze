@@ -14,8 +14,8 @@ const App = () => (
                     <Route exact path="/" component={LandingPage}></Route>
                     <Route exact path="/home" component={ResultsPage}></Route>
                 </Switch> */}
-                <ResultsPage /> 
-                {/* <LandingPage /> */}
+                {/* <ResultsPage />  */}
+                <LandingPage />
                 {/* <Profile />*/}
                 {/* <MessagingPage /> */}
             </div>

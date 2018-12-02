@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import "./Navbar.css";
-import MakePost from "./MakePost";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 

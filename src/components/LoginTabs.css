@@ -124,6 +124,9 @@
     display:block;
 }
 
-#wrongInput{
-    color: red
+#wrongInputRegister{
+    color:red
+}
+#wrongInputLogin{
+    color:red
 }
