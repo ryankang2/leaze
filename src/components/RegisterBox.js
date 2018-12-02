@@ -108,20 +108,20 @@ export default class RegisterBox extends Component {
         
         if(hasError){
             if(errors["email"]){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "You must enter a valid .edu email address";
             }
             else if(errors["password"]){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "Password must be at least six characters long";
                 
             }
             else if(errors["confPassword"]){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "Passwords must match";  
             }
             else if(errors["fname"]||errors["lname"]){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "All fields must be filled";
             }
             return "invalid";
@@ -129,7 +129,7 @@ export default class RegisterBox extends Component {
         else{
             let isValid = Object.keys(errors).some(i => errors[i]);
             if(!document.getElementById("checkInput").checked&&!isValid){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "Please agree to the terms of service";
             }
             
@@ -188,7 +188,7 @@ export default class RegisterBox extends Component {
                 </div>
 
                 <br/>
-                <span id="wrongInputRegister" className="hidden"></span>
+                <p id="wrongInputRegister" className="hidden"></p>
 
                 <div className="FormField" id="submitDiv">
                     <button type="Submit" id="regButton" className="btn btn-primary">Sign Up</button>

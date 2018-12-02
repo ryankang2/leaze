@@ -50,6 +50,9 @@
     margin-top: 2em;
     margin-left: 10%;
 }
+.FormFieldsError{
+    margin-left:10%;
+}
 
 #password{
     display: block;
