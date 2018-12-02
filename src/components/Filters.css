@@ -9,8 +9,13 @@
 }
 .caret {
     border-color: transparent !important;
-  }
-
+}
+.input-field label:not(.label-icon).active {
+    transform: translateY(-150%) !important;
+}
+.titleFilters{
+    padding-bottom: 20%;
+}
 .roomType > Input{
     display: block;
 }

@@ -80,8 +80,6 @@ class Filters extends Component{
         return (
             <form className="filtersContainer" onChange={this.handleChangeForm} onSubmit={this.saveFilterData}>
                 <div className="titleFilters">
-                    <h3>Refine</h3>
-                    <button type="button" className="btn btn-link" onClick={this.resetFilters}>Clear All</button>
                 </div>
                 <Row>
                     <Input s={6} className="browser-default" type="select" label="Min Price Per Month" name="price_low" defaultValue={this.state.price_low} onChange={this.handleChangeFilter}>
@@ -123,6 +121,7 @@ class Filters extends Component{
                     <Input name="pool" type="checkbox" checked={this.state.pool} value="pool" label="Has Pool"  onChange={this.handleCheckBox} />
                 </Row>
                 <button className="btn btn-primary">Save Filters</button>
+                <button type="button" className="btn btn-link" onClick={this.resetFilters}>Clear All Filters</button>
             </form>
         )
     }
