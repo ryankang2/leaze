@@ -136,22 +136,17 @@
 
 
 .show {
-    display: block!important;
+    /* display: block!important; */
     background: none;
     height:500px;
 }
-#myModal{
-    /* padding-right:0px !important;
-    width: 43%;
-    height: 500px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0; */
-}
+
+
 .modal-backdrop{
-    opacity:0.5 !important;
+    /* opacity:0.5 !important; */
+    display: none
 }
+
 
 
 .modal{

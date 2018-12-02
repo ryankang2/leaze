@@ -73,6 +73,14 @@ class ListingPreview extends Component{
         $(`.leaseImage-${this.props.information.listing_id}`).css("display", "block");
     }
 
+    closeModal(){
+        // $(`.leaseImage-${this.props.information.listing_id}`).css("display", "none");
+        $(".modal-backdrop").remove();
+        $(".show").remove();
+        $(".in").remove();
+    }
+
+
 
     render(){
         // console.log(this.props.information);
@@ -106,11 +114,12 @@ class ListingPreview extends Component{
                                 
                                 <Link to = {linkQuery}>
                                     <img className="userPicture"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"
+                                    onClick={this.closeModal.bind(this)}/>
                                 </Link>
 
                                 <Link to = {linkQuery} information={this.props.information}>
-                                    <div className="userName">{full_name}</div>
+                                    <div className="userName" onClick={this.closeModal.bind(this)}>{full_name}</div>
                                 </Link>
 
                                 <div className={`match-${this.props.information.listing_id}`}></div>

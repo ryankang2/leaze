@@ -108,13 +108,13 @@ export default class ListingModal extends Component{
                                         </div>
                                         <div className="row">
                                             <div className="feature col-sm-4 col-md-4">
-                                                <i class="material-icons">
+                                                <i className="material-icons">
                                                 pets
                                                 </i>
                                                 Pets
                                             </div>
                                             <div className="feature col-sm-4 col-md-4">
-                                                <i class="material-icons">
+                                                <i className="material-icons">
                                                 local_laundry_service
                                                 </i>
                                                 In Unit Laundry
@@ -122,13 +122,13 @@ export default class ListingModal extends Component{
                                         </div>
                                         <div className="row">
                                             <div className="feature col-sm-4 col-md-4">
-                                                <i class="material-icons">
+                                                <i className="material-icons">
                                                 fitness_center
                                                 </i>
                                                 Gym
                                             </div>
                                             <div className="feature col-sm-4 col-md-4">
-                                                <i class="material-icons">
+                                                <i className="material-icons">
                                                 pool
                                                 </i>
                                                 Pool
@@ -136,13 +136,13 @@ export default class ListingModal extends Component{
                                         </div>
                                         <div className="row">
                                             <div className="feature col-sm-4 col-md-4">
-                                                <i class="material-icons">
+                                                <i className="material-icons">
                                                 local_parking
                                                 </i>
                                                 Parking
                                             </div>
                                             <div className="feature col-sm-4 col-md-4">
-                                                <i class="material-icons">
+                                                <i className="material-icons">
                                                 kitchen
                                                 </i>
                                                 Furnished
