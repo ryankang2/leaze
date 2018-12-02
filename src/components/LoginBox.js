@@ -66,7 +66,7 @@ export default class LoginBox extends Component {
 
         else {
             console.log("Login successful. User will be redirected to the explore page");
-            document.getElementById("wrongInputLogin").className="hidden";
+            // document.getElementById("wrongInputLogin").className="hidden";
             this.setState({classPassword:"valid"});
             this.setState({classPassword:"valid"});
             sessionStorage.setItem("user_id", data.id);

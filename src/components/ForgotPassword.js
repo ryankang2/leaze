@@ -160,7 +160,7 @@ export default class ForgotPassword extends Component {
                 <p id="codeResent">A code has been resent to your email</p>
                 <div className="FPinputs">
                     <label htmlFor="forgotCode">4-Digit Code</label>
-                    <input className="FPinputbox" id="forgotCode" placeholder="Enter the code that was sent to you" />
+                    {/* <input className="FPinputbox" id="forgotCode" placeholder="Enter the code that was sent to you" /> */}
                 </div>
                 <button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</button>
                 <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</button>
