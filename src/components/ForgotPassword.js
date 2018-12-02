@@ -22,20 +22,12 @@ export default class ForgotPassword extends Component {
         document.getElementById("myConfPassword").value = "";
     }
 
-    async confirmCode(code, email){
-        var confirmObj = {
-            code_to_confirm: code,
-            email_of_user: email,
+    async sendCode(email){
+        var emailObj = {
+            email_of_user: email
         };
-        const params = formatPostData(confirmObj);
-        const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php");
-        console.log("RESPONSE FROM BACKEND", response);
-        if(1){
-            console.log("hello " + document.getElementById("forgotModal3").innerText);
-            document.getElementById("forgotModal3").style.display='none';
-            document.getElementById("forgotModal4").style.display = "block"
-
-        }
+        const params = formatPostData(emailObj);
+        const response = await axios.post("http://localhost:8000/api/email_recovery.php", params);
     }
 
     async confirmCode(code, email){
@@ -45,7 +37,18 @@ export default class ForgotPassword extends Component {
         };
         const params = formatPostData(confirmObj);
         const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php", params);
+        console.log("RESPONSE FROM BACKEND", response);
+        if(!response.data.success){
+            console.log("hello " + document.getElementById("forgotModal3").innerText);
+            document.getElementById("forgotModal3").style.display='none';
+            document.getElementById("forgotModal4").style.display = "block"
+
+        }
+        else{
+            document.getElementById("forgotModal4").style.display='none';
+        }
     }
+
 
     async updatePassword(email, password){
         var emailPassObj = {
