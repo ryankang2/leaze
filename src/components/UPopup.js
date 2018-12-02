@@ -25,10 +25,22 @@ class UPopup extends React.Component {
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
-    $("#lastName").text(response.data.firstname)
+    $("#firstName").text(response.data.firstname)
     this.setState({firstname: response.data.firstname})
-    $("#lastName").text(response.data.firstname)
+    $("#lastName").text(response.data.lastname)
     this.setState({lastname: response.data.lastname})
+    $("#years").text(response.data.age)
+    this.setState({age: response.data.age})
+    $("#mail").text(response.data.email)
+    this.setState({email: response.data.email})
+    $("#uni").text(response.data.school)
+    this.setState({school: response.data.school})
+    $("#studies").text(response.data.major)
+    this.setState({major: response.data.major})
+    $("#classYear").text(response.data.year)
+    this.setState({year: response.data.year})
+    $("#descrip").text(response.data.bio)
+    this.setState({bio: response.data.bio})
   }
   handleChange(event) {
     const { name, value } = event.currentTarget;
@@ -65,22 +77,22 @@ class UPopup extends React.Component {
                 <input id="firstName" className="inputs" name="firstname" defaultValue={this.state.firstname}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Last Name: </label>
-                <input className="inputs" name="lastname" value = {this.state.lastname}
+                <input id="lastName" className="inputs" name="lastname" defaultValue = {this.state.lastname}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Age: </label>
-                <input className="inputs" name="age" value = {this.state.age}
+                <input id="years" className="inputs" name="age" defaultValue = {this.state.age}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Email (must end with ".edu"): </label>
-                <input className="inputs" name="email" value = {this.state.email}
+                <input id="mail" className="inputs" name="email" defaultValue = {this.state.email}
                   onChange={this.handleChange.bind(this)}/>
                 <label>School: </label>
-                <input className="inputs" name="school" value = {this.state.school}
+                <input id="uni" className="inputs" name="school" defaultValue = {this.state.school}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Major: </label>
-                <input className="inputs" name="major" value = {this.state.major}
+                <input id="studies" className="inputs" name="major" defaultValue = {this.state.major}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Year: </label>
-                <Input id='classYear' className="inputs" type='select' name='year' value = {this.state.year}
+                <Input id='classYear' className="inputs" type='select' name='year' defaultValue = {this.state.year}
                   onChange={this.handleChange.bind(this)}>
                   <option value='1'>First</option>
                   <option value='2'>Second</option>
@@ -89,7 +101,7 @@ class UPopup extends React.Component {
                   <option value='5'>Other</option>
                 </Input>
                 <label>Bio: </label>
-                <input className="inputsB" name="bio" value = {this.state.bio}
+                <input id="descrip" className="inputsB" name="bio" defaultValue = {this.state.bio}
                   onChange={this.handleChange.bind(this)}/>
                 <button onClick=
                   {this.props.closeUPopup} className="btn btn-primary">Cancel</button>

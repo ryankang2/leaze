@@ -1,6 +1,8 @@
 import React from "react";
 import "./Popup.css";
 import { Input } from "react-materialize"
+import {formatPostData} from "../helpers/formatPostData";
+import axios from "axios";
 
 class PPopup extends React.Component {
   constructor(props) {
@@ -28,7 +30,34 @@ class PPopup extends React.Component {
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/get_pref.php", params);
     console.log(response.data);
-    $("guests").text(response.data.gpd)
+    $("guests").text(response.data.guests_per_week)
+    this.setState({gpd: response.data.guests_per_week})
+    $("latesleeper").text(response.data.late_sleeper)
+    this.setState({latesleep: response.data.late_sleeper})
+    $("deepsleeper").text(response.data.deep_sleeper)
+    this.setState({deepsleep: response.data.deep_sleeper})
+    $("earlyriser").text(response.data.early_bird)
+    this.setState({earlyrise: response.data.early_bird})
+    $("messyman").text(response.data.messiness)
+    this.setState({messy: response.data.messiness})
+    $("gamer").text(response.data.video_games)
+    this.setState({videogames: response.data.video_games})
+    $("social").text(response.data.extrovert)
+    this.setState({extro: response.data.extrovert})
+    // $("alc").text(response.data.guests_per_week)
+    // this.setState({alcohol: response.data.guests_per_week})
+    // $("weed").text(response.data.guests_per_week)
+    // this.setState({marijuana: response.data.guests_per_week})
+    // $("stoges").text(response.data.guests_per_week)
+    // this.setState({cigarettes: response.data.guests_per_week})
+    // $("heroin").text(response.data.guests_per_week)
+    // this.setState({other: response.data.guests_per_week})
+    $("studynoise").text(response.data.study_noise_level)
+    this.setState({noise: response.data.study_noise_level})
+    $("guests").text(response.data.sharing_belongings)
+    this.setState({share: response.data.sharing_belongings})
+    $("friends").text(response.data.roommate_relationship)
+    this.setState({relations: response.data.roommate_relationship})
   }
   handleChange(event) {
     const { name, value } = event.currentTarget;
@@ -90,7 +119,7 @@ class PPopup extends React.Component {
               {this.props.closePPopup} id="button1" className="btn btn-primary">Cancel</button>
           </div>
           <div className="col-sm-4">
-            <label>How Messy?: </label>
+            <label>How Messy Are You?: </label>
             <Input s={12} id='messyman' className="inputs" type='select' name='messy' value={this.state.messy}
               onChange={this.handleChange.bind(this)}>
               <option value='1'>Not at All</option>
