@@ -101,10 +101,14 @@ export default class ForgotPassword extends Component {
         }
 
         else if(target.id === "fpSubmitPassword") {
+            var email = this.state.email;
+
             if(document.getElementById("myNewPassword").value.toString().length > 5) {
                 if(document.getElementById("myNewPassword").value === document.getElementById("myConfPassword").value) {
+                    console.log("emailINSUBMIT: ", this.state.email);
                     console.log("Password has successfully been changed!");
                     var password = document.getElementById("myNewPassword").value;
+
                     this.updatePassword(this.state.email, password);
                 }
 
@@ -173,7 +177,7 @@ export default class ForgotPassword extends Component {
                         {/*<Icon>lock</Icon>*/}
                     {/*</Input>*/}
                     <Input s={8} label="Password must be at least 6 characters long" type="password" id="myNewPassword"
-                           name="password" onChange={this.handleChange}>
+                           name="password" onChange={this.handleChange} >
                         <Icon>lock</Icon>
                     </Input>
                     {/*<input type="password" className="FPinputbox" id="myNewPassword" placeholder="Password must be at least 6 characters long" />*/}
@@ -181,12 +185,12 @@ export default class ForgotPassword extends Component {
 
                 <div className="FPinputs">
                     <label htmlFor="myConfPassword">Confirm New Password</label>
-                    <Input s={8} label="Re-enter your new password" type="password" id="myNewPassword2"
+                    <Input s={8} label="Re-enter your new password" type="password" id="myConfPassword"
                            name="password" onChange={this.handleChange}>
                         <Icon>lock</Icon>
                     </Input>
                 </div>
-                <Button onClick={this.FPsubmit} className="FPsubmit" id="fpSubmitPassword">Submit</Button>
+                <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpSubmitPassword">Submit</Button>
                 <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
 
             </div>
