@@ -14,7 +14,7 @@
     ];
 
     //assume we can pass in the user id, and we output the information in output
-    $user = 1; //$_POST["user_id"];
+    $_POST["user_id"];
 
     $userQuery= "SELECT * from `user` WHERE `user_id`='$user';";
     $profQuery= "SELECT * from `profile` WHERE `user_id`='$user';";

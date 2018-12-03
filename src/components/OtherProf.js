@@ -9,7 +9,7 @@ export class OtherProfile extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        user_id: 3,
+        user_id: '',
         firstname:'',
         lastname:'',
         age:'',
@@ -23,7 +23,7 @@ export class OtherProfile extends React.Component {
     };
   }
   async componentDidMount(){
-    console.log("OtherProfileismounted")
+    console.log("Profileismounted")
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
@@ -38,10 +38,10 @@ export class OtherProfile extends React.Component {
         <Navbar />
         <div className="container-fluid" id="mainContainer">
           {/* here lies the top row - Matt works here */}
-          <div className="row" id="OtherProfileRow">
-            <div className="col-md-2" id="OtherProfilePictureArea">
+          <div className="row" id="profileRow">
+            <div className="col-md-2" id="profilePictureArea">
               {/* User OtherProfile pic here */}
-              <img src={require('./OtherProfile.jpg')} id="OtherProfilePic" />
+              <img src={require('./profile.jpg')} id="profilePic" />
               <span className="label-ucsd"> UCSD </span>
             </div>
 
@@ -55,7 +55,7 @@ export class OtherProfile extends React.Component {
             <div className="col-md-2" id="ratingArea">
               {/* User Rating Area goes here */}
               <p id="ratingString"> Your average rating is: RATING </p>
-              <button id="buttonU" onClick={this.toggleUPopup.bind(this)} className="btn btn-primary">Send a Message</button>
+              <button id="buttonU" className="btn btn-primary">Send a Message</button>
 
             </div>
 

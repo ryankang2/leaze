@@ -8,7 +8,7 @@ class UPopup extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        user_id:3, 
+        user_id:'', 
         firstname:'',
         lastname:'',
         age:'',
@@ -105,7 +105,7 @@ class UPopup extends React.Component {
                 <input id="studies" className="inputs" name="major" defaultValue = {this.state.major}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Year: </label>
-                <Input id='classYear' className="inputs" type='select' name='year' defaultValue = {this.state.year}
+                <Input s={12} id='classYear' className="browser-default" type='select' name='year' defaultValue = {this.state.year}
                   onChange={this.handleChange.bind(this)}>
                   <option value='1'>First</option>
                   <option value='2'>Second</option>

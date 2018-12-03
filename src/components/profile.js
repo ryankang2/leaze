@@ -11,7 +11,7 @@ export class Profile extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        user_id: 3,
+        user_id:'',
         firstname:'',
         lastname:'',
         age:'',
@@ -25,7 +25,8 @@ export class Profile extends React.Component {
     };
   }
   async componentDidMount(){
-    console.log("profileismounted")
+    var userID = sessionStorage.getItem("user_id");
+    this.setState({user_id:userID});
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);

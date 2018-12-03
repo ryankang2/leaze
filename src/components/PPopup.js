@@ -8,7 +8,7 @@ class PPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id:3,
+      user_id:'',
       gpd: '',
       latesleep: '',
       deepsleep: '',
@@ -16,10 +16,10 @@ class PPopup extends React.Component {
       messy: '',
       videogames: '',
       extro: '',
-      alcohol: '',
-      marijuana: '',
-      cigarettes: '',
-      other: '',
+      alcohol: false,
+      marijuana: false,
+      cigarettes: false,
+      other: false,
       noise: '',
       share: '',
       relations: '',
@@ -76,11 +76,11 @@ class PPopup extends React.Component {
     const { name, checked } = event.currentTarget;
     if (checked !== false) {
       this.setState({
-        [name]: 1
+        [name]: true
       })
     } else {
       this.setState({
-        [name]: -1
+        [name]: false
       })
     }
   }
