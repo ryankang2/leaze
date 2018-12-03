@@ -6,16 +6,14 @@
 
     // expecting input of the user id of the main user
     $mainUser = $_POST["mainUser"];
-    // expecting input of an array of user ids of the other users to compare main user to
-    $otherUsers = $_POST["otherUsers"];
+    // expecting input of other user to get matching percentage between
+    $other = $_POST["other"];
 
     $output = [
-        "mainUser" => $mainUser
+        "mainUser" => $mainUser,
+        "result" => getMatchingPercentage($mainUser, $other, $conn)
     ];
 
-    foreach($otherUsers as $other) {
-        $output[$other] = getMatchingPercentage($mainUser, $other, $conn);
-    }
     mysqli_close($conn);
 
     // print final output array
