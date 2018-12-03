@@ -16,7 +16,7 @@ export default class ListingModal extends Component{
     }
 
     render(){
-        console.log("FROM LISTING MODAL: ", this.props.information);
+        // console.log("FROM LISTING MODAL: ", this.props.information);
         var linkQuery = "/home/profile/" + this.props.information.user.user_id;
 
         return (
@@ -86,7 +86,7 @@ export default class ListingModal extends Component{
                                                 {this.props.information.address}
                                             </div>
                                             <div className="distanceInModal col-sm-4 col-md-4">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                <i className="fa fa-map-marker" aria-hidden="true"></i>
                                                 2 miles from campus
                                             </div>
                                         </div>
