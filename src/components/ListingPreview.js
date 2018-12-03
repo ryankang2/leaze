@@ -34,7 +34,8 @@ class ListingPreview extends Component{
         }
         console.log(userListingHeart);
         const params = formatPostData(userListingHeart);
-        // const response = await axios.post("http://localhost:8000/api/")
+        const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
+
     }
 
     getDiffPostDate(currentDay, currentMonth, postedDay, postedMonth){
