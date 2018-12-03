@@ -17,7 +17,6 @@ export class Profile extends React.Component {
         year:'',
         bio:'',
         rating:'', //added by Matt
-        progress:'60', //added by Matt
         picture:null,
         showUPopup: false,
         showPPopup: false,
@@ -53,13 +52,6 @@ export class Profile extends React.Component {
         width: '0',
         height: '0',
         position: 'absolute',
-      },
-      meter: {
-        border: '1px solid black',
-        width: '100%',
-        height: '2vh',
-        position: 'relative',
-        background: 'linear-gradient(.25turn, black '+ this.state.progress +'%, #f7eddc '+ this.state.progress +'%)',
       },
       boldLink: {
         fontWeight: 'bold',
