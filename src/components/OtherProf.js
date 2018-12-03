@@ -24,6 +24,7 @@ export class OtherProfile extends React.Component {
   }
   async componentDidMount(){
     console.log("Profileismounted")
+    this.setState({user_id:userID});
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
@@ -55,7 +56,7 @@ export class OtherProfile extends React.Component {
             <div className="col-md-2" id="ratingArea">
               {/* User Rating Area goes here */}
               <p id="ratingString"> Your average rating is: RATING </p>
-              <button id="buttonU" className="btn btn-primary">Send a Message</button>
+              <button id="buttonP" className="btn btn-primary">Send a Message</button>
 
             </div>
 
@@ -95,4 +96,4 @@ export class OtherProfile extends React.Component {
 }
 
 
-export default OtherOtherProfile;
+export default OtherProfile;
