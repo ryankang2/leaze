@@ -14,12 +14,12 @@
     ];
 
     //assume we can pass in the user id, and we output the information in output
-    $_POST["user_id"];
+    $user = $_POST["user_id"];
 
-    $userQuery= "SELECT * from `user` WHERE `user_id`='$user';";
-    $profQuery= "SELECT * from `profile` WHERE `user_id`='$user';";
+    $userQuery= "SELECT * from `users` WHERE `user_id`=$user";
+    $profQuery= "SELECT * from `profile` WHERE `user_id`=$user";
     $resultUser = mysqli_query($conn, $userQuery);
-    $resultProf = mysqli_query($conn, $prefQuery);
+    $resultProf = mysqli_query($conn, $profQuery);
     
     // should only return one row (make sure to delete upon user 
     if(mysqli_num_rows($resultUser) == 1){
