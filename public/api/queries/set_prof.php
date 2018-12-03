@@ -22,6 +22,13 @@
 
     $resultUser = mysqli_query($conn, $updateUser);
     $resultProf = mysqli_query($conn, $updateProf);
+
+    if(!$resultUser){
+        echo "result user wrong";
+    }
+    if(!$resultProf){
+        echo "result prof wrong";
+    }
     
     // should only return one row (make sure to delete upon user 
     if($resultUser && $resultProf){

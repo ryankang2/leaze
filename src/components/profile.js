@@ -97,7 +97,7 @@ export class Profile extends React.Component {
             <div className="col-md-4" id="bioArea">
               {/* User Bio Area here  */}
               <h1 id="userName" > {this.state.firstname} {this.state.lastname} </h1>
-              <h2 id="userInfo"> {this.state.major} {this.state.year}</h2>
+              <h2 id="userInfo"> {this.state.major}, {this.state.year} Year</h2>
               <p rows="4" cols="50" id="biography"> {this.state.bio} </p>
             </div>
 

@@ -103,11 +103,11 @@ class UPopup extends React.Component {
                 <label>Year: </label>
                 <Input s={12} id='classYear' className="browser-default" type='select' name='year' defaultValue = {this.state.year}
                   onChange={this.handleChange.bind(this)}>
-                  <option value='1'>First</option>
-                  <option value='2'>Second</option>
-                  <option value='3'>Third</option>
-                  <option value='4'>Fourth</option>
-                  <option value='5'>Other</option>
+                  <option value='First'>First</option>
+                  <option value='Second'>Second</option>
+                  <option value='Third'>Third</option>
+                  <option value='Fourth'>Fourth</option>
+                  <option value='Other'>Other</option>
                 </Input>
                 <label>Bio: </label>
                 <textarea id="descrip" rows='4' className="inputsB" name="bio" value = {this.state.bio}
