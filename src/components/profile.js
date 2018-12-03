@@ -20,6 +20,8 @@ export class Profile extends React.Component {
         year:'',
         bio:'',
         picture:null,
+        rating: '',
+        progress: '',
         showUPopup: false,
         showPPopup: false,
     };
