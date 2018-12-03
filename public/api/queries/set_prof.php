@@ -3,24 +3,25 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
     $output = [
-        "success" = false,
+        "success" => false,
     ];
 
     //assume we can pass in the user id, and we output the information in output
     $user = $_POST["user_id"];
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
+    $fullname = $firstname . $lastname;
     $age = $_POST["age"];
     $school = $_POST["school"];
     $major = $_POST["major"];
     $year = $_POST["year"];
     $bio = $_POST["bio"];
     
-    $updateUser = "UPDATE `user` SET `fullname`='$fullname', `first_name`='$firstname',`last_name`='$lastname', `age`='$age' WHERE `user_id`='$user';";
-    $updateProf = "UPDATE `profile` SET `school`='$school', `major`='$major', `year`='$year', `about_me`='$bio' WHERE `user_id`='$user';";
+    $updateUser = "UPDATE `users` SET `full_name`='$fullname', `first_name`='$firstname',`last_name`='$lastname', `age`=$age WHERE `user_id`=$user";
+    $updateProf = "UPDATE `profile` SET `school`='$school', `major`='$major', `year`='$year', `about_me`='$bio' WHERE `user_id`=$user";
 
-    $resultUser = mysqli_query($conn, $userQuery);
-    $resultProf = mysqli_query($conn, $prefQuery);
+    $resultUser = mysqli_query($conn, $updateUser);
+    $resultProf = mysqli_query($conn, $updateProf);
     
     // should only return one row (make sure to delete upon user 
     if($resultUser && $resultProf){
