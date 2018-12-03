@@ -58,7 +58,7 @@ export default class OtherProfile extends React.Component {
             <div className="col-md-2" id="ratingArea">
               {/* User Rating Area goes here */}
               <p id="ratingString"> Your average rating is: RATING </p>
-              <button id="buttonU" className="btn btn-primary">Send a Message</button>
+              <button id="buttonP" className="btn btn-primary">Send a Message</button>
 
             </div>
 
@@ -97,5 +97,3 @@ export default class OtherProfile extends React.Component {
   }
 }
 
-
-// export default OtherProfile;
