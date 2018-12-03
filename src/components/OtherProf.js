@@ -5,7 +5,7 @@ import ListingPreview from "./ListingPreview.js"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 
-export class OtherProfile extends React.Component {
+export default class OtherProfile extends React.Component {
   constructor(props){
     super(props);
     this.state={
@@ -23,9 +23,11 @@ export class OtherProfile extends React.Component {
     };
   }
   async componentDidMount(){
-    console.log("Profileismounted")
-    this.setState({user_id:userID});
-    const params = formatPostData(this.state);
+    const userID = window.location.href[window.location.href.length-1];
+    const idObject = { 
+      user_id: userID
+    }
+    const params = formatPostData(idObject);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
     $("#userName").text(response.data.firstname +' ' + response.data.lastname)
@@ -95,5 +97,3 @@ export class OtherProfile extends React.Component {
   }
 }
 
-
-export default OtherProfile;

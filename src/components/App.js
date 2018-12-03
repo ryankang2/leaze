@@ -11,12 +11,13 @@ import OtherProfile from "./OtherProf";
 // export default class App 
 const App = () => (
             <div>
-                <Profile/>
-                {/* <Switch>
+                {/* <OtherProfile></OtherProfile> */}
+                <Switch>
                     <Route exact path="/" component={LandingPage}></Route>
                     <Route exact path="/home" component={ResultsPage}></Route>
                     <Route exact path="/home/profile/:number" component={Profile}></Route>
-                </Switch> */}
+                    <Route exact path="/home/profile/other/:number" component={OtherProfile}></Route>
+                </Switch>
                 {/* <ResultsPage />  */}
                 {/* <LandingPage /> */}
                 {/* <Profile /> */}
