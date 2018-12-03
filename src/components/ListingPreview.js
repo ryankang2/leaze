@@ -2,6 +2,11 @@ import React, {Component} from "react";
 import "./ListingPreview.css"
 import Profile from "./Profile";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from "axios";
+import {formatPostData} from "../helpers/formatPostData";
+import ListingModal from "./ListingModal";
+import { format } from "util";
+
 
 
 class ListingPreview extends Component{
@@ -19,24 +24,18 @@ class ListingPreview extends Component{
         }
     }
 
-    leasePopup(){
-        console.log("PICTURE/CLICKED");
-        $("#popupModal").modal("open");
 
-    }
+    async toggleHeart(event){
+        this.setState({favorite: !this.state.favorite});
+        const userListingHeart = {
+            user_id: sessionStorage.getItem("user_id"),
+            listing_id: $(event.currentTarget).attr('value'),
+            unfavorited: this.state.favorite,
+        }
+        console.log(userListingHeart);
+        const params = formatPostData(userListingHeart);
+        const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
 
-
-    goToProfile(event){
-        console.log(event.target.innerText);
-        var userName = event.target.innerText;
-
-        console.log("GO TO PROFILE");
-    }
-
-    toggleHeart(){
-        this.setState({favorite: !this.state.favorite})
-        console.log("heart clicked");
-        // x.classList.toggle("fa fa-heart");
     }
 
     getDiffPostDate(currentDay, currentMonth, postedDay, postedMonth){
@@ -53,10 +52,50 @@ class ListingPreview extends Component{
         }
     }
 
+    async handleMatchPercentage(user_id) {
+        const userIDs = {
+            mainUser: sessionStorage.getItem("user_id"),
+            other: user_id,
+        }
+        const params = formatPostData(userIDs);
+        const response = await axios.post("http://localhost:8000/api/matching_algorithm.php", params);
+        var str = "Match: " + response.data.result + "%";
+        $(`.match-${this.props.information.listing_id}`).text(str);
+        $(`.match-${this.props.information.listing_id}`).css({
+            "grid-column-start":"2",
+            "grid-column-end":"5",
+            "grid-row-start":"5",
+            "font-size": "12px",
+            "text-align": "left",
+            "margin-top": "-10%",
+         });
+
+        if(response.data.result >= 70) {
+            $(`.match-${this.props.information.listing_id}`).css({
+                "color": "green"
+            });
+        }
+
+    }
+
+    openModal(){
+        $(`.leaseImage-${this.props.information.listing_id}`).css("display", "block");
+    }
+
+    closeModal(){
+        // $(`.leaseImage-${this.props.information.listing_id}`).css("display", "none");
+        $(".modal-backdrop").remove();
+        $(".show").remove();
+        $(".in").remove();
+    }
+
+
+
     render(){
-        console.log(this.props.information);
-        const {title, dist_to_campus, date_posted, address, price} = this.props.information;
-        const {full_name,rating,favorite} = this.props.information.user;
+        // console.log(this.props.information);
+        const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
+        console.log("LISTING_ID: ", listing_id);
+        const {full_name,rating,favorite,user_id} = this.props.information.user;
         var todayDate = new Date();
         var separatedDate = date_posted.split("-");
         var day = todayDate.getDate();
@@ -64,32 +103,35 @@ class ListingPreview extends Component{
         var listing_day = parseInt(separatedDate[2]);
         var listing_month = parseInt(separatedDate[1]);
         var linkQuery = "/home/profile/" + this.props.information.user.user_id;
+        var matchPercentage = this.handleMatchPercentage(user_id);
 
         return (
                 <div>
-                    <div className="col-sm-4 singleListing">
+                    <div className="col-sm-4 singleListing" onClick={this.openModal.bind(this)}>
                         <div className="imageBox">
-                            <img className="leaseImage" data-toggle="modal" data-target="#myModal" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                            <img className="leaseImage" data-toggle="modal" onClick={this.openModal.bind(this)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
                             {/*{this.state.favorite &&  <i className="fa fa-heart favorite_fill"> </i>}*/}
-                            <i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} onClick={this.toggleHeart.bind(this)}> </i>
+                            <i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} 
+                                onClick={this.toggleHeart.bind(this)} value={listing_id}> </i>
 
                             <div className = "infoBox">
-                                <div className="leaseName" data-toggle="modal" data-target="#myModal" >
+                                <div className="leaseName" data-toggle="modal" onClick={this.openModal.bind(this)} >
                                     {title}
-                                    {/*data-toggle="modal" data-target="#myModal"*/}
                                 </div>
-
+                                
                                 <Link to = {linkQuery}>
-                                    <img className="userPicture" onClick={(event) => this.goToProfile(event)}
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                                    <img className="userPicture"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"
+                                    onClick={this.closeModal.bind(this)}/>
                                 </Link>
 
                                 <Link to = {linkQuery} information={this.props.information}>
-                                    <div className="userName" onClick={(event) => this.goToProfile(event)}>{full_name}</div>
+                                    <div className="userName" onClick={this.closeModal.bind(this)}>{full_name}</div>
                                 </Link>
 
-                                {/*<div className="distance"> {dist_to_campus} mi</div>*/}
+                                <div className={`match-${this.props.information.listing_id}`}></div>
+
                                 {/*</Link>*/}
                                 <div className="address"> {address}</div>
                                 <div className="price"> ${price}/month</div>
@@ -97,54 +139,9 @@ class ListingPreview extends Component{
                                 {/*<div className="dateDiff">{this.getDiffPostDate(day, month, listing_day, listing_month)}</div>*/}
                             </div>
                         </div>
-                    </div>
-                    {/*<Modal id="popupModal" header="fuckin work">*/}
-                        {/*AJKSHAKJSAS*/}
-                    {/*</Modal>*/}
-                    {/*<div id="popupModal" className="modal" >*/}
-                        {/*<div className="modal-dialog">*/}
-                            {/*<div className="modal-content">*/}
-
-                                {/*<div className="modal-header">*/}
-                                    {/*<h4 className="modal-title">Modal Heading</h4>*/}
-                                    {/*<button type="button" className="close" data-dismiss="modal">&times;</button>*/}
-                                {/*</div>*/}
-
-                                {/*<div className="modal-body">*/}
-                                    {/*Modal body..*/}
-                                {/*</div>*/}
-
-                                {/*<div className="modal-footer">*/}
-                                    {/*<button type="button" className="btn btn-danger" data-dismiss="modal">Close*/}
-                                    {/*</button>*/}
-                                {/*</div>*/}
-
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-                    <div className="modal" id="myModal">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-
-                                <div className="modal-header">
-                                    <h4 className="modal-title">Modal Heading</h4>
-                                    <button type="button" className="close"
-                                            data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <div className="modal-body">
-                                    Modal body..
-                                </div>
-
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-danger"
-                                            data-dismiss="modal">Close
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    </div> 
+                    <ListingModal className={`leaseImage-${this.props.information.listing_id}`} information={this.props.information}>
+                    </ListingModal>
 
                 </div>
         );

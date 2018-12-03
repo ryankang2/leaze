@@ -1,0 +1,69 @@
+.postModal {
+    background: none;
+    border: none;
+}
+
+.postModal .modal {
+    border: 1px solid black;
+    display: block;
+    width: 50%;
+    position: fixed;
+    background-color: #f7eddc;
+    margin-left: 25%;
+    margin-top: 5%;
+}
+
+#makePostTitle {
+    float: left;
+    margin-left: 5%;
+    margin-top: 5%;
+    font-size: 25px;
+    color: black;
+    width: 100%;
+}
+
+#postFormInputs {
+    margin-top: 15%;
+}
+
+.caret {
+    border-color: transparent !important;
+}
+
+.select-wrapper input {
+    color: black !important;
+}
+
+.input-field label:not(.label-icon).active {
+    transform: translateY(-80%) !important;
+}
+
+.MPinput {
+    color: black;
+}
+
+.mpInputDiv {
+    margin-top: 20%;
+}
+
+.MPlabel {
+    margin-bottom: -20px;
+}
+
+#addNotes {
+    line-height: 20px;
+    width: 190%;
+}
+
+#submitPost {
+    /* font-size: 20px; */
+    background-color: lightblue;
+    color: black;
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+}
+
+#picUpload {
+    margin-top: 21%;
+}

@@ -11,11 +11,17 @@ export default class LoginBox extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            active: false,
+            classEmail: "valid",
+            classPassword: "valid",
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    toggle(){
+        this.setState({active: true});
     }
 
     handleChange(e) {
@@ -30,11 +36,10 @@ export default class LoginBox extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        
+        this.toggle();
         if(this.infoChecks(this.state.email, this.state.password) === true) {
             const params = formatPostData(this.state);
             const response = await axios.post("http://localhost:8000/api/queries/sign_in.php", params);
-            // this.props.getFilterData(response, params);
             console.log(response.data);  
             this.handleResponse(response.data);     
         }
@@ -45,15 +50,25 @@ export default class LoginBox extends Component {
         if(data.success === false) {
             if(data.correctUser === true) {
                 console.log("Incorrect password. Please try again or click 'Forgot Password'");
+                document.getElementById("wrongInputLogin").className = "FormFieldsError";
+                document.getElementById("wrongInputLogin").innerText = "Incorrect password. Please try again or click 'Forgot Password'.";
+                this.setState({classPassword:"invalid"});
+                this.setState({classEmail:"valid"})
             }
 
             else {
                 console.log("User not found. Please sign in with a different account or register before signing in");
+                document.getElementById("wrongInputLogin").className = "FormFieldsError";
+                document.getElementById("wrongInputLogin").innerText = "Email Address not found.";
+                this.setState({classEmail:"invalid"});
             }
         }
 
         else {
             console.log("Login successful. User will be redirected to the explore page");
+            // document.getElementById("wrongInputLogin").className="hidden";
+            this.setState({classPassword:"valid"});
+            this.setState({classPassword:"valid"});
             sessionStorage.setItem("user_id", data.id);
             browserHistory.push("/home");
             window.location.reload();
@@ -65,7 +80,6 @@ export default class LoginBox extends Component {
     } 
 
     forgotPassword(e) {
-        console.log("forgot password");
         let modal = document.getElementById("forgotModal1");
         modal.style.display = "block"
     }
@@ -77,7 +91,7 @@ export default class LoginBox extends Component {
                     <h4>Sign in to access your LEaZe account</h4>
                     <div className="FormField">
                         <Row>
-                            <Input s={8} label="Email" type="email" id="loginEmail" className="FormField__Input" 
+                            <Input s={8} label="Email" type="email" id="loginEmail" className={this.state.active ? this.state.classEmail : "FormField__Input"} 
                                 name="email" value={this.state.email} onChange={this.handleChange}> 
                                 <Icon>account_circle</Icon> 
                             </Input>
@@ -86,12 +100,13 @@ export default class LoginBox extends Component {
 
                     <div className="FormField">
                         <Row>
-                            <Input s={8} label="Password" type="password" id="loginPassword" className="FormField__Input" 
+                            <Input s={8} label="Password" type="password" id="loginPassword" className={this.state.active ? this.state.classPassword: "FormField__Input"} 
                                 name="password" value={this.state.password} onChange={this.handleChange}>
                                 <Icon>lock</Icon>
                             </Input>
                         </Row>
                     </div>
+                    <p id="wrongInputLogin"></p>
                     <button type="Submit" id="loginButton" className="btn btn-primary">Log in</button>
                 </form>
                 <button onClick={this.forgotPassword} id="forgotPassword">Forgot Password</button>

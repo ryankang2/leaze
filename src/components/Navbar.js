@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./Navbar.css";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 class Navbar extends Component{
     constructor(props){
@@ -56,9 +57,11 @@ class Navbar extends Component{
             <nav className="navbar navbar-inverse">
                     <div className="container container-fluid">
                         <div className="row">
-                            <div className="col-xs-3 col-sm-3 col-md-3 navbar-header">
-                                <img className="logoPic" src={require('./logo_transparent.png')} alt=""/>
-                            </div>
+                            <Link to="/home">
+                                <div className="col-xs-3 col-sm-3 col-md-3 navbar-header">
+                                    <img className="logoPic" src={require('../../dist/logo_transparent.png')} alt=""/>
+                                </div>              
+                            </Link>
                             <form className="col-xs-3 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>
                                 <div className="form-group">
                                     <input type="search " value={searchQuery} name="userInput" className="form-control searchBox" placeholder="Search..." onChange={(event) => this.handleInput(event)}/>
