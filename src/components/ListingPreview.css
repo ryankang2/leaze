@@ -28,8 +28,12 @@
     height: 100%;
     position:relative;
     cursor: pointer;
-
 }
+
+.leaseImage:hover, .leaseName:hover{
+    text-decoration: underline;
+}
+
 
 .infoBox{
     width: 102%;
@@ -257,6 +261,7 @@
     font-size: 36px;
     margin-right: 2%;
 }
+
 
 
 

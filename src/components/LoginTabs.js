@@ -4,8 +4,6 @@ import LoginBox from "./LoginBox.js";
 import RegisterBox from "./RegisterBox.js";
 import {Tabs, Tab} from "react-materialize";
 
-// import { fail } from "assert";
-
 export default class LoginTabs extends Component {
 
     render () {

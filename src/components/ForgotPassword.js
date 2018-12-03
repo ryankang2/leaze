@@ -136,7 +136,7 @@ export default class ForgotPassword extends Component {
     }
     
     render() {
-        return <div className="modalBox">
+        return <div className="fpmodalBox">
             <div className="modal" id="forgotModal1">
                 <h3>Forgot Password</h3>
                 <div>Enter your email address to receive 4-digit confirmation code</div>
@@ -205,6 +205,7 @@ export default class ForgotPassword extends Component {
                            name="code" onChange={this.handleChange}>
                         <Icon> check_circle_outline</Icon>
                     </Input>
+
                 </div>
                 <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
                 <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
