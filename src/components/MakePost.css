@@ -35,7 +35,7 @@
 }
 
 .input-field label:not(.label-icon).active {
-    transform: translateY(-80%) !important;
+    transform: translateY(-130%) !important;
 }
 
 .MPinput {
@@ -46,13 +46,10 @@
     margin-top: 20%;
 }
 
-.MPlabel {
-    margin-bottom: -20px;
-}
-
 #addNotes {
     line-height: 20px;
     width: 190%;
+    margin-top: 0px;
 }
 
 #submitPost {
@@ -60,10 +57,36 @@
     background-color: lightblue;
     color: black;
     position: absolute;
+    font-size: 20px;
+    height: 10%;
     bottom: 1%;
     left: 1%;
 }
 
 #picUpload {
     margin-top: 21%;
+}
+
+#roomType {
+    background-color: transparent;
+    margin-top: 0px;
+}
+
+#homeType {
+    background-color: transparent;
+}
+
+.col-sm-6 > * {
+    display: block;
+}
+
+#mytestingniqqa {
+    display: block;
+}
+
+#cancelPost {
+    font-size: 20px;
+    position: absolute;
+    right: 2%;
+    bottom: 2%;
 }

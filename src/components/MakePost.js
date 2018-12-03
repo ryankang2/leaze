@@ -32,6 +32,10 @@ export default class MakePost extends Component {
         console.log(this.state);
     }
 
+    cancelPost(e) {
+        document.getElementById("makePostTitle").parentElement.style.display = "none";
+    }
+
     render () {
         return <div className="postModal">
             <div className="modal">
@@ -39,7 +43,7 @@ export default class MakePost extends Component {
                 <div id="postFormInputs">
                     <form onSubmit={this.submitPost} className="PostForms">
                         <Row className="col-sm-6">
-                            <Input id="roomType" type ='select' label="Room Type" name="roomType" defaultValue = {this.state.roomType} onChange={this.handleChange.bind(this)}>
+                            <Input className="browser-default" id="roomType" type ='select' label="Room Type" name="roomType" defaultValue = {this.state.roomType} onChange={this.handleChange.bind(this)}>
                                 <option value="single">Single</option>
                                 <option value="double">Double</option>
                                 <option value="triple">Triple</option>
@@ -51,13 +55,13 @@ export default class MakePost extends Component {
                                 <input id="MPaddress" className="MPinput" placeholder="Enter the address" name="address" value={this.state.address} onChange={this.handleChange.bind(this)} />
                             </div>
 
-                            <div class=".input-field">
-                                <label className="MPlabel" htmlFor="addNotes">Additional Notes</label>
+                            <div class=".input-field" >
+                                <label className="MPlabel" htmlFor="addNotes" id="mytestingniqqa">Additional Notes</label>
                                 <Input type="textarea" id="addNotes" className="MPinput" placeholder="Write any important details here" name="addNotes" value={this.state.addNotes} onChange={this.handleChange.bind(this)}></Input>
                             </div>
                         </Row>
                         <Row className="col-sm-6">
-                            <Input id="homeType" type ='select' label="Home Type" name="homeType" defaultValue = {this.state.homeType} onChange={this.handleChange.bind(this)}>
+                            <Input id="homeType" className="browser-default" id="homeType" type ='select' label="Home Type" name="homeType" defaultValue = {this.state.homeType} onChange={this.handleChange.bind(this)}>
                                 <option value="house">House</option>
                                 <option value="apartment">Apartment</option>
                             </Input>
@@ -67,11 +71,12 @@ export default class MakePost extends Component {
                                 <input id="MPprice" className="MPinput" placeholder="Enter the monthly price" name="price" value={this.state.price} onChange={this.handleChange.bind(this)} />
                             </div>
                             <div id="picUpload">
-                                <Input  type="file" label="File" s={12} />
+                                <Input  type="file" label="Pictures" s={12} />
                             </div>
                         </Row>
-                        <button type="Submit" id="submitPost">Post Listing</button>
+                        <button type="Submit" id="submitPost">Post Listing</button>      
                     </form>
+                    <button id="cancelPost" onClick={this.cancelPost}>Cancel</button>
                 </div>
             </div>
         </div>
