@@ -20,7 +20,7 @@ class ResultsContent extends Component{
         }        
         const params = formatPostData(userID);
         const response = await axios.post("http://localhost:8000/api/queries/get_default_listings.php", params);
-        console.log("RESPONSE: ", response);
+        this.getFilterResponseData(response);
     }
 
     getFilterResponseData(responseObject, searchParams){
