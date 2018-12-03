@@ -19,7 +19,7 @@ class ResultsContent extends Component{
             user_id: sessionStorage.getItem("user_id"),
         }        
         const params = formatPostData(userID);
-        const response = await axios.post("http://localhost:8000/api/get_default_listings.php", params);
+        const response = await axios.post("http://localhost:8000/api/queries/get_default_listings.php", params);
         console.log("RESPONSE: ", response);
     }
 
