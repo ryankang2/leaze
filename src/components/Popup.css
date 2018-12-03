@@ -73,12 +73,11 @@
 }
 .inputs {
   margin: 0vh;
-  max-height: 20px;
-  margin-bottom: 5vh;
+  max-height: 15px;
 }
 .inputsB {
   margin:0;
-  height: 75px;
+  height: 60px;
   width: 350px;
   margin-top:3% !important;
 }

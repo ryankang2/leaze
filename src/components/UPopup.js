@@ -18,7 +18,7 @@ class UPopup extends React.Component {
         year:'',
         bio:'',
         picture: null,
-        imageURL:'',
+        imageURL:require('./default_profile_pic.jpg'),
     };
   }
   async componentDidMount(){
