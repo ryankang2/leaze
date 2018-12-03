@@ -116,7 +116,7 @@ class ListingPreview extends Component{
                                 onClick={this.toggleHeart.bind(this)} value={listing_id}> </i>
 
                             <div className = "infoBox">
-                                <div className="leaseName" data-toggle="modal" data-target="#myModal" >
+                                <div className="leaseName" data-toggle="modal" onClick={this.openModal.bind(this)} >
                                     {title}
                                 </div>
                                 
