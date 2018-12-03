@@ -59,7 +59,7 @@ class Navbar extends Component{
                         <div className="row">
                             <Link to="/home">
                                 <div className="col-xs-3 col-sm-3 col-md-3 navbar-header">
-                                    <img className="logoPic" src={require('./logo_transparent.png')} alt=""/>
+                                    <img className="logoPic" src={require('../../dist/logo_transparent.png')} alt=""/>
                                 </div>              
                             </Link>
                             <form className="col-xs-3 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>
