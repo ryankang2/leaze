@@ -5,11 +5,9 @@
     include "./queries/matching_algorithm_func.php";
 
     // expecting input of the user id of the main user
-    //$mainUser = $_POST["mainUser"];
-    $mainUser = 13; //test, delete after
+    $mainUser = $_POST["mainUser"];
     // expecting input of an array of user ids of the other users to compare main user to
-    //$otherUsers = $_POST["otherUsers"];
-    $otherUsers = array(14); //test, delete after
+    $otherUsers = $_POST["otherUsers"];
 
     $output = [
         "mainUser" => $mainUser
