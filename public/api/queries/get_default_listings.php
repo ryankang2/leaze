@@ -38,6 +38,12 @@
             }
         } 
     }
+    foreach($filters as $key => $value) {
+        echo "key:";
+        print($key);
+        echo " value: ";
+        print($value);
+    }
 
     // build the listings query based on the filters the user has set
     $getListings = "SELECT * FROM `listings` WHERE `archived`=0 AND ";
