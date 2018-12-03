@@ -3,6 +3,7 @@
     padding: 3.33vh 0 3.33vh 0;
     position: fixed;
     height: 80vh;
+    background-color: rgb(182, 168, 168);
 }
 
 #profileRow {
@@ -88,12 +89,13 @@ hr {
 
 #userName {
     font-size: 2em;
-    margin: 8vh 0 0 1vw;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #userInfo {
     font-size: 1.25em;
-    margin: 1vh 0 0 1vw;
+    margin: 0%;
 }
 
 #biography {
@@ -116,15 +118,15 @@ hr {
     text-align: center;
 }
 
-.ratingButton {
-    display: block;
-    width: 7vw;
-    height: 5vh;
-    margin: 1vh auto;
-    background: #dba8a8;
-    border: 1px solid black;
-    font-size: 10px;
+#buttonU{
+    margin-left: 2.5vw;
 }
+
+#buttonP{
+    margin-top:1vh;
+    margin-left:1vw;
+}
+
 
 #progressArea {
     border: 1px solid darkgoldenrod;

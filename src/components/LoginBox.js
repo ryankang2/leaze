@@ -1,5 +1,8 @@
 import React, {Component} from "react";
-import "./LoginBox.css";
+import {formatPostData} from "../helpers/formatPostData";
+import axios from "axios";
+import { Link, Router, RouterContext, browserHistory, hashHistory } from 'react-router';
+import {Input, Row, Icon} from "react-materialize";
 
 export default class LoginBox extends Component {
 
@@ -8,11 +11,17 @@ export default class LoginBox extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            active: false,
+            classEmail: "valid",
+            classPassword: "valid",
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    toggle(){
+        this.setState({active: true});
     }
 
     handleChange(e) {
@@ -25,12 +34,44 @@ export default class LoginBox extends Component {
         });
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
-        
+        this.toggle();
         if(this.infoChecks(this.state.email, this.state.password) === true) {
-            console.log('The form was submitted with the following data:');
-            console.log(this.state);
+            const params = formatPostData(this.state);
+            const response = await axios.post("http://localhost:8000/api/queries/sign_in.php", params);
+            console.log(response.data);  
+            this.handleResponse(response.data);     
+        }
+    }
+
+    handleResponse(data) {
+        const {history} = this.props;
+        if(data.success === false) {
+            if(data.correctUser === true) {
+                console.log("Incorrect password. Please try again or click 'Forgot Password'");
+                document.getElementById("wrongInputLogin").className = "FormFieldsError";
+                document.getElementById("wrongInputLogin").innerText = "Incorrect password. Please try again or click 'Forgot Password'.";
+                this.setState({classPassword:"invalid"});
+                this.setState({classEmail:"valid"})
+            }
+
+            else {
+                console.log("User not found. Please sign in with a different account or register before signing in");
+                document.getElementById("wrongInputLogin").className = "FormFieldsError";
+                document.getElementById("wrongInputLogin").innerText = "Email Address not found.";
+                this.setState({classEmail:"invalid"});
+            }
+        }
+
+        else {
+            console.log("Login successful. User will be redirected to the explore page");
+            // document.getElementById("wrongInputLogin").className="hidden";
+            this.setState({classPassword:"valid"});
+            this.setState({classPassword:"valid"});
+            sessionStorage.setItem("user_id", data.id);
+            browserHistory.push("/home");
+            window.location.reload();
         }
     }
 
@@ -39,26 +80,34 @@ export default class LoginBox extends Component {
     } 
 
     forgotPassword(e) {
-        console.log("forgot password");
         let modal = document.getElementById("forgotModal1");
         modal.style.display = "block"
     }
 
     render() {
-        return <div class="tabcontent" id="Login">
-            <h3>Log in</h3>
+        return <div className="tabcontent" id="Login">
             <div className="logContainer" id="logContainer">
                 <form onSubmit={this.handleSubmit} className="FormFields">
+                    <h4>Sign in to access your LEaZe account</h4>
                     <div className="FormField">
-                        <label className="FormField__Label" htmlFor="loginEmail">E-Mail Address</label>
-                        <input type="email" id="loginEmail" className="FormField__Input" placeholder="Enter a valid .edu email" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <Row>
+                            <Input s={8} label="Email" type="email" id="loginEmail" className={this.state.active ? this.state.classEmail : "FormField__Input"} 
+                                name="email" value={this.state.email} onChange={this.handleChange}> 
+                                <Icon>account_circle</Icon> 
+                            </Input>
+                        </Row>
                     </div>
 
                     <div className="FormField">
-                        <label className="FormField__Label" htmlFor="loginPassword">Password</label>
-                        <input type="password" id="loginPassword" className="FormField__Input" placeholder="6 characters minimum" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <Row>
+                            <Input s={8} label="Password" type="password" id="loginPassword" className={this.state.active ? this.state.classPassword: "FormField__Input"} 
+                                name="password" value={this.state.password} onChange={this.handleChange}>
+                                <Icon>lock</Icon>
+                            </Input>
+                        </Row>
                     </div>
-                    <button type="Submit" id="loginButton" className="btnSubmit">Log in</button>
+                    <p id="wrongInputLogin"></p>
+                    <button type="Submit" id="loginButton" className="btn btn-primary">Log in</button>
                 </form>
                 <button onClick={this.forgotPassword} id="forgotPassword">Forgot Password</button>
             </div>

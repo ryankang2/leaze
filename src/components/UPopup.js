@@ -1,56 +1,131 @@
 import React from "react";
 import "./Popup.css";
+import {Input,Button} from "react-materialize"
+import {formatPostData} from "../helpers/formatPostData";
+import axios from "axios";
 
 class UPopup extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        name:'',
+        user_id:3, 
+        firstname:'',
+        lastname:'',
         age:'',
+        email: '',
         school:'',
         major:'',
         year:'',
         bio:'',
         picture: null,
+        imageURL:'',
     };
+  }
+  async componentDidMount(){
+    console.log("profileismounted")
+    const params = formatPostData(this.state);
+    const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
+    console.log(response.data);
+    $("#firstName").text(response.data.firstname)
+    this.setState({firstname: response.data.firstname})
+    $("#lastName").text(response.data.lastname)
+    this.setState({lastname: response.data.lastname})
+    $("#years").text(response.data.age)
+    this.setState({age: response.data.age})
+    $("#mail").text(response.data.email)
+    this.setState({email: response.data.email})
+    $("#uni").text(response.data.school)
+    this.setState({school: response.data.school})
+    $("#studies").text(response.data.major)
+    this.setState({major: response.data.major})
+    $("#classYear").text(response.data.year)
+    this.setState({year: response.data.year})
+    $("#descrip").text(response.data.bio)
+    this.setState({bio: response.data.bio})
+  }
+  handleChange(event) {
+    const { name, value } = event.currentTarget;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleCheckBox(event) {
+    const { name, checked } = event.currentTarget;
+    if (checked !== false) {
+      this.setState({
+        [name]: true
+      })
+    } else {
+      this.setState({
+        [name]: false
+      })
+    }
+  }
+  async submitProf(event){
+    const params = formatPostData(this.state);
+    const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
   }
   fileChangedHandler=(event)=>{
     this.setState({picture:event.target.files[0]})
+    let reader = new FileReader();
+    let file=event.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        imageURL: reader.result
+      });
+    }
+    reader.readAsDataURL(file)
   }
   uploadHandler=()=> {
     console.log(this.state.picture)
   }
     render() {
       return (
-        <div class='popup'>
-          <div class='popup_inner'>
-            <h1>Update Your Profile</h1>
-              <div class="col-sm-3" id="info">
+        <div className='popup'>
+          <div className='popup_inner'>
+            <h1 className="title">Update Your Profile</h1>
+              <div className="col-sm-6">
                 <label>First Name: </label>
-                <input class="inputs" value = {this.state.firstname}
-                  onChange={e=> this.setState({firstname:e.target.value})}/>
+                <input id="firstName" className="inputs" name="firstname" defaultValue={this.state.firstname}
+                  onChange={this.handleChange.bind(this)}/>
                 <label>Last Name: </label>
-                <input class="inputs" value = {this.state.lastname}
-                  onChange={e=> this.setState({lastname:e.target.value})}/>
+                <input id="lastName" className="inputs" name="lastname" defaultValue = {this.state.lastname}
+                  onChange={this.handleChange.bind(this)}/>
                 <label>Age: </label>
-                <input class="inputs" value = {this.state.age}
-                  onChange={e=> this.setState({age:e.target.value})}/>
+                <input id="years" className="inputs" name="age" defaultValue = {this.state.age}
+                  onChange={this.handleChange.bind(this)}/>
+                <label>Email (must end with ".edu"): </label>
+                <input id="mail" className="inputs" name="email" defaultValue = {this.state.email}
+                  onChange={this.handleChange.bind(this)}/>
+                <label>School: </label>
+                <input id="uni" className="inputs" name="school" defaultValue = {this.state.school}
+                  onChange={this.handleChange.bind(this)}/>
                 <label>Major: </label>
-                <input class="inputs" value = {this.state.major}
-                  onChange={e=> this.setState({major:e.target.value})}/>
+                <input id="studies" className="inputs" name="major" defaultValue = {this.state.major}
+                  onChange={this.handleChange.bind(this)}/>
+                <label>Year: </label>
+                <Input id='classYear' className="inputs" type='select' name='year' defaultValue = {this.state.year}
+                  onChange={this.handleChange.bind(this)}>
+                  <option value='1'>First</option>
+                  <option value='2'>Second</option>
+                  <option value='3'>Third</option>
+                  <option value='4'>Fourth</option>
+                  <option value='5'>Other</option>
+                </Input>
                 <label>Bio: </label>
-                <input class="inputsB" value = {this.state.bio}
-                  onChange={e=> this.setState({bio:e.target.value})}/>
+                <input id="descrip" className="inputsB" name="bio" defaultValue = {this.state.bio}
+                  onChange={this.handleChange.bind(this)}/>
                 <button onClick=
                   {this.props.closeUPopup} className="btn btn-primary">Cancel</button>
               </div>
-              <img id="displayPic" src={require("./profile.jpg")} />
-              <div class="col-sm-6" id="pic">
+              <img id="displayPic" src={this.state.imageURL} />
+              <div className="col-sm-6" id="pic">
                 <label>Profile Picture: </label>
-                <input type="file" onChange={this.fileChangedHandler}></input>
-                <button onClick={this.uploadHandler}>Upload</button>
+                <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler.bind(this)}/>
+                <Button id="uploadButton" onClick={this.uploadHandler}>Upload</Button>
                 <button onClick=
-                  {this.props.closeUPopup} className="btn btn-primary">Save Updates</button>
+                  {this.submitProf.bind(this)} id="button4" className="btn btn-primary">Save Updates</button>
               </div>    
           </div>
         </div>

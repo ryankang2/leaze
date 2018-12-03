@@ -3,10 +3,10 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
     $output = [
-        "success" => false,
+        "success" => false
     ];
-    $first_name = $_POST["first_name"];
-    $last_name = $_POST["last_name"];
+    $first_name = $_POST["fname"];
+    $last_name = $_POST["lname"];
     $email = $_POST["email"];
     $password = hash("sha512", $_POST["password"]);
     $full_name = $first_name . ' ' . $last_name;
@@ -24,6 +24,7 @@
     }
 
     mysqli_close($conn);
-    print_r(json_encode($output);
+
+    print_r(json_encode($output));
 
 ?>

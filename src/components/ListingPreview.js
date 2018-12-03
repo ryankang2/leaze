@@ -1,5 +1,12 @@
 import React, {Component} from "react";
 import "./ListingPreview.css"
+import Profile from "./Profile";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from "axios";
+import {formatPostData} from "../helpers/formatPostData";
+import ListingModal from "./ListingModal";
+
+
 
 class ListingPreview extends Component{
     constructor(props){
@@ -12,171 +19,122 @@ class ListingPreview extends Component{
             distance: "",
             dateDiff: "",
             postTitle: "",
-            favorited: false,
+            favorite: false,
         }
     }
 
-    enlargePicture(){
-        console.log("PICTURE CLICKED");
-    }
 
-    goToProfile(event){
-        console.log(event.target.innerText);
-        var userName = event.target.innerText;
-
-        console.log("GO TO PROFILE");
+    toggleHeart(){
+        this.setState({favorite: !this.state.favorite})
+        // x.classList.toggle("fa fa-heart");
     }
 
     getDiffPostDate(currentDay, currentMonth, postedDay, postedMonth){
         if(currentMonth === postedMonth){
             let dayDifference = currentDay - postedDay;
-            return `${dayDifference} Days Ago` 
+            return `${dayDifference}d ago`
         } else {
           let daysAfterMonthChange =  currentDay - 0;
           let daysBeforeMonthChange = 30 - postedDay;
           if(daysBeforeMonthChange == '-1'){
               daysBeforeMonthChange = 1;
           }
-          return `${daysAfterMonthChange+daysBeforeMonthChange} Days Ago`
+          // return `${daysAfterMonthChange+daysBeforeMonthChange}d ago`
         }
     }
 
+    async handleMatchPercentage(user_id) {
+        const userIDs = {
+            mainUser: sessionStorage.getItem("user_id"),
+            other: user_id,
+        }
+        const params = formatPostData(userIDs);
+        const response = await axios.post("http://localhost:8000/api/matching_algorithm.php", params);
+        var str = "Match: " + response.data.result + "%";
+        $(`.match-${this.props.information.listing_id}`).text(str);
+        $(`.match-${this.props.information.listing_id}`).css({
+            "grid-column-start":"2",
+            "grid-column-end":"5",
+            "grid-row-start":"5",
+            "font-size": "12px",
+            "text-align": "left",
+            "margin-top": "-10%",
+         });
+
+        if(response.data.result >= 70) {
+            $(`.match-${this.props.information.listing_id}`).css({
+                "color": "green"
+            });
+        }
+
+    }
+
+    openModal(){
+        $(`.leaseImage-${this.props.information.listing_id}`).css("display", "block");
+    }
+
+    closeModal(){
+        // $(`.leaseImage-${this.props.information.listing_id}`).css("display", "none");
+        $(".modal-backdrop").remove();
+        $(".show").remove();
+        $(".in").remove();
+    }
+
+
+
     render(){
-        console.log(this.props.information);
-        const {title, dist_to_campus, date_posted} = this.props.information;
-        const {full_name} = this.props.information.user;
+        // console.log(this.props.information);
+        const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
+        const {full_name,rating,favorite,user_id} = this.props.information.user;
         var todayDate = new Date();
         var separatedDate = date_posted.split("-");
         var day = todayDate.getDate();
         var month = todayDate.getMonth() + 1;
         var listing_day = parseInt(separatedDate[2]);
         var listing_month = parseInt(separatedDate[1]);
+        var linkQuery = "/home/profile/" + this.props.information.user.user_id;
+        // console.log("Response: ", this.handleMatchPercentage(user_id) );
+        var matchPercentage = this.handleMatchPercentage(user_id);
+        //changed data-target="#myModal"    {`modal-${this.props.pullId}`}
 
         return (
-            // <div className="list">
-            //     <div className="row">
+                <div>
                     <div className="col-sm-4 singleListing">
                         <div className="imageBox">
-                            <img className="leaseImage" onClick={ this.enlargePicture} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
-                            <i className="fa fa-star-o favorite"></i>
-                            <div className="leaseName">
-                                {title}
-                            </div>
+                            <img className="leaseImage" data-toggle="modal" onClick={this.openModal.bind(this)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                            {/*<i className="fa fa-star-o favorite"></i>*/}
+                            {/*{this.state.favorite &&  <i className="fa fa-heart favorite_fill"> </i>}*/}
+                            <i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} onClick={this.toggleHeart.bind(this)}> </i>
+
                             <div className = "infoBox">
-                                <img className="userPicture" onClick={(event) => this.goToProfile(event)}
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
-                                <div className="userName" onClick={(event) => this.goToProfile(event)}>{full_name}</div>
-                                <div className="distance"> {dist_to_campus} mi</div>
-                                <div className="userRating">
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star-o"></i>
-                                <i className="fa fa-star-o"></i>
+                                <div className="leaseName" data-toggle="modal" onClick={this.openModal.bind(this)} >
+                                    {title}
                                 </div>
-                                <div className="dateDiff">{this.getDiffPostDate(day, month, listing_day, listing_month)}</div>
+                                
+                                <Link to = {linkQuery}>
+                                    <img className="userPicture"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"
+                                    onClick={this.closeModal.bind(this)}/>
+                                </Link>
+
+                                <Link to = {linkQuery} information={this.props.information}>
+                                    <div className="userName" onClick={this.closeModal.bind(this)}>{full_name}</div>
+                                </Link>
+
+                                <div className={`match-${this.props.information.listing_id}`}></div>
+
+                                {/*</Link>*/}
+                                <div className="address"> {address}</div>
+                                <div className="price"> ${price}/month</div>
+
+                                {/*<div className="dateDiff">{this.getDiffPostDate(day, month, listing_day, listing_month)}</div>*/}
                             </div>
                         </div>
-                    </div>
-            //     </div>
-            // </div>
-            // <div class="list">
-            //     <div className="row">
+                    </div> 
+                    <ListingModal className={`leaseImage-${this.props.information.listing_id}`} information={this.props.information}>
+                    </ListingModal>
 
-            //         <div className="col-sm-4 singleListing">
-            //             <div className = "imageBox">
-            //                 <img className="leaseImage" onClick={ this.enlargePicture} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
-            //                 <i className="fa fa-star-o favorite"></i>
-            //                 <div className= "leaseName">HAHAH HI TITLE</div>
-            //             </div>
-            //             <div className = "infoBox">
-            //                 <img className="userPicture" onClick={(event) => this.goToProfile(event)}
-            //                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
-            //                 <div className="userName" onClick={(event) => this.goToProfile(event)}> ARIBERRy:P</div>
-            //                 <div className="distance"> 0.69MI</div>
-            //                 <div className="userRating">
-            //                    <i className="fa fa-star"></i>
-            //                    <i className="fa fa-star"></i>
-            //                    <i className="fa fa-star"></i>
-            //                    <i className="fa fa-star-o"></i>
-            //                    <i className="fa fa-star-o"></i>
-            //                 </div>
-            //                 <div className="dateDiff"> 1 Day Ag0</div>
-            //             </div>
-            //         </div>
-            //         <div className="col-sm-4 singleListing">
-            //             <div className = "imageBox">
-            //                 <img className="leaseImage" src = "https://www.rd.com/wp-content/uploads/2018/02/30_Adorable-Puppy-Pictures-that-Will-Make-You-Melt_124167640_YamabikaY-760x506.jpg"/>
-            //                 <i className="fa fa-star-o favorite"></i>
-            //                 <div className= "leaseName">HAHAH HI TITLE</div>
-
-            //             </div>
-            //             <div className = "infoBox">
-            //                 <img className="userPicture"
-            //                      src="https://www.rd.com/wp-content/uploads/2018/02/30_Adorable-Puppy-Pictures-that-Will-Make-You-Melt_124167640_YamabikaY-760x506.jpg"/>
-            //                 <div className="userName"> ARIBERRy:P</div>
-            //                 <div className="distance"> 0.69MI</div>
-            //                 <div className="userRating">
-            //                     <i className="fa fa-star"></i>
-            //                     <i className="fa fa-star"></i>
-            //                     <i className="fa fa-star"></i>
-            //                     <i className="fa fa-star-o"></i>
-            //                     <i className="fa fa-star-o"></i>
-
-            //                 </div>
-            //                 <div className="dateDiff"> 1 Day Ag0</div>
-
-            //             </div>
-
-            //         </div>
-
-            //         <div className="col-sm-4 singleListing">
-            //             <div className = "imageBox">
-            //                 <img className="leaseImage" src = "http://images6.fanpop.com/image/photos/41500000/adorable-puppies-cute-puppies-41538743-590-393.jpg"/>
-            //                 <i className="fa fa-star-o favorite"></i>
-            //                 <div className= "leaseName">HAHAH HI TITLE</div>
-            //             </div>
-            //             <div className = "infoBox">
-            //                 <img className="userPicture"
-            //                      src="http://images6.fanpop.com/image/photos/41500000/adorable-puppies-cute-puppies-41538743-590-393.jpg"/>
-            //                 <div className="userName"> ARIBERRy:P</div>
-            //                 <div className="distance"> 0.69MI</div>
-            //                 <div className="userRating">
-            //                     <i className="fa fa-star"></i>
-            //                     <i className="fa fa-star"></i>
-            //                     <i className="fa fa-star"></i>
-            //                     <i className="fa fa-star-o"></i>
-            //                     <i className="fa fa-star-o"></i>
-            //                 </div>
-            //                 <div className="dateDiff"> 1 Day Ag0</div>
-            //             </div>
-            //         </div>
-            //     </div>
-            //     <div className="row">
-            //         <div className="col-sm-4 singleListing">
-            //             <div className = "imageBox">
-            //                 <img className="leaseImage" src = "https://2static.fjcdn.com/large/pictures/c3/1e/c31e9d_5929666.jpg"/>
-            //                 <i className="fa fa-star-o favorite"></i>
-            //                 <div className= "leaseName">HAHAH HI TITLE</div>
-            //             </div>
-            //             <div className = "infoBox">
-            //                 <img className="userPicture"
-            //                      src="https://2static.fjcdn.com/large/pictures/c3/1e/c31e9d_5929666.jpg"/>
-            //                 <div className="userName"> ARIBERRy:P</div>
-            //                 <div className="distance"> 0.69MI</div>
-            //                 <div className="userRating">
-            //                     <i className="fa fa-star"></i>
-            //                     <i className="fa fa-star"></i>
-            //                     <i className="fa fa-star"></i>
-            //                     <i className="fa fa-star-o"></i>
-            //                     <i className="fa fa-star-o"></i>
-
-            //                 </div>
-            //                 <div className="dateDiff"> 1 Day Ag0</div>
-            //             </div>
-            //         </div>
-            //     </div>
-            // </div>
+                </div>
         );
     }
 

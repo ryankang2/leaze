@@ -5,7 +5,8 @@
 
     //expecting input of a user id
     //$user_id = $_POST["user_id"];
-    $user_id = 3; //test, delete after
+    // $user_id = 3; 
+    // //test, delete after
 
     $output = [
         "noListings" => false
@@ -55,32 +56,32 @@
         $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
     }
 
-    if ($filters["pet"] != "") {
-        $getListings .= "`pets`==" . $filters["pet"] . " AND ";
+    if ($filters["pet"] == "1") {
+        $getListings .= "`pet`=1 AND ";
     }
 
-    if ($filters["laundry"] != "") {
-        $getListings .= "`in_unit_laundry`==" . $filters["laundry"] . " AND ";
+    if ($filters["laundry"] == "1") {
+        $getListings .= "`in_unit_laundry`=1 AND ";
     }
 
-    if ($filters["furnished"] != "") {
-        $getListings .= "`furnished`==" . $filters["furnished"] . " AND ";
+    if ($filters["furnished"] == "1") {
+        $getListings .= "`furnished`=1 AND ";
     }
 
-    if ($filters["gym"] != "") {
-        $getListings .= "`gym`==" . $filters["gym"] . " AND ";
+    if ($filters["gym"] == "1") {
+        $getListings .= "`gym`=1 AND ";
     }
 
-    if ($filters["pool"] != "") {
-        $getListings .= "`pool`==" . $filters["pool"] . " AND ";
+    if ($filters["pool"] == "1") {
+        $getListings .= "`pool`=1 AND ";
     }
 
-    if ($filters["parking"] != "") {
-        $getListings .= "`parking`==" . $filters["parking"] . " AND ";
+    if ($filters["parking"] == "1") {
+        $getListings .= "`parking`=1 AND " ;
     }
 
     if (strlen($filters["home_type"]) == 1) {
-        $getListings .= "`home_type`==" . $filters["home_type"] . " AND ";
+        $getListings .= "`home_type`=" . $filters["home_type"] . " AND ";
     }
     elseif (strlen($filters["home_type"]) == 2) {
         $getListings .= "`home_type` IN ('h', 'a') AND ";
@@ -90,7 +91,7 @@
         $getListings .= "`room_type` IN (";
         $arr = str_split($filters["room_type"]);
         for ($i=0; $i<count($arr); $i++){
-            $getListings .= "'" . $arr[i] . "',";
+            $getListings .= "'" . $arr[$i] . "',";
         }
         //remove last comma and close parantheses
         $getListings = substr($getListings, 0, -1);

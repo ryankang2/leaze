@@ -8,25 +8,25 @@
 
     // build the home string to match how it is stored internally in database
     $home = "";
-    if ($_POST["roomHouse"]) {
+    if ($_POST["roomHouse"] == "true") {
         $home .= "h";
     }
-    if ($_POST["roomApart"]) {
+    if ($_POST["roomApart"] == "true") {
         $home .= "a";
     }
 
     // build the room string to match how it is stored internally in database
     $room = "";
-    if ($_POST["roomSingle"]) {
+    if ($_POST["roomSingle"] == "true") {
         $room .= "s";
     }
-    if ($_POST["roomDouble"]) {
+    if ($_POST["roomDouble"] == "true") {
         $room .= "d";
     }
-    if ($_POST["roomTriple"]) {
+    if ($_POST["roomTriple"] == "true") {
         $room .= "t";
     }
-    if ($_POST["roomLiving"]) {
+    if ($_POST["roomLiving"] == "true") {
         $room .= "l";
     }
 
@@ -46,7 +46,11 @@
     ];
 
     foreach($filters as $key => $value) {
-        if ($value) {
+        if ($value != "false") {
+            // match the format that the database stores true booleans
+            if ($value == "true") {
+                $value = "1";
+            }
             $updateQuery = "UPDATE `filters` SET $key=$value WHERE `user_id`=$user_id";
             mysqli_query($conn, $updateQuery);
         }

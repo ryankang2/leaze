@@ -30,7 +30,7 @@ $options = array(
 );
 $mail->smtpConnect($options);
 $mail->From = 'leazehousing@gmail.com';  // sender's email address (shows in "From" field)
-$mail->FromName = 'LeazeHousing Security Code';   // sender's name (shows in "From" field)
+$mail->FromName = 'Welcome to LeazeHousing!';   // sender's name (shows in "From" field)
 $mail->addAddress($_POST['email'], 'First Recipient');  // Add a recipient
 //$mail->addAddress('ellen@example.com');                        // Name is optional
 $mail->addReplyTo($_POST["email"]);                          // Add a reply-to address
@@ -43,7 +43,7 @@ $mail->isHTML(true);                                  // Set email format to HTM
 
 $mail->Subject = "Here is the subject from LeazeHousing";
 $mail->Body    = "
-    Hey {$_POST["first_name"]}, <br>
+    Hey {$_POST["fname"]}, <br>
     Thanks for signing up for Leaze! With your Leaze account, you are able to: <br><br>
     -View student housing postings and chat with the leasers directly! <br><br>
     -Upload housing postings <br><br>

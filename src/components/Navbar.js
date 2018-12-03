@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./Navbar.css";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 class Navbar extends Component{
     constructor(props){
@@ -12,11 +13,30 @@ class Navbar extends Component{
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
+    componentDidMount(){
+        var userID = sessionStorage.getItem("user_id");
+        this.getUserName(userID);
+    }
+
     handleInput(event){
         const {value} = event.target;
         this.setState({
             searchQuery: value,
         })
+    }
+
+    async getUserName(userID){
+        const userObj = { 
+            id: userID,
+        };
+        const params = formatPostData(userObj);
+        const response = await axios.post("http://localhost:8000/api/queries/get_single_user.php", params);
+        console.log(response);
+        this.changeName(response.data.user);
+    }
+
+    changeName(user){
+        $(".welcome").text("Welcome, " + user[0].first_name + "!");
     }
 
     async handleFormSubmit(event){
@@ -37,19 +57,21 @@ class Navbar extends Component{
             <nav className="navbar navbar-inverse">
                     <div className="container container-fluid">
                         <div className="row">
-                            <div className="col-xs-1 col-sm-1 col-md-1 navbar-header">
-                                <img className="logoPic" src={require('./logo.png')} alt=""/>
-                            </div>
-                            <form className="col-xs-5 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>
+                            <Link to="/home">
+                                <div className="col-xs-3 col-sm-3 col-md-3 navbar-header">
+                                    <img className="logoPic" src={require('./logo_transparent.png')} alt=""/>
+                                </div>              
+                            </Link>
+                            <form className="col-xs-3 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>
                                 <div className="form-group">
-                                    <input type="text" value={searchQuery} name="userInput" className="form-control searchBox" placeholder="Search..." onChange={(event) => this.handleInput(event)}/>
+                                    <input type="search " value={searchQuery} name="userInput" className="form-control searchBox" placeholder="Search..." onChange={(event) => this.handleInput(event)}/>
+                                    <i className="searchIcon fa fa-search"></i>
                                 </div>
-                                <button type="submit" className="btn btn-default">
-                                    <i className="glyphicon glyphicon-search"></i>
-                                </button>
                             </form>
-                            <div className="col-xs- 2 col-sm-2 col-md-2 profileContainer">
-                                <div className="welcome">Welcome, USER</div>
+                            <div className="col-xs-2 col-sm-2 col-md-2 profileContainer">
+                                <div className="welcome"> 
+                                    <i className="fa fa-user-circle-o"></i>
+                                </div>
                                 <ul className="nav navbar-nav settingsContainer">
                                     <li><a href="#"><i className="glyphicon glyphicon-edit"></i></a></li>
                                     <li><a href="#"><i className="glyphicon glyphicon-envelope"></i></a></li>

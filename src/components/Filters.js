@@ -27,7 +27,6 @@ class Filters extends Component{
     constructor(props){
         super(props);
         this.state = initialState;
-
         this.resetFilters = this.resetFilters.bind(this);
         this.handleChangeFilter = this.handleChangeFilter.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
@@ -105,8 +104,8 @@ class Filters extends Component{
     handleChangeFilter(event) {
         const {name, value} = event.currentTarget;
         this.setState({
-            [name]:value
-        })
+           [name]:value
+       })
     }
 
     handleCheckBox(event) {
@@ -153,7 +152,7 @@ class Filters extends Component{
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
-                       <option value = "1000"> $1K+</option>
+                       <option value = "5000"> $1K+</option>
                    </Input>
                 </Row>
                 <Row>
