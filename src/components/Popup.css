@@ -55,7 +55,7 @@
   margin:0%;
 }
 #button4{ 
-  margin-top:53% !important;
+  margin-top:57% !important;
   margin-left:20%;
 }
 #displayPic {
@@ -77,9 +77,9 @@
   margin-bottom: 5vh;
 }
 .inputsB {
-  margin: 20vh;
-  max-height: 150px;
-  height:150px;
+  margin:0;
+  height: 75px;
+  width: 350px;
   margin-top:3% !important;
 }
 

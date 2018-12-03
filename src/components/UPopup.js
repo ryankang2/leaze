@@ -22,25 +22,20 @@ class UPopup extends React.Component {
     };
   }
   async componentDidMount(){
-    console.log("profileismounted")
-    const params = formatPostData(this.state);
+    const idObj ={
+      user_id: sessionStorage.getItem("user_id"),
+    }
+    this.setState({user_id: sessionStorage.getItem("user_id")})
+    const params = formatPostData(idObj);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
-    $("#firstName").text(response.data.firstname)
     this.setState({firstname: response.data.firstname})
-    $("#lastName").text(response.data.lastname)
     this.setState({lastname: response.data.lastname})
-    $("#years").text(response.data.age)
     this.setState({age: response.data.age})
-    $("#mail").text(response.data.email)
     this.setState({email: response.data.email})
-    $("#uni").text(response.data.school)
     this.setState({school: response.data.school})
-    $("#studies").text(response.data.major)
     this.setState({major: response.data.major})
-    $("#classYear").text(response.data.year)
     this.setState({year: response.data.year})
-    $("#descrip").text(response.data.bio)
     this.setState({bio: response.data.bio})
   }
   handleChange(event) {
@@ -65,6 +60,7 @@ class UPopup extends React.Component {
   async submitProf(event){
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
+    console.log(response.data)
   }
   fileChangedHandler=(event)=>{
     this.setState({picture:event.target.files[0]})
@@ -114,7 +110,7 @@ class UPopup extends React.Component {
                   <option value='5'>Other</option>
                 </Input>
                 <label>Bio: </label>
-                <input id="descrip" className="inputsB" name="bio" defaultValue = {this.state.bio}
+                <textarea id="descrip" rows='4' className="inputsB" name="bio" value = {this.state.bio}
                   onChange={this.handleChange.bind(this)}/>
                 <button onClick=
                   {this.props.closeUPopup} className="btn btn-primary">Cancel</button>

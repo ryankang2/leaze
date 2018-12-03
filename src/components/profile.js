@@ -27,14 +27,17 @@ export class Profile extends React.Component {
     };
   }
   async componentDidMount(){
-    var userID = sessionStorage.getItem("user_id");
-    this.setState({user_id:userID});
-    const params = formatPostData(this.state);
+    const idObj ={
+      user_id: sessionStorage.getItem("user_id"),
+    }
+    const params = formatPostData(idObj);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
-    $("#userName").text(response.data.firstname +' ' + response.data.lastname)
-    $("#userInfo").text(response.data.major + ', ' + response.data.year)
-    $("#biography").text(response.data.bio)
+    this.setState({firstname: response.data.firstname})
+    this.setState({lastname: response.data.lastname})
+    this.setState({major: response.data.major})
+    this.setState({year: response.data.year})
+    this.setState({bio: response.data.bio})
   }
 
   toggleUPopup(){
@@ -104,28 +107,28 @@ export class Profile extends React.Component {
               <div id={'starContainer'}>
                 <svg style={stylesProfile.gradient} aria-hidden="true" focusable={'false'}>
                   <linearGradient id="ratingGradient0">
-                    <stop offset={this.percentFill(0) + '%'} stop-color="black" />
-                    <stop offset={this.percentFill(0) + '%'} stop-color="#f7eddc" />
+                    <stop offset={this.percentFill(0) + '%'} stopColor="black" />
+                    <stop offset={this.percentFill(0) + '%'} stopColor="#f7eddc" />
                   </linearGradient>
                   <linearGradient id="ratingGradient1">
-                    <stop offset={this.percentFill(1) + '%'} stop-color="black" />
-                    <stop offset={this.percentFill(1) + '%'} stop-color="#f7eddc" />
+                    <stop offset={this.percentFill(1) + '%'} stopColor="black" />
+                    <stop offset={this.percentFill(1) + '%'} stopColor="#f7eddc" />
                   </linearGradient>
                   <linearGradient id="ratingGradient2">
-                    <stop offset={this.percentFill(2) + '%'} stop-color="black" />
-                    <stop offset={this.percentFill(2) + '%'} stop-color="#f7eddc" />
+                    <stop offset={this.percentFill(2) + '%'} stopColor="black" />
+                    <stop offset={this.percentFill(2) + '%'} stopColor="#f7eddc" />
                   </linearGradient>
                   <linearGradient id="ratingGradient3">
-                    <stop offset={this.percentFill(3) + '%'} stop-color="black" />
-                    <stop offset={this.percentFill(3) + '%'} stop-color="#f7eddc" />
+                    <stop offset={this.percentFill(3) + '%'} stopColor="black" />
+                    <stop offset={this.percentFill(3) + '%'} stopColor="#f7eddc" />
                   </linearGradient>
                   <linearGradient id="ratingGradient4">
-                    <stop offset={this.percentFill(4) + '%'} stop-color="black" />
-                    <stop offset={this.percentFill(4) + '%'} stop-color="#f7eddc" />
+                    <stop offset={this.percentFill(4) + '%'} stopColor="black" />
+                    <stop offset={this.percentFill(4) + '%'} stopColor="#f7eddc" />
                   </linearGradient>
                 </svg>
 
-                <svg viewBox={'0 0 25 25'} class="ratingStars">
+                <svg viewBox={'0 0 25 25'} className="ratingStars">
                   <polygon points={points} fill={'url(#ratingGradient0'} stroke={'black'}/>
                 </svg>
                 <svg viewBox={'0 0 25 25'} className="ratingStars">

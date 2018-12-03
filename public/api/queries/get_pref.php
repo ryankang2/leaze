@@ -14,9 +14,9 @@
         "study_noise_level" => 0,
         "sharing_belongings" => 0,
         "roommate_relationship" => 0,
-        "alcohol" => 0
-        "marijuana" => 0
-        "other" => 0
+        "alcohol" => 0,
+        "marijuana" => 0,
+        "other" => 0,
     ];
 
     //assume we can pass in the user id, and we output the information in output
