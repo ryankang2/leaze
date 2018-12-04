@@ -3,7 +3,7 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
 
-    //expecting input of a user id
+    // expecting input of a user id
     $user_id = $_POST["user_id"];
 
     $output = [
@@ -38,12 +38,6 @@
             }
         } 
     }
-    foreach($filters as $key => $value) {
-        echo "key:";
-        print($key);
-        echo " value: ";
-        print($value);
-    }
 
     // build the listings query based on the filters the user has set
     $getListings = "SELECT * FROM `listings` WHERE `archived`=0 AND ";
@@ -51,15 +45,15 @@
     if ($filters["dist_to_campus"] != "") {
         $getListings .= "`dist_to_campus`<=" . $filters["dist_to_campus"] . " AND ";
     }
-
+    
     if ($filters["price_low"] != "") {
         $getListings .= "`price`>=" . $filters["price_low"] . " AND ";
     }
-
+    
     if ($filters["price_high"] != "") {
         $getListings .= "`price`<=" . $filters["price_high"] . " AND ";
     }
-
+    
     if ($filters["pet"] == "1") {
         $getListings .= "`pet`=1 AND ";
     }
@@ -83,14 +77,14 @@
     if ($filters["parking"] == "1") {
         $getListings .= "`parking`=1 AND " ;
     }
-
+    
     if (strlen($filters["home_type"]) == 1) {
-        $getListings .= "`home_type`=" . $filters["home_type"] . " AND ";
+        $getListings .= "`home_type`='" . $filters["home_type"] . "' AND ";
     }
     elseif (strlen($filters["home_type"]) == 2) {
         $getListings .= "`home_type` IN ('h', 'a') AND ";
     }
-
+    
     if (strlen($filters["room_type"]) > 0) {
         $getListings .= "`room_type` IN (";
         $arr = str_split($filters["room_type"]);
@@ -129,7 +123,7 @@
         }
     }
     mysqli_close($conn);
-    
+
     // print final output array
     print_r(json_encode($output));
 ?>
