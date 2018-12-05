@@ -7,6 +7,7 @@ import LandingPage from "./LandingPage";
 import MessagingPage from "./MessagingPage";
 
 
+
 // export default class App 
 const App = () => (
             <div>
@@ -14,6 +15,10 @@ const App = () => (
                     <Route exact path="/" component={LandingPage}></Route>
                     <Route exact path="/home" component={ResultsPage}></Route>
                     <Route exact path="/home/profile/:number" component={Profile}></Route>
+                    {/*<Route exact path="/home/profile/other/:number" component={Profile}></Route>*/}
+
+                    <Route exact path="/home/profile/:number/messages" component={MessagingPage}></Route>
+
                 </Switch>
                 {/* <ResultsPage />  */}
                 {/* <LandingPage /> */}

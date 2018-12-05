@@ -3,6 +3,8 @@ import {Button, Icon, Input, Row} from "react-materialize";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import "./ForgotPassword.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 
 export default class ForgotPassword extends Component { 

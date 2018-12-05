@@ -5,8 +5,10 @@
 }
 
 .settingsContainer{
-    /* float: right; */
-}
+    display: block;
+    left: 3%;
+    float: right;
+    width: 180px;}
 
 .navbar{
     height: 110px;

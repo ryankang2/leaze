@@ -53,6 +53,9 @@ class Navbar extends Component{
 
     render(){
         const {searchQuery} = this.state;
+        var linkQuery = "/home/profile/" + sessionStorage.getItem("user_id");
+        var linkQueryMessages = linkQuery + "/messages";
+
         return (
             <nav className="navbar navbar-inverse">
                     <div className="container container-fluid">
@@ -68,16 +71,27 @@ class Navbar extends Component{
                                     <i className="searchIcon fa fa-search"></i>
                                 </div>
                             </form>
-                            <div className="col-xs-2 col-sm-2 col-md-2 profileContainer">
-                                <div className="welcome"> 
-                                    <i className="fa fa-user-circle-o"></i>
-                                </div>
-                                <ul className="nav navbar-nav settingsContainer">
+                            <ul className="col-xs-2 col-sm-2 col-md-2 profileContainer">
+                                <Link to = {linkQuery}>
+                                    <div className="welcome">
+                                        <i className="fa fa-user-circle-o"></i>
+                                    </div>
+                                </Link>
+
+                            </ul>
+                            <ul className="col-xs-2 col-sm-2 col-md-2 settingsContainer">
+                                <ul className="nav navbar-nav editContainer">
                                     <li><a href="#"><i className="glyphicon glyphicon-edit"></i></a></li>
-                                    <li><a href="#"><i className="glyphicon glyphicon-envelope"></i></a></li>
-                                    <li><a href="#"><i className="glyphicon glyphicon-bell"></i></a></li>
                                 </ul>
-                            </div>
+
+                                <Link to = {linkQueryMessages}>
+                                    <ul className="nav navbar-nav evelopeContainer">
+                                        <li><a href="#"><i className="glyphicon glyphicon-envelope"></i></a></li>
+                                    </ul>
+                                </Link>
+
+                                    {/*<li><a href="#"><i className="glyphicon glyphicon-bell"></i></a></li>*/}
+                            </ul>
                         </div>
                     </div>
                 </nav>
