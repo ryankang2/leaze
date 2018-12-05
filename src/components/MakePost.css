@@ -3,53 +3,32 @@
     border: none;
 }
 
-.postModal .modal {
+.postModal > .modal {
     border: 1px solid black;
     display: block;
-    width: 50%;
+    /* width: 60%;
     position: fixed;
     background-color: #f7eddc;
-    margin-left: 25%;
-    margin-top: 5%;
+    margin-left: 20%;
+    margin-top: 5%;*/
 }
 
 #makePostTitle {
     float: left;
-    margin-left: 5%;
-    margin-top: 5%;
+    margin-left: 3%;
+    margin-top: 3%;
     font-size: 25px;
-    color: black;
-    width: 100%;
+    color: rgb(219, 219, 219);
+    /* width: 100%; */
+    border: 1px red solid;
 }
 
-#postFormInputs {
-    margin-top: 15%;
-}
+/* #postFormInputs {
+    margin-top: 10%;
+} */
 
 .caret {
     border-color: transparent !important;
-}
-
-.select-wrapper input {
-    color: black !important;
-}
-
-.input-field label:not(.label-icon).active {
-    transform: translateY(-130%) !important;
-}
-
-.MPinput {
-    color: black;
-}
-
-.mpInputDiv {
-    margin-top: 20%;
-}
-
-#addNotes {
-    line-height: 20px;
-    width: 190%;
-    margin-top: 0px;
 }
 
 #submitPost {
@@ -60,33 +39,21 @@
     font-size: 20px;
     height: 10%;
     bottom: 1%;
-    left: 1%;
+    right: 1%;
 }
 
-#picUpload {
-    margin-top: 21%;
+.postContainer {
+    border: 1px solid green;
 }
 
-#roomType {
-    background-color: transparent;
-    margin-top: 0px;
+.infoBox {
+    border: 1px solid yellow;
 }
 
-#homeType {
-    background-color: transparent;
+.featureBox {
+    border: 1px solid blue;
 }
 
-.col-sm-6 > * {
-    display: block;
-}
-
-#mytestingniqqa {
-    display: block;
-}
-
-#cancelPost {
-    font-size: 20px;
-    position: absolute;
-    right: 2%;
-    bottom: 2%;
+.picBox {
+    border: 1px solid purple;
 }
