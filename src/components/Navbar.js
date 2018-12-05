@@ -3,6 +3,7 @@ import "./Navbar.css";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import MakePostModal from "./MakePost";
 
 class Navbar extends Component{
     constructor(props){
@@ -50,6 +51,10 @@ class Navbar extends Component{
         });
     }
 
+    openModal(){
+        $(".makePostModal").css("display", "block");
+    }
+
 
     render(){
         const {searchQuery} = this.state;
@@ -73,13 +78,15 @@ class Navbar extends Component{
                                     <i className="fa fa-user-circle-o"></i>
                                 </div>
                                 <ul className="nav navbar-nav settingsContainer">
-                                    <li><a href="#"><i className="glyphicon glyphicon-edit"></i></a></li>
+                                    <li onClick={this.openModal.bind(this)}><a href="#"><i className="glyphicon glyphicon-edit"></i></a></li>
                                     <li><a href="#"><i className="glyphicon glyphicon-envelope"></i></a></li>
-                                    <li><a href="#"><i className="glyphicon glyphicon-bell"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    <MakePostModal>
+
+                    </MakePostModal>
                 </nav>
         );
     }

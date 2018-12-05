@@ -44,15 +44,31 @@
 
 .postInfoBox {
     border: 1px solid yellow;
-    height: 400px;
+    /* height: 400px; */
 }
 
 .featureBox {
     border: 1px solid blue;
-    height: 400px;
+    /* height: 400px; */
 }
 
 .picBox {
     border: 1px solid purple;
     height: 300px;
 }
+
+.makePostContent{
+    /* height: 100vh; */
+    overflow-y: hidden;
+}
+
+.makeAPostBody{
+    overflow-y: auto;
+}
+
+.cancelBtn{
+    float: left !important;
+    color: white;
+    background-color: red !important;
+}
+
