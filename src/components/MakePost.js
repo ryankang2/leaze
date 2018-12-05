@@ -34,8 +34,6 @@ export default class MakePost extends Component {
 
         this.submitPost = this.submitPost.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
-        this.handleRoomType = this.handleRoomType.bind(this);
-        this.handleHomeType = this.handleHomeType.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -54,52 +52,14 @@ export default class MakePost extends Component {
         console.log(this.state);
     }
 
-    handleRoomType(event){
-        const {name, checked, value} = event.currentTarget;
-        var stateValue = this.state.room_type;
-        if(checked !== false){
-            this.setState({
-                room_type: stateValue + value,
-                [name]: true
-            })
-        }else{
-            var stringToArray = stateValue.split("");
-            var index = stringToArray.indexOf(value);
-            stringToArray.splice(index, 1);
-            var arrayToString = stringToArray.join("");
-            this.setState({
-                room_type: arrayToString,
-                [name]: false
-            })
-        }
-    }
 
-    handleHomeType(event){
-        const {name, value, checked} = event.currentTarget;
-        var stateValue = this.state.home_type;
-        if(checked){
-            this.setState({
-                [name]: true,
-                home_type: stateValue + value
-            })
-        }
-        else{
-            var stringToArray = stateValue.split("");
-            var index = stringToArray.indexOf(value);
-            stringToArray.splice(index, 1);
-            var arrayToString = stringToArray.join("");
-            this.setState({
-                home_type: arrayToString,
-                [name]: false
-            })
-        }
-    }
 
     handleChange(event){
         const {name, value} = event.currentTarget;
         this.setState({
             [name]: value
         })
+        console.log(this.state);
     }
 
 
@@ -144,15 +104,19 @@ export default class MakePost extends Component {
                                                 </Row>
                                                 <Row>
                                                     <h4>Room Type</h4>
-                                                    <Input name="single" checked={this.state.single} type="checkbox" value="s" label="Single" onChange={this.handleRoomType}/>
-                                                    <Input name="double" checked={this.state.double} type="checkbox" value="d" label="Double" onChange={this.handleRoomType}/>
-                                                    <Input name="triple" checked={this.state.triple} type="checkbox" value="t" label="Triple" onChange={this.handleRoomType}/>
-                                                    <Input name="living" checked={this.state.living} type="checkbox" value="l" label="Living" onChange={this.handleRoomType}/>
+                                                    <Input s={12} className="browser-default" name="room_type" type="select" onChange={this.handleChange}>
+                                                        <option value="s">Single</option>
+                                                        <option value="d">Double</option>
+                                                        <option value="t">Triple</option>
+                                                        <option value="l">Living</option>
+                                                    </Input>
                                                 </Row>
                                                 <Row>         
                                                     <h4>Home Type</h4>
-                                                    <Input name="apartment" checked={this.state.apartment} type="checkbox" value="a" label="Apartment" onChange={this.handleHomeType}/>
-                                                    <Input name="home" checked={this.state.home} type="checkbox" value="h" label="Home" onChange={this.handleHomeType}/>
+                                                    <Input s={12} className="browser-default" name="home_type" type="select" onChange={this.handleChange}>
+                                                        <option value="h">Home</option>
+                                                        <option value="a">Apartment</option>
+                                                    </Input>
                                                 </Row>
                                                 <Row>
                                                     <Input s={6} name="price" label="Price/month" onChange={this.handleChange}/>
