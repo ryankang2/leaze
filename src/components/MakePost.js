@@ -51,9 +51,9 @@ export default class MakePost extends Component {
             <div className="modal">
                 <h3 id="makePostTitle">Make a Post</h3>
                 <div className="container postContainer">
-                    {/* <form onSubmit={this.submitPost}> */}
+                    <form onSubmit={this.submitPost}>
                         <div className="row">
-                            <div className="col-sm-8 infoBox">
+                            <div className="col-sm-8 postInfoBox">
 
                             </div>
                             <div className="col-sm-4 featureBox">
@@ -66,8 +66,8 @@ export default class MakePost extends Component {
 
                             </div>
                         </div>
-                        <button type="Submit" id="submitPost">Post Listing</button>
-                    {/* </form> */}
+                        {/* <button type="Submit" id="submitPost">Post Listing</button> */}
+                    </form>
 
                     {/* <div id="postFormInputs">
                         <form onSubmit={this.submitPost} className="PostForms">

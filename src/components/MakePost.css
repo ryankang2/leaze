@@ -6,7 +6,8 @@
 .postModal > .modal {
     border: 1px solid black;
     display: block;
-    /* width: 60%;
+    width: 60%;
+    /*
     position: fixed;
     background-color: #f7eddc;
     margin-left: 20%;
@@ -14,18 +15,12 @@
 }
 
 #makePostTitle {
-    float: left;
     margin-left: 3%;
     margin-top: 3%;
     font-size: 25px;
-    color: rgb(219, 219, 219);
+    color: black;
     /* width: 100%; */
-    border: 1px red solid;
 }
-
-/* #postFormInputs {
-    margin-top: 10%;
-} */
 
 .caret {
     border-color: transparent !important;
@@ -44,16 +39,20 @@
 
 .postContainer {
     border: 1px solid green;
+    /* height: 100% */
 }
 
-.infoBox {
+.postInfoBox {
     border: 1px solid yellow;
+    height: 400px;
 }
 
 .featureBox {
     border: 1px solid blue;
+    height: 400px;
 }
 
 .picBox {
     border: 1px solid purple;
+    height: 300px;
 }
