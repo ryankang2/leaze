@@ -55,13 +55,13 @@ export default class RegisterBox extends Component {
     async handleSubmit(e) {
         e.preventDefault();
         document.getElementById("confRegister").style.display = "block";
-       
-        // if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
-        //     const params = formatPostData(this.state);
-        //     const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
-        //     const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
-
-        // }
+        if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
+            const params = formatPostData(this.state);
+            const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
+            const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
+            var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
+            sessionStorage.setItem("userCode", userCode);
+        }
     }
 
     registerSubmit() {
