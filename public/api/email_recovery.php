@@ -6,6 +6,7 @@
     include("./queries/update_password.php");
     require_once("mysql_connect.php");
 
+    $output = [];
     foreach($_POST as $key=>$value){
         $_POST[$key] = htmlentities(addslashes($value));
     }
