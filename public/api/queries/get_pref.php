@@ -4,7 +4,6 @@
     require_once("../mysql_connect.php");
     $output = [
         "success" => false,
-        "email" => "",
         "guests_per_week" => 0,
         "late_sleeper" => 0,
         "deep_sleeper" => 0,
@@ -20,9 +19,7 @@
         "other" => 0
     ];
 
-    //assume we can pass in the user id, and we output the information in output
-    //$user = $_POST["user_id"];
-    $user = 6;
+    $user = $_POST["user_id"];
 
     $prefQuery= "SELECT * from `preferences` WHERE `user_id`='$user'";
     $result = mysqli_query($conn, $prefQuery);
@@ -45,9 +42,6 @@
         $output["alcohol"] = $row["alcohol"];
         $output["marijuana"] = $row["marijuana"];
         $output["other"] = $row["otherdrug"];
-        $result = mysqli_query($conn, $prefQuery);
-        $row = mysqli_fetch_assoc($result);
-        $output["email"] = $row["email"];
         $output["success"] = true;
     }
     mysqli_close($conn);

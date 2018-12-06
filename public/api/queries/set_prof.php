@@ -15,9 +15,14 @@
     $major = $_POST["major"];
     $year = $_POST["year"];
     $bio = $_POST["bio"];
+    $facebook = $_POST["facebook"];
+    $instagram = $_POST["instagram"];
+    $twitter = $_POST["twitter"];
+
+    $fulname = $firstname . " " . $lastname;
     
     $updateUser = "UPDATE `user` SET `fullname`='$fullname', `first_name`='$firstname',`last_name`='$lastname', `age`='$age' WHERE `user_id`='$user';";
-    $updateProf = "UPDATE `profile` SET `school`='$school', `major`='$major', `year`='$year', `about_me`='$bio' WHERE `user_id`='$user';";
+    $updateProf = "UPDATE `profile` SET `school`='$school', `major`='$major', `year`='$year', `about_me`='$bio', `facebook`='$facebook', `instagram`='$instagram', `twitter`='$twitter' WHERE `user_id`='$user';";
 
     $resultUser = mysqli_query($conn, $userQuery);
     $resultProf = mysqli_query($conn, $prefQuery);

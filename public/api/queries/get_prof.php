@@ -10,7 +10,10 @@
         "school" => "",
         "major" => "",
         "year" => "",
-        "bio" => ""
+        "bio" => "",
+        "facebook" => "",
+        "instagram" => "",
+        "twitter" => ""
     ];
 
     //assume we can pass in the user id, and we output the information in output
@@ -32,6 +35,9 @@
         $output["major"] = $profRow["major"];
         $output["year"] = $profRow["year"];
         $output["bio"] = $profRow["about_me"];
+        $output["facebook"] = $profRow["facebook"];
+        $output["instagram"] = $profRow["instagram"];
+        $output["twitter"] = $profRow["twitter"];
         $output["success"] = true;
     }
 
