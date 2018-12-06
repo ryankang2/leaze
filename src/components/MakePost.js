@@ -3,6 +3,7 @@ import "./MakePost.css";
 import {Input, Row, Icon, Modal, Button} from 'react-materialize';
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+import FileUploadWithPreview from "file-upload-with-preview";
 
 export default class MakePost extends Component {
 
@@ -37,6 +38,10 @@ export default class MakePost extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    componentDidUpdate(){
+        const upload = new FileUploadWithPreview("imageContainer");
+        console.log(upload);
+    }
 
     handleCheckBox(event) {
         const {name, checked} = event.currentTarget;
@@ -78,6 +83,7 @@ export default class MakePost extends Component {
     cancelPost(e) {
         $(".makePostModal").css("display", "none");
     }
+
 
     render () {
         return (
@@ -151,12 +157,19 @@ export default class MakePost extends Component {
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className = "col-sm-12 picBox">
-                                            {/* <Row>
-                                                <Input type="file" label="File" s={12} multiple placeholder="Upload one or more files" />
-                                            </Row> */}
-                                            </div>
-                                        </div>
+                                            {/* <div className="col-sm-12 picBox"> */}
+                                                <div className="custom-file-container" data-upload-id="imageContainer">
+                                                    <label>Upload Pictures <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"></a></label>
+
+                                                    <label className="custom-file-container__custom-file">
+                                                        <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple />
+                                                        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                                        <span className="custom-file-container__custom-file__custom-file-control"></span>
+                                                    </label>
+                                                    <div className="custom-file-container__image-preview"></div>
+                                                </div>
+                                            {/* </div> */}
+                                    </div>
                                 </div>
                             </div>
                             <div className="modal-footer makeAPostFooter">
