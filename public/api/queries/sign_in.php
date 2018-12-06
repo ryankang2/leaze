@@ -10,8 +10,7 @@
 
     //need to sha1 password
     $email = $_POST["email"];
-    $password = hash("sha512", $_POST["password"]);
-    // $password = $_POST["password"];
+    $password = sha512($_POST["password"]);
 
     $checkUserQuery = "SELECT * from `users` WHERE `email`='$email'";
     $result = mysqli_query($conn, $checkUserQuery);
