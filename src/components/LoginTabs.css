@@ -146,3 +146,26 @@
     color:red
 }
 
+#confRegister {
+    margin: auto;
+    padding: 30px!important;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1050;
+}
+
+.confButtons {
+    position: absolute;
+    left: 1%;
+    bottom: 1%;
+}
+
+#confWrongCode, #confCodeResent {
+    color: red;
+    display: none;
+}
+
+#confRegister {
+    display: none;
+}
