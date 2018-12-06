@@ -159,10 +159,10 @@ export default class MakePost extends Component {
                                         <div className="row">
                                             {/* <div className="col-sm-12 picBox"> */}
                                                 <div className="custom-file-container" data-upload-id="imageContainer">
-                                                    <label>Upload Pictures <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"></a></label>
+                                                    <label>Upload Pictures <a href="javascript:void(0)" className="custom-file-container__image-clear" title="Clear Image"></a></label>
 
                                                     <label className="custom-file-container__custom-file">
-                                                        <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple />
+                                                        <input type="file" className="custom-file-container__custom-file__custom-file-input" accept="*" multiple />
                                                         <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
                                                         <span className="custom-file-container__custom-file__custom-file-control"></span>
                                                     </label>
@@ -173,10 +173,10 @@ export default class MakePost extends Component {
                                 </div>
                             </div>
                             <div className="modal-footer makeAPostFooter">
-                                <button class="btn cancelBtn" waves="light" onClick={this.cancelPost.bind(this)}>Cancel</button>
+                                <button className="btn cancelBtn" waves="light" onClick={this.cancelPost.bind(this)}>Cancel</button>
 
                                 <button type="submit" className="btn waves-effect waves-light">Post
-                                <i class="material-icons right">send</i>
+                                <i className="material-icons right">send</i>
                                 </button>
                             </div>
                         </div>
