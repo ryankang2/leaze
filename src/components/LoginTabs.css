@@ -169,3 +169,8 @@
 #confRegister {
     display: none;
 }
+
+#correctCodeMsg {
+    color: green;
+    display: none;
+}

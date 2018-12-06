@@ -54,13 +54,14 @@ export default class RegisterBox extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        document.getElementById("confRegister").style.display = "block";
+        
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
             const params = formatPostData(this.state);
             const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
             const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
             var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
             sessionStorage.setItem("userCode", userCode);
+            document.getElementById("confRegister").style.display = "block";
         }
     }
 
@@ -146,11 +147,23 @@ export default class RegisterBox extends Component {
     }
 
     // Ask Ryan about what to do upon submit
-    confirmSubmit(e) {   
-        let target = e.target;
-        let targetBox = target.parentElement.parentElement;
-        targetBox.style.display = "none";     
+    confirmSubmit(e) { 
+        
         document.getElementById("confCodeResent").style.display = "none";
+        let correctCode = sessionStorage.getItem("userCode");
+        let enteredCode = document.getElementById("confForgotCode").value;
+
+        if(correctCode !== enteredCode) {
+            document.getElementById("confWrongCode").style.display="block";
+        }
+
+        else {
+            //Display message saying they can now cancel and log in
+            document.getElementById("confWrongCode").style.display="none";
+            document.getElementById("confCodeResent").style.display = "none";
+            document.getElementById("correctCodeMsg").style.display = "block"
+
+        }    
     }
 
     confResendCode(e) {
@@ -168,13 +181,15 @@ export default class RegisterBox extends Component {
             <h3>Confirm your account</h3>
             <p id="confWrongCode"> The number you entered doesn’t match your code. Please try again. </p>
             <p id="confCodeResent">A code has been resent to your email</p>
+            <p id="correctCodeMsg">Code confirmed! You can now go back and Log In</p>
             <div>
                 <label htmlFor="confForgotCode">4-Digit Code</label>
-                <Input s={10} label="Enter the code that was sent to you" id="confForgotCode"
-                        name="code" onChange={this.handleChange}>
-                    <Icon> check_circle_outline</Icon>
-                </Input>
-
+                <Row>
+                    <Input s={10} label="Enter the code that was sent to you" id="confForgotCode"
+                            name="code" onChange={this.handleChange}>
+                        <Icon> check_circle_outline</Icon>
+                    </Input>
+                </Row>
             </div>
             <div className="confButtons">
                 <Button onClick={this.confResendCode.bind(this)}>Resend Code</Button>
