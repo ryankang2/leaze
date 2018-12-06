@@ -27,9 +27,10 @@ export default class ForgotPassword extends Component {
     }
 
     cancelReset(e) {      
-        let target = e.target.parentElement;
+        let target = e.target.parentElement.parentElement;
         target.style.display = "none";
         document.getElementById("codeResent").style.display = "none";
+        document.getElementById("wrongCode").style.display = "none";
         document.getElementById("forgotCode").value = "";
         document.getElementById("forgotEmail").value = "";
         document.getElementById("myNewPassword").value = "";
@@ -78,7 +79,7 @@ export default class ForgotPassword extends Component {
 
     FPsubmit(e) {   
         let target = e.target;
-        let targetBox = target.parentElement;
+        let targetBox = target.parentElement.parentElement;
         targetBox.style.display = "none"
 
         if(target.id === "fpEmailSubmit") {
@@ -146,8 +147,10 @@ export default class ForgotPassword extends Component {
                         <Icon>account_circle</Icon>
                     </Input>
                 </div>
-                <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
-                <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpEmailSubmit">Submit</Button>
+                <div className="fpButtons">
+                    <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
+                    <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpEmailSubmit">Submit</Button>
+                </div>
             </div>
             
             <div className="modal" id="forgotModal2">
@@ -163,9 +166,11 @@ export default class ForgotPassword extends Component {
 
                     </Row>
                 </div>
-                <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
-                <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
-                <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</Button>
+                <div className="fpButtons">
+                    <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
+                    <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
+                    <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</Button>
+                </div>
             </div>
 
             <div className="modal" id="forgotModal3">
@@ -190,9 +195,11 @@ export default class ForgotPassword extends Component {
                         <Icon>lock</Icon>
                     </Input>
                 </div>
-                <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpSubmitPassword">Submit</Button>
-                <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
 
+                <div className="fpButtons">
+                    <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpSubmitPassword">Submit</Button>
+                    <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
+                </div>
             </div>
 
             <div className="modal" id="forgotModal4">
@@ -207,9 +214,11 @@ export default class ForgotPassword extends Component {
                     </Input>
 
                 </div>
-                <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
-                <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
-                <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</Button>
+                <div className="fpButtons">
+                    <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
+                    <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
+                    <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</Button>
+                </div>
             </div>
         </div>
     }
