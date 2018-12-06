@@ -4,7 +4,7 @@
     require_once("../mysql_connect.php");
 
     // expecting input of a user id
-    $user_id = $_POST["user_id"];
+    $user_id = intval($_POST["user_id"]);
 
     $output = [
         "noListings" => false
@@ -27,9 +27,9 @@
     // get the user's saved default filters
     $userFiltersQuery = "SELECT * FROM `filters` WHERE `user_id`=$user_id";
     $userFiltersResults = mysqli_query($conn, $userFiltersQuery);
-
+    print($userFiltersQuery);
     // determine which filters user has actually set
-    if(mysqli_num_rows($userFiltersResults) > 0){
+    if($userFiltersResults){
         $userRow = mysqli_fetch_assoc($userFiltersResults);
         foreach($userRow as $key => $value) {
             // if the current filter is not null (user has set it)
