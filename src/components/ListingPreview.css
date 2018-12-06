@@ -1,7 +1,13 @@
 .singleListing{
-    height: 250px;
+    /* height: 250px; */
     margin-bottom: 55px;
 }
+
+.singleListing:hover{
+    cursor: pointer;
+
+}
+
 .imageBox{
     position:relative;
     /*border:2px solid grey;*/

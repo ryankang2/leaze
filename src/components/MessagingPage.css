@@ -1,4 +1,4 @@
-/* #background {
+#msgBackground {
     background-color: #f7eddc;
     height: 750px;
     width: 100%;
@@ -7,22 +7,24 @@
     border-width: 1px;
 }
 
-#topBar {
-    height: 5%;
+#msgTopBar {
     width: 100%;
+    height: 5%;
     background-color: rgb(182, 168, 168);
     text-align: center;
+    position: absolute;
+    top: 0;
 }
 
-#header {
+#msgHeader {
     height: 20%;
     width: 100%;
     background-color: black;
     display: block;
-} */
+}
 
 #conversations {
-    height: 75%;
+    height: 80%;
     width: 25%;
     border: black solid 1px;
     overflow: auto;
@@ -44,7 +46,7 @@
 }
 
 #messageContainer {
-    height: 75%;
+    height: 80%;
     width: 75%;
     border: black solid 1px;
     float: right;
@@ -56,11 +58,42 @@
     height: 85%;
 }
 
-#typeBox {
+#typeBoxDiv {
     height: 15%;
     width: 100%;
     position: absolute;
     bottom: 0px;
+}
+
+#typeBox {
+    width: 75%;
+    height: 80%;
+    margin-top: 1%;
+    margin-left: 5%;
+    background-color: white;
+    border: black solid 1px;
+}
+
+#sendAndIcons {
+    float: right;
+    width: 20%;
+    position: absolute;
+    bottom: 1%;
+    left: 81%;
+}
+
+#sendAndIcons > * {
+    display: inline;
+}
+
+#sendButton {
+    color: blue;
+    font-size: larger;
+    margin-right: 2%;
+}
+
+#msgIcons > i {
+    margin-right: 3%;
 }
 
 #myCurConvo {
@@ -90,6 +123,8 @@
 
 #centerLogo {
     float: left;
+    position: absolute;
+    top: 5%;
 }
 
 #between-hor {
@@ -105,3 +140,4 @@
     float: right;
     margin-top: 2%;
 }
+

@@ -19,7 +19,6 @@
         "other" => 0,
     ];
 
-    //assume we can pass in the user id, and we output the information in output
     $user = $_POST["user_id"];
 
     $prefQuery= "SELECT * from `preferences` WHERE `user_id`='$user'";

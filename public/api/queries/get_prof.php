@@ -4,13 +4,17 @@
     require_once("../mysql_connect.php");
     $output = [
         "success" => false,
+        "email" => "",
         "firstname" => "",
         "lastname" => "",
         "age" => "",
         "school" => "",
         "major" => "",
         "year" => "",
-        "bio" => ""
+        "bio" => "",
+        "facebook" => "",
+        "instagram" => "",
+        "twitter" => ""
     ];
 
     //assume we can pass in the user id, and we output the information in output
@@ -27,11 +31,15 @@
         $profRow = mysqli_fetch_assoc($resultProf);
         $output["firstname"] = $userRow["first_name"];
         $output["lastname"] = $userRow["last_name"];
+        $output["email"] = $userRow["email"];
         $output["age"] = $userRow["age"];
         $output["school"] = $profRow["school"];
         $output["major"] = $profRow["major"];
         $output["year"] = $profRow["year"];
         $output["bio"] = $profRow["about_me"];
+        $output["facebook"] = $profRow["facebook"];
+        $output["instagram"] = $profRow["instagram"];
+        $output["twitter"] = $profRow["twitter"];
         $output["success"] = true;
     }
 

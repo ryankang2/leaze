@@ -24,9 +24,8 @@
     margin-top: 2em; 
 }
 
-.tablinks {
-    font-size: 24px;
-    border-radius: 8px;
+.tabs .tab {
+    width: 25%;
 }
 
 .tabcontent {
@@ -46,9 +45,13 @@
     color: black;
 }
 
-form {
+/* Change this form to a classname */
+.FormFields {
     margin-top: 2em;
     margin-left: 10%;
+}
+.FormFieldsError{
+    margin-left:10%;
 }
 
 #password{
@@ -112,3 +115,34 @@ form {
 .tab:hover {
     background-color: #37916e;
 }
+
+#termsModal {
+    position: absolute;
+    display: none;
+    bottom: 18%;
+    height: 70%;
+    width: 50%;
+    background-color: #f7eddc;
+}
+
+#closeTerms {
+    font-size: 15px;
+    position: absolute;
+    right: 2%;
+    bottom: 2%;
+}
+
+.hidden{
+    display:none;
+}
+.show{
+    display:block;
+}
+
+#wrongInputRegister{
+    color:red
+}
+#wrongInputLogin{
+    color:red
+}
+

@@ -51,7 +51,7 @@
             if ($value == "true") {
                 $value = "1";
             }
-            $updateQuery = "UPDATE `filters` SET $key=$value WHERE `user_id`=$user_id";
+            $updateQuery = "UPDATE `filters` SET $key='$value' WHERE `user_id`=$user_id";
             mysqli_query($conn, $updateQuery);
         }
     }
