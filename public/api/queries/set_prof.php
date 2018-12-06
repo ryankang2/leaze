@@ -17,7 +17,7 @@
     $year = $_POST["year"];
     $bio = $_POST["bio"];
     
-    $updateUser = "UPDATE `users` SET `full_name`='$fullname', `first_name`='$firstname',`last_name`='$lastname', `age`=$age WHERE `user_id`=$user";
+    $updateUser = "UPDATE `users` SET `full_name`='$fullname', `first_name`='$firstname',`last_name`='$lastname', `age`='$age' WHERE `user_id`=$user";
     $updateProf = "UPDATE `profile` SET `school`='$school', `major`='$major', `year`='$year', `about_me`='$bio' WHERE `user_id`=$user";
 
     $resultUser = mysqli_query($conn, $updateUser);

@@ -38,13 +38,22 @@ class PPopup extends React.Component {
     this.setState({messy: response.data.messiness})
     this.setState({videogames: response.data.video_games})
     this.setState({extro: response.data.extrovert})
-    this.setState({alcohol:response.data.alcohol})
-    this.setState({marijuana: response.data.marijuana})
-    this.setState({cigarettes: response.data.cigarettes})
-    this.setState({other: response.data.otherdrug})
+    if (response.data.alcohol=="1"){
+      this.setState({alcohol:true})
+    }
+    if(response.data.marijuana=="1"){
+      this.setState({marijuana: true})
+    }
+    if(response.data.cigarettes=="1"){
+      this.setState({cigarettes: true})
+    }
+    if(response.data.otherdrug=="1"){
+      this.setState({other: true})
+    }
     this.setState({noise: response.data.study_noise_level})
     this.setState({share: response.data.sharing_belongings})
     this.setState({relations: response.data.roommate_relationship})
+
     console.log(response.data)
   }
 
@@ -59,6 +68,8 @@ class PPopup extends React.Component {
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/set_pref.php", params);
     console.log(response.data)
+    window.location.reload();
+    this.props.closePPopup();
   }
 
   handleCheckBox(event) {

@@ -61,6 +61,8 @@ class UPopup extends React.Component {
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
     console.log(response.data)
+    window.location.reload();
+    this.props.closeUPopup();
   }
   fileChangedHandler=(event)=>{
     this.setState({picture:event.target.files[0]})
@@ -101,7 +103,7 @@ class UPopup extends React.Component {
                 <input id="studies" className="inputs" name="major" defaultValue = {this.state.major}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Year: </label>
-                <Input s={12} id='classYear' className="browser-default" type='select' name='year' defaultValue = {this.state.year}
+                <Input s={12} id='classYear' className="browser-default" type='select' name='year' value = {this.state.year}
                   onChange={this.handleChange.bind(this)}>
                   <option value='First'>First</option>
                   <option value='Second'>Second</option>
