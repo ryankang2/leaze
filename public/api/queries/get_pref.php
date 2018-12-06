@@ -14,9 +14,9 @@
         "study_noise_level" => 0,
         "sharing_belongings" => 0,
         "roommate_relationship" => 0,
-        "alcohol" => 0
-        "marijuana" => 0
-        "other" => 0
+        "alcohol" => 0,
+        "marijuana" => 0,
+        "other" => 0,
     ];
 
     $user = $_POST["user_id"];
@@ -24,8 +24,6 @@
     $prefQuery= "SELECT * from `preferences` WHERE `user_id`='$user'";
     $result = mysqli_query($conn, $prefQuery);
     
-    $userQuery= "SELECT * from `users` WHERE `user_id`='$user';";
-
     // should only return one row (make sure to delete upon user 
     if(mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);

@@ -1,4 +1,40 @@
 
+
+#starContainer {
+    margin: auto;
+    width: 6.25vw;
+    padding: 1vh 0 1vh 0;
+}
+
+.ratingStars {
+    display: inline-block;
+    height: 1.25vw;
+    width: 1.25vw;
+}
+
+#progressAreaInner {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#progressTextArea {
+    text-align: center;
+    padding-top: 0.5vh;
+    font-size: 1.125em;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#progressMessage {
+    padding-top: 1vh;
+    text-align: left;
+}
+
+
 #mainContainer {
     padding: 3.33vh 0 3.33vh 0;
     position: fixed;
@@ -44,9 +80,7 @@ hr {
     left: 1vw;
 }
 
-
 #profilePictureArea {
-    border: 1px solid red;
     background: transparent;
     position: absolute;
     left: 0;
@@ -56,13 +90,15 @@ hr {
 
 #profilePic {
     border: 1px solid black;
-    border-radius: 20vw;
-    width: 12vw;
-    height: 12vw;
+    border-radius: 10vw;
+    width: 13vw;
+    height: 13vw;
     position: absolute;
-    left: 2.165vw;
-    right: 4.165vw;
-    top: 6vh;
+    left: 1.665vw;
+    right: 1.665vw;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .label-ucsd {
@@ -77,35 +113,31 @@ hr {
 }
 
 #bioArea {
-    border: 1px solid orange;
     position: absolute;
     left: 16.33vw;
     width: 32.66vw;
     height: 36vh;
-    font: 1.25em "Arial";
     background:transparent;
-    font-weight: normal;
+    font-size: 1.125em;
 }
 
 #userName {
     font-size: 2em;
-    color: black;
-    font-family: 'Times New Roman', Times, serif;
+    margin: 5vh 0 0 1vw;
 }
 
 #userInfo {
-    font-size: 1.25em;
-    margin: 0%;
+    font-size: 1.33em;
+    margin: 0 0 0 1vw;
 }
 
 #biography {
     margin: 4vh 0 0 1vw;
+    overflow-y: scroll;
 }
 
 #ratingArea {
-    border: 1px solid yellow;
     background:transparent;
-    border-width: 1px;
     position: absolute;
     left: 48.99vw;
     width: 16.33vw;
@@ -113,8 +145,9 @@ hr {
 }
 
 #ratingString {
-    margin: 4vh 0 12vh 0;
-    font: 20px Arial;
+    margin: 0;
+    padding: 4vh 0 1vh 0;
+    font: 1.5em Arial;
     text-align: center;
 }
 
@@ -127,19 +160,20 @@ hr {
     margin-left:1vw;
 }
 
-
 #progressArea {
-    border: 1px solid darkgoldenrod;
-    background: transparent;
+    border: 1px solid black;
+    background: #f9f3e7;
     position: absolute;
     left: 65.33vw;
-    width: 27.66vw;
-    height: 36vh;
+    width: 25.66vw;
+    height: 20vh;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 #postedListings {
     display: grid;
-    border:1px solid indigo;
     background: transparent;
     position: absolute;
     left: 0vw;
@@ -152,7 +186,6 @@ hr {
 
 #favoriteListings {
     display: grid;
-    border:1px solid violet;
     background: transparent;
     position: absolute;
     left: 50vw;

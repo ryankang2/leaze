@@ -13,7 +13,7 @@
 .ppopup {
     position: fixed;
     width: 100%;
-    height: 120%;
+    height: 130%;
     top: 10vh;
     left: 0;
     right: 0;
@@ -41,11 +41,11 @@
 }
 
 #button1{ 
-  margin:10% !important;
+  margin:12% !important;
 }
 
 #button2{ 
-  margin-top: 41% !important;
+  margin-top: 47% !important;
   margin-left: 15% !important;
 }
 #chooseButton{
@@ -55,7 +55,7 @@
   margin:0%;
 }
 #button4{ 
-  margin-top:53% !important;
+  margin-top:54% !important;
   margin-left:20%;
 }
 #displayPic {
@@ -73,13 +73,12 @@
 }
 .inputs {
   margin: 0vh;
-  max-height: 20px;
-  margin-bottom: 5vh;
+  max-height: 15px;
 }
 .inputsB {
-  margin: 20vh;
-  max-height: 150px;
-  height:150px;
+  margin:0;
+  height: 80px;
+  width: 350px;
   margin-top:3% !important;
 }
 
