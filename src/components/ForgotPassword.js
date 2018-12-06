@@ -80,7 +80,7 @@ export default class ForgotPassword extends Component {
     FPsubmit(e) {   
         let target = e.target;
         let targetBox = target.parentElement.parentElement;
-        targetBox.style.display = "none"
+        targetBox.style.display = "none";
 
         if(target.id === "fpEmailSubmit") {
             console.log("We will email a 4-digit confirmation code to the following address: " + 
