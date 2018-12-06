@@ -7,7 +7,7 @@
         "success"=> false,
     ];
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $password = sha512($_POST["password"]);
     $query = "UPDATE `users` SET `password`='$password' WHERE `email`='$email'";
     $result = mysqli_query($conn, $query);
     if($result){
