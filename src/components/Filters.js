@@ -149,37 +149,52 @@ class Filters extends Component{
                 <div className="titleFilters">
                     Filters
                 </div>
+                <div id={"priceHeader"} >
+                    Minimum to Maximum Price
+                </div>
                 <Row>
-                    <Input s={6} className="browser-default" type="select" label="Min Price Per Month" name="price_low" value={this.state.price_low} onChange={this.handleChangeFilter}>
+                    <Input s={6} className="browser-default" type="select"  name="price_low" value={this.state.price_low} onChange={this.handleChangeFilter}>
                        <option value = "0"> $0</option>
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
                    </Input>
-                   <Input s={6} className="browser-default" type ="select" label = "Max Price Per Month" name="price_high"  value = {this.state.price_high} onChange={this.handleChangeFilter} >
+                   <Input s={6} className="browser-default" type ="select" name="price_high"  value = {this.state.price_high} onChange={this.handleChangeFilter} >
                        <option value = "400"> $400</option>
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
                        <option value = "5000"> $1K+</option>
                    </Input>
                 </Row>
+                <div id={"distanceHeader"} >
+                    Distance To UCSD in Miles
+               </div>
                 <Row>
-                    <Input s={12} className="browser-default" type ="select" label = "Distance To UCSD in Miles" name="dist_to_campus" value ={this.state.dist_to_campus} onChange={this.handleChangeFilter}>
+                    <Input s={12} className="browser-default" type ="select" name="dist_to_campus" value ={this.state.dist_to_campus} onChange={this.handleChangeFilter}>
                        <option value = "15">15 miles</option>
                        <option value = "30">30 miles</option>
                        <option value = "45">45 miles+</option>
                    </Input>
                </Row>
+               <div id={"roomTypeHeader"} >
+                    Room Type
+               </div>
                <Row className="roomType">
                        <Input name="roomSingle" type="checkbox" checked={this.state.roomSingle} value="roomSingle" label="Single Room"  onChange={this.handleCheckBox} />
                        <Input name="roomDouble" type="checkbox" checked={this.state.roomDouble} value = "roomDouble" label="Double Room"  onChange={this.handleCheckBox} />
                        <Input name="roomTriple" type="checkbox" checked={this.state.roomTriple} value = "roomTriple" label="Triple Room"  onChange={this.handleCheckBox}/>
                        <Input name="roomLiving" type="checkbox" checked={this.state.roomLiving} value = "roomLiving" label="Living Room"  onChange={this.handleCheckBox}/>
                 </Row>
+                <div id={"homeTypeHeader"} >
+                    Home Type
+               </div>
                 <Row className="homeType">
                        <Input name="roomApart" type="checkbox" checked={this.state.roomApart} value = "roomApart" label="Apartment"  onChange={this.handleCheckBox} />
                        <Input name="roomHouse" type="checkbox" checked={this.state.roomHouse} value = "roomHouse" label="House"  onChange={this.handleCheckBox}/>
                 </Row>
+                <div id={"amenitiesHeader"} >
+                    Amenities
+               </div>
                 <Row className="homeMisc">
                     <Input name="pet" type="checkbox" checked={this.state.pet} value = "pet" label="Pet Friendly"  onChange={this.handleCheckBox}/>
                     <Input name="laundry" type="checkbox" checked={this.state.laundry} value="laundry" label="In-unit Laundry"  onChange={this.handleCheckBox} />
