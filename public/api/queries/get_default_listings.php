@@ -27,9 +27,9 @@
     // get the user's saved default filters
     $userFiltersQuery = "SELECT * FROM `filters` WHERE `user_id`=$user_id";
     $userFiltersResults = mysqli_query($conn, $userFiltersQuery);
-    print($userFiltersQuery);
+
     // determine which filters user has actually set
-    if($userFiltersResults){
+    if(mysqli_num_rows($userFiltersResults) > 0){
         $userRow = mysqli_fetch_assoc($userFiltersResults);
         foreach($userRow as $key => $value) {
             // if the current filter is not null (user has set it)

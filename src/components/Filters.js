@@ -115,10 +115,12 @@ class Filters extends Component{
                [name]:true
         })
         }else{
+            console.log("SHOUDL BE EHEHEHEHEH");
            this.setState({
                [name]:false
            })
         }
+        console.log("this.state: ", this.state);
     }
 
     async handleChangeForm(event) {
