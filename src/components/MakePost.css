@@ -71,4 +71,14 @@
     color: white;
     background-color: red !important;
 }
+.hidden{
+    display: none;
+}
+
+.show{
+}
+
+#error{
+    color: red;
+}
 
