@@ -157,7 +157,7 @@ class Filters extends Component{
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
                        <option value = "1000"> $1K</option>
-                       <option value = "5000"> Any Price</option>
+                       <option value = "5000"> Any</option>
                    </Input>
                 </Row>
                 <div id={"distanceHeader"} >
