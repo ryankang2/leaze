@@ -22,6 +22,8 @@ class ListingPreview extends Component{
             postTitle: "",
             favorite: false,
         }
+        this.openDelete = this.openDelete.bind(this);
+        this.openModal = this.openModal.bind(this);
     }
 
 
@@ -78,8 +80,15 @@ class ListingPreview extends Component{
 
     }
 
-    openModal(){
+    openModal(event){
+        event.stopPropagation();
         $(`.leaseImage-${this.props.information.listing_id}`).css("display", "block");
+    }
+
+    openDelete(event){
+        console.log("delete");
+        event.stopPropagation();
+        $(`.deleteModal-${this.props.information.listing_id}`).css("display", "block");
     }
 
     closeModal(){
@@ -89,6 +98,10 @@ class ListingPreview extends Component{
         $(".in").remove();
     }
 
+    closeDeleteModal(){
+        $(`.deleteModal-${this.props.information.listing_id}`).css("display", "none");
+
+    }
 
 
     render(){
@@ -110,11 +123,12 @@ class ListingPreview extends Component{
                 <div>
                     <div className="col-sm-4 singleListing" onClick={this.openModal.bind(this)}>
                         <div className="imageBox">
-                            <img className="leaseImage" data-toggle="modal" onClick={this.openModal.bind(this)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                            <img className="leaseImage" data-toggle="modal" onClick={(event) => this.openModal(event)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
-                            {/*{this.state.favorite &&  <i className="fa fa-heart favorite_fill"> </i>}*/}
-                            <i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} 
-                                onClick={this.toggleHeart.bind(this)} value={listing_id}> </i>
+                            {/*{this.state.favorite &&  <i cslassName="fa fa-heart favorite_fill"> </i>}*/}
+                            {/*<i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"}*/}
+                                {/*onClick={this.toggleHeart.bind(this)} value={listing_id}> </i>*/}
+                            <i id="delete" className="fa fa-trash-o"  onClick={(event)=>this.openDelete(event)}></i>
 
                             <div className = "infoBox">
                                 <div className="leaseName" data-toggle="modal" onClick={this.openModal.bind(this)} >
@@ -143,6 +157,27 @@ class ListingPreview extends Component{
                     </div> 
                     <ListingModal className={`leaseImage-${this.props.information.listing_id}`} information={this.props.information}>
                     </ListingModal>
+                    <div className={`modal trashModal deleteModal-${this.props.information.listing_id}`} >
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <button type="button" className="close" data-dismiss="modal" onClick={this.closeDeleteModal.bind(this)}>&times;</button>
+                                    <h4 className="modal-title">Delete Listing</h4>
+                                </div>
+                                <div className="modal-body">
+                                    <p>Are you sure you want to delete this listing?</p>
+                                </div>
+
+                                <div className="modal-footer">
+                                    <button type="button" className="btn yesDelete"
+                                            data-dismiss="modal" onClick={this.closeDeleteModal.bind(this)}>Yes
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
 
                 </div>
         );

@@ -39,6 +39,9 @@ class Navbar extends Component{
         $(".welcome").text("Welcome, " + user[0].first_name + "!");
     }
 
+    logout(user){
+        sessionStorage.setItem("user_id", "-1");
+    }
     async handleFormSubmit(event){
         event.preventDefault();
         event.stopPropagation();
@@ -55,6 +58,8 @@ class Navbar extends Component{
         const {searchQuery} = this.state;
         var linkQuery = "/home/profile/" + sessionStorage.getItem("user_id");
         var linkQueryMessages = linkQuery + "/messages";
+        var linkQueryLogin = "/";
+
 
         return (
             <nav className="navbar navbar-inverse">
@@ -65,12 +70,12 @@ class Navbar extends Component{
                                     <img className="logoPic" src={require('../../dist/logo_transparent.png')} alt=""/>
                                 </div>              
                             </Link>
-                            <form className="col-xs-3 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>
-                                <div className="form-group">
-                                    <input type="search " value={searchQuery} name="userInput" className="form-control searchBox" placeholder="Search..." onChange={(event) => this.handleInput(event)}/>
-                                    <i className="searchIcon fa fa-search"></i>
-                                </div>
-                            </form>
+                            {/*<form className="col-xs-3 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>*/}
+                                {/*<div className="form-group">*/}
+                                    {/*<input type="search " value={searchQuery} name="userInput" className="form-control searchBox" placeholder="Search..." onChange={(event) => this.handleInput(event)}/>*/}
+                                    {/*<i className="searchIcon fa fa-search"></i>*/}
+                                {/*</div>*/}
+                            {/*</form>*/}
                             <ul className="col-xs-2 col-sm-2 col-md-2 profileContainer">
                                 <Link to = {linkQuery}>
                                     <div className="welcome">
@@ -85,8 +90,14 @@ class Navbar extends Component{
                                 </ul>
 
                                 <Link to = {linkQueryMessages}>
-                                    <ul className="nav navbar-nav evelopeContainer">
+                                    <ul className="nav navbar-nav envelopeContainer">
                                         <li><a href="#"><i className="glyphicon glyphicon-envelope"></i></a></li>
+                                    </ul>
+                                </Link>
+
+                                <Link to = {linkQueryLogin}>
+                                    <ul className="nav navbar-nav logoutContainer">
+                                        <li><a href="#"><i className="glyphicon glyphicon-off" onClick={this.logout.bind(this)}></i></a></li>
                                     </ul>
                                 </Link>
 
