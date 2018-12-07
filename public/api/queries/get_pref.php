@@ -17,6 +17,7 @@
         "alcohol" => 0,
         "marijuana" => 0,
         "other" => 0,
+        "cigarettes" => 0,
     ];
 
     $user = $_POST["user_id"];
@@ -40,6 +41,7 @@
         $output["alcohol"] = $row["alcohol"];
         $output["marijuana"] = $row["marijuana"];
         $output["other"] = $row["otherdrug"];
+        $output["cigarettes"] = $row["cigarettes"];
         $output["success"] = true;
     }
     mysqli_close($conn);

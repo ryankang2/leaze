@@ -17,6 +17,9 @@ class UPopup extends React.Component {
         major:'',
         year:'',
         bio:'',
+        facebook: '',
+        instagram: '',
+        twitter: '',
         picture: null,
         imageURL:require('./default_profile_pic.jpg'),
     };
@@ -37,6 +40,9 @@ class UPopup extends React.Component {
     this.setState({major: response.data.major})
     this.setState({year: response.data.year})
     this.setState({bio: response.data.bio})
+    this.setState({facebook: response.data.facebook})
+    this.setState({instagram: response.data.instagram})
+    this.setState({twitter: response.data.twitter})
   }
   handleChange(event) {
     const { name, value } = event.currentTarget;
@@ -62,7 +68,6 @@ class UPopup extends React.Component {
     const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
     console.log(response.data)
     window.location.reload();
-    this.props.closeUPopup();
   }
   fileChangedHandler=(event)=>{
     this.setState({picture:event.target.files[0]})
@@ -74,9 +79,10 @@ class UPopup extends React.Component {
       });
     }
     reader.readAsDataURL(file)
+    this.uploadHandler()
   }
   uploadHandler=()=> {
-    console.log(this.state.picture)
+    console.log(this.state.imageURL)
   }
     render() {
       return (
@@ -121,7 +127,15 @@ class UPopup extends React.Component {
               <div className="col-sm-6" id="pic">
                 <label>Profile Picture: </label>
                 <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler.bind(this)}/>
-                <Button id="uploadButton" onClick={this.uploadHandler}>Upload</Button>
+                <label>Facebook URL: </label>
+                <input id="mail" className="inputs" name="facebook" defaultValue = {this.state.facebook}
+                  onChange={this.handleChange.bind(this)}/>
+                <label>Instagram URL: </label>
+                <input id="mail" className="inputs" name="instagram" defaultValue = {this.state.instagram}
+                  onChange={this.handleChange.bind(this)}/>
+                    <label>Twitter URL: </label>
+                <input id="mail" className="inputs" name="twitter" defaultValue = {this.state.twitter}
+                  onChange={this.handleChange.bind(this)}/>
                 <button onClick=
                   {this.submitProf.bind(this)} id="button4" className="btn btn-primary">Save Updates</button>
               </div>    

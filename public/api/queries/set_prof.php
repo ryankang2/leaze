@@ -20,7 +20,7 @@
     $instagram = $_POST["instagram"];
     $twitter = $_POST["twitter"];
 
-    $fulname = $firstname . " " . $lastname;
+    $fullname = $firstname . " " . $lastname;
     
     $updateUser = "UPDATE `user` SET `fullname`='$fullname', `first_name`='$firstname',`last_name`='$lastname', `age`='$age' WHERE `user_id`='$user';";
     $updateProf = "UPDATE `profile` SET `school`='$school', `major`='$major', `year`='$year', `about_me`='$bio', `facebook`='$facebook', `instagram`='$instagram', `twitter`='$twitter' WHERE `user_id`='$user';";
