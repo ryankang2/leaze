@@ -33,8 +33,9 @@
 }
 
 .title{
-  color:blue;
+  color:black;
   font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 36px;
 }
 .caret {
   border-color:transparent !important;
@@ -49,14 +50,14 @@
   margin-left: 15% !important;
 }
 #chooseButton{
-  margin:0%;
-}
-#uploadButton{
-  margin:0%;
+  margin:10%;
+  top: 20%;
+  padding-right:0% !important;
+  padding-left:0% !important;
 }
 #button4{ 
-  margin-top:54% !important;
-  margin-left:20%;
+  margin-top:24% !important;
+  margin-left:53%;
 }
 #displayPic {
   background: transparent;
@@ -64,12 +65,12 @@
   left: 55%;
   width: 32%;
   height: 35%;
-  top: 18vh;
+  top: 2vh;
   flex:right;
 }
 #pic {
   float:right;
-  top: 40%;
+  top: 25%;
 }
 .inputs {
   margin: 0vh;

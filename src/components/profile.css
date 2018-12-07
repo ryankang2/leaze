@@ -24,7 +24,6 @@
 #progressTextArea {
     text-align: center;
     padding-top: 0.5vh;
-    font-size: 1.125em;
     height: 100%;
     overflow-y: scroll;
 }
@@ -121,6 +120,15 @@ hr {
     font-size: 1.125em;
 }
 
+#bioAreaO {
+    position: absolute;
+    left: 16.33vw;
+    width: 43.66vw;
+    height: 36vh;
+    background:transparent;
+    font-size: 1.125em;
+}
+
 #userName {
     font-size: 2em;
     margin: 5vh 0 0 1vw;
@@ -153,6 +161,7 @@ hr {
 
 #buttonU{
     margin-left: 2.5vw;
+    margin-top: 40%;
 }
 
 #buttonP{
@@ -177,11 +186,16 @@ hr {
     background: transparent;
     position: absolute;
     left: 0vw;
-    width: 45vw;
+    width: 100%;
     height: 36vh;
     font: 18px "Arial";
     float: left;
     font-weight: normal;
+}
+
+#iconLivin {
+    font-size: 60px !important;
+    margin: 10px;
 }
 
 #favoriteListings {

@@ -69,7 +69,6 @@ class PPopup extends React.Component {
     const response = await axios.post("http://localhost:8000/api/queries/set_pref.php", params);
     console.log(response.data)
     window.location.reload();
-    this.props.closePPopup();
   }
 
   handleCheckBox(event) {
