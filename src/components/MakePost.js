@@ -3,7 +3,6 @@ import "./MakePost.css";
 import {Input, Row, Icon, Modal, Button} from 'react-materialize';
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
-import FileUploadWithPreview from "file-upload-with-preview";
 
 export default class MakePost extends Component {
 
@@ -30,17 +29,14 @@ export default class MakePost extends Component {
             furnished: false,
             gym: false,
             pool: false,
-            parking: false         
+            parking: false, 
+            images: [],
         };
 
         this.submitPost = this.submitPost.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.handleChange = this.handleChange.bind(this);
-    }
 
-    componentDidUpdate(){
-        const upload = new FileUploadWithPreview("imageContainer");
-        console.log(upload);
     }
 
     handleCheckBox(event) {
@@ -54,7 +50,6 @@ export default class MakePost extends Component {
                [name]:false
            })
         }
-        console.log(this.state);
     }
 
 
@@ -64,7 +59,6 @@ export default class MakePost extends Component {
         this.setState({
             [name]: value
         })
-        console.log(this.state);
     }
 
 
@@ -83,6 +77,45 @@ export default class MakePost extends Component {
     cancelPost(e) {
         $(".makePostModal").css("display", "none");
     }
+
+
+
+    fileChangedHandler=(event)=>{
+        // let reader = new FileReader();
+        let files=event.target.files;
+        const reader = new FileReader();
+
+        for(var i = 0; i < files.length; i++){
+            var file = files[i];
+            this.handleLoadImage(file);
+        }
+        for(var i = 0; i < this.state.images.length; i++){
+            console.log("forloop: ", i);
+            $(".picsContainer").append('<img id="listingPics" src="' + this.state.images[i] + '"/>');
+        }
+        console.log(this.state);
+        this.setState({
+            images: [],
+        });
+      }
+
+      handleLoadImage = (file) => {
+          console.log("handleimageLoad");
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                var array = this.state.images;
+                array.push(reader.result);
+                console.log("ARRAY: ", array);
+                this.setState(() => ({
+                    images: array,
+                }));         
+            };
+            reader.readAsDataURL(file);
+          }
+      }
+
+    
 
 
     render () {
@@ -129,7 +162,7 @@ export default class MakePost extends Component {
                                                     <Input s={6} name="dist_to_campus" label="Distance from campus" onChange={this.handleChange}/>
                                                 </Row>
                                                 <Row>
-                                                    <Input s={12} name="description" type="textarea" placeholder="Tell us about your place!" label="Description" onChange={this.handleChange}/>
+                                                    <Input s={12} className="descriptionInput" name="description" type="textarea" placeholder="Tell us about your place!" label="Description" onChange={this.handleChange}/>
                                                 </Row>
                                             </div>
                                             <div className="col-sm-4 featureBox">
@@ -157,18 +190,17 @@ export default class MakePost extends Component {
                                             </div>
                                         </div>
                                         <div className="row">
-                                            {/* <div className="col-sm-12 picBox"> */}
-                                                <div className="custom-file-container" data-upload-id="imageContainer">
-                                                    <label>Upload Pictures <a href="javascript:void(0)" className="custom-file-container__image-clear" title="Clear Image"></a></label>
-
-                                                    <label className="custom-file-container__custom-file">
-                                                        <input type="file" className="custom-file-container__custom-file__custom-file-input" accept="*" multiple />
-                                                        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                                                        <span className="custom-file-container__custom-file__custom-file-control"></span>
-                                                    </label>
-                                                    <div className="custom-file-container__image-preview"></div>
+                                            <div className="col-sm-12 picBox">
+                                                <div className="picsContainer">
+                                                    
                                                 </div>
-                                            {/* </div> */}
+                                                <div className="inputContainer">
+                                                    <Row>
+                                                        <Input s={12} label="Upload Images" type="file" multiple onChange={this.fileChangedHandler.bind(this)}></Input>
+                                                    </Row>
+                                                </div>
+
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -183,34 +215,6 @@ export default class MakePost extends Component {
                     </form>
                 </div>
             </div>
-
-
-            // <div className="postModal">
-            //     <div className="modal">
-            //         <h3 id="makePostTitle">Make a Post</h3>
-            //         <div className="container postContainer">
-            //             <form onSubmit={this.submitPost}>
-            //                 <div className="row">
-            //                     <div className="col-sm-8 postInfoBox">
-
-            //                     </div>
-            //                     <div className="col-sm-4 featureBox">
-
-            //                     </div>
-            //                 </div>
-
-            //                 <div className="row">
-            //                     <div className = "col-sm-12 picBox">
-
-            //                     </div>
-            //                 </div>
-            //                 <button type="Submit" id="submitPost">Post Listing</button>
-            //             </form>
-
-
-            //         </div>
-            //     </div>
-            // </div>
         )
     }
 }
