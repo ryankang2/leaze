@@ -44,16 +44,53 @@
         "home_type" => $home,
         "room_type" => $room
     ];
+    
+    // determine if it is the first time user is setting filters
+    $checkHasFilters = "SELECT * FROM `filters` WHERE `user_id`=$user_id";
+    $results = mysqli_query($conn, $checkHasFilters);
+    $firstTime = true;
+    if (mysqli_num_rows($results) > 0) {
+        $firstTime = false;
+    }
+    
+    if ($firstTime == false) {
+        foreach($filters as $key => $value) {
+            if ($value != "false") {
+                // match the format that the database stores true booleans
+                if ($value == "true") {
+                    $value = "1";
+                }
 
-    foreach($filters as $key => $value) {
-        if ($value != "false") {
-            // match the format that the database stores true booleans
-            if ($value == "true") {
-                $value = "1";
+                $updateQuery = "UPDATE `filters` SET $key='$value' WHERE `user_id`=$user_id";
+                mysqli_query($conn, $updateQuery);
             }
-            $updateQuery = "UPDATE `filters` SET $key='$value' WHERE `user_id`=$user_id";
-            mysqli_query($conn, $updateQuery);
         }
+    }
+    else {
+        $insertQuery = "INSERT INTO `filters` (user_id,";
+        foreach($filters as $key => $value) {
+            if ($value != "false") {               
+                $insertQuery .= $key . ",";
+            }
+        }
+        //drop last comma
+        $insertQuery = substr($insertQuery, 0, -1);
+
+        $insertQuery .= ") VALUES ('$user_id',";
+        foreach($filters as $key => $value) {
+            if ($value != "false") {
+                // match the format that the database stores true booleans
+                if ($value == "true") {
+                    $value = "1";
+                }
+                $insertQuery .= "'$value',";
+            }
+        }
+        //drop last comma and close parantheses
+        $insertQuery = substr($insertQuery, 0, -1);
+        $insertQuery .= ")";
+
+        mysqli_query($conn, $insertQuery);
     }
 
     mysqli_close($conn);
