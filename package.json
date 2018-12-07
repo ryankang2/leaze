@@ -16,6 +16,7 @@
   "dependencies": {
     "@version/react-router-v3": "^1.0.0",
     "axios": "^0.18.0",
+    "file-upload-with-preview": "^3.0.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-materialize": "^2.5.0",
