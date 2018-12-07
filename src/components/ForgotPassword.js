@@ -159,7 +159,7 @@ export default class ForgotPassword extends Component {
                 <div className="FPinputs">
                     <label htmlFor="forgotCode">4-Digit Code</label>
                     <Row>
-                    <Input s={10} label="Enter the code that was sent to you" id="forgotCode"
+                    <Input s={10} label="Enter the code that was sent to you" class="forgotCode"
                            name="code" onChange={this.handleChange}>
                             <Icon> check_circle_outline</Icon>
                     </Input>

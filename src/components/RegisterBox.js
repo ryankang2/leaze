@@ -53,6 +53,7 @@ export default class RegisterBox extends Component {
     }
 
     async handleSubmit(e) {
+        console.log("HERE");
         e.preventDefault();
         
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
