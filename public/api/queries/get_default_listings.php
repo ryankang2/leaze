@@ -4,7 +4,7 @@
     require_once("../mysql_connect.php");
 
     // expecting input of a user id
-    $user_id = $_POST["user_id"];
+    $user_id = intval($_POST["user_id"]);
 
     $output = [
         "noListings" => false

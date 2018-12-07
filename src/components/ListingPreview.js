@@ -53,6 +53,7 @@ class ListingPreview extends Component{
     }
 
     async handleMatchPercentage(user_id) {
+        console.log(sessionStorage.getItem("user_id"));
         const userIDs = {
             mainUser: sessionStorage.getItem("user_id"),
             other: user_id,

@@ -12,6 +12,7 @@
         $user2PrefQuery = "SELECT * FROM `preferences` WHERE `user_id`=$user2";
         $user2PrefResults = mysqli_query($conn, $user2PrefQuery);  
 
+
         // now compare the preferences for each user
         if(mysqli_num_rows($user1PrefResults) > 0 && mysqli_num_rows($user2PrefResults) > 0) {
             $user1Row = mysqli_fetch_assoc($user1PrefResults);
