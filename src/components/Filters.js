@@ -7,8 +7,8 @@ import axios from "axios";
 const initialState = {
     user_id: sessionStorage.getItem("user_id"),
     price_low: "0",
-    price_high: "Any",
-    dist_to_campus: "45",
+    price_high: "5000",
+    dist_to_campus: "100",
     roomSingle: false,
     roomDouble: false,
     roomTriple: false,
@@ -161,7 +161,7 @@ class Filters extends Component{
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
                        <option value = "1000"> $1K</option>
-                       <option value = "Any"> Any Price</option>
+                       <option value = "5000"> Any Price</option>
                    </Input>
                 </Row>
                 <div id={"distanceHeader"} >
@@ -172,7 +172,7 @@ class Filters extends Component{
                        <option value = "15">15 miles</option>
                        <option value = "30">30 miles</option>
                        <option value = "45">45 miles</option>
-                       <option value = "Any>">Any</option>
+                       <option value = "100">Any</option>
                    </Input>
                </Row>
                <div id={"roomTypeHeader"} >
