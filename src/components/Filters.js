@@ -94,10 +94,6 @@ class Filters extends Component{
         // $("#pool").text(response.data.pool)
         // this.setState({pool: response.data.pool})
     }
-    
-    componentDidUpdate(){
-        
-    }
 
     resetFilters(event){
         event.preventDefault();
