@@ -78,7 +78,7 @@
     }
 
     if (strlen($filters["home_type"]) == 1) {
-        $getListings .= "`home_type`=" . $filters["home_type"] . " AND ";
+        $getListings .= "`home_type`='" . $filters["home_type"] . "' AND ";
     }
     elseif (strlen($filters["home_type"]) == 2) {
         $getListings .= "`home_type` IN ('h', 'a') AND ";
@@ -97,6 +97,7 @@
 
     // remove last " AND " in the query string
     $getListings = substr($getListings, 0, -5);
+    
     // now make the query
     $listings = mysqli_query($conn, $getListings);
 

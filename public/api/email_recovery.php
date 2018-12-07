@@ -6,6 +6,7 @@
     include("./queries/update_password.php");
     require_once("mysql_connect.php");
 
+    $output = [];
     foreach($_POST as $key=>$value){
         $_POST[$key] = htmlentities(addslashes($value));
     }
@@ -45,7 +46,7 @@
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
     $mail->isHTML(true);                                  // Set email format to HTML
 
-    $mail->Subject = "Here is the subject from LEaZeHousing";
+    $mail->Subject = "4-Digit Code for LEaze Housing";
     $mail->Body    = "
         Here is your 4-digit code for your LEaZe Account: $code
         <br><br>

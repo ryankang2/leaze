@@ -55,6 +55,7 @@ class ListingPreview extends Component{
     }
 
     async handleMatchPercentage(user_id) {
+        console.log(sessionStorage.getItem("user_id"));
         const userIDs = {
             mainUser: sessionStorage.getItem("user_id"),
             other: user_id,
@@ -105,7 +106,7 @@ class ListingPreview extends Component{
 
 
     render(){
-        // console.log(this.props.information);
+        console.log("LISTING INFORMATION PROPS: " , this.props.information);
         const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
         console.log("LISTING_ID: ", listing_id);
         const {full_name,rating,favorite,user_id} = this.props.information.user;
@@ -115,7 +116,9 @@ class ListingPreview extends Component{
         var month = todayDate.getMonth() + 1;
         var listing_day = parseInt(separatedDate[2]);
         var listing_month = parseInt(separatedDate[1]);
-        var linkQuery = "/home/profile/other" + this.props.information.user.user_id;
+
+        var linkQuery = "/home/profile/other/" + this.props.information.user.user_id;
+        // console.log("Response: ", this.handleMatchPercentage(user_id) );
 
         var matchPercentage = this.handleMatchPercentage(user_id);
 

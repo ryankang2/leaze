@@ -3,22 +3,28 @@
     margin-top: 0;
     margin-left: 0;
     width: 100%;
-    padding-right: 25%;
+    padding-right: 15%;
     font-size: 12;
     /* overflow: auto; */
 }
 .caret {
     border-color: transparent !important;
 }
-.input-field label:not(.label-icon).active {
-    transform: translateY(-150%) !important;
-}
+
 .titleFilters{
-    padding-bottom: 20%;
     text-align: left;
     font-size: 16pt;
-    height: 10%
-
+    height: 10%;
+    padding-bottom: 10%;
+}
+#roomTypeHeader{
+    padding-bottom: 5%;
+}
+#homeTypeHeader{
+    padding-bottom: 5%;
+}
+#amenitiesHeader{
+    padding-bottom: 5%;
 }
 .roomType > Input{
     display: block;

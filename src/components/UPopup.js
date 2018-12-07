@@ -8,7 +8,7 @@ class UPopup extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        user_id:3, 
+        user_id:'', 
         firstname:'',
         lastname:'',
         age:'',
@@ -17,31 +17,32 @@ class UPopup extends React.Component {
         major:'',
         year:'',
         bio:'',
+        facebook: '',
+        instagram: '',
+        twitter: '',
         picture: null,
-        imageURL:'',
+        imageURL:require('./default_profile_pic.jpg'),
     };
   }
   async componentDidMount(){
-    console.log("profileismounted")
-    const params = formatPostData(this.state);
+    const idObj ={
+      user_id: sessionStorage.getItem("user_id"),
+    }
+    this.setState({user_id: sessionStorage.getItem("user_id")})
+    const params = formatPostData(idObj);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
-    $("#firstName").text(response.data.firstname)
     this.setState({firstname: response.data.firstname})
-    $("#lastName").text(response.data.lastname)
     this.setState({lastname: response.data.lastname})
-    $("#years").text(response.data.age)
     this.setState({age: response.data.age})
-    $("#mail").text(response.data.email)
     this.setState({email: response.data.email})
-    $("#uni").text(response.data.school)
     this.setState({school: response.data.school})
-    $("#studies").text(response.data.major)
     this.setState({major: response.data.major})
-    $("#classYear").text(response.data.year)
     this.setState({year: response.data.year})
-    $("#descrip").text(response.data.bio)
     this.setState({bio: response.data.bio})
+    this.setState({facebook: response.data.facebook})
+    this.setState({instagram: response.data.instagram})
+    this.setState({twitter: response.data.twitter})
   }
   handleChange(event) {
     const { name, value } = event.currentTarget;
@@ -65,6 +66,8 @@ class UPopup extends React.Component {
   async submitProf(event){
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
+    console.log(response.data)
+    window.location.reload();
   }
   fileChangedHandler=(event)=>{
     this.setState({picture:event.target.files[0]})
@@ -76,9 +79,10 @@ class UPopup extends React.Component {
       });
     }
     reader.readAsDataURL(file)
+    this.uploadHandler()
   }
   uploadHandler=()=> {
-    console.log(this.state.picture)
+    console.log(this.state.imageURL)
   }
     render() {
       return (
@@ -105,16 +109,16 @@ class UPopup extends React.Component {
                 <input id="studies" className="inputs" name="major" defaultValue = {this.state.major}
                   onChange={this.handleChange.bind(this)}/>
                 <label>Year: </label>
-                <Input id='classYear' className="inputs" type='select' name='year' defaultValue = {this.state.year}
+                <Input s={12} id='classYear' className="browser-default" type='select' name='year' value = {this.state.year}
                   onChange={this.handleChange.bind(this)}>
-                  <option value='1'>First</option>
-                  <option value='2'>Second</option>
-                  <option value='3'>Third</option>
-                  <option value='4'>Fourth</option>
-                  <option value='5'>Other</option>
+                  <option value='First'>First</option>
+                  <option value='Second'>Second</option>
+                  <option value='Third'>Third</option>
+                  <option value='Fourth'>Fourth</option>
+                  <option value='Other'>Other</option>
                 </Input>
                 <label>Bio: </label>
-                <input id="descrip" className="inputsB" name="bio" defaultValue = {this.state.bio}
+                <textarea id="descrip" rows='4' className="inputsB" name="bio" value = {this.state.bio}
                   onChange={this.handleChange.bind(this)}/>
                 <button onClick=
                   {this.props.closeUPopup} className="btn btn-primary">Cancel</button>
@@ -123,7 +127,15 @@ class UPopup extends React.Component {
               <div className="col-sm-6" id="pic">
                 <label>Profile Picture: </label>
                 <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler.bind(this)}/>
-                <Button id="uploadButton" onClick={this.uploadHandler}>Upload</Button>
+                <label>Facebook URL: </label>
+                <input id="mail" className="inputs" name="facebook" defaultValue = {this.state.facebook}
+                  onChange={this.handleChange.bind(this)}/>
+                <label>Instagram URL: </label>
+                <input id="mail" className="inputs" name="instagram" defaultValue = {this.state.instagram}
+                  onChange={this.handleChange.bind(this)}/>
+                    <label>Twitter URL: </label>
+                <input id="mail" className="inputs" name="twitter" defaultValue = {this.state.twitter}
+                  onChange={this.handleChange.bind(this)}/>
                 <button onClick=
                   {this.submitProf.bind(this)} id="button4" className="btn btn-primary">Save Updates</button>
               </div>    
