@@ -43,7 +43,7 @@ $mail->isHTML(true);                                  // Set email format to HTM
 
 $code = rand(1000, 9999);
 
-$mail->Subject = "Here is the subject from LeazeHousing";
+$mail->Subject = "LEaze Housing Account Confirmation";
 $mail->Body    = "
     Hey {$_POST["fname"]}, <br>
     Thanks for signing up for Leaze! With your Leaze account, you are able to: <br><br>
