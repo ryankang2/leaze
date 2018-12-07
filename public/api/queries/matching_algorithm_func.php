@@ -12,11 +12,12 @@
         $user2PrefQuery = "SELECT * FROM `preferences` WHERE `user_id`=$user2";
         $user2PrefResults = mysqli_query($conn, $user2PrefQuery);  
 
+
         // now compare the preferences for each user
         if(mysqli_num_rows($user1PrefResults) > 0 && mysqli_num_rows($user2PrefResults) > 0) {
             $user1Row = mysqli_fetch_assoc($user1PrefResults);
             $user2Row = mysqli_fetch_assoc($user2PrefResults);
-
+ 
             // substance preferences first, different format than rest
             if (abs(intval($user1Row["alcohol"]) - intval($user2Row["alcohol"])) == 2) {
                 $percentage -= 1;
@@ -31,8 +32,8 @@
                 $percentage -= 5;
             }
 
-            foreach($user1Row as $key => $value) {               
-                switch($key) {
+            foreach($user1Row as $key => $value) {        
+                switch($key) {           
                     case "deep_sleeper":
                         // fall through
                     case "early_bird":
