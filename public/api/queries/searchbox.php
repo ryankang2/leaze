@@ -7,7 +7,7 @@
         "success" => false
     ];
 
-    $input = explode(" ", "hello my name");//$_POST["searchQuery"].explode(" ");
+    $input = explode(" ", $_POST["searchQuery"]);
 
     $searchQ = "select * from `listings` where ";
     foreach ($input as $word) {
@@ -16,8 +16,6 @@
 
     $searchQ = substr($searchQ,0,-4);
     $searchQ .= ";";
-
-    echo($searchQ);
 
     $listings = mysqli_query($conn, $searchQ);
 
