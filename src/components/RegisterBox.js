@@ -2,7 +2,15 @@ import React, {Component} from "react";
 import {Input, Row, Icon, Button} from "react-materialize";
 import axios from "axios";
 import {formatPostData} from "../helpers/formatPostData";
-
+import { css } from '@emotion/core';
+// First way to import
+import { ClipLoader } from 'react-spinners';
+const override = css`
+    display: none;
+    margin: 0 auto;
+    position: absolute;
+    top: 20%;
+`;
 export default class RegisterBox extends Component {
 
     constructor() {
@@ -15,6 +23,7 @@ export default class RegisterBox extends Component {
             password: '',
             confPassword: '',
             active: false,
+            loading: false,
 
         };
 
@@ -23,6 +32,9 @@ export default class RegisterBox extends Component {
     }
     toggle(){
         this.setState({active: true});
+    }
+    toggleSpin(){
+        this.setState({loading:!this.state.loading})
     }
 
     validate(fname, lname, email, password, confPassword){
@@ -54,8 +66,8 @@ export default class RegisterBox extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
+            this.toggleSpin();
             const params = formatPostData(this.state);
             const emailcheck = await axios.post("http://localhost:8000/api/queries/existing_check.php", params);
             if (emailcheck.data.exists) {
@@ -254,7 +266,14 @@ export default class RegisterBox extends Component {
                 <p id="wrongInputRegister" className="hidden"></p>
 
                 <div className="FormField" id="submitDiv">
-                    <button type="Submit" id="regButton" className="btn btn-primary">Sign Up</button>
+                    <button type="Submit" id="regButton" className="btn btn-primary">Sign Up
+                    <ClipLoader
+                        className={override}
+                        sizeUnit={"px"}
+                        size={20}
+                        color={'#123abc'}
+                        loading={this.state.loading}/>   
+                    </button>
                 </div>    
             </form>
 

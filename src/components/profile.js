@@ -3,8 +3,6 @@ import "./Profile.css";
 import Navbar from "./Navbar.js"
 import UPopup from "./UPopup.js"
 import PPopup from "./PPopup.js"
-import {Button} from "react-materialize"
-import ListingPreview from "./ListingPreview.js"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 
@@ -83,6 +81,7 @@ export class Profile extends React.Component {
       showUPopup: !this.state.showUPopup
     });
   }
+
   togglePPopup(){
     this.setState({
       showPPopup: !this.state.showPPopup
@@ -120,7 +119,6 @@ export class Profile extends React.Component {
         };
     
         let points = '12.5,0.5 15.75,8.25 24.75,8.75 17.5,14.5 19.75,22.5 12.5,17.75 5.25,22.5 7.5,14.4 0.5,8.75 9.25,8.25 12.5,0.5';
-        // console.log(this.state)
     return (
       <div>
         <Navbar />
@@ -153,9 +151,9 @@ export class Profile extends React.Component {
               <div id="progressAreaInner">
                 <div id="progressTextArea">
                   <p>Social Media Links</p>
-                  <a href={'https://' + this.state.facebook} target="_blank"><i id="iconLivin" className="fa fa-facebook-square fa-5x" aria-hidden="true"></i></a>
-                  <a href={'https://' + this.state.instagram} target="_blank"><i id="iconLivin" className="fa fa-instagram fa-5x" aria-hidden="true"></i></a>
-                  <a href={'https://' + this.state.twitter} target="_blank"><i id= "iconLivin" className="fa fa-twitter-square fa-5x" aria-hidden="true"></i></a>
+                  <a href={this.state.facebook} target="_blank"><i id="iconLivin" className="fa fa-facebook-square fa-5x" aria-hidden="true"></i></a>
+                  <a href={this.state.instagram} target="_blank"><i id="iconLivin" className="fa fa-instagram fa-5x" aria-hidden="true"></i></a>
+                  <a href={this.state.twitter} target="_blank"><i id= "iconLivin" className="fa fa-twitter-square fa-5x" aria-hidden="true"></i></a>
                   <a href={'mailto:' + this.state.email} target="_top"><i id="iconLivin" className="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>
                 </div>
               </div>
