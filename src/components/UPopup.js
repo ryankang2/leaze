@@ -67,7 +67,7 @@ class UPopup extends React.Component {
     const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
     console.log(this.state);
     console.log(response.data)
-    //window.location.reload();
+    window.location.reload();
   }
   fileChangedHandler=(event)=>{
     this.setState({picture:event.target.files[0]})
@@ -81,13 +81,15 @@ class UPopup extends React.Component {
     reader.readAsDataURL(file)
   }
   uploadHandler=()=> {
-    console.log(this.state.imageURL)
+    const formData = new FormData()
+    formData.append('myFile', this.state.picture, this.state.picture.name)
+    axios.post('my-domain.com/file-upload', formData)
   }
     render() {
       return (
         <div className='popup'>
           <div className='popup_inner'>
-            <h1 className="title">Update Your Profile</h1>
+            <h4 className="title">Update Your Profile</h4>
               <div className="col-sm-6">
                 <label>First Name: </label>
                 <input id="firstName" className="inputs" name="firstname" defaultValue={this.state.firstname}

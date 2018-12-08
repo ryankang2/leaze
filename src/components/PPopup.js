@@ -88,7 +88,7 @@ class PPopup extends React.Component {
     return (
       <div className='ppopup'>
         <div className='popup_inner'>
-          <h1 className="title">Update Your Preferences</h1>
+          <h4 className="title">Update Your Preferences</h4>
           <div className="col-sm-4">
             <Row>
             <label>How many guests days per week?: </label>

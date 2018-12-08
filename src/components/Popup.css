@@ -39,8 +39,8 @@
 
 .title{
   color: black;
-  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 36px;
+  font-family: sans-serif;
 }
 .caret {
   border-color:transparent !important;
