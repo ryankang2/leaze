@@ -30,6 +30,7 @@ export class Profile extends React.Component {
         twitter: '',
         showUPopup: false,
         showPPopup: false,
+        listings: [],
     };
   }
   async componentDidMount(){
@@ -38,7 +39,10 @@ export class Profile extends React.Component {
     }
     const params = formatPostData(idObj);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
-    console.log(response.data);
+    const userListingResponse = await axios.post("http://localhost:8000/api/queries/get_user_listings.php", params);
+    console.log(userListingResponse);
+    this.showUserListings(userListingResponse.data.listings);
+    // console.log(response.data);
     this.setState({firstname: response.data.firstname})
     this.setState({lastname: response.data.lastname})
     this.setState({major: response.data.major})
@@ -48,6 +52,17 @@ export class Profile extends React.Component {
     this.setState({facebook: response.data.facebook})
     this.setState({instagram: response.data.instagram})
     this.setState({twitter: response.data.twitter})
+  }
+
+  showUserListings(list){
+    var array = [];
+    for(var i = 0; i < list.length; i++){
+      var singleListing = <ListingPreview information = {list[i]}{...this.props} key={list[i].user_id_posted}/>
+      array.push(singleListing);
+    }
+    this.setState({
+      listings: array,
+    })
   }
 
   toggleUPopup(){
@@ -92,7 +107,7 @@ export class Profile extends React.Component {
         };
     
         let points = '12.5,0.5 15.75,8.25 24.75,8.75 17.5,14.5 19.75,22.5 12.5,17.75 5.25,22.5 7.5,14.4 0.5,8.75 9.25,8.25 12.5,0.5';
-        console.log(this.state)
+        // console.log(this.state)
     return (
       <div>
         <Navbar />
@@ -144,8 +159,7 @@ export class Profile extends React.Component {
             <div className="col-sm-8" id="postedListings">
               {/* User's Posted Listings go here */}
               Posted Listings:
-                  {/*Ariane's code goes here*/}
-                  {/* <ListingPreview /> */}
+                  {this.state.listings}
             </div>
             <div className="col-sm-8" id="favoriteListings">
               {/* Ariane's code goes here */}
