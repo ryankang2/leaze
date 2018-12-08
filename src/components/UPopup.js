@@ -3,6 +3,15 @@ import "./Popup.css";
 import {Input,Button} from "react-materialize"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
+
+const override = css`
+    display: none;
+    margin: 0 auto;
+    position: absolute;
+    top: 93%;
+`;
 
 class UPopup extends React.Component {
   constructor(props){
@@ -22,6 +31,7 @@ class UPopup extends React.Component {
         twitter: '',
         picture: null,
         imageURL:require('./default_profile_pic.jpg'),
+        loading: false,
     };
   }
   async componentDidMount(){
@@ -42,6 +52,11 @@ class UPopup extends React.Component {
     this.setState({instagram: response.data.instagram})
     this.setState({twitter: response.data.twitter})
   }
+
+  toggleSpin(){
+    this.setState({loading: !this.state.loading})
+  }
+
   handleChange(event) {
     const { name, value } = event.currentTarget;
     this.setState({
@@ -62,12 +77,13 @@ class UPopup extends React.Component {
     }
   }
   async submitProf(event){
+    this.toggleSpin();
     this.uploadHandler()
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
     console.log(this.state);
     console.log(response.data)
-    //window.location.reload();
+    window.location.reload();
   }
   fileChangedHandler=(event)=>{
     this.setState({picture:event.target.files[0]})
@@ -137,7 +153,14 @@ class UPopup extends React.Component {
                 <input id="mail" className="inputs" name="twitter" defaultValue = {this.state.twitter}
                   onChange={this.handleChange.bind(this)}/>
                 <button onClick=
-                  {this.submitProf.bind(this)} id="saveButtonU" className="btn btn-primary">Save Updates</button>
+                  {this.submitProf.bind(this)} id="saveButtonU" className="btn btn-primary">Save Updates
+                    <ClipLoader
+                    className={override}
+                    sizeUnit={"px"}
+                    size={20}
+                    color={'#123abc'}
+                    loading={this.state.loading}/> 
+                </button>
               </div>    
           </div>
         </div>
