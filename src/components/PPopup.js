@@ -8,7 +8,7 @@ class PPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id:'',
+      user_id:sessionStorage.getItem("user_id"),
       gpd: '',
       latesleep: '',
       deepsleep: '',
@@ -47,7 +47,7 @@ class PPopup extends React.Component {
     if(response.data.cigarettes=="1"){
       this.setState({cigarettes: true})
     }
-    if(response.data.otherdrug=="1"){
+    if(response.data.other=="1"){
       this.setState({other: true})
     }
     this.setState({noise: response.data.study_noise_level})
@@ -58,7 +58,6 @@ class PPopup extends React.Component {
   }
 
   handleChange(event) {
-    console.log(event.currentTarget);
     const { name, value } = event.currentTarget;
     this.setState({
       [name]: value
@@ -66,6 +65,7 @@ class PPopup extends React.Component {
   }
   async submitPref(event){
     const params = formatPostData(this.state);
+    console.log(this.state)
     const response = await axios.post("http://localhost:8000/api/queries/set_pref.php", params);
     console.log(response.data)
     window.location.reload();
@@ -133,7 +133,7 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <button onClick=
-              {this.props.closePPopup} id="button1" className="btn btn-primary">Cancel</button>
+              {this.props.closePPopup} id="cancelButton" className="btn btn-primary">Cancel</button>
           </div>
           <div className="col-sm-4">
             <Row>
@@ -214,7 +214,7 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <button onClick=
-              {this.submitPref.bind(this)} id="button2" className="btn btn-primary">Save Updates</button>
+              {this.submitPref.bind(this)} id="saveButtonP" className="btn btn-primary">Save Updates</button>
           </div>
         </div>
       </div>
