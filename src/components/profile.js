@@ -28,8 +28,6 @@ export class Profile extends React.Component {
         twitter: '',
         showUPopup: false,
         showPPopup: false,
-        favs:[],
-        posts:[],
     };
   }
   async componentDidMount(){
@@ -54,7 +52,7 @@ export class Profile extends React.Component {
       showUPopup: !this.state.showUPopup
     });
   }
-  
+
   togglePPopup(){
     this.setState({
       showPPopup: !this.state.showPPopup
@@ -146,13 +144,11 @@ export class Profile extends React.Component {
               {/* User's Posted Listings go here */}
               Posted Listings:
                   {/*Ariane's code goes here*/}
-                  {this.state.favs}
             </div>
             <div className="col-sm-8" id="favoriteListings">
               {/* Ariane's code goes here */}
               Favorite Listings:
                   {/*<ListingPreview />*/}
-                  {this.state.posts}
             </div>
           </div>
         </div>
