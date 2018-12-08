@@ -19,8 +19,17 @@
     }
     // else add to the output
     else {
+        $count = 0;
         while($row = mysqli_fetch_assoc($results)){
-            $output["listings"][] = $row; 
+            $output["listings"][] = $row;
+            $userQuery = "SELECT * FROM `users` JOIN `profile` ON `users`.user_id=`profile`.user_id WHERE `users`.user_id=$user_id";
+            $userResult = mysqli_query($conn, $userQuery);
+            if(mysqli_num_rows($userResult) > 0){
+                $userRow = mysqli_fetch_assoc($userResult);
+                $userRow["password"] = "XXX";
+                $output["listings"][$count]["user"] = $userRow;
+            }
+            $count++;
         }
     }
 
