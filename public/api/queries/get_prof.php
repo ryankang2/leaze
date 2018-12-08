@@ -14,7 +14,8 @@
         "bio" => "",
         "facebook" => "",
         "instagram" => "",
-        "twitter" => ""
+        "twitter" => "",
+        "profile_pic" => ""
     ];
 
     //assume we can pass in the user id, and we output the information in output
@@ -40,6 +41,7 @@
         $output["facebook"] = $profRow["facebook"] != "null" ? $profRow["facebook"] : '';
         $output["instagram"] = $profRow["instagram"] != "null" ? $profRow["instagram"] : '';
         $output["twitter"] = $profRow["twitter"] != "null" ? $profRow["twitter"]: '';
+        $output["profile_pic"] = $profRow["profile_pic"];
         $output["success"] = true;
     }
 

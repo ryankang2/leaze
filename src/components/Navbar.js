@@ -4,12 +4,14 @@ import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import MakePostModal from "./MakePost";
+import ListingPreview from "./ListingPreview";
 
 class Navbar extends Component{
     constructor(props){
         super(props);
         this.state = {
             searchQuery: "",
+            listings: [],
         }
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
@@ -32,7 +34,6 @@ class Navbar extends Component{
         };
         const params = formatPostData(userObj);
         const response = await axios.post("http://localhost:8000/api/queries/get_single_user.php", params);
-        console.log(response);
         this.changeName(response.data.user);
     }
 
@@ -40,19 +41,21 @@ class Navbar extends Component{
         $(".welcome").text("Welcome, " + user[0].first_name + "!");
     }
 
-    logout(user){
+    logout(){
         sessionStorage.setItem("user_id", "-1");
     }
+    
     async handleFormSubmit(event){
         event.preventDefault();
         event.stopPropagation();
         const params = formatPostData(this.state);
         const response = await axios.post("http://localhost:8000/api/queries/searchbox.php",params);
-        console.log(response);
+        this.props.getSearch(response);
         this.setState({
             searchQuery: "",
         });
     }
+
 
     openModal(){
         $(".makePostModal").css("display", "block");
@@ -62,7 +65,6 @@ class Navbar extends Component{
     render(){
         const {searchQuery} = this.state;
         var linkQuery = "/home/profile/" + sessionStorage.getItem("user_id");
-        var linkQueryMessages = linkQuery + "/messages";
         var linkQueryLogin = "/";
 
 
@@ -75,39 +77,29 @@ class Navbar extends Component{
                                     <img className="logoPic" src={require('../../dist/logo_transparent.png')} alt=""/>
                                 </div>              
                             </Link>
-                            {/*<form className="col-xs-3 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>*/}
-                                {/*<div className="form-group">*/}
-                                    {/*<input type="search " value={searchQuery} name="userInput" className="form-control searchBox" placeholder="Search..." onChange={(event) => this.handleInput(event)}/>*/}
-                                    {/*<i className="searchIcon fa fa-search"></i>*/}
-                                {/*</div>*/}
-                            {/*</form>*/}
-                            <ul className="col-xs-2 col-sm-2 col-md-2 profileContainer">
+                            <form className="col-xs-3 col-sm-5 col-md-5 navbar-form navbar-left" onSubmit={(event) => this.handleFormSubmit(event)}>
+                                <div className="form-group">
+                                    <input type="search " value={searchQuery} name="userInput" className="form-control searchBox" placeholder="Search..." onChange={(event) => this.handleInput(event)}/>
+                                    <i className="searchIcon fa fa-search"></i>
+                                </div>
+                            </form>
+                            <div className="col-xs-2 col-sm-2 col-md-2 profileContainer">
                                 <Link to = {linkQuery}>
                                     <div className="welcome">
                                         <i className="fa fa-user-circle-o"></i>
                                     </div>
                                 </Link>
-
-                            </ul>
-                            <ul className="col-xs-2 col-sm-2 col-md-2 settingsContainer">
-                                <ul className="nav navbar-nav editContainer">
-                                    <li onClick={this.openModal.bind(this)}><a href="#"><i className="glyphicon glyphicon-edit"></i></a></li>
-                                </ul>
-
-                                <Link to = {linkQueryMessages}>
-                                    <ul className="nav navbar-nav envelopeContainer">
-                                        <li><a href="#"><i className="glyphicon glyphicon-envelope"></i></a></li>
-                                    </ul>
-                                </Link>
-
-                                <Link to = {linkQueryLogin}>
-                                    <ul className="nav navbar-nav logoutContainer">
-                                        <li><a href="#"><i className="glyphicon glyphicon-off" onClick={this.logout.bind(this)}></i></a></li>
-                                    </ul>
-                                </Link>
-
-                                    {/*<li><a href="#"><i className="glyphicon glyphicon-bell"></i></a></li>*/}
-                            </ul>
+                                <div className="settingsContainer">
+                                    <div className="nav navbar-nav editContainer">
+                                        <li onClick={this.openModal.bind(this)}><a href="#"><i className="glyphicon glyphicon-edit"></i></a></li>
+                                    </div>
+                                    <Link to = {linkQueryLogin}>
+                                        <div className="nav navbar-nav logoutContainer">
+                                            <li><a href="#"><i className="glyphicon glyphicon-off" onClick={this.logout.bind(this)}></i></a></li>
+                                        </div>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <MakePostModal>

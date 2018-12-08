@@ -28,6 +28,8 @@ export class Profile extends React.Component {
         twitter: '',
         showUPopup: false,
         showPPopup: false,
+        postedlistings: [],
+        favoriteListings: [],
     };
   }
   async componentDidMount(){
@@ -36,6 +38,11 @@ export class Profile extends React.Component {
     }
     const params = formatPostData(idObj);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
+    const userListingResponse = await axios.post("http://localhost:8000/api/queries/get_user_listings.php", params);
+    const favoriteListingsResponse = await axios.post("http://localhost:8000/api/queries/get_favorites.php", params);
+    console.log("FAVORITE LISTING: ", favoriteListingsResponse);
+    this.showUserListings(userListingResponse.data.listings);
+    this.showFavoriteListings(favoriteListingsResponse.data.listings);
     this.setState({firstname: response.data.firstname})
     this.setState({lastname: response.data.lastname})
     this.setState({major: response.data.major})
@@ -45,6 +52,28 @@ export class Profile extends React.Component {
     this.setState({facebook: response.data.facebook})
     this.setState({instagram: response.data.instagram})
     this.setState({twitter: response.data.twitter})
+  }
+
+  showUserListings(list){
+    var array = [];
+    for(var i = 0; i < list.length; i++){
+      var singleListing = <ListingPreview information = {list[i]}{...this.props} key={list[i].user_id_posted}/>
+      array.push(singleListing);
+    }
+    this.setState({
+      postedListings: array,
+    })
+  }
+
+  showFavoriteListings(list){
+    var array = [];
+    for(var i = 0; i < list.length; i++){
+      var singleListing = <ListingPreview information = {list[i]}{...this.props} key={list[i].user_id_posted}/>
+      array.push(singleListing);
+    }
+    this.setState({
+      favoriteListings: array,
+    })
   }
 
   toggleUPopup(){
@@ -90,8 +119,6 @@ export class Profile extends React.Component {
         };
     
         let points = '12.5,0.5 15.75,8.25 24.75,8.75 17.5,14.5 19.75,22.5 12.5,17.75 5.25,22.5 7.5,14.4 0.5,8.75 9.25,8.25 12.5,0.5';
-
-        
     return (
       <div>
         <Navbar />
@@ -140,15 +167,15 @@ export class Profile extends React.Component {
 
           {/* here lies the bottom row - Drexler works here */}
           <div className="row" id="listingsRow">
-            <div className="col-sm-8" id="postedListings">
+            <div className="col-sm-6" id="postedListings">
               {/* User's Posted Listings go here */}
               Posted Listings:
-                  {/*Ariane's code goes here*/}
+                  {this.state.postedListings}
             </div>
-            <div className="col-sm-8" id="favoriteListings">
+            <div className="col-sm-6" id="favoriteListings">
               {/* Ariane's code goes here */}
               Favorite Listings:
-                  {/*<ListingPreview />*/}
+                {this.state.favoriteListings}
             </div>
           </div>
         </div>

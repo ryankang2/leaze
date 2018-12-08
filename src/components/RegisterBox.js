@@ -69,11 +69,17 @@ export default class RegisterBox extends Component {
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
             this.toggleSpin();
             const params = formatPostData(this.state);
-            const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
-            const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
-            var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
-            sessionStorage.setItem("userCode", userCode);
-            document.getElementById("confRegister").style.display = "block";
+            const emailcheck = await axios.post("http://localhost:8000/api/queries/existing_check.php", params);
+            if (emailcheck.data.exists) {
+                // INSERT ERROR MESSAGE FOR EMAIL ALREADY EXISTS
+            }
+            else {
+                const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
+                const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
+                var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
+                sessionStorage.setItem("userCode", userCode);
+                document.getElementById("confRegister").style.display = "block";
+            }
         }
     }
 

@@ -7,9 +7,10 @@
 .settingsContainer{
     display: block;
     left: 200px;
-    float: right;
+    /* float: right; */
     width: 180px;
-    top:17px;
+    /* top:17px; */
+    margin-top: 15%;
 }
 
 .navbar{
@@ -41,7 +42,7 @@
 }
 
 .nav i{
-    font-size: 18px;
+    font-size: 24px;
 }
 
 .logoPic{
