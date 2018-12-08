@@ -113,11 +113,7 @@ export default class MakePost extends Component {
             this.setState({active:true});
             this.checkError();
             this.setState({error:""})
-            
-            
         }
-
-
     }
 
     cancelPost(e) {
@@ -139,9 +135,7 @@ export default class MakePost extends Component {
             console.log("forloop: ", i);
             $(".picsContainer").append('<img id="listingPics" src="' + this.state.images[i] + '"/>');
         }
-        this.setState({
-            images: [],
-        });
+        console.log("this.state: ", this.state);
       }
 
       handleLoadImage = (file) => {
@@ -240,7 +234,7 @@ export default class MakePost extends Component {
                                                 </div>
                                                 <div className="inputContainer">
                                                     <Row>
-                                                        <Input s={12} label="Upload Images" type="file" multiple onChange={this.fileChangedHandler.bind(this)}></Input>
+                                                        <Input s={8} label="Select" type="file" multiple onChange={this.fileChangedHandler.bind(this)}></Input>
                                                     </Row>
                                                 </div>
 
