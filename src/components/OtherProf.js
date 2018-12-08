@@ -22,6 +22,7 @@ export default class OtherProfile extends React.Component {
         imageURL: require("./default_profile_pic.jpg"),
         showUPopup: false,
         showPPopup: false,
+        postedListings: '',
     };
   }
   async componentDidMount(){
@@ -36,6 +37,8 @@ export default class OtherProfile extends React.Component {
     }
     const params = formatPostData(idObject);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
+    const userListingResponse = await axios.post("http://localhost:8000/api/queries/get_user_listings.php", params);
+    this.showUserListings(userListingResponse.data.listings);
     console.log(response.data);
     this.setState({firstname: response.data.firstname})
     this.setState({lastname: response.data.lastname})
@@ -43,6 +46,17 @@ export default class OtherProfile extends React.Component {
     this.setState({year: response.data.year})
     this.setState({bio: response.data.bio})
     this.setState({email: response.data.email})
+  }
+
+  showUserListings(list){
+    var array = [];
+    for(var i = 0; i < list.length; i++){
+      var singleListing = <ListingPreview information = {list[i]}{...this.props} key={list[i].user_id_posted}/>
+      array.push(singleListing);
+    }
+    this.setState({
+      postedListings: array,
+    })
   }
 
   render() {
@@ -91,7 +105,7 @@ export default class OtherProfile extends React.Component {
               {/* User's Posted Listings go here */}
               Posted Listings:
               <div id="noListings">
-                  No Listings to Show
+                  {this.state.postedListings}
                   {/*Ariane's code goes here*/}
                   {/* <ListingPreview /> */}
               </div>

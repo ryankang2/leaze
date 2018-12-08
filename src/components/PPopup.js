@@ -3,7 +3,16 @@ import "./Popup.css";
 import {Row, Input } from "react-materialize"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
 
+
+const override = css`
+    display: none;
+    margin: 0 auto;
+    position: absolute;
+    top: 94%;
+`;
 class PPopup extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +32,7 @@ class PPopup extends React.Component {
       noise: '',
       share: '',
       relations: '',
+      loading: false,
     };
   }
   async componentDidMount(){
@@ -57,6 +67,10 @@ class PPopup extends React.Component {
     console.log(response.data)
   }
 
+  toggleSpin(){
+    this.setState({loading: !this.state.loading})
+  }
+
   handleChange(event) {
     const { name, value } = event.currentTarget;
     this.setState({
@@ -64,6 +78,7 @@ class PPopup extends React.Component {
     })
   }
   async submitPref(event){
+    this.toggleSpin();
     const params = formatPostData(this.state);
     console.log(this.state)
     const response = await axios.post("http://localhost:8000/api/queries/set_pref.php", params);
@@ -214,7 +229,14 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <button onClick=
-              {this.submitPref.bind(this)} id="saveButtonP" className="btn btn-primary">Save Updates</button>
+              {this.submitPref.bind(this)} id="saveButtonP" className="btn btn-primary">Save Updates
+              <ClipLoader
+                className={override}
+                sizeUnit={"px"}
+                size={20}
+                color={'#123abc'}
+                loading={this.state.loading}/> 
+            </button>
           </div>
         </div>
       </div>
