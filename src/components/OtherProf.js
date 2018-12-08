@@ -25,7 +25,12 @@ export default class OtherProfile extends React.Component {
     };
   }
   async componentDidMount(){
-    const userID = window.location.href[window.location.href.length-1];
+    var i=window.location.href.length-1
+    var userID="";
+    while(window.location.href[i] != '/'){
+      userID=(window.location.href[i].toString())+userID;
+      i--;
+    }
     const idObject = { 
       user_id: userID
     }
@@ -85,8 +90,11 @@ export default class OtherProfile extends React.Component {
             <div className="col-sm-12" id="postedListings">
               {/* User's Posted Listings go here */}
               Posted Listings:
+              <div id="noListings">
+                  No Listings to Show
                   {/*Ariane's code goes here*/}
                   {/* <ListingPreview /> */}
+              </div>
             </div>
           </div>
         </div>

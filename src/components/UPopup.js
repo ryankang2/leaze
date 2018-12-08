@@ -126,7 +126,7 @@ class UPopup extends React.Component {
               <img id="displayPic" src={this.state.imageURL} />
               <div className="col-sm-6" id="pic">
                 <label>Profile Picture: </label>
-                <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler.bind(this)}/>
+                <Input id="chooseButton" label="Choose Image" type='file' onChange={this.fileChangedHandler.bind(this)}/>
                 <label>Facebook URL: </label>
                 <input id="mail" className="inputs" name="facebook" defaultValue = {this.state.facebook}
                   onChange={this.handleChange.bind(this)}/>
