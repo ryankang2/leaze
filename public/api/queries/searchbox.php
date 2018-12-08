@@ -11,7 +11,7 @@
 
     $searchQ = "select * from `listings` where ";
     foreach ($input as $word) {
-        $searchQ .= "title like \"%" . $word . "%\" or description like \"%" . $word . "%\" or ";
+        $searchQ .= "address like \"%" . $word . "%\" or title like \"%" . $word . "%\" or description like \"%" . $word . "%\" or ";
     }
 
     $searchQ = substr($searchQ,0,-4);

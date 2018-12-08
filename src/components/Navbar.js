@@ -4,12 +4,14 @@ import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import MakePostModal from "./MakePost";
+import ListingPreview from "./ListingPreview";
 
 class Navbar extends Component{
     constructor(props){
         super(props);
         this.state = {
             searchQuery: "",
+            listings: [],
         }
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
@@ -32,7 +34,6 @@ class Navbar extends Component{
         };
         const params = formatPostData(userObj);
         const response = await axios.post("http://localhost:8000/api/queries/get_single_user.php", params);
-        console.log(response);
         this.changeName(response.data.user);
     }
 
@@ -40,7 +41,7 @@ class Navbar extends Component{
         $(".welcome").text("Welcome, " + user[0].first_name + "!");
     }
 
-    logout(user){
+    logout(){
         sessionStorage.setItem("user_id", "-1");
     }
     
@@ -49,11 +50,12 @@ class Navbar extends Component{
         event.stopPropagation();
         const params = formatPostData(this.state);
         const response = await axios.post("http://localhost:8000/api/queries/searchbox.php",params);
-        console.log(response);
+        this.props.getSearch(response);
         this.setState({
             searchQuery: "",
         });
     }
+
 
     openModal(){
         $(".makePostModal").css("display", "block");
@@ -63,7 +65,6 @@ class Navbar extends Component{
     render(){
         const {searchQuery} = this.state;
         var linkQuery = "/home/profile/" + sessionStorage.getItem("user_id");
-        var linkQueryMessages = linkQuery + "/messages";
         var linkQueryLogin = "/";
 
 

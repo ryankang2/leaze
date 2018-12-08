@@ -11,6 +11,7 @@ class ResultsContent extends Component{
         super(props);
         this.state = {
             listings: [],
+            update: 0
         };
     }
 
@@ -23,7 +24,19 @@ class ResultsContent extends Component{
         this.getFilterResponseData(response);
     }
 
-    getFilterResponseData(responseObject, searchParams){
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            listings: [],
+        })
+        console.log("PROPS: ", this.props.searchResults);
+        console.log("NEXTPROPS: ", nextProps);
+        this.setState({
+            listings: nextProps.searchResults
+        })
+    }
+
+
+    getFilterResponseData(responseObject){
         // console.log("responseObject: ", responseObject);
         var array = [];
         for(var i = 0; i < responseObject.data.listings.length; i++){
@@ -34,6 +47,7 @@ class ResultsContent extends Component{
             listings: array,
         })
     }
+
 
     render(){
         return (
@@ -47,6 +61,7 @@ class ResultsContent extends Component{
                         <div className="list">
                             <div className="row">
                                 {this.state.listings}
+                                {/* {this.props.listings} */}
                             </div>
                         </div>
                     </div>
