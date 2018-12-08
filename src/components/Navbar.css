@@ -5,7 +5,11 @@
 }
 
 .settingsContainer{
-    /* float: right; */
+    display: block;
+    left: 200px;
+    float: right;
+    width: 180px;
+    top:17px;
 }
 
 .navbar{

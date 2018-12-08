@@ -46,7 +46,7 @@
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
     $mail->isHTML(true);                                  // Set email format to HTML
 
-    $mail->Subject = "Here is the subject from LEaZeHousing";
+    $mail->Subject = "4-Digit Code for LEaze Housing";
     $mail->Body    = "
         Here is your 4-digit code for your LEaZe Account: $code
         <br><br>

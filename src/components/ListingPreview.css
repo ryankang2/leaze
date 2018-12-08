@@ -129,6 +129,19 @@
 
 }
 
+.fas{
+    font-size: 10px;
+}
+
+.fa-trash-o{
+    color: lightpink;
+    left: 88.5%;
+    top: 5%;
+    font-size: large;
+    position: absolute;
+
+}
+
 .favorite_fill{
     color: lightpink;
     left: 88.5%;
@@ -199,6 +212,12 @@
     cursor: pointer;
 }
 
+.trashModal{
+    display:none;
+    /*height: 200px;*/
+    width: 600px;
+    height:33%;
+}
 .leasingImagesContainer{
     height: 250px;
     width: 100%;
@@ -267,8 +286,6 @@
     font-size: 36px;
     margin-right: 2%;
 }
-
-
 
 
 
