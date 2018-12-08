@@ -37,9 +37,9 @@
         $output["major"] = $profRow["major"];
         $output["year"] = $profRow["year"];
         $output["bio"] = $profRow["about_me"];
-        $output["facebook"] = $profRow["facebook"];
-        $output["instagram"] = $profRow["instagram"];
-        $output["twitter"] = $profRow["twitter"];
+        $output["facebook"] = $profRow["facebook"] != "null" ? $profRow["facebook"] : '';
+        $output["instagram"] = $profRow["instagram"] != "null" ? $profRow["instagram"] : '';
+        $output["twitter"] = $profRow["twitter"] != "null" ? $profRow["twitter"]: '';
         $output["success"] = true;
     }
 

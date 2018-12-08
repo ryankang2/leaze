@@ -25,7 +25,8 @@
     text-align: center;
     padding-top: 0.5vh;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    font-size: 25px;
 }
 
 #progressMessage {
@@ -141,7 +142,12 @@ hr {
 
 #biography {
     margin: 4vh 0 0 1vw;
-    overflow-y: scroll;
+    overflow-y: auto;
+}
+
+#noListings {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #ratingArea {
