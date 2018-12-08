@@ -29,7 +29,12 @@ export default class MakePost extends Component {
             furnished: false,
             gym: false,
             pool: false,
-            parking: false, 
+            parking: false,
+            active: false,
+            title_class: "",
+            price_class: "",
+            address_class: "",
+            error: "hidden"
             images: [],
         };
 
@@ -61,16 +66,60 @@ export default class MakePost extends Component {
         })
     }
 
+    validate(title, address, price){
+        return{
+            title: title.length === 0,
+            address: address.length === 0,
+            price: price === 0 || price.length === 0,
+        };
+    }
+
+    checkError(){
+        
+        if(this.state.title === ""){
+            this.setState({title_class:"invalid"});
+        }else{
+            this.setState({title_class:"valid"});
+        }
+        if(this.state.price === 0 || this.state.price.length === 0){
+            this.setState({price_class:"invalid"});
+        }else{
+            this.setState({price_class:"valid"})
+        }
+        if(this.state.address === ""){
+            this.setState({address_class:"invalid"});
+        }else{
+            this.setState({address_class:"valid"});
+        }
+    }
 
     async submitPost(e) {
         e.preventDefault();
-        const params = formatPostData(this.state);
-        const response = await axios.post("http://localhost:8000/api/queries/make_post.php", params);
-        console.log(response);
-        if(response.data.success){
-            $(".makePostModal").css("display", "none");
-            $("#myModal2").css("display", "block");
+
+        const errors = this.validate(this.state.title, this.state.address, this.state.price);
+        let isValid = Object.keys(errors).some(i => errors[i]);
+        if(!isValid){
+            this.setState({active:false})
+            document.getElementById("error").className = "hidden";
+            const params = formatPostData(this.state);
+            const response = await axios.post("http://localhost:8000/api/queries/make_post.php", params);
+            console.log(response);
+            if(response.data.success){
+               $(".makePostModal").css("display", "none");
+              $("#myModal2").css("display", "block");
+            }
         }
+        else{
+            this.setState({active:true});
+            this.checkError();
+            this.setState({error:""})
+            
+            
+        }
+
+        
+
+        
 
     }
 
@@ -136,10 +185,10 @@ export default class MakePost extends Component {
                                         <div className="row">
                                             <div className="col-sm-8 postInfoBox">
                                                 <Row>
-                                                    <Input s={8} name="title" label="Title" onChange={this.handleChange.bind(this)}/>
+                                                    <Input s={8} name="title" label="Title" className={this.state.active ? this.state.title_class : ""} onChange={this.handleChange.bind(this)}/>
                                                 </Row>
                                                 <Row>
-                                                    <Input s={12} name="address" label="Full Address" onChange={this.handleChange.bind(this)}/>
+                                                    <Input s={12} name="address" label="Full Address" class={this.state.active ? this.state.address_class : ""} onChange={this.handleChange.bind(this)}/>
                                                 </Row>
                                                 <Row>
                                                     <h4>Room Type</h4>
@@ -158,7 +207,7 @@ export default class MakePost extends Component {
                                                     </Input>
                                                 </Row>
                                                 <Row>
-                                                    <Input s={6} name="price" label="Price/month" onChange={this.handleChange}/>
+                                                    <Input s={6} name="price" type="number" label="Price/month" class={this.state.active ? this.state.price_class : ""} onChange={this.handleChange}/>
                                                     <Input s={6} name="dist_to_campus" label="Distance from campus" onChange={this.handleChange}/>
                                                 </Row>
                                                 <Row>
@@ -205,10 +254,12 @@ export default class MakePost extends Component {
                                 </div>
                             </div>
                             <div className="modal-footer makeAPostFooter">
-                                <button className="btn cancelBtn" waves="light" onClick={this.cancelPost.bind(this)}>Cancel</button>
-
+                                <p id="error" class={this.state.active ? this.state.error : "hidden"}>You must fill in the highlighted fields</p>
+                                <button class="btn cancelBtn" waves="light" onClick={this.cancelPost.bind(this)}>Cancel</button>
+                                
                                 <button type="submit" className="btn waves-effect waves-light">Post
-                                <i className="material-icons right">send</i>
+                                
+                                <i class="material-icons right">send</i>
                                 </button>
                             </div>
                         </div>
