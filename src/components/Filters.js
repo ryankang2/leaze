@@ -179,28 +179,28 @@ class Filters extends Component{
                     Room Type
                </div>
                <Row className="roomType">
-                       <Input name="roomSingle" type="checkbox" checked={this.state.roomSingle} value={this.state.roomSingle} label="Single Room"  onChange={this.handleCheckBox} />
-                       <Input name="roomDouble" type="checkbox" checked={this.state.roomDouble} value ={this.state.roomDouble} label="Double Room"  onChange={this.handleCheckBox} />
-                       <Input name="roomTriple" type="checkbox" checked={this.state.roomTriple} value ={this.state.roomTriple} label="Triple Room"  onChange={this.handleCheckBox}/>
-                       <Input name="roomLiving" type="checkbox" checked={this.state.roomLiving} value = {this.state.roomLiving} label="Living Room"  onChange={this.handleCheckBox}/>
+                       <Input name="roomSingle" type="checkbox" checked={this.state.roomSingle} label="Single Room"  onChange={this.handleCheckBox} />
+                       <Input name="roomDouble" type="checkbox" checked={this.state.roomDouble} label="Double Room"  onChange={this.handleCheckBox} />
+                       <Input name="roomTriple" type="checkbox" checked={this.state.roomTriple} label="Triple Room"  onChange={this.handleCheckBox}/>
+                       <Input name="roomLiving" type="checkbox" checked={this.state.roomLiving} label="Living Room"  onChange={this.handleCheckBox}/>
                 </Row>
                 <div id={"homeTypeHeader"} >
                     Home Type
                </div>
                 <Row className="homeType">
-                       <Input name="roomApart" type="checkbox" checked={this.state.roomApart} value ={this.state.roomApart} label="Apartment"  onChange={this.handleCheckBox} />
-                       <Input name="roomHouse" type="checkbox" checked={this.state.roomHouse} value ={this.state.roomHouse} label="House"  onChange={this.handleCheckBox}/>
+                       <Input name="roomApart" type="checkbox" checked={this.state.roomApart} label="Apartment"  onChange={this.handleCheckBox} />
+                       <Input name="roomHouse" type="checkbox" checked={this.state.roomHouse} label="House"  onChange={this.handleCheckBox}/>
                 </Row>
                 <div id={"amenitiesHeader"} >
                     Amenities
                </div>
                 <Row className="homeMisc">
-                    <Input name="pet" type="checkbox" checked={this.state.pet} value ={this.state.pet} label="Pet Friendly"  onChange={this.handleCheckBox}/>
-                    <Input name="laundry" type="checkbox" checked={this.state.laundry} value={this.state.laundry} label="In-unit Laundry"  onChange={this.handleCheckBox} />
-                    <Input name="parking" type="checkbox" checked={this.state.parking} value ={this.state.parking} label="Has Parking"  onChange={this.handleCheckBox}/>
-                    <Input name="furnished" type="checkbox" checked={this.state.furnished} value={this.state.furnished} label="Furnished Room"  onChange={this.handleCheckBox} />
-                    <Input name="gym" type="checkbox" checked={this.state.gym} value ={this.state.gym} label="Has Gym"  onChange={this.handleCheckBox} />
-                    <Input name="pool" type="checkbox" checked={this.state.pool} value={this.state.pool} label="Has Pool"  onChange={this.handleCheckBox} />
+                    <Input name="pet" type="checkbox" checked={this.state.pet} label="Pet Friendly"  onChange={this.handleCheckBox}/>
+                    <Input name="laundry" type="checkbox" checked={this.state.laundry} label="In-unit Laundry"  onChange={this.handleCheckBox} />
+                    <Input name="parking" type="checkbox" checked={this.state.parking} label="Has Parking"  onChange={this.handleCheckBox}/>
+                    <Input name="furnished" type="checkbox" checked={this.state.furnished} label="Furnished Room"  onChange={this.handleCheckBox} />
+                    <Input name="gym" type="checkbox" checked={this.state.gym} label="Has Gym"  onChange={this.handleCheckBox} />
+                    <Input name="pool" type="checkbox" checked={this.state.pool} label="Has Pool"  onChange={this.handleCheckBox} />
                 </Row>
                 <button type="button" className="btn btn-primary" onClick={this.saveFilterData}>Save Filters</button>
                 <button className="btn btn-link" onClick={this.resetFilters}>Clear All Filters</button>
