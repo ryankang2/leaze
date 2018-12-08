@@ -44,13 +44,14 @@
         "home_type" => $home,
         "room_type" => $room
     ];
-
+    
     foreach($filters as $key => $value) {
         if ($value != "false") {
             // match the format that the database stores true booleans
             if ($value == "true") {
                 $value = "1";
             }
+
             $updateQuery = "UPDATE `filters` SET $key='$value' WHERE `user_id`=$user_id";
             mysqli_query($conn, $updateQuery);
         }

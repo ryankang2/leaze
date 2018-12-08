@@ -17,7 +17,9 @@ export default class OtherProfile extends React.Component {
         major:'',
         year:'',
         bio:'',
+        email: '',
         picture:null,
+        imageURL: require("./default_profile_pic.jpg"),
         showUPopup: false,
         showPPopup: false,
     };
@@ -30,9 +32,12 @@ export default class OtherProfile extends React.Component {
     const params = formatPostData(idObject);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
-    $("#userName").text(response.data.firstname +' ' + response.data.lastname)
-    $("#userInfo").text(response.data.major + ', ' + response.data.year)
-    $("#biography").text(response.data.bio)
+    this.setState({firstname: response.data.firstname})
+    this.setState({lastname: response.data.lastname})
+    this.setState({major: response.data.major})
+    this.setState({year: response.data.year})
+    this.setState({bio: response.data.bio})
+    this.setState({email: response.data.email})
   }
 
   render() {
@@ -44,26 +49,29 @@ export default class OtherProfile extends React.Component {
           <div className="row" id="profileRow">
             <div className="col-md-2" id="profilePictureArea">
               {/* User OtherProfile pic here */}
-              <img src={require('./profile.jpg')} id="profilePic" />
+              <img src={this.state.imageURL} id="profilePic" />
               <span className="label-ucsd"> UCSD </span>
             </div>
 
-            <div className="col-md-4" id="bioArea">
+            <div className="col-md-6" id="bioAreaO">
               {/* User Bio Area here  */}
               <h1 id="userName" > {this.state.firstname} {this.state.lastname} </h1>
-              <h2 id="userInfo"> {this.state.major} {this.state.year}</h2>
+              <h2 id="userInfo"> {this.state.major}, {this.state.year} Year</h2>
               <p rows="4" cols="50" id="biography"> {this.state.bio} </p>
             </div>
 
-            <div className="col-md-2" id="ratingArea">
-              {/* User Rating Area goes here */}
-              <p id="ratingString"> Your average rating is: RATING </p>
-              <button id="buttonP" className="btn btn-primary">Send a Message</button>
-
-            </div>
-
             <div className="col-md-4" id="progressArea">
-              {/* User OtherProfile Strength Percentage is here */}
+              {/* User Profile Strength Percentage is here */}
+              <div id="progressAreaInner">
+                <div id="progressTextArea">
+                  <p>Social Media Links</p>
+                  <a href={'https://' + this.state.facebook} target="_blank"><i id="iconLivin" className="fa fa-facebook-square fa-5x" aria-hidden="true"></i></a>
+                  <a href={'https://' + this.state.instagram} target="_blank"><i id="iconLivin" className="fa fa-instagram fa-5x" aria-hidden="true"></i></a>
+                  <a href={'https://' + this.state.twitter} target="_blank"><i id= "iconLivin" className="fa fa-twitter-square fa-5x" aria-hidden="true"></i></a>
+                  <a href={'mailto:' + this.state.email} target="_top"><i id="iconLivin" className="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -74,16 +82,11 @@ export default class OtherProfile extends React.Component {
 
           {/* here lies the bottom row - Drexler works here */}
           <div className="row" id="listingsRow">
-            <div className="col-sm-8" id="postedListings">
+            <div className="col-sm-12" id="postedListings">
               {/* User's Posted Listings go here */}
               Posted Listings:
                   {/*Ariane's code goes here*/}
                   {/* <ListingPreview /> */}
-            </div>
-            <div className="col-sm-8" id="favoriteListings">
-              {/* Ariane's code goes here */}
-              Favorite Listings:
-                  {/*<ListingPreview />*/}
             </div>
           </div>
         </div>

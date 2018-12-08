@@ -3,6 +3,7 @@ import "./Profile.css";
 import Navbar from "./Navbar.js"
 import UPopup from "./UPopup.js"
 import PPopup from "./PPopup.js"
+import {Button} from "react-materialize"
 import ListingPreview from "./ListingPreview.js"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
@@ -19,9 +20,14 @@ export class Profile extends React.Component {
         major:'',
         year:'',
         bio:'',
+        email:'',
         picture:null,
+        imageURL: require("./default_profile_pic.jpg"),
         rating: '',
         progress: '',
+        facebook: '',
+        instagram: '',
+        twitter: '',
         showUPopup: false,
         showPPopup: false,
     };
@@ -38,6 +44,10 @@ export class Profile extends React.Component {
     this.setState({major: response.data.major})
     this.setState({year: response.data.year})
     this.setState({bio: response.data.bio})
+    this.setState({email: response.data.email})
+    this.setState({facebook: response.data.facebook})
+    this.setState({instagram: response.data.instagram})
+    this.setState({twitter: response.data.twitter})
   }
 
   toggleUPopup(){
@@ -82,6 +92,7 @@ export class Profile extends React.Component {
         };
     
         let points = '12.5,0.5 15.75,8.25 24.75,8.75 17.5,14.5 19.75,22.5 12.5,17.75 5.25,22.5 7.5,14.4 0.5,8.75 9.25,8.25 12.5,0.5';
+        console.log(this.state)
     return (
       <div>
         <Navbar />
@@ -90,7 +101,7 @@ export class Profile extends React.Component {
           <div className="row" id="profileRow">
             <div className="col-md-2" id="profilePictureArea">
               {/* User profile pic here */}
-              <img src={require('./profile.jpg')} id="profilePic" />
+              <img src={this.state.imageURL} id="profilePic" />
               <span className="label-ucsd"> UCSD </span>
             </div>
 
@@ -103,48 +114,7 @@ export class Profile extends React.Component {
 
             <div className="col-md-2" id="ratingArea">
               {/* User Rating Area goes here */}
-              <p id="ratingString"> Your average rating is: RATING </p>
-              <div id={'starContainer'}>
-                <svg style={stylesProfile.gradient} aria-hidden="true" focusable={'false'}>
-                  <linearGradient id="ratingGradient0">
-                    <stop offset={this.percentFill(0) + '%'} stopColor="black" />
-                    <stop offset={this.percentFill(0) + '%'} stopColor="#f7eddc" />
-                  </linearGradient>
-                  <linearGradient id="ratingGradient1">
-                    <stop offset={this.percentFill(1) + '%'} stopColor="black" />
-                    <stop offset={this.percentFill(1) + '%'} stopColor="#f7eddc" />
-                  </linearGradient>
-                  <linearGradient id="ratingGradient2">
-                    <stop offset={this.percentFill(2) + '%'} stopColor="black" />
-                    <stop offset={this.percentFill(2) + '%'} stopColor="#f7eddc" />
-                  </linearGradient>
-                  <linearGradient id="ratingGradient3">
-                    <stop offset={this.percentFill(3) + '%'} stopColor="black" />
-                    <stop offset={this.percentFill(3) + '%'} stopColor="#f7eddc" />
-                  </linearGradient>
-                  <linearGradient id="ratingGradient4">
-                    <stop offset={this.percentFill(4) + '%'} stopColor="black" />
-                    <stop offset={this.percentFill(4) + '%'} stopColor="#f7eddc" />
-                  </linearGradient>
-                </svg>
-
-                <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={points} fill={'url(#ratingGradient0'} stroke={'black'}/>
-                </svg>
-                <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={points} fill={'url(#ratingGradient1'} stroke={'black'}/>
-                </svg>
-                <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={points} fill={'url(#ratingGradient2'} stroke={'black'}/>
-                </svg>
-                <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={points} fill={'url(#ratingGradient3'} stroke={'black'}/>
-                </svg>
-                <svg viewBox={'0 0 25 25'} className="ratingStars">
-                  <polygon points={points} fill={'url(#ratingGradient4'} stroke={'black'}/>
-                </svg>
-
-              </div>
+             
               <button id="buttonU" onClick={this.toggleUPopup.bind(this)} className="btn btn-primary">Edit Profile</button>
               <button id="buttonP" onClick={this.togglePPopup.bind(this)} className="btn btn-primary">Edit Preferences</button>
 
@@ -153,13 +123,12 @@ export class Profile extends React.Component {
             <div className="col-md-4" id="progressArea">
               {/* User Profile Strength Percentage is here */}
               <div id="progressAreaInner">
-                <div style={stylesProfile.meter}> </div>
                 <div id="progressTextArea">
-                  {this.state.progress}% <br />
-                  <p id="progressMessage">
-                    Getting there! The stronger your profile is, the better results you'll get.
-                    Click <a href={'#link'} style={stylesProfile.boldLink}>here</a> for a checklist to strengthen your profile!
-                  </p>
+                  <p>Social Media Links</p>
+                  <a href={'https://' + this.state.facebook} target="_blank"><i id="iconLivin" className="fa fa-facebook-square fa-5x" aria-hidden="true"></i></a>
+                  <a href={'https://' + this.state.instagram} target="_blank"><i id="iconLivin" className="fa fa-instagram fa-5x" aria-hidden="true"></i></a>
+                  <a href={'https://' + this.state.twitter} target="_blank"><i id= "iconLivin" className="fa fa-twitter-square fa-5x" aria-hidden="true"></i></a>
+                  <a href={'mailto:' + this.state.email} target="_top"><i id="iconLivin" className="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>
                 </div>
               </div>
 

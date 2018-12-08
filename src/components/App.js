@@ -8,6 +8,7 @@ import MessagingPage from "./MessagingPage";
 import OtherProfile from "./OtherProf";
 
 
+
 // export default class App 
 const App = () => (
             <div>
@@ -21,6 +22,7 @@ const App = () => (
                 {/* <ResultsPage />  */}
                 {/* <LandingPage /> */}
                 {/* <Profile /> */}
+                {/* <MessagingPage /> */}
             </div>
 );
 
