@@ -156,7 +156,7 @@ export class Profile extends React.Component {
                   <a href={this.state.facebook} target="_blank"><i id="iconLivin" className="fa fa-facebook-square fa-5x" aria-hidden="true"></i></a>
                   <a href={this.state.instagram} target="_blank"><i id="iconLivin" className="fa fa-instagram fa-5x" aria-hidden="true"></i></a>
                   <a href={this.state.twitter} target="_blank"><i id= "iconLivin" className="fa fa-twitter-square fa-5x" aria-hidden="true"></i></a>
-                  <a href={'mailto:' + this.state.email} target="_top"><i id="iconLivin" className="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>
+                  <a href={'mailto:' + this.state.email + '?subject=Interested in your LEaze posting!' + '&body=Hi ' + this.state.firstname + '! I saw your listing on LEaze and ...'} target="_top"><i id="iconLivin" className="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>
                 </div>
               </div>
 
