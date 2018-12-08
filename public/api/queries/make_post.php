@@ -10,7 +10,7 @@
        //htmlentities -> strip a string of various element encodings
        //addslahes -> gets rid of quotes
 
-       $user_id = $_POST["user_id_posted"];    //hard coded (use $_POST['user_id'])
+       $user_id = $_POST["user_id_posted"];
        $date_posted = date("Y/m/d");
        $title = htmlentities(addslashes($_POST["title"]));
        $address = htmlentities(addslashes($_POST["address"]));
