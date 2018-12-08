@@ -25,16 +25,10 @@ export default class OtherProfile extends React.Component {
     };
   }
   async componentDidMount(){
-    var i=window.location.href.length-1
-    var userID="";
-    while(window.location.href[i] != '/'){
-      userID=(window.location.href[i].toString())+userID;
-      i--;
-    }
+    const userID = window.location.href[window.location.href.length-1];
     const idObject = { 
       user_id: userID
     }
-    console.log("id object" + idObject.user_id);
     const params = formatPostData(idObject);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
@@ -91,11 +85,8 @@ export default class OtherProfile extends React.Component {
             <div className="col-sm-12" id="postedListings">
               {/* User's Posted Listings go here */}
               Posted Listings:
-              <div id="noListings">
-                  No Listings to Show
                   {/*Ariane's code goes here*/}
                   {/* <ListingPreview /> */}
-              </div>
             </div>
           </div>
         </div>
