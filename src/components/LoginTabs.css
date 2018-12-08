@@ -120,9 +120,20 @@
     position: absolute;
     display: none;
     bottom: 18%;
-    height: 70%;
+    height: 40%;
     width: 50%;
     background-color: #f7eddc;
+}
+
+#termsP {
+    margin: 2em;
+}
+
+#closeConf {
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    font-size: 20px;
 }
 
 #closeTerms {
