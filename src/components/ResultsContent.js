@@ -21,7 +21,9 @@ class ResultsContent extends Component{
         }        
         const params = formatPostData(userID);
         const response = await axios.post("http://localhost:8000/api/queries/get_default_listings.php", params);
-        this.getFilterResponseData(response);
+        if(!response.data.noListings){
+            this.getFilterResponseData(response);
+        }
     }
 
     componentWillReceiveProps(nextProps){

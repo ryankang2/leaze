@@ -42,8 +42,19 @@ export class Profile extends React.Component {
     const userListingResponse = await axios.post("http://localhost:8000/api/queries/get_user_listings.php", params);
     const favoriteListingsResponse = await axios.post("http://localhost:8000/api/queries/get_favorites.php", params);
     console.log("FAVORITE LISTING: ", favoriteListingsResponse);
-    this.showUserListings(userListingResponse.data.listings);
-    this.showFavoriteListings(favoriteListingsResponse.data.listings);
+    console.log(userListingResponse);
+    if(userListingResponse.data.noListings){
+      this.setState({postedListings: "No Listings to Show"})
+    }
+    else{
+      this.showUserListings(userListingResponse.data.listings);
+    }
+    if(favoriteListingsResponse.data.noFavorites){
+      this.setState({favoriteListings: "No Listings to Show"})
+    }
+    else{
+      this.showFavoriteListings(favoriteListingsResponse.data.listings);
+    }
     this.setState({firstname: response.data.firstname})
     this.setState({lastname: response.data.lastname})
     this.setState({major: response.data.major})
