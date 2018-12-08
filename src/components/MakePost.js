@@ -34,7 +34,7 @@ export default class MakePost extends Component {
             title_class: "",
             price_class: "",
             address_class: "",
-            error: "hidden"
+            error: "hidden",
             images: [],
         };
 
@@ -117,9 +117,6 @@ export default class MakePost extends Component {
             
         }
 
-        
-
-        
 
     }
 
@@ -142,14 +139,12 @@ export default class MakePost extends Component {
             console.log("forloop: ", i);
             $(".picsContainer").append('<img id="listingPics" src="' + this.state.images[i] + '"/>');
         }
-        console.log(this.state);
         this.setState({
             images: [],
         });
       }
 
       handleLoadImage = (file) => {
-          console.log("handleimageLoad");
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
