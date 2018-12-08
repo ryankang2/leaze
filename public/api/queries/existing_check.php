@@ -3,7 +3,7 @@
     header("Access-Control-Allow-Headers: *");
     require_once("../mysql_connect.php");
     $output = [
-        "exists" => false;
+        "exists" => false,
     ];
 
     $email = $_POST["email"];
