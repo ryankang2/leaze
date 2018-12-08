@@ -3,8 +3,19 @@ import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import { Link, Router, RouterContext, browserHistory, hashHistory } from 'react-router';
 import {Input, Row, Icon} from "react-materialize";
+import { css } from '@emotion/core';
+import './LoginBox.css'
+// First way to import
+import { ClipLoader } from 'react-spinners';
 
+const override = css`
+    display: none;
+    margin: 0 auto;
+    position: absolute;
+    top: 20%;
+`;
 export default class LoginBox extends Component {
+    
 
     constructor() {
         super();
@@ -15,13 +26,19 @@ export default class LoginBox extends Component {
             active: false,
             classEmail: "valid",
             classPassword: "valid",
+            loading: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        
     }
     toggle(){
         this.setState({active: true});
+    }
+
+    toggleSpin(){
+        this.setState({loading:!this.state.loading})
     }
 
     handleChange(e) {
@@ -35,6 +52,7 @@ export default class LoginBox extends Component {
     }
 
     async handleSubmit(e) {
+        this.toggleSpin();
         e.preventDefault();
         this.toggle();
         if(this.infoChecks(this.state.email, this.state.password) === true) {
@@ -49,6 +67,7 @@ export default class LoginBox extends Component {
         const {history} = this.props;
         if(data.success === false) {
             if(data.correctUser === true) {
+                this.toggleSpin();
                 console.log("Incorrect password. Please try again or click 'Forgot Password'");
                 document.getElementById("wrongInputLogin").className = "FormFieldsError";
                 document.getElementById("wrongInputLogin").innerText = "Incorrect password. Please try again or click 'Forgot Password'.";
@@ -57,6 +76,7 @@ export default class LoginBox extends Component {
             }
 
             else {
+                this.toggleSpin();
                 console.log("User not found. Please sign in with a different account or register before signing in");
                 document.getElementById("wrongInputLogin").className = "FormFieldsError";
                 document.getElementById("wrongInputLogin").innerText = "Email Address not found.";
@@ -107,8 +127,16 @@ export default class LoginBox extends Component {
                         </Row>
                     </div>
                     <p id="wrongInputLogin"></p>
-                    <button type="Submit" id="loginButton" className="btn btn-primary">Log in</button>
+                    <button type="Submit" id="loginButton" className="btn btn-primary" >Log In                         
+                    <ClipLoader
+                        className={override}
+                        sizeUnit={"px"}
+                        size={20}
+                        color={'#123abc'}
+                        loading={this.state.loading}/>                  
+                    </button>
                 </form>
+                
                 <button onClick={this.forgotPassword} id="forgotPassword">Forgot Password</button>
             </div>
         </div>    
