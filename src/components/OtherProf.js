@@ -1,18 +1,15 @@
 import React from "react";
 import "./Profile.css";
 import Navbar from "./Navbar.js"
-import UPopup from "./UPopup.js"
-import PPopup from "./PPopup.js"
-import {Button} from "react-materialize"
 import ListingPreview from "./ListingPreview.js"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 
-export class Profile extends React.Component {
+export default class OtherProfile extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        user_id:'',
+        user_id: '',
         firstname:'',
         lastname:'',
         age:'',
@@ -20,23 +17,19 @@ export class Profile extends React.Component {
         major:'',
         year:'',
         bio:'',
-        email:'',
+        email: '',
         picture:null,
         imageURL: require("./default_profile_pic.jpg"),
-        rating: '',
-        progress: '',
-        facebook: '',
-        instagram: '',
-        twitter: '',
         showUPopup: false,
         showPPopup: false,
     };
   }
   async componentDidMount(){
-    const idObj ={
-      user_id: sessionStorage.getItem("user_id"),
+    const userID = window.location.href[window.location.href.length-1];
+    const idObject = { 
+      user_id: userID
     }
-    const params = formatPostData(idObj);
+    const params = formatPostData(idObject);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
     console.log(response.data);
     this.setState({firstname: response.data.firstname})
@@ -45,54 +38,9 @@ export class Profile extends React.Component {
     this.setState({year: response.data.year})
     this.setState({bio: response.data.bio})
     this.setState({email: response.data.email})
-    this.setState({facebook: response.data.facebook})
-    this.setState({instagram: response.data.instagram})
-    this.setState({twitter: response.data.twitter})
-  }
-
-  toggleUPopup(){
-    this.setState({
-      showUPopup: !this.state.showUPopup
-    });
-  }
-  togglePPopup(){
-    this.setState({
-      showPPopup: !this.state.showPPopup
-    });
-  }
-  percentFill(n){
-    if (this.state.rating >= n + 1) {
-      return String(100);
-    } else if (this.state.rating < n - 1) {
-      return String(0);
-    } else {
-      return String((this.state.rating - n) * 100);
-    }
   }
 
   render() {
-        //for use with star filling for average rating
-        let stylesProfile = {
-          gradient: {
-            width: '0',
-            height: '0',
-            position: 'absolute',
-          },
-          meter: {
-            border: '1px solid black',
-            width: '100%',
-            height: '2vh',
-            position: 'relative',
-            background: 'linear-gradient(.25turn, black '+ this.state.progress +'%, #f7eddc '+ this.state.progress +'%)',
-          },
-          boldLink: {
-            fontWeight: 'bold',
-            fontFamily: 'Verdana, Geneva, sans-serif\t\n'
-          }
-        };
-    
-        let points = '12.5,0.5 15.75,8.25 24.75,8.75 17.5,14.5 19.75,22.5 12.5,17.75 5.25,22.5 7.5,14.4 0.5,8.75 9.25,8.25 12.5,0.5';
-        console.log(this.state)
     return (
       <div>
         <Navbar />
@@ -100,24 +48,16 @@ export class Profile extends React.Component {
           {/* here lies the top row - Matt works here */}
           <div className="row" id="profileRow">
             <div className="col-md-2" id="profilePictureArea">
-              {/* User profile pic here */}
+              {/* User OtherProfile pic here */}
               <img src={this.state.imageURL} id="profilePic" />
               <span className="label-ucsd"> UCSD </span>
             </div>
 
-            <div className="col-md-4" id="bioArea">
+            <div className="col-md-6" id="bioAreaO">
               {/* User Bio Area here  */}
               <h1 id="userName" > {this.state.firstname} {this.state.lastname} </h1>
               <h2 id="userInfo"> {this.state.major}, {this.state.year} Year</h2>
               <p rows="4" cols="50" id="biography"> {this.state.bio} </p>
-            </div>
-
-            <div className="col-md-2" id="ratingArea">
-              {/* User Rating Area goes here */}
-             
-              <button id="buttonU" onClick={this.toggleUPopup.bind(this)} className="btn btn-primary">Edit Profile</button>
-              <button id="buttonP" onClick={this.togglePPopup.bind(this)} className="btn btn-primary">Edit Preferences</button>
-
             </div>
 
             <div className="col-md-4" id="progressArea">
@@ -133,6 +73,7 @@ export class Profile extends React.Component {
               </div>
 
             </div>
+
           </div>
 
           <div className="row" id="rowDivider">
@@ -141,16 +82,11 @@ export class Profile extends React.Component {
 
           {/* here lies the bottom row - Drexler works here */}
           <div className="row" id="listingsRow">
-            <div className="col-sm-8" id="postedListings">
+            <div className="col-sm-12" id="postedListings">
               {/* User's Posted Listings go here */}
               Posted Listings:
                   {/*Ariane's code goes here*/}
                   {/* <ListingPreview /> */}
-            </div>
-            <div className="col-sm-8" id="favoriteListings">
-              {/* Ariane's code goes here */}
-              Favorite Listings:
-                  {/*<ListingPreview />*/}
             </div>
           </div>
         </div>
@@ -164,5 +100,3 @@ export class Profile extends React.Component {
   }
 }
 
-
-export default Profile;

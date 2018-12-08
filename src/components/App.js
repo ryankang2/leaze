@@ -5,17 +5,20 @@ import Profile from "./Profile";
 import ResultsContent from "./ResultsContent.js"
 import LandingPage from "./LandingPage";
 import MessagingPage from "./MessagingPage";
+import OtherProfile from "./OtherProf";
 
 
 // export default class App 
 const App = () => (
             <div>
-                {/* <Switch>
+                {/* <OtherProfile></OtherProfile> */}
+                <Switch>
                     <Route exact path="/" component={LandingPage}></Route>
                     <Route exact path="/home" component={ResultsPage}></Route>
                     <Route exact path="/home/profile/:number" component={Profile}></Route>
-                </Switch> */}
-                <ResultsPage /> 
+                    <Route exact path="/home/profile/other/:number" component={OtherProfile}></Route>
+                </Switch>
+                {/* <ResultsPage />  */}
                 {/* <LandingPage /> */}
                 {/* <Profile /> */}
                 {/* <MessagingPage /> */}

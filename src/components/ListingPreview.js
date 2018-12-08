@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
 import {formatPostData} from "../helpers/formatPostData";
 import ListingModal from "./ListingModal";
+import { format } from "util";
 
 
 
@@ -24,9 +25,17 @@ class ListingPreview extends Component{
     }
 
 
-    toggleHeart(){
-        this.setState({favorite: !this.state.favorite})
-        // x.classList.toggle("fa fa-heart");
+    async toggleHeart(event){
+        this.setState({favorite: !this.state.favorite});
+        const userListingHeart = {
+            user_id: sessionStorage.getItem("user_id"),
+            listing_id: $(event.currentTarget).attr('value'),
+            unfavorited: this.state.favorite,
+        }
+        console.log(userListingHeart);
+        const params = formatPostData(userListingHeart);
+        const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
+
     }
 
     getDiffPostDate(currentDay, currentMonth, postedDay, postedMonth){
@@ -44,6 +53,7 @@ class ListingPreview extends Component{
     }
 
     async handleMatchPercentage(user_id) {
+        console.log(sessionStorage.getItem("user_id"));
         const userIDs = {
             mainUser: sessionStorage.getItem("user_id"),
             other: user_id,
@@ -83,8 +93,9 @@ class ListingPreview extends Component{
 
 
     render(){
-        // console.log(this.props.information);
+        console.log("LISTING INFORMATION PROPS: " , this.props.information);
         const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
+        console.log("LISTING_ID: ", listing_id);
         const {full_name,rating,favorite,user_id} = this.props.information.user;
         var todayDate = new Date();
         var separatedDate = date_posted.split("-");
@@ -92,19 +103,20 @@ class ListingPreview extends Component{
         var month = todayDate.getMonth() + 1;
         var listing_day = parseInt(separatedDate[2]);
         var listing_month = parseInt(separatedDate[1]);
-        var linkQuery = "/home/profile/" + this.props.information.user.user_id;
+        var linkQuery = "/home/profile/other/" + this.props.information.user.user_id;
         // console.log("Response: ", this.handleMatchPercentage(user_id) );
+
         var matchPercentage = this.handleMatchPercentage(user_id);
-        //changed data-target="#myModal"    {`modal-${this.props.pullId}`}
 
         return (
                 <div>
-                    <div className="col-sm-4 singleListing">
+                    <div className="col-sm-4 singleListing" onClick={this.openModal.bind(this)}>
                         <div className="imageBox">
                             <img className="leaseImage" data-toggle="modal" onClick={this.openModal.bind(this)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
                             {/*{this.state.favorite &&  <i className="fa fa-heart favorite_fill"> </i>}*/}
-                            <i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} onClick={this.toggleHeart.bind(this)}> </i>
+                            <i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"} 
+                                onClick={this.toggleHeart.bind(this)} value={listing_id}> </i>
 
                             <div className = "infoBox">
                                 <div className="leaseName" data-toggle="modal" onClick={this.openModal.bind(this)} >

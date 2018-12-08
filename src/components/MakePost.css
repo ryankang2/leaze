@@ -37,10 +37,6 @@
     right: 1%;
 }
 
-.postContainer {
-    border: 1px solid green;
-    /* height: 100% */
-}
 
 .postInfoBox {
     border: 1px solid yellow;
@@ -82,3 +78,22 @@
     color: red;
 }
 
+.descriptionInput{
+    max-height: 150px !important;
+    overflow-y: auto !important;
+}
+
+
+#listingPics{
+    height: 100%;
+}
+
+/* #imageUpload{
+    position: relative !important;
+    top: 50% !important;
+} */
+
+.picsContainer{
+    border: 1px solid blue;
+    height: 80%;
+}

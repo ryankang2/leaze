@@ -35,14 +35,14 @@ export default class MakePost extends Component {
             price_class: "",
             address_class: "",
             error: "hidden"
-            
+            images: [],
         };
 
         this.submitPost = this.submitPost.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.handleChange = this.handleChange.bind(this);
-    }
 
+    }
 
     handleCheckBox(event) {
         const {name, checked} = event.currentTarget;
@@ -55,7 +55,6 @@ export default class MakePost extends Component {
                [name]:false
            })
         }
-        console.log(this.state);
     }
 
 
@@ -65,7 +64,6 @@ export default class MakePost extends Component {
         this.setState({
             [name]: value
         })
-        console.log(this.state);
     }
 
     validate(title, address, price){
@@ -129,6 +127,46 @@ export default class MakePost extends Component {
         $(".makePostModal").css("display", "none");
     }
 
+
+
+    fileChangedHandler=(event)=>{
+        // let reader = new FileReader();
+        let files=event.target.files;
+        const reader = new FileReader();
+
+        for(var i = 0; i < files.length; i++){
+            var file = files[i];
+            this.handleLoadImage(file);
+        }
+        for(var i = 0; i < this.state.images.length; i++){
+            console.log("forloop: ", i);
+            $(".picsContainer").append('<img id="listingPics" src="' + this.state.images[i] + '"/>');
+        }
+        console.log(this.state);
+        this.setState({
+            images: [],
+        });
+      }
+
+      handleLoadImage = (file) => {
+          console.log("handleimageLoad");
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                var array = this.state.images;
+                array.push(reader.result);
+                console.log("ARRAY: ", array);
+                this.setState(() => ({
+                    images: array,
+                }));         
+            };
+            reader.readAsDataURL(file);
+          }
+      }
+
+    
+
+
     render () {
         return (
             <div className="modal makePostModal">
@@ -173,7 +211,7 @@ export default class MakePost extends Component {
                                                     <Input s={6} name="dist_to_campus" label="Distance from campus" onChange={this.handleChange}/>
                                                 </Row>
                                                 <Row>
-                                                    <Input s={12} name="description" type="textarea" placeholder="Tell us about your place!" label="Description" onChange={this.handleChange}/>
+                                                    <Input s={12} className="descriptionInput" name="description" type="textarea" placeholder="Tell us about your place!" label="Description" onChange={this.handleChange}/>
                                                 </Row>
                                             </div>
                                             <div className="col-sm-4 featureBox">
@@ -201,12 +239,18 @@ export default class MakePost extends Component {
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className = "col-sm-12 picBox">
-                                            {/* <Row>
-                                                <Input type="file" label="File" s={12} multiple placeholder="Upload one or more files" />
-                                            </Row> */}
+                                            <div className="col-sm-12 picBox">
+                                                <div className="picsContainer">
+                                                    
+                                                </div>
+                                                <div className="inputContainer">
+                                                    <Row>
+                                                        <Input s={12} label="Upload Images" type="file" multiple onChange={this.fileChangedHandler.bind(this)}></Input>
+                                                    </Row>
+                                                </div>
+
                                             </div>
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="modal-footer makeAPostFooter">
@@ -222,34 +266,6 @@ export default class MakePost extends Component {
                     </form>
                 </div>
             </div>
-
-
-            // <div className="postModal">
-            //     <div className="modal">
-            //         <h3 id="makePostTitle">Make a Post</h3>
-            //         <div className="container postContainer">
-            //             <form onSubmit={this.submitPost}>
-            //                 <div className="row">
-            //                     <div className="col-sm-8 postInfoBox">
-
-            //                     </div>
-            //                     <div className="col-sm-4 featureBox">
-
-            //                     </div>
-            //                 </div>
-
-            //                 <div className="row">
-            //                     <div className = "col-sm-12 picBox">
-
-            //                     </div>
-            //                 </div>
-            //                 <button type="Submit" id="submitPost">Post Listing</button>
-            //             </form>
-
-
-            //         </div>
-            //     </div>
-            // </div>
         )
     }
 }

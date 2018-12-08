@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import {Button, Input, Row} from "react-materialize";
+import {Button, Icon, Input, Row} from "react-materialize";
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import "./ForgotPassword.css";
+
 
 export default class ForgotPassword extends Component { 
     constructor(props){
@@ -10,12 +11,26 @@ export default class ForgotPassword extends Component {
         this.state = {
             email: "",
         }
+        this.handleChange = this.handleChange.bind(this);
+
+    }
+
+    handleChange(e) {
+        let target = e.target;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+        let name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+        console.log("email: ", this.state.email);
     }
 
     cancelReset(e) {      
-        let target = e.target.parentElement;
+        let target = e.target.parentElement.parentElement;
         target.style.display = "none";
         document.getElementById("codeResent").style.display = "none";
+        document.getElementById("wrongCode").style.display = "none";
         document.getElementById("forgotCode").value = "";
         document.getElementById("forgotEmail").value = "";
         document.getElementById("myNewPassword").value = "";
@@ -29,6 +44,7 @@ export default class ForgotPassword extends Component {
         const params = formatPostData(emailObj);
         const response = await axios.post("http://localhost:8000/api/email_recovery.php", params);
     }
+
 
     async confirmCode(code, email){
         var confirmObj = {
@@ -45,7 +61,8 @@ export default class ForgotPassword extends Component {
 
         }
         else{
-            document.getElementById("forgotModal4").style.display='none';
+            document.getElementById("forgotModal3").style.display = "block";
+            document.getElementById("forgotModal4").style.display = "none";
         }
     }
 
@@ -62,8 +79,8 @@ export default class ForgotPassword extends Component {
 
     FPsubmit(e) {   
         let target = e.target;
-        let targetBox = target.parentElement;
-        targetBox.style.display = "none"
+        let targetBox = target.parentElement.parentElement;
+        targetBox.style.display = "none";
 
         if(target.id === "fpEmailSubmit") {
             console.log("We will email a 4-digit confirmation code to the following address: " + 
@@ -85,10 +102,14 @@ export default class ForgotPassword extends Component {
         }
 
         else if(target.id === "fpSubmitPassword") {
+            var email = this.state.email;
+
             if(document.getElementById("myNewPassword").value.toString().length > 5) {
                 if(document.getElementById("myNewPassword").value === document.getElementById("myConfPassword").value) {
+                    console.log("emailINSUBMIT: ", this.state.email);
                     console.log("Password has successfully been changed!");
                     var password = document.getElementById("myNewPassword").value;
+
                     this.updatePassword(this.state.email, password);
                 }
 
@@ -121,10 +142,15 @@ export default class ForgotPassword extends Component {
                 <h3>Forgot Password</h3>
                 <div>Enter your email address to receive 4-digit confirmation code</div>
                 <div className="FPinputs">
-                    <input className="FPinputbox" type="email" id="forgotEmail" placeholder="Email" />
+                    <Input s={8} label="Email" type="email" id="forgotEmail" className="FormField__Input"
+                           name="email" value={this.state.email} onChange={this.handleChange}>
+                        <Icon>account_circle</Icon>
+                    </Input>
                 </div>
-                <button onClick={this.cancelReset} className="FPcancel">Cancel</button>
-                <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpEmailSubmit">Submit</button>
+                <div className="fpButtons">
+                    <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
+                    <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpEmailSubmit">Submit</Button>
+                </div>
             </div>
             
             <div className="modal" id="forgotModal2">
@@ -132,26 +158,48 @@ export default class ForgotPassword extends Component {
                 <p id="codeResent">A code has been resent to your email</p>
                 <div className="FPinputs">
                     <label htmlFor="forgotCode">4-Digit Code</label>
-                    <input className="FPinputbox" id="forgotCode" placeholder="Enter the code that was sent to you" />
+                    <Row>
+                    <Input s={10} label="Enter the code that was sent to you" id="forgotCode"
+                           name="code" onChange={this.handleChange}>
+                            <Icon> check_circle_outline</Icon>
+                    </Input>
+
+                    </Row>
                 </div>
-                <button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</button>
-                <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</button>
-                <button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</button>
+                <div className="fpButtons">
+                    <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
+                    <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
+                    <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</Button>
+                </div>
             </div>
 
             <div className="modal" id="forgotModal3">
                 <h3>Success!</h3>
                 <div className="FPinputs">
                     <label htmlFor="myNewPassword">New Password</label>
-                    <input type="password" className="FPinputbox" id="myNewPassword" placeholder="Password must be at least 6 characters long" />
+                    {/*<Input s={8} label="Password" type="password" id="loginPassword"*/}
+                           {/*name="password" onChange={this.handleChange}>*/}
+                        {/*<Icon>lock</Icon>*/}
+                    {/*</Input>*/}
+                    <Input s={8} label="Password must be at least 6 characters long" type="password" id="myNewPassword"
+                           name="password" onChange={this.handleChange} >
+                        <Icon>lock</Icon>
+                    </Input>
+                    {/*<input type="password" className="FPinputbox" id="myNewPassword" placeholder="Password must be at least 6 characters long" />*/}
                 </div>
 
                 <div className="FPinputs">
                     <label htmlFor="myConfPassword">Confirm New Password</label>
-                    <input type="password" className="FPinputbox" id="myConfPassword" placeholder="Re-enter your new password" />
+                    <Input s={8} label="Re-enter your new password" type="password" id="myConfPassword"
+                           name="password" onChange={this.handleChange}>
+                        <Icon>lock</Icon>
+                    </Input>
                 </div>
-                <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpSubmitPassword">Submit</button>
-                <button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</button>
+
+                <div className="fpButtons">
+                    <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpSubmitPassword">Submit</Button>
+                    <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
+                </div>
             </div>
 
             <div className="modal" id="forgotModal4">
@@ -160,11 +208,17 @@ export default class ForgotPassword extends Component {
                 <p id="codeResent">A code has been resent to your email</p>
                 <div className="FPinputs">
                     <label htmlFor="forgotCode">4-Digit Code</label>
-                    <input className="FPinputbox" id="forgotCode" placeholder="Enter the code that was sent to you" />
+                    <Input s={10} label="Enter the code that was sent to you" id="forgotCode"
+                           name="code" onChange={this.handleChange}>
+                        <Icon> check_circle_outline</Icon>
+                    </Input>
+
                 </div>
-                <button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</button>
-                <button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</button>
-                <button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</button>
+                <div className="fpButtons">
+                    <Button onClick={this.resendCode.bind(this)} id="resendCode">Resend Code</Button>
+                    <Button onClick={this.cancelReset.bind(this)} className="FPcancel">Cancel</Button>
+                    <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpCodeSubmit">Submit</Button>
+                </div>
             </div>
         </div>
     }

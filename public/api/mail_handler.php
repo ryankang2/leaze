@@ -7,7 +7,7 @@ foreach($_POST as $key=>$value){
     $_POST[$key] = htmlentities(addslashes($value));
 }
 
-print_r($_POST);
+$output = [];
 
 $mail = new PHPMailer;
 $mail->SMTPDebug = 3;           // Enable verbose debug output. Change to 0 to disable debugging output.
@@ -41,6 +41,8 @@ $mail->addReplyTo($_POST["email"]);                          // Add a reply-to a
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
+$code = rand(1000, 9999);
+
 $mail->Subject = "Here is the subject from LeazeHousing";
 $mail->Body    = "
     Hey {$_POST["fname"]}, <br>
@@ -48,6 +50,7 @@ $mail->Body    = "
     -View student housing postings and chat with the leasers directly! <br><br>
     -Upload housing postings <br><br>
     -View other students looking for housing<br><br>
+    Finally, here is your 4-digit verification code: $code.
     If you have any questions, send us an email to leazehousing@gmail.com and we will be 
     happy to help. <br> <br>
 
@@ -60,4 +63,7 @@ if(!$mail->send()) {
 } else {
     echo 'Message has been sent';
 }
+$output["code"] = $code;
+
+print_r(json_encode($output));
 ?>

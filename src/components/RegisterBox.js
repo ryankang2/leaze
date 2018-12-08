@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Input, Row, Icon} from "react-materialize";
+import {Input, Row, Icon, Button} from "react-materialize";
 import axios from "axios";
 import {formatPostData} from "../helpers/formatPostData";
 
@@ -54,13 +54,14 @@ export default class RegisterBox extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-
-       
+        
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
             const params = formatPostData(this.state);
             const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
             const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
-
+            var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
+            sessionStorage.setItem("userCode", userCode);
+            document.getElementById("confRegister").style.display = "block";
         }
     }
 
@@ -108,20 +109,20 @@ export default class RegisterBox extends Component {
         
         if(hasError){
             if(errors["email"]){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "You must enter a valid .edu email address";
             }
             else if(errors["password"]){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "Password must be at least six characters long";
                 
             }
             else if(errors["confPassword"]){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "Passwords must match";  
             }
             else if(errors["fname"]||errors["lname"]){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "All fields must be filled";
             }
             return "invalid";
@@ -129,7 +130,7 @@ export default class RegisterBox extends Component {
         else{
             let isValid = Object.keys(errors).some(i => errors[i]);
             if(!document.getElementById("checkInput").checked&&!isValid){
-                document.getElementById("wrongInputRegister").className = "show";
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
                 document.getElementById("wrongInputRegister").innerText = "Please agree to the terms of service";
             }
             
@@ -137,10 +138,66 @@ export default class RegisterBox extends Component {
         }
     }
 
+    cancelConfirm(e) {      
+        let target = e.target.parentElement.parentElement;
+        target.style.display = "none";
+        document.getElementById("confCodeResent").style.display = "none";
+        document.getElementById("confWrongCode").style.display = "none";
+        document.getElementById("confForgotCode").value = "";
+    }
+
+    // Ask Ryan about what to do upon submit
+    confirmSubmit(e) { 
+        
+        document.getElementById("confCodeResent").style.display = "none";
+        let correctCode = sessionStorage.getItem("userCode");
+        let enteredCode = document.getElementById("confForgotCode").value;
+
+        if(correctCode !== enteredCode) {
+            document.getElementById("confWrongCode").style.display="block";
+        }
+
+        else {
+            //Display message saying they can now cancel and log in
+            document.getElementById("confWrongCode").style.display="none";
+            document.getElementById("confCodeResent").style.display = "none";
+            document.getElementById("correctCodeMsg").style.display = "block"
+
+        }    
+    }
+
+    confResendCode(e) {
+        document.getElementById("confForgotCode").value = "";
+        document.getElementById("confCodeResent").style.display = "block";
+
+        // this.sendCode(this.state.email);
+    }
+
     render() {
         return <div className="tabcontent" id="Register">
         <div className="logContainer">
-            {/* This is where the pasted signup code starts */}
+        
+        <div className="modal" id="confRegister">
+            <h3>Confirm your account</h3>
+            <p id="confWrongCode"> The number you entered doesn’t match your code. Please try again. </p>
+            <p id="confCodeResent">A code has been resent to your email</p>
+            <p id="correctCodeMsg">Code confirmed! You can now go back and Log In</p>
+            <div>
+                <label htmlFor="confForgotCode">4-Digit Code</label>
+                <Row>
+                    <Input s={10} label="Enter the code that was sent to you" id="confForgotCode"
+                            name="code" onChange={this.handleChange}>
+                        <Icon> check_circle_outline</Icon>
+                    </Input>
+                </Row>
+            </div>
+            <div className="confButtons">
+                <Button onClick={this.confResendCode.bind(this)}>Resend Code</Button>
+                <Button onClick={this.cancelConfirm.bind(this)} className="FPcancel">Cancel</Button>
+                <Button onClick={this.confirmSubmit.bind(this)} id="confCodeSubmit">Submit</Button>
+            </div>
+        </div>
+
             <form onSubmit={this.handleSubmit} className="FormFields">
                 <h4>Create a LEaZe Account</h4>
 
@@ -181,14 +238,14 @@ export default class RegisterBox extends Component {
                             <Icon>check_circle</Icon>
                         </Input>
                     </Row>             
-      </div>
+                </div>
 
                 <div className="FormField">
                     <Input id="checkInput" name='terms' type='checkbox' onClick={this.handleChange} value='checked' label='I Agree to the ' /><a href="" className="FormField__TermsLink" >terms of service</a>
                 </div>
 
                 <br/>
-                <span id="wrongInputRegister" className="hidden"></span>
+                <p id="wrongInputRegister" className="hidden"></p>
 
                 <div className="FormField" id="submitDiv">
                     <button type="Submit" id="regButton" className="btn btn-primary">Sign Up</button>
