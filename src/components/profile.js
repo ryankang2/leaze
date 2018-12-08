@@ -60,39 +60,9 @@ export class Profile extends React.Component {
       showPPopup: !this.state.showPPopup
     });
   }
-  percentFill(n){
-    if (this.state.rating >= n + 1) {
-      return String(100);
-    } else if (this.state.rating < n - 1) {
-      return String(0);
-    } else {
-      return String((this.state.rating - n) * 100);
-    }
-  }
 
   render() {
-        //for use with star filling for average rating
-        let stylesProfile = {
-          gradient: {
-            width: '0',
-            height: '0',
-            position: 'absolute',
-          },
-          meter: {
-            border: '1px solid black',
-            width: '100%',
-            height: '2vh',
-            position: 'relative',
-            background: 'linear-gradient(.25turn, black '+ this.state.progress +'%, #f7eddc '+ this.state.progress +'%)',
-          },
-          boldLink: {
-            fontWeight: 'bold',
-            fontFamily: 'Verdana, Geneva, sans-serif\t\n'
-          }
-        };
-    
-        let points = '12.5,0.5 15.75,8.25 24.75,8.75 17.5,14.5 19.75,22.5 12.5,17.75 5.25,22.5 7.5,14.4 0.5,8.75 9.25,8.25 12.5,0.5';
-        console.log(this.state)
+    console.log(this.state);
     return (
       <div>
         <Navbar />
@@ -112,27 +82,13 @@ export class Profile extends React.Component {
               <p rows="4" cols="50" id="biography"> {this.state.bio} </p>
             </div>
 
-            <div className="col-md-2" id="ratingArea">
-              {/* User Rating Area goes here */}
-             
-              <button id="buttonU" onClick={this.toggleUPopup.bind(this)} className="btn btn-primary">Edit Profile</button>
-              <button id="buttonP" onClick={this.togglePPopup.bind(this)} className="btn btn-primary">Edit Preferences</button>
-
-            </div>
-
-            <div className="col-md-4" id="progressArea">
-              {/* User Profile Strength Percentage is here */}
-              <div id="progressAreaInner">
-                <div id="progressTextArea">
-                  <p>Social Media Links</p>
-                  <a href={this.state.facebook} target="_blank"><i id="iconLivin" className="fa fa-facebook-square fa-5x" aria-hidden="true"></i></a>
-                  <a href={this.state.instagram} target="_blank"><i id="iconLivin" className="fa fa-instagram fa-5x" aria-hidden="true"></i></a>
-                  <a href={this.state.twitter} target="_blank"><i id= "iconLivin" className="fa fa-twitter-square fa-5x" aria-hidden="true"></i></a>
-                  <a href={'mailto:' + this.state.email} target="_top"><i id="iconLivin" className="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>
-                </div>
+            <div className="col-md-2" id="buttonArea">
+              <div id="buttonInner">
+                <button onClick={this.toggleUPopup.bind(this)} className="btn btn-primary profButton">Edit Profile</button>
+                <button onClick={this.togglePPopup.bind(this)} className="btn btn-primary profButton">Edit Preferences</button>
               </div>
-
             </div>
+
           </div>
 
           <div className="row" id="rowDivider">
