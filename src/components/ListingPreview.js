@@ -131,7 +131,7 @@ class ListingPreview extends Component{
                             {/*{this.state.favorite &&  <i cslassName="fa fa-heart favorite_fill"> </i>}*/}
                             {/*<i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"}*/}
                                 {/*onClick={this.toggleHeart.bind(this)} value={listing_id}> </i>*/}
-                            <i id="delete" className="fa fa-trash-o"  onClick={(event)=>this.openDelete(event)}></i>
+                            <i id="delete" className={sessionStorage.getItem("user_id") == user_id ? "fa fa-trash-o" : "none"}  onClick={(event)=>this.openDelete(event)}></i>
 
                             <div className = "infoBox">
                                 <div className="leaseName" data-toggle="modal" onClick={this.openModal.bind(this)} >

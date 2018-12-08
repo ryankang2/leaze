@@ -17,14 +17,12 @@
         $insertNewUserQ = "INSERT INTO `users` (email,password,full_name,first_name,last_name) VALUES ('$email','$password','$full_name','$first_name','$last_name')";
         if (mysqli_query($conn, $insertNewUserQ)) {
             $output["userSuccess"] = true;
-            // $out
         }
         else {
             $output["errors"][] = "User Insertion Error";
         }
         $userID = mysqli_insert_id($conn);
-        $insertNewProfileQ = "INSERT INTO `profile` (user_id, has_picture, about_me, school, major, facebook, instagram, twitter, favorites, year) VALUES ($userID, 0, '', '', '', 
-                                '', '', '', '', '')";
+        $insertNewProfileQ = "INSERT INTO `profile` (user_id) VALUES ($userID)";
         if(mysqli_query($conn, $insertNewProfileQ)){
             $output["profileSuccess"] = true;
         }
@@ -38,8 +36,7 @@
         else{
             $output["errors"][] = "Preferences Insertion Error";
         }
-        $insertNewFiltersQ = "INSERT INTO `filters` (user_id, dist_to_campus, price_low, price_high, pet, laundry, furnished, gym, pool, parking,
-                                home_type, room_type) VALUES ($userID, 50, 0, 10000, 1, 1, 1, 1, 1, 1, 'a', 'd')";
+        $insertNewFiltersQ = "INSERT INTO `filters` (user_id) VALUES ($userID)";
         if(mysqli_query($conn, $insertNewFiltersQ)){
             $output["filtersSuccess"] = true;
         }
@@ -51,5 +48,4 @@
     mysqli_close($conn);
 
     print_r(json_encode($output));
-
 ?>
