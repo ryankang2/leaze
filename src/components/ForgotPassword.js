@@ -37,6 +37,7 @@ export default class ForgotPassword extends Component {
         document.getElementById("forgotEmail").value = "";
         document.getElementById("myNewPassword").value = "";
         document.getElementById("myConfPassword").value = "";
+        document.getElementById("emailError").className ="hidden";
     }
 
     async sendCode(email){
@@ -78,21 +79,33 @@ export default class ForgotPassword extends Component {
         const response = await axios.post("http://localhost:8000/api/queries/change_password.php", params);
         console.log("response from backend: ", response);
     }
+    emailError(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
 
     FPsubmit(e) {   
         let target = e.target;
         let targetBox = target.parentElement.parentElement;
-        targetBox.style.display = "none";
+        
 
         if(target.id === "fpEmailSubmit") {
             console.log("We will email a 4-digit confirmation code to the following address: " + 
             document.getElementById("forgotEmail").value);
             var email = document.getElementById("forgotEmail").value;
-            this.setState({
-                email: email,
-            });
-            this.sendCode(email);
-            document.getElementById("forgotModal2").style.display = "block";
+            if(this.emailError(email)){
+                this.setState({
+                    email: email,
+                });
+                targetBox.style.display = "none";
+                this.sendCode(email);
+                document.getElementById("forgotModal2").style.display = "block";
+            }else{
+                
+                document.getElementById("emailError").className = "error";
+
+            }
+            
         }
 
         else if(target.id === "fpCodeSubmit") {
@@ -128,6 +141,8 @@ export default class ForgotPassword extends Component {
 
         }
     }
+
+
     
     resendCode(e) {
         document.getElementById("forgotCode").value = "";
@@ -146,11 +161,13 @@ export default class ForgotPassword extends Component {
                            name="email" value={this.state.email} onChange={this.handleChange}>
                         <Icon>account_circle</Icon>
                     </Input>
+                    <p id="emailError" class="hidden">You must enter a valid email address</p>
                 </div>
                 <div className="fpButtons">
                     <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
                     <Button onClick={this.FPsubmit.bind(this)} className="FPsubmit" id="fpEmailSubmit">Submit</Button>
                 </div>
+                
             </div>
             
             <div className="modal" id="forgotModal2">
