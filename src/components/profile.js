@@ -5,7 +5,8 @@ import UPopup from "./UPopup.js"
 import PPopup from "./PPopup.js"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
-import ListingPreview from "./ListingPreview.js"
+import ListingPreview from "./ListingPreview";
+
 
 export class Profile extends React.Component {
   constructor(props){
