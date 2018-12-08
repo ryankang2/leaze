@@ -24,19 +24,23 @@ class ListingPreview extends Component{
         }
         this.openDelete = this.openDelete.bind(this);
         this.openModal = this.openModal.bind(this);
+        this.toggleHeart = this.toggleHeart.bind(this);
+
     }
 
 
     async toggleHeart(event){
-        this.setState({favorite: !this.state.favorite});
-        const userListingHeart = {
-            user_id: sessionStorage.getItem("user_id"),
-            listing_id: $(event.currentTarget).attr('value'),
-            unfavorited: this.state.favorite,
-        }
-        console.log(userListingHeart);
-        const params = formatPostData(userListingHeart);
-        const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
+        event.stopPropagation();
+
+            this.setState({favorite: !this.state.favorite});
+            const userListingHeart = {
+                user_id: sessionStorage.getItem("user_id"),
+                listing_id: $(event.currentTarget).attr('value'),
+                unfavorited: this.state.favorite,
+            }
+            console.log(userListingHeart);
+            const params = formatPostData(userListingHeart);
+            const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
 
     }
 
@@ -129,8 +133,8 @@ class ListingPreview extends Component{
                             <img className="leaseImage" data-toggle="modal" onClick={(event) => this.openModal(event)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
                             {/*{this.state.favorite &&  <i cslassName="fa fa-heart favorite_fill"> </i>}*/}
-                            {/*<i id="fav" className={this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"}*/}
-                                {/*onClick={this.toggleHeart.bind(this)} value={listing_id}> </i>*/}
+                            <i id="fav" className={ sessionStorage.getItem("user_id") != user_id ? (this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"):"none" }
+                                onClick={this.toggleHeart.bind(this)} value={listing_id}> </i>
                             <i id="delete" className={sessionStorage.getItem("user_id") == user_id ? "fa fa-trash-o" : "none"}  onClick={(event)=>this.openDelete(event)}></i>
 
                             <div className = "infoBox">
