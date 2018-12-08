@@ -18,7 +18,7 @@ class ResultsPage extends Component{
             <div>
                 <Navbar />
                 <ResultsContent />
-                {/* <MakePost /> */}
+                <MakePost />
             </div>
 
         )
