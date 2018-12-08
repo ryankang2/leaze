@@ -48,8 +48,21 @@ class ResultsContent extends Component{
         })
     }
 
-
     render(){
+        var groupSize = 4;
+        var rows = this.state.listings.map(function(listings) {
+            // map content to html elements
+            return <div className="col-sm-3">{listings}</div>
+        }).reduce(function(r, element, index) {
+            // create element groups with size 3
+            index % groupSize === 0 && r.push([]);
+            r[r.length - 1].push(element);
+            return r;
+        }, []).map(function(rowContent) {
+            // surround the group with 'row'
+            return <div className="row">{rowContent}</div>;
+        });
+
         return (
             <div className="resultsContainer container">
                 <h2> Explore Housing</h2>
@@ -60,8 +73,8 @@ class ResultsContent extends Component{
                     <div className="col-sm-9 col-md-9 listingPreviewContainer">
                         <div className="list">
                             <div className="row">
-                                {this.state.listings}
-                                {/* {this.props.listings} */}
+                                {rows}
+                                {/* {this.state.listings} */}
                             </div>
                         </div>
                     </div>
