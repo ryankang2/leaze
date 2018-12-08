@@ -95,7 +95,15 @@ export default class MakePost extends Component {
 
     async submitPost(e) {
         e.preventDefault();
-
+        // var data   = new FormData();
+        
+        // this.state.images.forEach(function(image, i) {
+        //     data.append('image_' + i, image);
+        // });
+        // this.setState({
+        //     images: data,
+        // })
+        // console.log("STATE: ", this.state);
         const errors = this.validate(this.state.title, this.state.address, this.state.price);
         let isValid = Object.keys(errors).some(i => errors[i]);
         if(!isValid){
@@ -103,8 +111,9 @@ export default class MakePost extends Component {
             document.getElementById("error").className = "hidden";
             const params = formatPostData(this.state);
             const response = await axios.post("http://localhost:8000/api/queries/make_post.php", params);
+            const photoResponse = await axios.post("http://localhost:8000/api/queries/add_listing_photos.php", params)
             console.log(response);
-            if(response.data.success){
+            if(response.data.success  && photoResponse.data.success){
                $(".makePostModal").css("display", "none");
               $("#myModal2").css("display", "block");
             }
@@ -125,14 +134,15 @@ export default class MakePost extends Component {
     fileChangedHandler=(event)=>{
         // let reader = new FileReader();
         let files=event.target.files;
-        const reader = new FileReader();
-
+        console.log("files: ", files);
+        var array = [];
         for(var i = 0; i < files.length; i++){
             var file = files[i];
             this.handleLoadImage(file);
         }
+
+
         for(var i = 0; i < this.state.images.length; i++){
-            console.log("forloop: ", i);
             $(".picsContainer").append('<img id="listingPics" src="' + this.state.images[i] + '"/>');
         }
         console.log("this.state: ", this.state);
@@ -153,7 +163,6 @@ export default class MakePost extends Component {
           }
       }
 
-    
 
 
     render () {
