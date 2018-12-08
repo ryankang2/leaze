@@ -9,7 +9,10 @@
     // expecting input of photo to update with
     $photo = $_POST["photo"];
 
-    $updateQuery = "UPDATE `profile` SET `profile_pic`=$photo WHERE `user_id`=$user_id";
+    // convert to blob type with fopen and rb mode
+    $blob = fopen($photo, 'rb');
+
+    $updateQuery = "UPDATE `profile` SET `profile_pic`=$blob WHERE `user_id`=$user_id";
     mysqli_query($conn, $updateQuery);
 
     mysqli_close($conn);
