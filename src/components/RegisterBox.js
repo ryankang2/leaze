@@ -75,7 +75,6 @@ export default class RegisterBox extends Component {
             }
             else {
                 const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
-                const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
                 var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
                 sessionStorage.setItem("userCode", userCode);
                 document.getElementById("confRegister").style.display = "block";
@@ -165,7 +164,7 @@ export default class RegisterBox extends Component {
     }
 
     // Ask Ryan about what to do upon submit
-    confirmSubmit(e) { 
+    async confirmSubmit(e) { 
         
         document.getElementById("confCodeResent").style.display = "none";
         let correctCode = sessionStorage.getItem("userCode");
@@ -179,8 +178,9 @@ export default class RegisterBox extends Component {
             //Display message saying they can now cancel and log in
             document.getElementById("confWrongCode").style.display="none";
             document.getElementById("confCodeResent").style.display = "none";
-            document.getElementById("correctCodeMsg").style.display = "block"
-
+            document.getElementById("correctCodeMsg").style.display = "block";
+            var params = formatPostData(this.state);
+            const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
         }    
     }
 

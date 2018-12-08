@@ -7,6 +7,7 @@ import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import ListingPreview from "./ListingPreview";
 
+
 export class Profile extends React.Component {
   constructor(props){
     super(props);
@@ -171,7 +172,7 @@ export class Profile extends React.Component {
             <div className="col-sm-6" id="postedListings">
               {/* User's Posted Listings go here */}
               Posted Listings:
-                  {this.state.postedListings}
+                {this.state.postedListings}
             </div>
             <div className="col-sm-6" id="favoriteListings">
               {/* Ariane's code goes here */}
