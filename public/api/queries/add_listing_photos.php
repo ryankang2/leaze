@@ -3,11 +3,15 @@
        header("Access-Control-Allow-Headers: *");
        require_once("../mysql_connect.php");
 
-       // expecting input of listing id
-       $listing_id = $_POST["listing_id"];
-
        // expecting input of array of photo files
        $photos = $_POST["photos"];
+
+       // get the listing id
+       $getQuery = "SELECT MAX(listing_id) AS ID_MAX FROM `listings`";
+       $result = mysqli_query($conn, $getQuery);
+       if ($result) {
+           $listing_id = 1 + intval(mysqli_fetch_assoc($result)["ID_MAX"]);
+       }
 
        // loop through array of input photos
        for ($i = 0; $i < count($photos); $i++) {
