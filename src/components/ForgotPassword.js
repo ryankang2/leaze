@@ -128,8 +128,6 @@ export default class ForgotPassword extends Component {
 
         }
     }
-
-
     
     resendCode(e) {
         document.getElementById("forgotCode").value = "";

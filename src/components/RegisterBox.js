@@ -191,11 +191,20 @@ export default class RegisterBox extends Component {
         // this.sendCode(this.state.email);
     }
 
+    exitConf(e) {
+        let target = e.target.parentElement;
+        target.style.display = "none";
+        document.getElementById("confCodeResent").style.display = "none";
+        document.getElementById("confWrongCode").style.display = "none";
+        document.getElementById("confForgotCode").value = "";
+    }
+
     render() {
         return <div className="tabcontent" id="Register">
         <div className="logContainer">
         
         <div className="modal" id="confRegister">
+            <i class="fa fa-window-close" onClick={this.exitConf} id="closeConf"></i>
             <h3>Confirm your account</h3>
             <p id="confWrongCode"> The number you entered doesn’t match your code. Please try again. </p>
             <p id="confCodeResent">A code has been resent to your email</p>
@@ -259,7 +268,7 @@ export default class RegisterBox extends Component {
                 </div>
 
                 <div className="FormField">
-                    <Input id="checkInput" name='terms' type='checkbox' onClick={this.handleChange} value='checked' label='I Agree to the ' /><a href="" className="FormField__TermsLink" >terms of service</a>
+                    <Input id="checkInput" name='terms' type='checkbox' onClick={this.handleChange} value='checked' label='I Agree to the ' /><a onClick={this.termsPopup} className="FormField__TermsLink" >terms of service</a>
                 </div>
 
                 <br/>
@@ -278,7 +287,12 @@ export default class RegisterBox extends Component {
             </form>
 
             <div className="modal" id="termsModal">
-                <p id="termsP">These will be the terms of service that a user of LEaze must sign and adhere to.</p>
+                <p id="termsP">
+                LEaze is a service for connecting two parties, the leaser - Party A, and the leasee - Party B. 
+                By creating an account, I acknowledge that I have the ability to be either Party A or Party B. 
+                As such, LEaze shall not be held liable for my actions pertaining to but not including: my lease, 
+                the conditions of my living space, and any conflicts that may arise between two parties or any leasing complications.
+                </p>
                 <button onClick={this.closeTerms} id="closeTerms">Sounds good</button>
             </div>
 
