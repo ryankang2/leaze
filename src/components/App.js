@@ -13,14 +13,14 @@ import OtherProfile from "./OtherProf";
 const App = () => (
             <div>
                 {/* <OtherProfile></OtherProfile> */}
-                {/* <Switch>
+                <Switch>
                     <Route exact path="/" component={LandingPage}></Route>
                     <Route exact path="/home" component={ResultsPage}></Route>
                     <Route exact path="/home/profile/:number" component={Profile}></Route>
                     <Route exact path="/home/profile/other/:number" component={OtherProfile}></Route>
-                </Switch> */}
+                </Switch>
                 {/* <ResultsPage />  */}
-                <LandingPage />
+                {/* <LandingPage /> */}
                 {/* <Profile /> */}
                 {/* <MessagingPage /> */}
             </div>
