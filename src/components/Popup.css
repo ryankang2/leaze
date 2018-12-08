@@ -8,7 +8,7 @@
     bottom: 0;
     margin: auto;
     background-color: rgba(0,0,0, 0.5);
-  }
+}
 
 .ppopup {
     position: fixed;
@@ -20,7 +20,7 @@
     bottom: 0;
     margin: auto;
     background-color: rgba(0,0,0, 0.5);
-  }
+}
 .popup_inner {
     position: absolute;
     left: 25%;
@@ -33,72 +33,73 @@
 }
 
 .title{
-  color:black;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 36px;
+    color:black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 36px;
 }
 .caret {
-  border-color:transparent !important;
+    border-color:transparent !important;
 }
 
-#button1{ 
-  margin:12% !important;
+#button1{
+    margin:12% !important;
 }
 
-#button2{ 
-  margin-top: 47% !important;
-  margin-left: 15% !important;
+#button2{
+    margin-top: 47% !important;
+    margin-left: 15% !important;
 }
 #chooseButton{
-  margin:10%;
-  top: 20%;
-  padding-right:0% !important;
-  padding-left:0% !important;
+    margin:10%;
+    top: 20%;
+    padding-right:0% !important;
+    padding-left:0% !important;
 }
-#button4{ 
-  margin-top:24% !important;
-  margin-left:53%;
+#button4{
+    margin-top:24% !important;
+    margin-left:53%;
 }
 #displayPic {
-  background: transparent;
-  position: absolute;
-  left: 55%;
-  width: 32%;
-  height: 35%;
-  top: 2vh;
-  flex:right;
+    background: transparent;
+    position: absolute;
+    left: 55%;
+    width: 32%;
+    height: 35%;
+    top: 2vh;
+    flex:right;
 }
 #pic {
-  float:right;
-  top: 25%;
+    float:right;
+    top: 25%;
 }
 .inputs {
-  margin: 0vh;
-  max-height: 15px;
+    margin: 0vh;
+    max-height: 15px;
 }
 .inputsB {
-  margin:0;
-  height: 80px;
-  width: 350px;
-  margin-top:3% !important;
+    margin:0;
+    height: 80px;
+    width: 350px;
+    margin-top:3% !important;
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 24px;
-  background: #f7eddc;
+    width: 12px;
+    height: 24px;
+    background: #f7eddc;
+    border-radius: 1vh;
 }
 
 ::-webkit-scrollbar-track {
-  background: #948e84;
-  border-radius: 10px;
+    background: #948e84;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: #aca59a;
+    border-radius: 10px;
+    background: #aca59a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c5bdb0;
+    background: #c5bdb0;
 }

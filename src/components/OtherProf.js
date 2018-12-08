@@ -9,24 +9,25 @@ export default class OtherProfile extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        user_id: '',
-        firstname:'',
-        lastname:'',
-        age:'',
-        school:'',
-        major:'',
-        year:'',
-        bio:'',
-        email: '',
-        picture:null,
-        imageURL: require("./default_profile_pic.jpg"),
-        showUPopup: false,
-        showPPopup: false,
+      user_id: '',
+      firstname:'',
+      lastname:'',
+      age:'',
+      school:'',
+      major:'',
+      year:'',
+      bio:'',
+      email: '',
+      picture:null,
+      imageURL: require("./default_profile_pic.jpg"),
+      showUPopup: false,
+      showPPopup: false,
+      matchPercent: '',
     };
   }
   async componentDidMount(){
     const userID = window.location.href[window.location.href.length-1];
-    const idObject = { 
+    const idObject = {
       user_id: userID
     }
     const params = formatPostData(idObject);
@@ -38,6 +39,7 @@ export default class OtherProfile extends React.Component {
     this.setState({year: response.data.year})
     this.setState({bio: response.data.bio})
     this.setState({email: response.data.email})
+    this.setState({matchPercent: response.data.matchPercent})
   }
 
   render() {
@@ -53,23 +55,24 @@ export default class OtherProfile extends React.Component {
               <span className="label-ucsd"> UCSD </span>
             </div>
 
-            <div className="col-md-6" id="bioAreaO">
+            <div className="col-md-4" id="bioArea">
               {/* User Bio Area here  */}
               <h1 id="userName" > {this.state.firstname} {this.state.lastname} </h1>
-              <h2 id="userInfo"> {this.state.major}, {this.state.year} Year</h2>
+              <h2 id="userInfo"> {this.state.major}, {this.state.year} </h2>
               <p rows="4" cols="50" id="biography"> {this.state.bio} </p>
             </div>
 
-            <div className="col-md-4" id="progressArea">
-              {/* User Profile Strength Percentage is here */}
-              <div id="progressAreaInner">
-                <div id="progressTextArea">
+            <div className="col-md-4" id="socialArea">
+              {/* User's Social Links go here */}
+              <div id="socialInner">
+                <div id="socialLinks">
                   <p>Social Media Links</p>
                   <a href={'https://' + this.state.facebook} target="_blank"><i id="iconLivin" className="fa fa-facebook-square fa-5x" aria-hidden="true"></i></a>
                   <a href={'https://' + this.state.instagram} target="_blank"><i id="iconLivin" className="fa fa-instagram fa-5x" aria-hidden="true"></i></a>
                   <a href={'https://' + this.state.twitter} target="_blank"><i id= "iconLivin" className="fa fa-twitter-square fa-5x" aria-hidden="true"></i></a>
                   <a href={'mailto:' + this.state.email} target="_top"><i id="iconLivin" className="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>
                 </div>
+                <p>Match Percent: {this.state.matchPercent}% </p>
               </div>
 
             </div>
@@ -85,8 +88,8 @@ export default class OtherProfile extends React.Component {
             <div className="col-sm-12" id="postedListings">
               {/* User's Posted Listings go here */}
               Posted Listings:
-                  {/*Ariane's code goes here*/}
-                  {/* <ListingPreview /> */}
+              {/*Ariane's code goes here*/}
+              {/* <ListingPreview /> */}
             </div>
           </div>
         </div>
