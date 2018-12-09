@@ -84,6 +84,7 @@ export class Profile extends React.Component {
     for(var i = 0; i < list.length; i++){
       var singleListing = <ListingPreview information = {list[i]}{...this.props} key={list[i].user_id_posted}/>
       array.push(<div>{singleListing}</div>);
+      array.push
     }
     this.setState({
       favoriteListings: array,

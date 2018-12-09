@@ -164,6 +164,8 @@ hr {
     line-height: 10;
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
+    color: black;
+    font-weight: bold;
 }
 
 #ratingString {
@@ -219,6 +221,9 @@ hr {
     font-weight: normal;
     text-decoration: underline;
 }
+#listingContainer {
+    margin-top: 2%;
+}
 
 
 #iconLivin {
@@ -232,7 +237,7 @@ hr {
     position: absolute;
     left: 50%;
     height: 36vh;
-    width: 100%;
+    width: 50%;
     font: 18px "Arial";
     float: left;
     font-weight: normal;

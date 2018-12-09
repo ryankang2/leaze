@@ -63,7 +63,7 @@ export default class OtherProfile extends React.Component {
     var array = [];
     for(var i = 0; i < list.length; i++){
       var singleListing = <ListingPreview information = {list[i]}{...this.props} key={list[i].user_id_posted}/>
-      array.push(<div id="postedListingsO1" className="col-sm-3">{singleListing}</div>);
+      array.push(<div className="col-sm-3">{singleListing}</div>);
     }
     this.setState({
       postedListings: array,
@@ -122,7 +122,7 @@ export default class OtherProfile extends React.Component {
               {/* User's Posted Listings go here */}
                 Posted Listings:
             </div>
-            <div>
+            <div id="listingContainer">
                   {this.state.postedListings}
                   {/*Ariane's code goes here*/}
                   {/* <ListingPreview /> */}
