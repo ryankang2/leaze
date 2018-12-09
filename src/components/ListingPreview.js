@@ -83,7 +83,6 @@ class ListingPreview extends Component{
             "grid-row-start":"5",
             "font-size": "12px",
             "text-align": "left",
-            "margin-top": "-10%",
          });
 
         if(response.data.result >= 70) {
