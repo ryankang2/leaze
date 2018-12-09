@@ -24,6 +24,7 @@ export default class RegisterBox extends Component {
             confPassword: '',
             active: false,
             loading: false,
+            
 
         };
 
@@ -72,12 +73,19 @@ export default class RegisterBox extends Component {
             const emailcheck = await axios.post("http://localhost:8000/api/queries/existing_check.php", params);
             if (emailcheck.data.exists) {
                 // INSERT ERROR MESSAGE FOR EMAIL ALREADY EXISTS
+                this.toggleSpin();
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
+                document.getElementById("wrongInputRegister").innerText = "Email Address is already in use";
+                
+                
+
             }
             else {
                 const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
                 var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
                 sessionStorage.setItem("userCode", userCode);
                 document.getElementById("confRegister").style.display = "block";
+                
             }
         }
     }
