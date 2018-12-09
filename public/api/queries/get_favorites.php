@@ -24,7 +24,7 @@
         else {
             $split = explode(',', $favs);
             for($i = 0; $i < count($split)-1; $i++) {
-                array_push($listOfFavs, $split[$i]);
+                    array_push($listOfFavs, $split[$i]);
             }
             // in case there are repeat listing ids in favorites column in db
             $listOfFavs = array_unique($listOfFavs);

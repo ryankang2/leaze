@@ -25,22 +25,31 @@ class ListingPreview extends Component{
         this.openDelete = this.openDelete.bind(this);
         this.openModal = this.openModal.bind(this);
         this.toggleHeart = this.toggleHeart.bind(this);
+        this.closeDeleteModal = this.closeDeleteModal.bind(this);
+
 
     }
 
 
     async toggleHeart(event){
+        // var userObj= {
+        //     user_id: sessionStorage.getItem("user_id"),
+        // }
+        // var params = formatPostData(userObj);
+        // const response = await axios.post("http://localhost:8000/api/queries/get_favorites.php", params);
+        // console.log("what the fuckingshit: ", response);
         event.stopPropagation();
 
-            this.setState({favorite: !this.state.favorite});
-            const userListingHeart = {
+        this.setState({favorite: !this.state.favorite});
+
+
+        const userListingHeart = {
                 user_id: sessionStorage.getItem("user_id"),
                 listing_id: $(event.currentTarget).attr('value'),
                 unfavorited: this.state.favorite,
-            }
-            console.log(userListingHeart);
-            const params = formatPostData(userListingHeart);
-            const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
+        }
+        const params = formatPostData(userListingHeart);
+        const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
 
     }
 
@@ -103,23 +112,36 @@ class ListingPreview extends Component{
         $(".in").remove();
     }
 
-    closeDeleteModal(){
+    async closeDeleteModal(event){
         $(`.deleteModal-${this.props.information.listing_id}`).css("display", "none");
+        $(`.leaseImageG-${this.props.information.listing_id}`).css("opacity", "0.4");
+        $(`.infoBox-${this.props.information.listing_id}`).css("opacity", "0.4");
+        var listingObj= {
+            listing_id: this.props.information.listing_id,
+        }
+        console.log("LISTINgID:!! ",listingObj.listing_id);
+        var params = formatPostData(listingObj);
+
+        const response = await axios.post("http://localhost:8000/api/queries/archive_listing.php", params);
+        console.log("deleting response: ", response);
+
 
     }
 
 
-    render(){
+   render(){
         console.log("LISTING INFORMATION PROPS: " , this.props.information);
         const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
         console.log("LISTING_ID: ", listing_id);
-        const {full_name,rating,favorite,user_id} = this.props.information.user;
+        const {full_name,rating,favorites,user_id} = this.props.information.user;
         var todayDate = new Date();
         var separatedDate = date_posted.split("-");
         var day = todayDate.getDate();
         var month = todayDate.getMonth() + 1;
         var listing_day = parseInt(separatedDate[2]);
         var listing_month = parseInt(separatedDate[1]);
+
+
 
         var linkQuery = "/home/profile/other/" + this.props.information.user.user_id;
         // console.log("Response: ", this.handleMatchPercentage(user_id) );
@@ -130,14 +152,14 @@ class ListingPreview extends Component{
                 <div>
                     <div onClick={this.openModal.bind(this)}>
                         <div className="imageBox">
-                            <img className="leaseImage" data-toggle="modal" onClick={(event) => this.openModal(event)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                            <img className={`leaseImageG-${this.props.information.listing_id}`} data-toggle="modal" onClick={(event) => this.openModal(event)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
                             {/*{this.state.favorite &&  <i cslassName="fa fa-heart favorite_fill"> </i>}*/}
                             <i id="fav" className={ sessionStorage.getItem("user_id") != user_id ? (this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"):"none" }
                                 onClick={this.toggleHeart.bind(this)} value={listing_id}> </i>
                             <i id="delete" className={sessionStorage.getItem("user_id") == user_id ? "fa fa-trash-o" : "none"}  onClick={(event)=>this.openDelete(event)}></i>
 
-                            <div className = "infoBox">
+                            <div className = {`infoBox-${this.props.information.listing_id}`}>
                                 <div className="leaseName" data-toggle="modal" onClick={this.openModal.bind(this)} >
                                     {title}
                                 </div>
