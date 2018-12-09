@@ -63,7 +63,7 @@ export default class OtherProfile extends React.Component {
     var array = [];
     for(var i = 0; i < list.length; i++){
       var singleListing = <ListingPreview information = {list[i]}{...this.props} key={list[i].user_id_posted}/>
-      array.push(singleListing);
+      array.push(<div className="col-sm-3">{singleListing}</div>);
     }
     this.setState({
       postedListings: array,
@@ -117,13 +117,15 @@ export default class OtherProfile extends React.Component {
           </div>
 
           {/* here lies the bottom row - Drexler works here */}
-          <div className="row" id="listingsRow">
-            <div className="col-sm-12" id="postedListingsO">
+          <div id="listingsRow">
+            <div id="postedListingsO">
               {/* User's Posted Listings go here */}
-              Posted Listings:
-                {this.state.postedListings}
-                {/*Ariane's code goes here*/}
-                {/* <ListingPreview /> */}
+                Posted Listings:
+            </div>
+            <div id="listingContainer">
+                  {this.state.postedListings}
+                  {/*Ariane's code goes here*/}
+                  {/* <ListingPreview /> */}
             </div>
           </div>
         </div>

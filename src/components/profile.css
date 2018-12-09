@@ -73,6 +73,12 @@ hr {
     bottom: 3.33vh;
     right: 1vw;
     left: 1vw;
+    overflow-y: auto;
+}
+
+.listingShow{
+    width: 25% !important;
+    flex: content;
 }
 
 #profilePictureArea {
@@ -143,7 +149,7 @@ hr {
 #noListings {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-y: scroll;
+    left: 50%;
 }
 
 #ratingArea {
@@ -158,6 +164,8 @@ hr {
     line-height: 10;
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
+    color: black;
+    font-weight: bold;
 }
 
 #ratingString {
@@ -197,24 +205,26 @@ hr {
     /* width: 100%; */
     height: 36vh;
     font: 18px "Arial";
+    width: 100%;
     float: left;
     font-weight: normal;
     overflow-y: auto;
     text-decoration: underline;
 }
-
 #postedListingsO {
-    display: grid;
     background: transparent;
     position: absolute;
-    left: 25%;
-    width:50%;
-    height: 36vh;
+    left: 0%;
+    /* width: 100%; */
     font: 18px "Arial";
+    float: left;
     font-weight: normal;
-    overflow-y: auto;
     text-decoration: underline;
 }
+#listingContainer {
+    margin-top: 2%;
+}
+
 
 #iconLivin {
     font-size: 60px !important;
@@ -225,13 +235,14 @@ hr {
     display: grid;
     background: transparent;
     position: absolute;
-    left: 50vw;
-    width: 45vw;
+    left: 50%;
     height: 36vh;
+    width: 50%;
     font: 18px "Arial";
-    float: right;
+    float: left;
     font-weight: normal;
     text-decoration: underline;
+    
     overflow-y: auto;
 }
 
