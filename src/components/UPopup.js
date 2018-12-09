@@ -114,9 +114,9 @@ class UPopup extends React.Component {
                 <label>Age: </label>
                 <input id="years" className="inputs" name="age" defaultValue = {this.state.age}
                   onChange={this.handleChange.bind(this)}/>
-                <label>Email (must end with ".edu"): </label>
+                {/* <label>Email (must end with ".edu"): </label>
                 <input id="mail" className="inputs" name="email" defaultValue = {this.state.email}
-                  onChange={this.handleChange.bind(this)}/>
+                  onChange={this.handleChange.bind(this)}/> */}
                 <label>School: </label>
                 <input id="uni" className="inputs" name="school" defaultValue = {this.state.school}
                   onChange={this.handleChange.bind(this)}/>

@@ -73,6 +73,12 @@ hr {
     bottom: 3.33vh;
     right: 1vw;
     left: 1vw;
+    overflow-y: auto;
+}
+
+.listingShow{
+    width: 25% !important;
+    flex: content;
 }
 
 #profilePictureArea {
@@ -143,7 +149,7 @@ hr {
 #noListings {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-y: scroll;
+    left: 50%;
 }
 
 #ratingArea {
@@ -195,6 +201,7 @@ hr {
     position: absolute;
     left: 0vw;
     /* width: 100%; */
+    width:50% !important;
     height: 36vh;
     font: 18px "Arial";
     float: left;
@@ -202,19 +209,17 @@ hr {
     overflow-y: auto;
     text-decoration: underline;
 }
-
 #postedListingsO {
-    display: grid;
     background: transparent;
     position: absolute;
-    left: 25%;
-    width:50%;
-    height: 36vh;
+    left: 0%;
+    /* width: 100%; */
     font: 18px "Arial";
+    float: left;
     font-weight: normal;
-    overflow-y: auto;
     text-decoration: underline;
 }
+
 
 #iconLivin {
     font-size: 60px !important;
@@ -225,14 +230,16 @@ hr {
     display: grid;
     background: transparent;
     position: absolute;
-    left: 50vw;
-    width: 45vw;
+    left: 50%;
+    width: 50%;
     height: 36vh;
     font: 18px "Arial";
     float: right;
     font-weight: normal;
     text-decoration: underline;
     overflow-y: auto;
+    width:50% !important;
+    text-align: center;
 }
 
 /* Scrollbar styles */
