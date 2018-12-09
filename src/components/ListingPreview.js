@@ -25,6 +25,8 @@ class ListingPreview extends Component{
         this.openDelete = this.openDelete.bind(this);
         this.openModal = this.openModal.bind(this);
         this.toggleHeart = this.toggleHeart.bind(this);
+        this.closeDeleteModal = this.closeDeleteModal.bind(this);
+
 
     }
 
@@ -103,8 +105,16 @@ class ListingPreview extends Component{
         $(".in").remove();
     }
 
-    closeDeleteModal(){
+    async closeDeleteModal(){
         $(`.deleteModal-${this.props.information.listing_id}`).css("display", "none");
+        $(".leaseImage").css("opacity", "0.4");
+        $(".infoBox").css("opacity", "0.4");
+        const params= {
+            listing_id: this.props.information.listing_id,
+        }
+        const response = await axios.post("http://localhost:8000/api/queries/archive_listing.php", params);
+        console.log("deleting response: ", response);
+
 
     }
 
