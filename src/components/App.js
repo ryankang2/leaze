@@ -26,4 +26,9 @@ const App = () => (
             </div>
 );
 
+
+App.get("*", (req, res)=>{
+    res,sendFile(path.resolve("../../public/index.html"));
+})
+
 export default withRouter(App);
