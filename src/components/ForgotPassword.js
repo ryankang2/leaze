@@ -86,6 +86,7 @@ export default class ForgotPassword extends Component {
         if(target.id === "fpEmailSubmit") {
             console.log("We will email a 4-digit confirmation code to the following address: " + 
             document.getElementById("forgotEmail").value);
+            document.getElementById("forgotModal1").style.display = "block";
             var email = document.getElementById("forgotEmail").value;
             this.setState({
                 email: email,

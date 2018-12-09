@@ -139,6 +139,8 @@
     top: 5%;
     font-size: large;
     position: absolute;
+    cursor: pointer;
+
 
 }
 
@@ -221,7 +223,7 @@
 .leasingImagesContainer{
     height: 250px;
     width: 100%;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
 
 }
 
@@ -255,17 +257,17 @@
 }
 
 .addressInModal{
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
     font-size: 22px;
 }
 
 .distanceInModal{
-    border: 1px solid purple;
+    /*border: 1px solid purple;*/
     font-size: 18px;
 }
 
 .description{
-    border: 1px solid brown;
+    /*border: 1px solid brown;*/
 }
 
 .fa-map-marker{
@@ -274,12 +276,12 @@
 }
 
 .featuresText{
-    border: 1px solid turquoise;
+    /*border: 1px solid turquoise;*/
     font-size: 22px;
 }
 
 .feature{
-    border: 1px solid green;
+    /*border: 1px solid green;*/
 }
 
 .feature > i{
