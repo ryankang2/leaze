@@ -150,7 +150,7 @@ class ListingPreview extends Component{
                 <div>
                     <div onClick={this.openModal.bind(this)}>
                         <div className="imageBox">
-                            <img className={`leaseImageG-${this.props.information.listing_id}`} data-toggle="modal" onClick={(event) => this.openModal(event)} src = {this.props.information.photo}/>
+                            <img className={`leaseImage leaseImageG-${this.props.information.listing_id}`} data-toggle="modal" onClick={(event) => this.openModal(event)} src = {this.props.information.photo}/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
                             {/*{this.state.favorite &&  <i cslassName="fa fa-heart favorite_fill"> </i>}*/}
                             <i id="fav" className={ sessionStorage.getItem("user_id") != user_id ? (this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"):"none" }

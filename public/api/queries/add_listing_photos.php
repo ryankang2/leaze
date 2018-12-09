@@ -35,7 +35,6 @@
         // $blob = fopen($photos, 'rb');
         // print($listing_id);
         $insertQuery = "INSERT INTO `photos` (listing_id, photo) VALUES ($listing_id, '$photos')";
-        print($insertQuery);
         if(!mysqli_query($conn, $insertQuery)){
             $output["success"] = false;
         }
