@@ -114,8 +114,9 @@
             $listing_id = $row["listing_id"];
             $getListingPhoto = "select * from `photos` where listing_id='$listing_id';";
             $listingPhoto = mysqli_query($conn, $getListingPhoto);
+            $listPhoto = mysqli_fetch_assoc($listingPhoto);
             $output["listings"][] = $row;
-            $output["listings"][$count]["photo"] = $listingPhoto["photo"]; 
+            $output["listings"][$count]["photo"] = $listPhoto["photo"]; 
             $userID = $row["user_id_posted"];
             $userQuery = "SELECT * FROM `users` JOIN `profile` ON `users`.user_id=`profile`.user_id WHERE `users`.user_id=$userID";
             $userResult = mysqli_query($conn, $userQuery);
