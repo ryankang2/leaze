@@ -215,7 +215,7 @@ export default class MakePost extends Component {
                 <div className="modal-dialog">
                     <form onSubmit={this.submitPost}>
                         <div className="modal-content makePostContent">
-                        <button type="button" className="close"
+                            <button type="button" className="close"
                                 data-dismiss="modal" onClick={this.cancelPost.bind(this)}>&times;</button>
                             <div className="modal-header">
                                 <h4 className="modal-title">

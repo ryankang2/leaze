@@ -35,3 +35,7 @@
 .profileBox{
     display:grid;
 }
+
+.strikeThrough{
+    text-decoration: line-through;
+}

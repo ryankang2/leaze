@@ -96,14 +96,14 @@ export default class ListingModal extends Component{
                                                 Features
                                         </div>
                                         <div className="row">
-                                            <div className="feature col-sm-4 col-md-4">
+                                            <div className={!this.props.information.pet ? "strikeThrough" : "feature col-sm-4 col-md-4"}>
                                                 <i className="material-icons" >
                                                 pets
                                                 </i>
-                                                {/*{%if this.props.information.pets===}*/}
-                                                <p><s>Pets</s></p>
+                                                Pets
+
                                             </div>
-                                            <div className="feature col-sm-4 col-md-4">
+                                            <div className={!this.props.information.in_unit_laundry ? "strikeThrough" : "feature col-sm-4 col-md-4"}>
                                                 <i className="material-icons">
                                                 local_laundry_service
                                                 </i>
@@ -111,13 +111,13 @@ export default class ListingModal extends Component{
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="feature col-sm-4 col-md-4">
+                                            <div className={!this.props.information.gym ? "strikeThrough" : "feature col-sm-4 col-md-4"}>
                                                 <i className="material-icons">
                                                 fitness_center
                                                 </i>
                                                 Gym
                                             </div>
-                                            <div className="feature col-sm-4 col-md-4">
+                                            <div className={!this.props.information.pool ? "strikeThrough" : "feature col-sm-4 col-md-4"}>
                                                 <i className="material-icons">
                                                 pool
                                                 </i>
@@ -125,13 +125,13 @@ export default class ListingModal extends Component{
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="feature col-sm-4 col-md-4">
+                                            <div className={!this.props.information.parking ? "strikeThrough" : "feature col-sm-4 col-md-4"}>
                                                 <i className="material-icons">
                                                 local_parking
                                                 </i>
                                                 Parking
                                             </div>
-                                            <div className="feature col-sm-4 col-md-4">
+                                            <div className={!this.props.information.furnished ? "strikeThrough" : "feature col-sm-4 col-md-4"}>
                                                 <i className="material-icons">
                                                 kitchen
                                                 </i>
