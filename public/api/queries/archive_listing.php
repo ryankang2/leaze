@@ -4,15 +4,15 @@
     require_once("../mysql_connect.php");
     
     // expecting input of listing id for the listing to be archived
-    $listing_id = $_POST["listing_id"];
+    $listing_id = intval($_POST["listing_id"]);
     $output = [
-        "success" => false
+        "success" => "false"
     ];
     $updateArchiveQuery = "UPDATE `listings` SET `archived`=1 WHERE `listing_id`=$listing_id";
     if(mysqli_query($conn, $updateArchiveQuery)){
-        $output["success"] = true;
+        $output["success"] = "true";
     }
-
+    print($updateArchiveQuery);
     print_r($output);
 
     mysqli_close($conn);
