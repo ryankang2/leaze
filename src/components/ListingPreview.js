@@ -37,7 +37,6 @@ class ListingPreview extends Component{
         // }
         // var params = formatPostData(userObj);
         // const response = await axios.post("http://localhost:8000/api/queries/get_favorites.php", params);
-        // console.log("what the fuckingshit: ", response);
         event.stopPropagation();
 
         this.setState({favorite: !this.state.favorite});
@@ -49,7 +48,7 @@ class ListingPreview extends Component{
                 unfavorited: this.state.favorite,
         }
         const params = formatPostData(userListingHeart);
-        const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
+        const response = await axios.post("/api/queries/update_favorite_status.php", params);
 
     }
 
@@ -68,13 +67,12 @@ class ListingPreview extends Component{
     }
 
     async handleMatchPercentage(user_id) {
-        console.log(sessionStorage.getItem("user_id"));
         const userIDs = {
             mainUser: sessionStorage.getItem("user_id"),
             other: user_id,
         }
         const params = formatPostData(userIDs);
-        const response = await axios.post("http://localhost:8000/api/matching_algorithm.php", params);
+        const response = await axios.post("/api/matching_algorithm.php", params);
         var str = "Match: " + response.data.result + "%";
         $(`.match-${this.props.information.listing_id}`).text(str);
         $(`.match-${this.props.information.listing_id}`).css({
@@ -99,7 +97,6 @@ class ListingPreview extends Component{
     }
 
     openDelete(event){
-        console.log("delete");
         event.stopPropagation();
         $(`.deleteModal-${this.props.information.listing_id}`).css("display", "block");
     }
@@ -118,11 +115,9 @@ class ListingPreview extends Component{
         var listingObj= {
             listing_id: this.props.information.listing_id,
         }
-        console.log("LISTINgID:!! ",listingObj.listing_id);
         var params = formatPostData(listingObj);
 
-        const response = await axios.post("http://localhost:8000/api/queries/archive_listing.php", params);
-        console.log("deleting response: ", response);
+        const response = await axios.post("/api/queries/archive_listing.php", params);
 
 
     }
@@ -141,7 +136,6 @@ class ListingPreview extends Component{
 
 
         var linkQuery = "/home/profile/other/" + this.props.information.user.user_id;
-        // console.log("Response: ", this.handleMatchPercentage(user_id) );
 
         var matchPercentage = this.handleMatchPercentage(user_id);
 

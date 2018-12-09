@@ -57,8 +57,7 @@ export default class LoginBox extends Component {
         this.toggle();
         if(this.infoChecks(this.state.email, this.state.password) === true) {
             const params = formatPostData(this.state);
-            const response = await axios.post("http://localhost:8000/api/queries/sign_in.php", params);
-            console.log(response);
+            const response = await axios.post("/api/queries/sign_in.php", params);
             this.handleResponse(response.data);     
         }
     }
@@ -88,7 +87,6 @@ export default class LoginBox extends Component {
             console.log("Login successful. User will be redirected to the explore page");
             // document.getElementById("wrongInputLogin").className="hidden";
             this.setState({classPassword:"valid"});
-            console.log("DATAAAA: ", data.id);
             sessionStorage.setItem("user_id", data.id);
             browserHistory.push("/home");
             window.location.reload();

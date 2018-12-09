@@ -38,10 +38,9 @@ export default class OtherProfile extends React.Component {
       user_id: userID
     }
     const params = formatPostData(idObject);
-    const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
-    const userListingResponse = await axios.post("http://localhost:8000/api/queries/get_user_listings.php", params);
+    const response = await axios.post("/api/queries/get_prof.php", params);
+    const userListingResponse = await axios.post("/api/queries/get_user_listings.php", params);
     this.showUserListings(userListingResponse.data.listings);
-    console.log(response.data);
     this.setState({firstname: response.data.firstname})
     this.setState({lastname: response.data.lastname})
     this.setState({major: response.data.major})
@@ -54,8 +53,7 @@ export default class OtherProfile extends React.Component {
       user2: sessionStorage.getItem("user_id"),
     }
     const dualParams = formatPostData(dualID);
-    const matchResponse = await axios.post("http://localhost:8000/api/matching_algorithm.php", dualParams );
-    console.log("Match", matchResponse.data);
+    const matchResponse = await axios.post("/api/matching_algorithm.php", dualParams );
     this.setState({matchPercent: matchResponse.data.result})
   }
 

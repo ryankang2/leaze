@@ -40,7 +40,7 @@ class PPopup extends React.Component {
       user_id: sessionStorage.getItem("user_id"),
     }
     const params = formatPostData(idObj);
-    const response = await axios.post("http://localhost:8000/api/queries/get_pref.php", params);
+    const response = await axios.post("/api/queries/get_pref.php", params);
     this.setState({gpd: response.data.guests_per_week})
     this.setState({latesleep: response.data.late_sleeper})
     this.setState({deepsleep: response.data.deep_sleeper})
@@ -64,7 +64,6 @@ class PPopup extends React.Component {
     this.setState({share: response.data.sharing_belongings})
     this.setState({relations: response.data.roommate_relationship})
 
-    console.log(response.data)
   }
 
   toggleSpin(){
@@ -80,9 +79,7 @@ class PPopup extends React.Component {
   async submitPref(event){
     this.toggleSpin();
     const params = formatPostData(this.state);
-    console.log(this.state)
-    const response = await axios.post("http://localhost:8000/api/queries/set_pref.php", params);
-    console.log(response.data)
+    const response = await axios.post("/api/queries/set_pref.php", params);
     window.location.reload();
   }
 

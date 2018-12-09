@@ -33,7 +33,7 @@ class Navbar extends Component{
             id: userID,
         };
         const params = formatPostData(userObj);
-        const response = await axios.post("http://localhost:8000/api/queries/get_single_user.php", params);
+        const response = await axios.post("/api/queries/get_single_user.php", params);
         this.changeName(response.data.user);
     }
 
@@ -49,7 +49,7 @@ class Navbar extends Component{
         event.preventDefault();
         event.stopPropagation();
         const params = formatPostData(this.state);
-        const response = await axios.post("http://localhost:8000/api/queries/searchbox.php",params);
+        const response = await axios.post("/api/queries/searchbox.php",params);
         this.props.getSearch(response);
         this.setState({
             searchQuery: "",

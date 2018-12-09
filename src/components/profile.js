@@ -39,11 +39,9 @@ export class Profile extends React.Component {
       user_id: sessionStorage.getItem("user_id"),
     }
     const params = formatPostData(idObj);
-    const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
-    const userListingResponse = await axios.post("http://localhost:8000/api/queries/get_user_listings.php", params);
-    const favoriteListingsResponse = await axios.post("http://localhost:8000/api/queries/get_favorites.php", params);
-    console.log("FAVORITE LISTING: ", favoriteListingsResponse);
-    console.log(userListingResponse);
+    const response = await axios.post("/api/queries/get_prof.php", params);
+    const userListingResponse = await axios.post("/api/queries/get_user_listings.php", params);
+    const favoriteListingsResponse = await axios.post("/api/queries/get_favorites.php", params);
     if(userListingResponse.data.noListings){
       this.setState({postedListings: <p id="noListings">No Listings to Show</p>})
     }
