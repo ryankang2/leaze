@@ -32,17 +32,24 @@ class ListingPreview extends Component{
 
 
     async toggleHeart(event){
-        console.log("hey des fav: ", this.state.favorite);
+        // var userObj= {
+        //     user_id: sessionStorage.getItem("user_id"),
+        // }
+        // var params = formatPostData(userObj);
+        // const response = await axios.post("http://localhost:8000/api/queries/get_favorites.php", params);
+        // console.log("what the fuckingshit: ", response);
         event.stopPropagation();
 
-            this.setState({favorite: !this.state.favorite});
-            const userListingHeart = {
+        this.setState({favorite: !this.state.favorite});
+
+
+        const userListingHeart = {
                 user_id: sessionStorage.getItem("user_id"),
                 listing_id: $(event.currentTarget).attr('value'),
                 unfavorited: this.state.favorite,
-            }
-            const params = formatPostData(userListingHeart);
-            const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
+        }
+        const params = formatPostData(userListingHeart);
+        const response = await axios.post("http://localhost:8000/api/queries/update_favorite_status.php", params);
 
     }
 
@@ -122,7 +129,7 @@ class ListingPreview extends Component{
     }
 
 
-    render(){
+   render(){
         console.log("LISTING INFORMATION PROPS: " , this.props.information);
         const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
         console.log("LISTING_ID: ", listing_id);
@@ -133,9 +140,9 @@ class ListingPreview extends Component{
         var month = todayDate.getMonth() + 1;
         var listing_day = parseInt(separatedDate[2]);
         var listing_month = parseInt(separatedDate[1]);
-        if(favorites!=null) {
-            this.state.favorite = favorites.includes(listing_id);
-        }
+
+
+
         var linkQuery = "/home/profile/other/" + this.props.information.user.user_id;
         // console.log("Response: ", this.handleMatchPercentage(user_id) );
 
