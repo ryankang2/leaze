@@ -133,7 +133,7 @@ export class Profile extends React.Component {
     
         let points = '12.5,0.5 15.75,8.25 24.75,8.75 17.5,14.5 19.75,22.5 12.5,17.75 5.25,22.5 7.5,14.4 0.5,8.75 9.25,8.25 12.5,0.5';
     return (
-      <div>
+      <div id="myProfileId">
         <Navbar />
         <div className="container-fluid" id="mainContainer">
           {/* here lies the top row - Matt works here */}
