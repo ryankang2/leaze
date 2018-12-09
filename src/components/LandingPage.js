@@ -7,7 +7,7 @@ export default class LandingPage extends Component {
     render () {
         return <div id="background">
             <div id="header">
-                <img src= {require('../../dist/logo_transparent.png')} alt="logo" width="125" height="125" />
+                <img src= {require('../../public/dist/logo_transparent.png')} alt="logo" width="125" height="125" />
                 <h1 id="headerMsg">Your new home. Just the way you like it.</h1>
             </div>  
 
