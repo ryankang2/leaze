@@ -8,6 +8,7 @@
     "bundle": "webpack --config webpack.prod.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "homepage": "http://leaze.online/dist/index.html",
 
   "proxy": {
     "/api/*": {
