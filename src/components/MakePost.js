@@ -4,7 +4,38 @@ import {Input, Row, Icon, Modal, Button} from 'react-materialize';
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 
+const intialState= { 
+    user_id_posted: sessionStorage.getItem("user_id"),
+    title: "",
+    address: "",
+    description: "",
+    dist_to_campus: "",
+    price: 0,
+    home_type: "",
+    room_type:  "",
+    single: false,
+    double: false,
+    triple: false,
+    living:false,
+    home: false,
+    apartment: false,
+    
+    pet: false,
+    in_unit_laundry: false,
+    furnished: false,
+    gym: false,
+    pool: false,
+    parking: false,
+    active: false,
+    title_class: "",
+    price_class: "",
+    address_class: "",
+    error: "hidden",
+    images: [],
+}
+
 export default class MakePost extends Component {
+
 
     constructor(props){
         super(props);
@@ -41,6 +72,8 @@ export default class MakePost extends Component {
         this.submitPost = this.submitPost.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.handleChange = this.handleChange.bind(this);
+
+        this.fileReader = new FileReader();
 
     }
 
@@ -109,9 +142,13 @@ export default class MakePost extends Component {
         if(!isValid){
             this.setState({active:false})
             document.getElementById("error").className = "hidden";
+            // this.setState({
+            //     images: JSON.stringify(this.state.images)
+            // })
             const params = formatPostData(this.state);
             const response = await axios.post("http://localhost:8000/api/queries/make_post.php", params);
             const photoResponse = await axios.post("http://localhost:8000/api/queries/add_listing_photos.php", params)
+            
             console.log(response);
             if(response.data.success  && photoResponse.data.success){
                $(".makePostModal").css("display", "none");
@@ -127,6 +164,7 @@ export default class MakePost extends Component {
 
     cancelPost(e) {
         $(".makePostModal").css("display", "none");
+        this.setState(initialState);
     }
 
 
@@ -137,35 +175,41 @@ export default class MakePost extends Component {
         console.log("files: ", files);
         var array = [];
         for(var i = 0; i < files.length; i++){
+            let reader = new FileReader();
             var file = files[i];
-            this.handleLoadImage(file);
+            // this.handleLoadImage(file);
+            reader.onloadend = () => {
+                this.setState({images: this.state.images.concat(reader.result)});
+                // this.setState({images: array});
+            }
+            reader.readAsDataURL(file);
         }
 
-
-        for(var i = 0; i < this.state.images.length; i++){
-            $(".picsContainer").append('<img id="listingPics" src="' + this.state.images[i] + '"/>');
-        }
+        // for(var i = 0; i < this.state.images.length; i++){
+        //     $(".picsContainer").append('<img id="listingPics" src="' + this.state.images[i] + '"/>');
+        // }
         console.log("this.state: ", this.state);
       }
 
-      handleLoadImage = (file) => {
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                var array = this.state.images;
-                array.push(reader.result);
-                console.log("ARRAY: ", array);
-                this.setState(() => ({
-                    images: array,
-                }));         
-            };
-            reader.readAsDataURL(file);
-          }
-      }
+    //   handleLoadImage = (file) => {
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             var array = this.state.images;
+    //             array.push(reader.result);
+    //             console.log("ARRAY: ", array);
+    //             this.setState(() => ({
+    //                 images: array,
+    //             }));         
+    //         };
+    //         reader.readAsDataURL(file);
+    //       }
+    //   }
 
 
 
     render () {
+        let {images} = this.state;
         return (
             <div className="modal makePostModal">
                 <div className="modal-dialog">
@@ -239,14 +283,13 @@ export default class MakePost extends Component {
                                         <div className="row">
                                             <div className="col-sm-12 picBox">
                                                 <div className="picsContainer">
-                                                    
+                                                    {images.map((item,index) => <img id="listingPics" src={item} />)}
                                                 </div>
                                                 <div className="inputContainer">
                                                     <Row>
-                                                        <Input s={8} label="Select" type="file" multiple onChange={this.fileChangedHandler.bind(this)}></Input>
+                                                        <Input s={8} label="Select" type="file" name="images" multiple onChange={this.fileChangedHandler.bind(this)}></Input>
                                                     </Row>
                                                 </div>
-
                                             </div>
                                     </div>
                                 </div>
