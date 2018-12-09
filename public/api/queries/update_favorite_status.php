@@ -15,9 +15,17 @@
         $row = mysqli_fetch_assoc($getFavResults);
         $favs = $row["favorites"];
         $newVal = "";
+
+        // this is adding a favorite to database
         if ($unfavorited == "false") {
-            $newVal = $favs . $listing_id . ",";
+            $toCheck = $listing_id . ",";
+            // check if already exists in database
+            if (strpos($favs, $toCheck) == false) {
+                $newVal = $favs . $listing_id . ",";
+            }
         }
+
+        // this is removing a favorite from database
         else {
             $split = explode(',', $favs);
             for($i = 0; $i < count($split)-1; $i++) {

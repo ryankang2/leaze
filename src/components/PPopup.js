@@ -3,12 +3,21 @@ import "./Popup.css";
 import {Row, Input } from "react-materialize"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
 
+
+const override = css`
+    display: none;
+    margin: 0 auto;
+    position: absolute;
+    top: 94%;
+`;
 class PPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id:'',
+      user_id:sessionStorage.getItem("user_id"),
       gpd: '',
       latesleep: '',
       deepsleep: '',
@@ -23,6 +32,7 @@ class PPopup extends React.Component {
       noise: '',
       share: '',
       relations: '',
+      loading: false,
     };
   }
   async componentDidMount(){
@@ -47,7 +57,7 @@ class PPopup extends React.Component {
     if(response.data.cigarettes=="1"){
       this.setState({cigarettes: true})
     }
-    if(response.data.otherdrug=="1"){
+    if(response.data.other=="1"){
       this.setState({other: true})
     }
     this.setState({noise: response.data.study_noise_level})
@@ -57,15 +67,20 @@ class PPopup extends React.Component {
     console.log(response.data)
   }
 
+  toggleSpin(){
+    this.setState({loading: !this.state.loading})
+  }
+
   handleChange(event) {
-    console.log(event.currentTarget);
     const { name, value } = event.currentTarget;
     this.setState({
       [name]: value
     })
   }
   async submitPref(event){
+    this.toggleSpin();
     const params = formatPostData(this.state);
+    console.log(this.state)
     const response = await axios.post("http://localhost:8000/api/queries/set_pref.php", params);
     console.log(response.data)
     window.location.reload();
@@ -91,7 +106,7 @@ class PPopup extends React.Component {
           <h1 className="title">Update Your Preferences</h1>
           <div className="col-sm-4">
             <Row>
-            <label>How many guests days per week?: </label>
+            <label>Days per week guests can come over? </label>
             <Input s={12} id='guests' className="browser-default" type='select' name='gpd' value={this.state.gpd}
               onChange={this.handleChange.bind(this)} >
               <option value='0'>No Pref</option> 
@@ -106,7 +121,7 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <Row>
-            <label>Late Sleeper?: </label>
+            <label>Late Sleeper? </label>
             <Input s={12} id='latesleeper' className="browser-default" type='select' name='latesleep' value={this.state.latesleep}
               onChange={this.handleChange.bind(this)} >
               <option value='0'>No Pref</option> 
@@ -115,7 +130,7 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <Row>
-            <label>Deep Sleeper?: </label>
+            <label>Deep Sleeper? </label>
             <Input s={12} id='deepsleeper' className="browser-default" type='select' name='deepsleep' value={this.state.deepsleep} 
               onChange={this.handleChange.bind(this)}>
               <option value='0'>No Pref</option> 
@@ -123,7 +138,7 @@ class PPopup extends React.Component {
               <option value='1'>Yes</option>
             </Input>
             </Row>
-            <label>Early Riser?: </label>
+            <label>Early Riser? </label>
             <Row>
             <Input s={12} id='earlyriser'  className="browser-default" type='select' name='earlyrise' value={this.state.earlyrise}
               onChange={this.handleChange.bind(this)}>
@@ -133,11 +148,11 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <button onClick=
-              {this.props.closePPopup} id="button1" className="btn btn-primary">Cancel</button>
+              {this.props.closePPopup} id="cancelButton" className="btn btn-primary">Cancel</button>
           </div>
           <div className="col-sm-4">
             <Row>
-            <label>How Messy?: </label>
+            <label>How Messy? </label>
             <Input s={12} id='messyman' className="browser-default" type='select' name='messy' value={this.state.messy}
               onChange={this.handleChange.bind(this)}>
               <option value='0'>No Pref</option> 
@@ -149,7 +164,7 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <Row>
-            <label>Video Games?: </label>
+            <label>Video Games? </label>
             <Input s={12} id='gamer' className="browser-default" type='select' name='videogames' value={this.state.videogames}
               onChange={this.handleChange.bind(this)}>
               <option value='0'>No Pref</option> 
@@ -160,7 +175,7 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <Row>
-            <label>Extroverted?: </label>
+            <label>Extroverted? </label>
             <Input s={12} id='social' className="browser-default" type='select' name='extro' value={this.state.extro}
               onChange={this.handleChange.bind(this)}>
               <option value='0'>No Pref</option> 
@@ -171,7 +186,7 @@ class PPopup extends React.Component {
               <option value='5'>Extremely</option>
             </Input>
             </Row>
-            <label>Substances?: </label>
+            <label>What substances are you okay with? </label>
             <Input s={6} id='alc' name='alcohol' className="inputs" type='checkbox' checked={this.state.alcohol} label='Alcohol' onChange={this.handleCheckBox.bind(this)} />
             <Input s={6} id='weed' name='marijuana' className="inputs" type='checkbox' checked={this.state.marijuana} label='Marijuana' onChange={this.handleCheckBox.bind(this)} />
             <Input s={6} id='stoges' name='cigarettes' className="inputs" type='checkbox' checked={this.state.cigarettes} label='Cigarettes' onChange={this.handleCheckBox.bind(this)} />
@@ -179,7 +194,7 @@ class PPopup extends React.Component {
           </div>
           <div className="col-sm-4">
             <Row>
-            <label>Study Noise Level?: </label>
+            <label>Study Noise Level? </label>
             <Input s={12} id='studynoise' className="browser-default" type='select' name='noise' value={this.state.noise}
               onChange={this.handleChange.bind(this)}>
               <option value='0'>No Pref</option> 
@@ -191,7 +206,7 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <Row>
-            <label>Are you willing to share belongings?: </label>
+            <label>Are you willing to share belongings? </label>
             <Input s={12} id='belongings' className="browser-default" type='select' name="share" value={this.state.share}
 
               onChange={this.handleChange.bind(this)}>
@@ -204,7 +219,7 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <Row>
-            <label>What relationship do you expect from a roommate? </label>
+            <label>Expected roommate relationship? </label>
             <Input id='friends' className="browser-default" type='select' name="relations" value={this.state.relations}
               onChange={this.handleChange.bind(this)}>
               <option value='0'>No Pref</option> 
@@ -214,7 +229,14 @@ class PPopup extends React.Component {
             </Input>
             </Row>
             <button onClick=
-              {this.submitPref.bind(this)} id="button2" className="btn btn-primary">Save Updates</button>
+              {this.submitPref.bind(this)} id="saveButtonP" className="btn btn-primary">Save Updates
+              <ClipLoader
+                className={override}
+                sizeUnit={"px"}
+                size={20}
+                color={'#123abc'}
+                loading={this.state.loading}/> 
+            </button>
           </div>
         </div>
       </div>

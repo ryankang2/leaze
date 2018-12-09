@@ -2,7 +2,15 @@ import React, {Component} from "react";
 import {Input, Row, Icon, Button} from "react-materialize";
 import axios from "axios";
 import {formatPostData} from "../helpers/formatPostData";
-
+import { css } from '@emotion/core';
+// First way to import
+import { ClipLoader } from 'react-spinners';
+const override = css`
+    display: none;
+    margin: 0 auto;
+    position: absolute;
+    top: 20%;
+`;
 export default class RegisterBox extends Component {
 
     constructor() {
@@ -15,6 +23,8 @@ export default class RegisterBox extends Component {
             password: '',
             confPassword: '',
             active: false,
+            loading: false,
+            
 
         };
 
@@ -23,6 +33,9 @@ export default class RegisterBox extends Component {
     }
     toggle(){
         this.setState({active: true});
+    }
+    toggleSpin(){
+        this.setState({loading:!this.state.loading})
     }
 
     validate(fname, lname, email, password, confPassword){
@@ -54,14 +67,26 @@ export default class RegisterBox extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
+            this.toggleSpin();
             const params = formatPostData(this.state);
-            const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
-            const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
-            var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
-            sessionStorage.setItem("userCode", userCode);
-            document.getElementById("confRegister").style.display = "block";
+            const emailcheck = await axios.post("http://localhost:8000/api/queries/existing_check.php", params);
+            if (emailcheck.data.exists) {
+                // INSERT ERROR MESSAGE FOR EMAIL ALREADY EXISTS
+                this.toggleSpin();
+                document.getElementById("wrongInputRegister").className = "FormFieldsError";
+                document.getElementById("wrongInputRegister").innerText = "Email Address is already in use";
+                
+                
+
+            }
+            else {
+                const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
+                var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
+                sessionStorage.setItem("userCode", userCode);
+                document.getElementById("confRegister").style.display = "block";
+                
+            }
         }
     }
 
@@ -147,7 +172,7 @@ export default class RegisterBox extends Component {
     }
 
     // Ask Ryan about what to do upon submit
-    confirmSubmit(e) { 
+    async confirmSubmit(e) { 
         
         document.getElementById("confCodeResent").style.display = "none";
         let correctCode = sessionStorage.getItem("userCode");
@@ -161,8 +186,9 @@ export default class RegisterBox extends Component {
             //Display message saying they can now cancel and log in
             document.getElementById("confWrongCode").style.display="none";
             document.getElementById("confCodeResent").style.display = "none";
-            document.getElementById("correctCodeMsg").style.display = "block"
-
+            document.getElementById("correctCodeMsg").style.display = "block";
+            var params = formatPostData(this.state);
+            const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
         }    
     }
 
@@ -173,11 +199,20 @@ export default class RegisterBox extends Component {
         // this.sendCode(this.state.email);
     }
 
+    exitConf(e) {
+        let target = e.target.parentElement;
+        target.style.display = "none";
+        document.getElementById("confCodeResent").style.display = "none";
+        document.getElementById("confWrongCode").style.display = "none";
+        document.getElementById("confForgotCode").value = "";
+    }
+
     render() {
         return <div className="tabcontent" id="Register">
         <div className="logContainer">
         
         <div className="modal" id="confRegister">
+            <i class="fa fa-window-close" onClick={this.exitConf} id="closeConf"></i>
             <h3>Confirm your account</h3>
             <p id="confWrongCode"> The number you entered doesn’t match your code. Please try again. </p>
             <p id="confCodeResent">A code has been resent to your email</p>
@@ -241,19 +276,31 @@ export default class RegisterBox extends Component {
                 </div>
 
                 <div className="FormField">
-                    <Input id="checkInput" name='terms' type='checkbox' onClick={this.handleChange} value='checked' label='I Agree to the ' /><a href="" className="FormField__TermsLink" >terms of service</a>
+                    <Input id="checkInput" name='terms' type='checkbox' onClick={this.handleChange} value='checked' label='I Agree to the ' /><a onClick={this.termsPopup} className="FormField__TermsLink" >terms of service</a>
                 </div>
 
                 <br/>
                 <p id="wrongInputRegister" className="hidden"></p>
 
                 <div className="FormField" id="submitDiv">
-                    <button type="Submit" id="regButton" className="btn btn-primary">Sign Up</button>
+                    <button type="Submit" id="regButton" className="btn btn-primary">Sign Up
+                    <ClipLoader
+                        className={override}
+                        sizeUnit={"px"}
+                        size={20}
+                        color={'#123abc'}
+                        loading={this.state.loading}/>   
+                    </button>
                 </div>    
             </form>
 
             <div className="modal" id="termsModal">
-                <p id="termsP">These will be the terms of service that a user of LEaze must sign and adhere to.</p>
+                <p id="termsP">
+                LEaze is a service for connecting two parties, the leaser - Party A, and the leasee - Party B. 
+                By creating an account, I acknowledge that I have the ability to be either Party A or Party B. 
+                As such, LEaze shall not be held liable for my actions pertaining to but not including: my lease, 
+                the conditions of my living space, and any conflicts that may arise between two parties or any leasing complications.
+                </p>
                 <button onClick={this.closeTerms} id="closeTerms">Sounds good</button>
             </div>
 

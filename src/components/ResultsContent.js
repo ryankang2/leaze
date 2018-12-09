@@ -11,6 +11,7 @@ class ResultsContent extends Component{
         super(props);
         this.state = {
             listings: [],
+            update: 0
         };
     }
 
@@ -20,14 +21,28 @@ class ResultsContent extends Component{
         }        
         const params = formatPostData(userID);
         const response = await axios.post("http://localhost:8000/api/queries/get_default_listings.php", params);
-        this.getFilterResponseData(response);
+        if(!response.data.noListings){
+            this.getFilterResponseData(response);
+        }
     }
 
-    getFilterResponseData(responseObject, searchParams){
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            listings: [],
+        })
+        console.log("PROPS: ", this.props.searchResults);
+        console.log("NEXTPROPS: ", nextProps);
+        this.setState({
+            listings: nextProps.searchResults
+        })
+    }
+
+
+    getFilterResponseData(responseObject){
         // console.log("responseObject: ", responseObject);
         var array = [];
         for(var i = 0; i < responseObject.data.listings.length; i++){
-            var singleListing = <SingleListing information = {responseObject.data.listings[i]}{...this.props} key={responseObject.data.listings[i].user_id_posted}/>
+            var singleListing = <SingleListing information = {responseObject.data.listings[i]}{...this.props} key={responseObject.data.listings[i]}/>
             array.push(singleListing);
         }
         this.setState({
@@ -36,6 +51,20 @@ class ResultsContent extends Component{
     }
 
     render(){
+        var groupSize = 4;
+        var rows = this.state.listings.map(function(listings) {
+            // map content to html elements
+            return <div className="col-sm-3">{listings}</div>
+        }).reduce(function(r, element, index) {
+            // create element groups with size 3
+            index % groupSize === 0 && r.push([]);
+            r[r.length - 1].push(element);
+            return r;
+        }, []).map(function(rowContent) {
+            // surround the group with 'row'
+            return <div className="row">{rowContent}</div>;
+        });
+
         return (
             <div className="resultsContainer container">
                 <h2> Explore Housing</h2>
@@ -46,7 +75,8 @@ class ResultsContent extends Component{
                     <div className="col-sm-9 col-md-9 listingPreviewContainer">
                         <div className="list">
                             <div className="row">
-                                {this.state.listings}
+                                {rows}
+                                {/* {this.state.listings} */}
                             </div>
                         </div>
                     </div>

@@ -8,9 +8,9 @@
 
     $output = [
         "success" => false,
-        "dist_to_campus" => "",
-        "price_low" => "",
-        "price_high" => "",
+        "dist_to_campus" => "100",
+        "price_low" => "0",
+        "price_high" => "5000",
         "pet" => false,
         "laundry" => false,
         "furnished" => false,
@@ -64,7 +64,9 @@
                     case "price_high":
                         // fall through
                     case "dist_to_campus":
-                        $output[$key] = $value;
+                        if ($value) {
+                            $output[$key] = $value;
+                        }
                         break;
                     case "user_id":
                         break;

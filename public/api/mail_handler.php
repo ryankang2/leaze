@@ -49,7 +49,6 @@ $mail->Body    = "
     Thanks for signing up for Leaze! With your Leaze account, you are able to: <br><br>
     -View student housing postings and chat with the leasers directly! <br><br>
     -Upload housing postings <br><br>
-    -View other students looking for housing<br><br>
     Finally, here is your 4-digit verification code: $code.
     If you have any questions, send us an email to leazehousing@gmail.com and we will be 
     happy to help. <br> <br>

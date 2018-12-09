@@ -33,7 +33,7 @@
 
     $worked = true;
     foreach ($changed as $key => $value) {
-        $updateQuery = "UPDATE `preferences` SET '$key'='$value' WHERE `user_id`='$user'";
+        $updateQuery = "UPDATE `preferences` SET `$key`=$value WHERE `user_id`=$user";
         if (!mysqli_query($conn, $updateQuery)) {
             $worked = false;
             break;

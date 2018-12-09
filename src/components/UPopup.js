@@ -3,12 +3,21 @@ import "./Popup.css";
 import {Input,Button} from "react-materialize"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/core';
+
+const override = css`
+    display: none;
+    margin: 0 auto;
+    position: absolute;
+    top: 93%;
+`;
 
 class UPopup extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        user_id:'', 
+        user_id:sessionStorage.getItem("user_id"), 
         firstname:'',
         lastname:'',
         age:'',
@@ -22,16 +31,15 @@ class UPopup extends React.Component {
         twitter: '',
         picture: null,
         imageURL:require('./default_profile_pic.jpg'),
+        loading: false,
     };
   }
   async componentDidMount(){
     const idObj ={
       user_id: sessionStorage.getItem("user_id"),
     }
-    this.setState({user_id: sessionStorage.getItem("user_id")})
     const params = formatPostData(idObj);
     const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
-    console.log(response.data);
     this.setState({firstname: response.data.firstname})
     this.setState({lastname: response.data.lastname})
     this.setState({age: response.data.age})
@@ -44,6 +52,11 @@ class UPopup extends React.Component {
     this.setState({instagram: response.data.instagram})
     this.setState({twitter: response.data.twitter})
   }
+
+  toggleSpin(){
+    this.setState({loading: !this.state.loading})
+  }
+
   handleChange(event) {
     const { name, value } = event.currentTarget;
     this.setState({
@@ -64,8 +77,11 @@ class UPopup extends React.Component {
     }
   }
   async submitProf(event){
+    this.toggleSpin();
+    this.uploadHandler()
     const params = formatPostData(this.state);
     const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
+    console.log(this.state);
     console.log(response.data)
     window.location.reload();
   }
@@ -79,7 +95,6 @@ class UPopup extends React.Component {
       });
     }
     reader.readAsDataURL(file)
-    this.uploadHandler()
   }
   uploadHandler=()=> {
     console.log(this.state.imageURL)
@@ -99,9 +114,9 @@ class UPopup extends React.Component {
                 <label>Age: </label>
                 <input id="years" className="inputs" name="age" defaultValue = {this.state.age}
                   onChange={this.handleChange.bind(this)}/>
-                <label>Email (must end with ".edu"): </label>
+                {/* <label>Email (must end with ".edu"): </label>
                 <input id="mail" className="inputs" name="email" defaultValue = {this.state.email}
-                  onChange={this.handleChange.bind(this)}/>
+                  onChange={this.handleChange.bind(this)}/> */}
                 <label>School: </label>
                 <input id="uni" className="inputs" name="school" defaultValue = {this.state.school}
                   onChange={this.handleChange.bind(this)}/>
@@ -111,6 +126,7 @@ class UPopup extends React.Component {
                 <label>Year: </label>
                 <Input s={12} id='classYear' className="browser-default" type='select' name='year' value = {this.state.year}
                   onChange={this.handleChange.bind(this)}>
+                  <option value='Not Set'>Not Set</option> 
                   <option value='First'>First</option>
                   <option value='Second'>Second</option>
                   <option value='Third'>Third</option>
@@ -124,9 +140,9 @@ class UPopup extends React.Component {
                   {this.props.closeUPopup} className="btn btn-primary">Cancel</button>
               </div>
               <img id="displayPic" src={this.state.imageURL} />
-              <div className="col-sm-6" id="pic">
+              <div className="col-sm-5" id="pic">
                 <label>Profile Picture: </label>
-                <Input id="chooseButton" label="Choose Image" type="file" onChange={this.fileChangedHandler.bind(this)}/>
+                <Input label="Choose Image" type='file' onChange={this.fileChangedHandler.bind(this)}/>
                 <label>Facebook URL: </label>
                 <input id="mail" className="inputs" name="facebook" defaultValue = {this.state.facebook}
                   onChange={this.handleChange.bind(this)}/>
@@ -137,7 +153,14 @@ class UPopup extends React.Component {
                 <input id="mail" className="inputs" name="twitter" defaultValue = {this.state.twitter}
                   onChange={this.handleChange.bind(this)}/>
                 <button onClick=
-                  {this.submitProf.bind(this)} id="button4" className="btn btn-primary">Save Updates</button>
+                  {this.submitProf.bind(this)} id="saveButtonU" className="btn btn-primary">Save Updates
+                    <ClipLoader
+                    className={override}
+                    sizeUnit={"px"}
+                    size={20}
+                    color={'#123abc'}
+                    loading={this.state.loading}/> 
+                </button>
               </div>    
           </div>
         </div>

@@ -27,6 +27,7 @@ class Filters extends Component{
     constructor(props){
         super(props);
         this.state = initialState;
+
         this.resetFilters = this.resetFilters.bind(this);
         this.handleChangeFilter = this.handleChangeFilter.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
@@ -35,64 +36,67 @@ class Filters extends Component{
     }
 
     async componentDidMount(){
-        // const params = formatPostData(this.state);
-        // const response = await axios.post("http://localhost:8000/api/queries/get_filters.php", params);
-        // $("#price_low").text(response.data.price_low)
-        // this.setState({price_low: response.data.price_low})
-        // $("#price_high").text(response.data.price_high)
-        // this.setState({price_high: response.data.price_high})
-        // $("#dist_to_campus").text(response.data.dist_to_campus)
-        // this.setState({dist_to_campus: response.data.dist_to_campus})
-        // $("#dist_to_campus").text(response.data.dist_to_campus)
-        // this.setState({dist_to_campus: response.data.dist_to_campus})
-        // $("#roomSingle").text(response.data.roomSingle)
-        // this.setState({roomSingle: response.data.roomSingle})
-        // $("#roomSingle").text(response.data.roomSingle)
-        // this.setState({roomSingle: response.data.roomSingle})
-        // $("#roomDouble").text(response.data.roomDouble)
-        // this.setState({roomDouble: response.data.roomDouble})
-        // $("#roomDouble").text(response.data.roomDouble)
-        // this.setState({roomDouble: response.data.roomDouble})
-        // $("#roomTriple").text(response.data.roomTriple)
-        // this.setState({roomTriple: response.data.roomTriple})
-        // $("#roomTriple").text(response.data.roomTriple)
-        // this.setState({roomTriple: response.data.roomTriple})
-        // $("#roomLiving").text(response.data.roomLiving)
-        // this.setState({roomLiving: response.data.roomLiving})
-        // $("#roomLiving").text(response.data.roomLiving)
-        // this.setState({roomLiving: response.data.roomLiving})
-        // $("#roomApart").text(response.data.roomApart)
-        // this.setState({roomApart: response.data.roomApart})
-        // $("#roomApart").text(response.data.roomApart)
-        // this.setState({roomApart: response.data.roomApart})
-        // $("#roomHouse").text(response.data.roomHouse)
-        // this.setState({roomHouse: response.data.roomHouse})
-        // $("#roomHouse").text(response.data.roomHouse)
-        // this.setState({roomHouse: response.data.roomHouse})
-        // $("#pet").text(response.data.pet)
-        // this.setState({pet: response.data.pet})
-        // $("#pet").text(response.data.pet)
-        // this.setState({pet: response.data.pet})
-        // $("#laundry").text(response.data.laundry)
-        // this.setState({laundry: response.data.laundry})
-        // $("#laundry").text(response.data.laundry)
-        // this.setState({laundry: response.data.laundry})
-        // $("#parking").text(response.data.parking)
-        // this.setState({parking: response.data.parking})
-        // $("#parking").text(response.data.parking)
-        // this.setState({parking: response.data.parking})
-        // $("#furnished").text(response.data.furnished)
-        // this.setState({furnished: response.data.furnished})
-        // $("#furnished").text(response.data.furnished)
-        // this.setState({furnished: response.data.furnished})
-        // $("#gym").text(response.data.gym)
-        // this.setState({gym: response.data.gym})
-        // $("#gym").text(response.data.gym)
-        // this.setState({gym: response.data.gym})
-        // $("#pool").text(response.data.pool)
-        // this.setState({pool: response.data.pool})
-        // $("#pool").text(response.data.pool)
-        // this.setState({pool: response.data.pool})
+    var idObject = {user_id: sessionStorage.getItem("user_id")};
+    const params = formatPostData(idObject);
+
+        const response = await axios.post("http://localhost:8000/api/queries/get_filters.php", params);
+        console.log("response: ", (response.data));
+        $("#price_low").text(response.data.price_low)
+        this.setState({price_low: response.data.price_low})
+        $("#price_high").text(response.data.price_high)
+        this.setState({price_high: response.data.price_high})
+        $("#dist_to_campus").text(response.data.dist_to_campus)
+        this.setState({dist_to_campus: response.data.dist_to_campus})
+        $("#dist_to_campus").text(response.data.dist_to_campus)
+        this.setState({dist_to_campus: response.data.dist_to_campus})
+        $("#roomSingle").text(response.data.roomSingle)
+        this.setState({roomSingle: response.data.roomSingle})
+        $("#roomSingle").text(response.data.roomSingle)
+        this.setState({roomSingle: response.data.roomSingle})
+        $("#roomDouble").text(response.data.roomDouble)
+        this.setState({roomDouble: response.data.roomDouble})
+        $("#roomDouble").text(response.data.roomDouble)
+        this.setState({roomDouble: response.data.roomDouble})
+        $("#roomTriple").text(response.data.roomTriple)
+        this.setState({roomTriple: response.data.roomTriple})
+        $("#roomTriple").text(response.data.roomTriple)
+        this.setState({roomTriple: response.data.roomTriple})
+        $("#roomLiving").text(response.data.roomLiving)
+        this.setState({roomLiving: response.data.roomLiving})
+        $("#roomLiving").text(response.data.roomLiving)
+        this.setState({roomLiving: response.data.roomLiving})
+        $("#roomApart").text(response.data.roomApart)
+        this.setState({roomApart: response.data.roomApart})
+        $("#roomApart").text(response.data.roomApart)
+        this.setState({roomApart: response.data.roomApart})
+        $("#roomHouse").text(response.data.roomHouse)
+        this.setState({roomHouse: response.data.roomHouse})
+        $("#roomHouse").text(response.data.roomHouse)
+        this.setState({roomHouse: response.data.roomHouse})
+        $("#pet").text(response.data.pet)
+        this.setState({pet: response.data.pet})
+        $("#pet").text(response.data.pet)
+        this.setState({pet: response.data.pet})
+        $("#laundry").text(response.data.laundry)
+        this.setState({laundry: response.data.laundry})
+        $("#laundry").text(response.data.laundry)
+        this.setState({laundry: response.data.laundry})
+        $("#parking").text(response.data.parking)
+        this.setState({parking: response.data.parking})
+        $("#parking").text(response.data.parking)
+        this.setState({parking: response.data.parking})
+        $("#furnished").text(response.data.furnished)
+        this.setState({furnished: response.data.furnished})
+        $("#furnished").text(response.data.furnished)
+        this.setState({furnished: response.data.furnished})
+        $("#gym").text(response.data.gym)
+        this.setState({gym: response.data.gym})
+        $("#gym").text(response.data.gym)
+        this.setState({gym: response.data.gym})
+        $("#pool").text(response.data.pool)
+        this.setState({pool: response.data.pool})
+        $("#pool").text(response.data.pool)
+        this.setState({pool: response.data.pool})
     }
 
     resetFilters(event){
@@ -157,7 +161,7 @@ class Filters extends Component{
                        <option value = "600"> $600</option>
                        <option value = "800"> $800</option>
                        <option value = "1000"> $1K</option>
-                       <option value = "5000"> Any Price</option>
+                       <option value = "5000"> Any</option>
                    </Input>
                 </Row>
                 <div id={"distanceHeader"} >
@@ -175,28 +179,28 @@ class Filters extends Component{
                     Room Type
                </div>
                <Row className="roomType">
-                       <Input name="roomSingle" type="checkbox" checked={this.state.roomSingle} value={this.state.roomSingle} label="Single Room"  onChange={this.handleCheckBox} />
-                       <Input name="roomDouble" type="checkbox" checked={this.state.roomDouble} value ={this.state.roomDouble} label="Double Room"  onChange={this.handleCheckBox} />
-                       <Input name="roomTriple" type="checkbox" checked={this.state.roomTriple} value ={this.state.roomTriple} label="Triple Room"  onChange={this.handleCheckBox}/>
-                       <Input name="roomLiving" type="checkbox" checked={this.state.roomLiving} value = {this.state.roomLiving} label="Living Room"  onChange={this.handleCheckBox}/>
+                       <Input name="roomSingle" type="checkbox" checked={this.state.roomSingle} label="Single Room"  onChange={this.handleCheckBox} />
+                       <Input name="roomDouble" type="checkbox" checked={this.state.roomDouble} label="Double Room"  onChange={this.handleCheckBox} />
+                       <Input name="roomTriple" type="checkbox" checked={this.state.roomTriple} label="Triple Room"  onChange={this.handleCheckBox}/>
+                       <Input name="roomLiving" type="checkbox" checked={this.state.roomLiving} label="Living Room"  onChange={this.handleCheckBox}/>
                 </Row>
                 <div id={"homeTypeHeader"} >
                     Home Type
                </div>
                 <Row className="homeType">
-                       <Input name="roomApart" type="checkbox" checked={this.state.roomApart} value ={this.state.roomApart} label="Apartment"  onChange={this.handleCheckBox} />
-                       <Input name="roomHouse" type="checkbox" checked={this.state.roomHouse} value ={this.state.roomHouse} label="House"  onChange={this.handleCheckBox}/>
+                       <Input name="roomApart" type="checkbox" checked={this.state.roomApart} label="Apartment"  onChange={this.handleCheckBox} />
+                       <Input name="roomHouse" type="checkbox" checked={this.state.roomHouse} label="House"  onChange={this.handleCheckBox}/>
                 </Row>
                 <div id={"amenitiesHeader"} >
                     Amenities
                </div>
                 <Row className="homeMisc">
-                    <Input name="pet" type="checkbox" checked={this.state.pet} value ={this.state.pet} label="Pet Friendly"  onChange={this.handleCheckBox}/>
-                    <Input name="laundry" type="checkbox" checked={this.state.laundry} value={this.state.laundry} label="In-unit Laundry"  onChange={this.handleCheckBox} />
-                    <Input name="parking" type="checkbox" checked={this.state.parking} value ={this.state.parking} label="Has Parking"  onChange={this.handleCheckBox}/>
-                    <Input name="furnished" type="checkbox" checked={this.state.furnished} value={this.state.furnished} label="Furnished Room"  onChange={this.handleCheckBox} />
-                    <Input name="gym" type="checkbox" checked={this.state.gym} value ={this.state.gym} label="Has Gym"  onChange={this.handleCheckBox} />
-                    <Input name="pool" type="checkbox" checked={this.state.pool} value={this.state.pool} label="Has Pool"  onChange={this.handleCheckBox} />
+                    <Input name="pet" type="checkbox" checked={this.state.pet} label="Pet Friendly"  onChange={this.handleCheckBox}/>
+                    <Input name="laundry" type="checkbox" checked={this.state.laundry} label="In-unit Laundry"  onChange={this.handleCheckBox} />
+                    <Input name="parking" type="checkbox" checked={this.state.parking} label="Has Parking"  onChange={this.handleCheckBox}/>
+                    <Input name="furnished" type="checkbox" checked={this.state.furnished} label="Furnished Room"  onChange={this.handleCheckBox} />
+                    <Input name="gym" type="checkbox" checked={this.state.gym} label="Has Gym"  onChange={this.handleCheckBox} />
+                    <Input name="pool" type="checkbox" checked={this.state.pool} label="Has Pool"  onChange={this.handleCheckBox} />
                 </Row>
                 <button type="button" className="btn btn-primary" onClick={this.saveFilterData}>Save Filters</button>
                 <button className="btn btn-link" onClick={this.resetFilters}>Clear All Filters</button>
