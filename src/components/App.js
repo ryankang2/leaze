@@ -14,7 +14,7 @@ const App = () => (
             <div>
                 {/* <OtherProfile></OtherProfile> */}
                 <Switch>
-                    <Route path="/" component={LandingPage}></Route>
+                    {/* <Route path="/" component={LandingPage}></Route> */}
                     <Route path="/home" component={ResultsPage}></Route>
                     <Route path="/home/profile/:number" component={Profile}></Route>
                     <Route path="/home/profile/other/:number" component={OtherProfile}></Route>
