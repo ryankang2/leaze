@@ -67,6 +67,16 @@
     color: white;
     background-color: red !important;
 }
+.hidden{
+    display: none;
+}
+
+.show{
+}
+
+#error{
+    color: red;
+}
 
 .descriptionInput{
     max-height: 150px !important;
@@ -76,6 +86,7 @@
 
 #listingPics{
     height: 100%;
+    width: 60%;
 }
 
 /* #imageUpload{
@@ -86,6 +97,8 @@
 .picsContainer{
     /* border: 1px solid blue; */
     height: 80%;
+/*     overflow-x: auto;
+    display: inline-flex; */
 }
 
 .postContainer > .row {

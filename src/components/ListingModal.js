@@ -49,21 +49,10 @@ export default class ListingModal extends Component{
                                                 <div id="myCarousel" className="carousel slide" data-ride="carousel" data-interval="false">
                                                         <ol className="carousel-indicators">
                                                             <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-                                                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                                                            <li data-target="#myCarousel" data-slide-to="2"></li>
                                                         </ol>
-
                                                         <div className="carousel-inner">
                                                             <div className="item active">
-                                                                <img src={require("./house.jpg")}/>
-                                                            </div>
-
-                                                            <div className="item">
-                                                                <img src={require("./house2.jpg")} />
-                                                            </div>
-                                                        
-                                                            <div className="item">
-                                                                <img src={require("./profile.jpg")} />
+                                                                <img src={this.props.information.photo}/>
                                                             </div>
                                                         </div>
 

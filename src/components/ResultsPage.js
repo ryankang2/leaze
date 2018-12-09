@@ -23,7 +23,6 @@ class ResultsPage extends Component{
          this.setState({
              listings: array,
          })
-         console.log("THIS:STATE: ", this.state);
     }
 
     render(){

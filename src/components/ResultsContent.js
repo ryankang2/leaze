@@ -24,14 +24,15 @@ class ResultsContent extends Component{
         if(!response.data.noListings){
             this.getFilterResponseData(response);
         }
+        console.log("get default listings: ", response);
+        
     }
 
     componentWillReceiveProps(nextProps){
         this.setState({
             listings: [],
         })
-        console.log("PROPS: ", this.props.searchResults);
-        console.log("NEXTPROPS: ", nextProps);
+
         this.setState({
             listings: nextProps.searchResults
         })
@@ -39,7 +40,6 @@ class ResultsContent extends Component{
 
 
     getFilterResponseData(responseObject){
-        // console.log("responseObject: ", responseObject);
         var array = [];
         for(var i = 0; i < responseObject.data.listings.length; i++){
             var singleListing = <SingleListing information = {responseObject.data.listings[i]}{...this.props} key={responseObject.data.listings[i]}/>

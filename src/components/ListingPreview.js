@@ -129,11 +129,9 @@ class ListingPreview extends Component{
     }
 
 
-   render(){
-        console.log("LISTING INFORMATION PROPS: " , this.props.information);
+    render(){
         const {title, dist_to_campus, date_posted, address, price, listing_id} = this.props.information;
-        console.log("LISTING_ID: ", listing_id);
-        const {full_name,rating,favorites,user_id} = this.props.information.user;
+        const {full_name,rating,favorite,user_id} = this.props.information.user;
         var todayDate = new Date();
         var separatedDate = date_posted.split("-");
         var day = todayDate.getDate();
@@ -152,7 +150,7 @@ class ListingPreview extends Component{
                 <div>
                     <div onClick={this.openModal.bind(this)}>
                         <div className="imageBox">
-                            <img className={`leaseImageG-${this.props.information.listing_id}`} data-toggle="modal" onClick={(event) => this.openModal(event)} src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"/>
+                            <img className={`leaseImageG-${this.props.information.listing_id}`} data-toggle="modal" onClick={(event) => this.openModal(event)} src = {this.props.information.photo}/>
                             {/*<i className="fa fa-star-o favorite"></i>*/}
                             {/*{this.state.favorite &&  <i cslassName="fa fa-heart favorite_fill"> </i>}*/}
                             <i id="fav" className={ sessionStorage.getItem("user_id") != user_id ? (this.state.favorite ? "fa fa-heart favorite_fill" : "fa fa-heart-o favorite"):"none" }
@@ -166,7 +164,7 @@ class ListingPreview extends Component{
                                 
                                 <Link to = {linkQuery}>
                                     <img className="userPicture"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7A4jeJ_RBCBZL7kHIc9CSDn3XdSfWgHBOJ1L2ieqBvx9eLcubrQ"
+                                    src={require("./profile.jpg")}
                                     onClick={this.closeModal.bind(this)}/>
                                 </Link>
 

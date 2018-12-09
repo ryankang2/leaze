@@ -4,7 +4,38 @@ import {Input, Row, Icon, Modal, Button} from 'react-materialize';
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 
+const intialState= { 
+    user_id_posted: sessionStorage.getItem("user_id"),
+    title: "",
+    address: "",
+    description: "",
+    dist_to_campus: "",
+    price: 0,
+    home_type: "",
+    room_type:  "",
+    single: false,
+    double: false,
+    triple: false,
+    living:false,
+    home: false,
+    apartment: false,
+    
+    pet: false,
+    in_unit_laundry: false,
+    furnished: false,
+    gym: false,
+    pool: false,
+    parking: false,
+    active: false,
+    title_class: "",
+    price_class: "",
+    address_class: "",
+    error: "hidden",
+    images: [],
+}
+
 export default class MakePost extends Component {
+
 
     constructor(props){
         super(props);
@@ -29,13 +60,20 @@ export default class MakePost extends Component {
             furnished: false,
             gym: false,
             pool: false,
-            parking: false, 
+            parking: false,
+            active: false,
+            title_class: "",
+            price_class: "",
+            address_class: "",
+            error: "hidden",
             images: [],
         };
 
         this.submitPost = this.submitPost.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.handleChange = this.handleChange.bind(this);
+
+        this.fileReader = new FileReader();
 
     }
 
@@ -61,21 +99,72 @@ export default class MakePost extends Component {
         })
     }
 
+    validate(title, address, price){
+        return{
+            title: title.length === 0,
+            address: address.length === 0,
+            price: price === 0 || price.length === 0,
+        };
+    }
+
+    checkError(){
+        
+        if(this.state.title === ""){
+            this.setState({title_class:"invalid"});
+        }else{
+            this.setState({title_class:"valid"});
+        }
+        if(this.state.price === 0 || this.state.price.length === 0){
+            this.setState({price_class:"invalid"});
+        }else{
+            this.setState({price_class:"valid"})
+        }
+        if(this.state.address === ""){
+            this.setState({address_class:"invalid"});
+        }else{
+            this.setState({address_class:"valid"});
+        }
+    }
 
     async submitPost(e) {
         e.preventDefault();
-        const params = formatPostData(this.state);
-        const response = await axios.post("http://localhost:8000/api/queries/make_post.php", params);
-        console.log(response);
-        if(response.data.success){
-            $(".makePostModal").css("display", "none");
-            $("#myModal2").css("display", "block");
+        // var data   = new FormData();
+        
+        // this.state.images.forEach(function(image, i) {
+        //     data.append('image_' + i, image);
+        // });
+        // this.setState({
+        //     images: data,
+        // })
+        // console.log("STATE: ", this.state);
+        const errors = this.validate(this.state.title, this.state.address, this.state.price);
+        let isValid = Object.keys(errors).some(i => errors[i]);
+        if(!isValid){
+            this.setState({active:false})
+            document.getElementById("error").className = "hidden";
+            // this.setState({
+            //     images: JSON.stringify(this.state.images)
+            // })
+            const params = formatPostData(this.state);
+            const response = await axios.post("http://localhost:8000/api/queries/make_post.php", params);
+            const photoResponse = await axios.post("http://localhost:8000/api/queries/add_listing_photos.php", params)
+            
+            console.log(response);
+            if(response.data.success  && photoResponse.data.success){
+               $(".makePostModal").css("display", "none");
+              $("#myModal2").css("display", "block");
+            }
         }
-
+        else{
+            this.setState({active:true});
+            this.checkError();
+            this.setState({error:""})
+        }
     }
 
     cancelPost(e) {
         $(".makePostModal").css("display", "none");
+        this.setState(initialState);
     }
 
 
@@ -83,42 +172,44 @@ export default class MakePost extends Component {
     fileChangedHandler=(event)=>{
         // let reader = new FileReader();
         let files=event.target.files;
-        const reader = new FileReader();
-
+        console.log("files: ", files);
+        var array = [];
         for(var i = 0; i < files.length; i++){
+            let reader = new FileReader();
             var file = files[i];
-            this.handleLoadImage(file);
-        }
-        for(var i = 0; i < this.state.images.length; i++){
-            console.log("forloop: ", i);
-            $(".picsContainer").append('<img id="listingPics" src="' + this.state.images[i] + '"/>');
-        }
-        console.log(this.state);
-        this.setState({
-            images: [],
-        });
-      }
-
-      handleLoadImage = (file) => {
-          console.log("handleimageLoad");
-        if (file) {
-            const reader = new FileReader();
+            // this.handleLoadImage(file);
             reader.onloadend = () => {
-                var array = this.state.images;
-                array.push(reader.result);
-                console.log("ARRAY: ", array);
-                this.setState(() => ({
-                    images: array,
-                }));         
-            };
+                this.setState({images: this.state.images.concat(reader.result)});
+                // this.setState({images: array});
+            }
             reader.readAsDataURL(file);
-          }
+        }
+
+        // for(var i = 0; i < this.state.images.length; i++){
+        //     $(".picsContainer").append('<img id="listingPics" src="' + this.state.images[i] + '"/>');
+        // }
+        console.log("this.state: ", this.state);
       }
 
-    
+    //   handleLoadImage = (file) => {
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             var array = this.state.images;
+    //             array.push(reader.result);
+    //             console.log("ARRAY: ", array);
+    //             this.setState(() => ({
+    //                 images: array,
+    //             }));         
+    //         };
+    //         reader.readAsDataURL(file);
+    //       }
+    //   }
+
 
 
     render () {
+        let {images} = this.state;
         return (
             <div className="modal makePostModal">
                 <div className="modal-dialog">
@@ -136,10 +227,10 @@ export default class MakePost extends Component {
                                         <div className="row">
                                             <div className="col-sm-8 postInfoBox">
                                                 <Row>
-                                                    <Input s={8} name="title" label="Title" onChange={this.handleChange.bind(this)}/>
+                                                    <Input s={8} name="title" label="Title" className={this.state.active ? this.state.title_class : ""} onChange={this.handleChange.bind(this)}/>
                                                 </Row>
                                                 <Row>
-                                                    <Input s={12} name="address" label="Full Address" onChange={this.handleChange.bind(this)}/>
+                                                    <Input s={12} name="address" label="Full Address" class={this.state.active ? this.state.address_class : ""} onChange={this.handleChange.bind(this)}/>
                                                 </Row>
                                                 <Row>
                                                     <h4>Room Type</h4>
@@ -158,7 +249,7 @@ export default class MakePost extends Component {
                                                     </Input>
                                                 </Row>
                                                 <Row>
-                                                    <Input s={6} name="price" label="Price/month" onChange={this.handleChange}/>
+                                                    <Input s={6} name="price" type="number" label="Price/month" class={this.state.active ? this.state.price_class : ""} onChange={this.handleChange}/>
                                                     <Input s={6} name="dist_to_campus" label="Distance from campus" onChange={this.handleChange}/>
                                                 </Row>
                                                 <Row>
@@ -192,23 +283,24 @@ export default class MakePost extends Component {
                                         <div className="row">
                                             <div className="col-sm-12 picBox">
                                                 <div className="picsContainer">
-                                                    
+                                                    {images.map((item,index) => <img id="listingPics" src={item} />)}
                                                 </div>
                                                 <div className="inputContainer">
                                                     <Row>
-                                                        <Input s={12} label="Upload Images" type="file" multiple onChange={this.fileChangedHandler.bind(this)}></Input>
+                                                        <Input s={8} label="Select" type="file" name="images" multiple onChange={this.fileChangedHandler.bind(this)}></Input>
                                                     </Row>
                                                 </div>
-
                                             </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="modal-footer makeAPostFooter">
-                                <button className="btn cancelBtn" waves="light" onClick={this.cancelPost.bind(this)}>Cancel</button>
-
+                                <p id="error" class={this.state.active ? this.state.error : "hidden"}>You must fill in the highlighted fields</p>
+                                <button class="btn cancelBtn" waves="light" onClick={this.cancelPost.bind(this)}>Cancel</button>
+                                
                                 <button type="submit" className="btn waves-effect waves-light">Post
-                                <i className="material-icons right">send</i>
+                                
+                                <i class="material-icons right">send</i>
                                 </button>
                             </div>
                         </div>
