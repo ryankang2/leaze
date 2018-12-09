@@ -36,6 +36,7 @@ export default class ForgotPassword extends Component {
         document.getElementById("forgotEmail").value = "";
         document.getElementById("myNewPassword").value = "";
         document.getElementById("myConfPassword").value = "";
+        document.getElementById("emailError").className ="hidden";
     }
 
     async sendCode(email){
@@ -94,12 +95,14 @@ export default class ForgotPassword extends Component {
             if (!emailcheck.data.exists) {
                 // INSERT ERROR MESSAGE FOR EMAIL ALREADY EXISTS
                 console.log("email doesn't exist");
+                document.getElementById("emailError").className = "error";
             }
             else {
                 console.log("email exists");
                 this.setState({
                     email: email,
                 });
+                targetBox.style.display = "none";
                 this.sendCode(email);
                 document.getElementById("forgotModal2").style.display = "block";
             }
@@ -156,6 +159,7 @@ export default class ForgotPassword extends Component {
                            name="email" value={this.state.email} onChange={this.handleChange}>
                         <Icon>account_circle</Icon>
                     </Input>
+                    <p id="emailError" class="hidden">You must enter a valid email address</p>
                 </div>
                 <div className="fpButtons">
                     <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
