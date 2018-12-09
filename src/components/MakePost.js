@@ -146,8 +146,8 @@ export default class MakePost extends Component {
             //     images: JSON.stringify(this.state.images)
             // })
             const params = formatPostData(this.state);
-            const response = await axios.post("http://localhost:8000/api/queries/make_post.php", params);
-            const photoResponse = await axios.post("http://localhost:8000/api/queries/add_listing_photos.php", params)
+            const response = await axios.post("/api/queries/make_post.php", params);
+            const photoResponse = await axios.post("/api/queries/add_listing_photos.php", params)
             
             console.log(response);
             if(response.data.success  && photoResponse.data.success){

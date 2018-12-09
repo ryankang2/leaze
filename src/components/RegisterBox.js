@@ -70,7 +70,7 @@ export default class RegisterBox extends Component {
         if(this.registerSubmit() === true&&document.getElementById("checkInput").checked) {
             this.toggleSpin();
             const params = formatPostData(this.state);
-            const emailcheck = await axios.post("http://localhost:8000/api/queries/existing_check.php", params);
+            const emailcheck = await axios.post("/api/queries/existing_check.php", params);
             if (emailcheck.data.exists) {
                 // INSERT ERROR MESSAGE FOR EMAIL ALREADY EXISTS
                 this.toggleSpin();
@@ -81,7 +81,7 @@ export default class RegisterBox extends Component {
 
             }
             else {
-                const mailResponse = await axios.post("http://localhost:8000/api/mail_handler.php", params);
+                const mailResponse = await axios.post("/api/mail_handler.php", params);
                 var userCode = (mailResponse.data.slice(mailResponse.data.length-5, -1));
                 sessionStorage.setItem("userCode", userCode);
                 document.getElementById("confRegister").style.display = "block";
@@ -188,7 +188,7 @@ export default class RegisterBox extends Component {
             document.getElementById("confCodeResent").style.display = "none";
             document.getElementById("correctCodeMsg").style.display = "block";
             var params = formatPostData(this.state);
-            const regResponse = await axios.post("http://localhost:8000/api/queries/user_reg.php", params);
+            const regResponse = await axios.post("/api/queries/user_reg.php", params);
         }    
     }
 
