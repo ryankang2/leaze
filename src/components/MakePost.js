@@ -67,6 +67,7 @@ export default class MakePost extends Component {
         const params = formatPostData(this.state);
         const response = await axios.post("http://localhost:8000/api/queries/make_post.php", params);
         console.log(response);
+        this.clearModal();
         if(response.data.success){
             $(".makePostModal").css("display", "none");
             $("#myModal2").css("display", "block");
@@ -75,6 +76,7 @@ export default class MakePost extends Component {
     }
 
     cancelPost(e) {
+        this.clearModal();
         $(".makePostModal").css("display", "none");
     }
 
@@ -115,7 +117,25 @@ export default class MakePost extends Component {
           }
       }
 
-    
+
+      clearModal(){
+        
+        let check = document.getElementById("title_Input123").innerText;
+        console.log(check);
+        document.getElementById("addressInput").innerText = "";
+        document.getElementById("priceInput").value = "";
+        document.getElementById("descInput").value = "";
+        document.getElementById("distInput").value = "";
+        document.getElementById("petCheck").checked = false;
+        document.getElementById("launCheck").checked = false;
+        document.getElementById("furnCheck").checked = false;
+        document.getElementById("gymCheck").checked = false;
+       // document.getElementById() = false;
+       // document.getElementById() = false;
+       // document.getElementById() = false;
+       // document.getElementById("homeType").value = "h";
+       // document.getElementById("roomType").value = "s";
+      }
 
 
     render () {
@@ -136,14 +156,14 @@ export default class MakePost extends Component {
                                         <div className="row">
                                             <div className="col-sm-8 postInfoBox">
                                                 <Row>
-                                                    <Input s={8} name="title" label="Title" onChange={this.handleChange.bind(this)}/>
+                                                    <Input s={8} name="title" label="Title" id="title_Input123" onChange={this.handleChange.bind(this)}/>
                                                 </Row>
                                                 <Row>
-                                                    <Input s={12} name="address" label="Full Address" onChange={this.handleChange.bind(this)}/>
+                                                    <Input s={12} name="address" label="Full Address" id="addressInput" onChange={this.handleChange.bind(this)}/>
                                                 </Row>
                                                 <Row>
                                                     <h4>Room Type</h4>
-                                                    <Input s={12} className="browser-default" name="room_type" type="select" onChange={this.handleChange}>
+                                                    <Input s={12} className="browser-default" name="room_type" type="select" id="roomType" onChange={this.handleChange}>
                                                         <option value="s">Single</option>
                                                         <option value="d">Double</option>
                                                         <option value="t">Triple</option>
@@ -152,38 +172,38 @@ export default class MakePost extends Component {
                                                 </Row>
                                                 <Row>         
                                                     <h4>Home Type</h4>
-                                                    <Input s={12} className="browser-default" name="home_type" type="select" onChange={this.handleChange}>
+                                                    <Input s={12} className="browser-default" name="home_type" type="select" id="homeType" onChange={this.handleChange}>
                                                         <option value="h">Home</option>
                                                         <option value="a">Apartment</option>
                                                     </Input>
                                                 </Row>
                                                 <Row>
-                                                    <Input s={6} name="price" label="Price/month" onChange={this.handleChange}/>
-                                                    <Input s={6} name="dist_to_campus" label="Distance from campus" onChange={this.handleChange}/>
+                                                    <Input s={6} name="price" label="Price/month" id="priceInput" onChange={this.handleChange}/>
+                                                    <Input s={6} name="dist_to_campus" label="Distance from campus" id="distInput" onChange={this.handleChange}/>
                                                 </Row>
                                                 <Row>
-                                                    <Input s={12} className="descriptionInput" name="description" type="textarea" placeholder="Tell us about your place!" label="Description" onChange={this.handleChange}/>
+                                                    <Input s={12} className="descriptionInput" name="description" type="textarea" id="descInput" placeholder="Tell us about your place!" label="Description" onChange={this.handleChange}/>
                                                 </Row>
                                             </div>
                                             <div className="col-sm-4 featureBox">
                                                 <Row>
                                                     <h4>Amenities and Features</h4>
-                                                    <Input s={12} name="pet" checked={this.state.pet}  label="Pets" type="checkbox" onChange={this.handleCheckBox}>
+                                                    <Input s={12} name="pet" checked={this.state.pet}  label="Pets" type="checkbox" id="petCheck" onChange={this.handleCheckBox}>
                                                         <Icon>pets</Icon>
                                                     </Input>
-                                                    <Input s={12} name="in_unit_laundry" checked={this.state.in_unit_laundry} label="Laundry" type="checkbox" onChange={this.handleCheckBox}>
+                                                    <Input s={12} name="in_unit_laundry" checked={this.state.in_unit_laundry} label="Laundry" type="checkbox" id="launCheck" onChange={this.handleCheckBox}>
                                                         <Icon>local_laundry_service</Icon>
                                                     </Input>
-                                                    <Input s={12} name="furnished" checked={this.state.furnished} label="Furnished" type="checkbox" onChange={this.handleCheckBox}>
+                                                    <Input s={12} name="furnished" checked={this.state.furnished} label="Furnished" type="checkbox" id="furnCheck" onChange={this.handleCheckBox}>
                                                         <Icon>kitchen</Icon>
                                                     </Input>
-                                                    <Input s={12} name="gym" checked={this.state.gym} label="Gym" type="checkbox" onChange={this.handleCheckBox}>
+                                                    <Input s={12} name="gym" checked={this.state.gym} label="Gym" type="checkbox" id="gymCheck" onChange={this.handleCheckBox}>
                                                         <Icon>fitness_center</Icon>
                                                     </Input>
-                                                    <Input s={12} name="pool" checked={this.state.pool} label="Pool" type="checkbox" onChange={this.handleCheckBox}>
+                                                    <Input s={12} name="pool" checked={this.state.pool} label="Pool" type="checkbox" id="poolCheck" onChange={this.handleCheckBox}>
                                                         <Icon>pool</Icon>
                                                     </Input>
-                                                    <Input s={12} name="parking" checked={this.state.parking} label="Parking" type="checkbox" onChange={this.handleCheckBox}>
+                                                    <Input s={12} name="parking" checked={this.state.parking} label="Parking" type="checkbox" id="parkCheck" onChange={this.handleCheckBox}>
                                                         <Icon>local_parking</Icon>
                                                     </Input>
                                                 </Row>
