@@ -165,7 +165,7 @@ export default class ForgotPassword extends Component {
                            name="email" value={this.state.email} onChange={this.handleChange}>
                         <Icon>account_circle</Icon>
                     </Input>
-                    <p id="emailError" class="hidden">You must enter a valid email address</p>
+                    <p id="emailError" class="hidden">Email does not exist in database.</p>
                 </div>
                 <div className="fpButtons">
                     <Button onClick={this.cancelReset} className="FPcancel">Cancel</Button>
