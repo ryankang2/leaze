@@ -78,7 +78,7 @@ export default class ForgotPassword extends Component {
         console.log("response from backend: ", response);
     }
 
-    FPsubmit(e) {   
+    async FPsubmit(e) {   
         let target = e.target;
         let targetBox = target.parentElement.parentElement;
         targetBox.style.display = "none";
@@ -86,12 +86,23 @@ export default class ForgotPassword extends Component {
         if(target.id === "fpEmailSubmit") {
             console.log("We will email a 4-digit confirmation code to the following address: " + 
             document.getElementById("forgotEmail").value);
+            document.getElementById("forgotModal1").style.display = "block";
             var email = document.getElementById("forgotEmail").value;
-            this.setState({
-                email: email,
-            });
-            this.sendCode(email);
-            document.getElementById("forgotModal2").style.display = "block";
+            var param = formatPostData({email:email});
+            const emailcheck = await axios.post("http://localhost:8000/api/queries/existing_check.php", param);
+            console.log("before check");
+            if (!emailcheck.data.exists) {
+                // INSERT ERROR MESSAGE FOR EMAIL ALREADY EXISTS
+                console.log("email doesn't exist");
+            }
+            else {
+                console.log("email exists");
+                this.setState({
+                    email: email,
+                });
+                this.sendCode(email);
+                document.getElementById("forgotModal2").style.display = "block";
+            }
         }
 
         else if(target.id === "fpCodeSubmit") {
