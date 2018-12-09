@@ -32,7 +32,6 @@ export default class ForgotPassword extends Component {
         let target = e.target.parentElement.parentElement;
         target.style.display = "none";
         document.getElementById("codeResent").style.display = "none";
-        document.getElementById("wrongCode").style.display = "none";
         document.getElementById("forgotCode").value = "";
         document.getElementById("forgotEmail").value = "";
         document.getElementById("myNewPassword").value = "";
@@ -60,7 +59,7 @@ export default class ForgotPassword extends Component {
         if(!response.data.success){
             console.log("hello " + document.getElementById("forgotModal3").innerText);
             document.getElementById("forgotModal3").style.display='none';
-            document.getElementById("forgotModal4").style.display = "block"
+            document.getElementById("forgotModal4").style.display = "block";
 
         }
         else{
@@ -84,7 +83,7 @@ export default class ForgotPassword extends Component {
         return re.test(String(email).toLowerCase());
     }
 
-    FPsubmit(e) {   
+    async FPsubmit(e) {   
         let target = e.target;
         let targetBox = target.parentElement.parentElement;
         
@@ -92,20 +91,25 @@ export default class ForgotPassword extends Component {
         if(target.id === "fpEmailSubmit") {
             console.log("We will email a 4-digit confirmation code to the following address: " + 
             document.getElementById("forgotEmail").value);
+            document.getElementById("forgotModal1").style.display = "block";
             var email = document.getElementById("forgotEmail").value;
-            if(this.emailError(email)){
+            var param = formatPostData({email:email});
+            const emailcheck = await axios.post("http://localhost:8000/api/queries/existing_check.php", param);
+            console.log("before check");
+            if (!emailcheck.data.exists) {
+                // INSERT ERROR MESSAGE FOR EMAIL ALREADY EXISTS
+                console.log("email doesn't exist");
+                document.getElementById("emailError").className = "error";
+            }
+            else {
+                console.log("email exists");
                 this.setState({
                     email: email,
                 });
                 targetBox.style.display = "none";
                 this.sendCode(email);
                 document.getElementById("forgotModal2").style.display = "block";
-            }else{
-                
-                document.getElementById("emailError").className = "error";
-
             }
-            
         }
 
         else if(target.id === "fpCodeSubmit") {
@@ -113,7 +117,7 @@ export default class ForgotPassword extends Component {
             var code = document.getElementById("forgotCode").value;
             var email = this.state.email;
             this.confirmCode(code, email);
-            document.getElementById("forgotModal3").style.display = "block"
+            document.getElementById("forgotModal3").style.display = "none";
         }
 
         else if(target.id === "fpSubmitPassword") {
@@ -221,8 +225,8 @@ export default class ForgotPassword extends Component {
 
             <div className="modal" id="forgotModal4">
                 <h3>Forgot Password</h3>
-                <p id="wrongCode"> The number you entered doesn’t match your code. Please try again. </p>
-                <p id="codeResent">A code has been resent to your email</p>
+                <div> The number you entered doesn’t match your code. Please try again. </div>
+                {/*<p id="codeResent">A code has been resent to your email</p>*/}
                 <div className="FPinputs">
                     <label htmlFor="forgotCode">4-Digit Code</label>
                     <Input s={10} label="Enter the code that was sent to you" id="forgotCode"

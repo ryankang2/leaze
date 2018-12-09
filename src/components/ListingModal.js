@@ -108,10 +108,11 @@ export default class ListingModal extends Component{
                                         </div>
                                         <div className="row">
                                             <div className="feature col-sm-4 col-md-4">
-                                                <i className="material-icons">
+                                                <i className="material-icons" >
                                                 pets
                                                 </i>
-                                                Pets
+                                                {/*{%if this.props.information.pets===}*/}
+                                                <p><s>Pets</s></p>
                                             </div>
                                             <div className="feature col-sm-4 col-md-4">
                                                 <i className="material-icons">
