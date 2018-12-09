@@ -44,7 +44,7 @@ export default class ForgotPassword extends Component {
             email_of_user: email
         };
         const params = formatPostData(emailObj);
-        const response = await axios.post("http://localhost:8000/api/email_recovery.php", params);
+        const response = await axios.post("/api/email_recovery.php", params);
     }
 
 
@@ -54,7 +54,7 @@ export default class ForgotPassword extends Component {
             email_of_user: email,
         };
         const params = formatPostData(confirmObj);
-        const response = await axios.post("http://localhost:8000/api/queries/confirm_code.php", params);
+        const response = await axios.post("/api/queries/confirm_code.php", params);
         console.log("RESPONSE FROM BACKEND", response);
         if(!response.data.success){
             console.log("hello " + document.getElementById("forgotModal3").innerText);
@@ -75,7 +75,7 @@ export default class ForgotPassword extends Component {
             password: password,
         }
         const params = formatPostData(emailPassObj);
-        const response = await axios.post("http://localhost:8000/api/queries/change_password.php", params);
+        const response = await axios.post("/api/queries/change_password.php", params);
         console.log("response from backend: ", response);
     }
     emailError(email) {
@@ -94,7 +94,7 @@ export default class ForgotPassword extends Component {
             document.getElementById("forgotModal1").style.display = "block";
             var email = document.getElementById("forgotEmail").value;
             var param = formatPostData({email:email});
-            const emailcheck = await axios.post("http://localhost:8000/api/queries/existing_check.php", param);
+            const emailcheck = await axios.post("/api/queries/existing_check.php", param);
             console.log("before check");
             if (!emailcheck.data.exists) {
                 // INSERT ERROR MESSAGE FOR EMAIL ALREADY EXISTS

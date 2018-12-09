@@ -39,7 +39,7 @@ class UPopup extends React.Component {
       user_id: sessionStorage.getItem("user_id"),
     }
     const params = formatPostData(idObj);
-    const response = await axios.post("http://localhost:8000/api/queries/get_prof.php", params);
+    const response = await axios.post("/api/queries/get_prof.php", params);
     this.setState({firstname: response.data.firstname})
     this.setState({lastname: response.data.lastname})
     this.setState({age: response.data.age})
@@ -80,7 +80,7 @@ class UPopup extends React.Component {
     this.toggleSpin();
     this.uploadHandler()
     const params = formatPostData(this.state);
-    const response = await axios.post("http://localhost:8000/api/queries/set_prof.php", params);
+    const response = await axios.post("/api/queries/set_prof.php", params);
     console.log(this.state);
     console.log(response.data)
     window.location.reload();

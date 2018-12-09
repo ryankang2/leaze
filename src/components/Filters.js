@@ -39,7 +39,7 @@ class Filters extends Component{
     var idObject = {user_id: sessionStorage.getItem("user_id")};
     const params = formatPostData(idObject);
 
-        const response = await axios.post("http://localhost:8000/api/queries/get_filters.php", params);
+        const response = await axios.post("/api/queries/get_filters.php", params);
         console.log("response: ", (response.data));
         $("#price_low").text(response.data.price_low)
         this.setState({price_low: response.data.price_low})
@@ -129,7 +129,7 @@ class Filters extends Component{
     async handleChangeForm() {
         const params = formatPostData(this.state);
         
-        const response = await axios.post("http://localhost:8000/api/queries/get_listings.php", params);
+        const response = await axios.post("/api/queries/get_listings.php", params);
         this.props.getFilterData(response, params);
     }
 
@@ -137,7 +137,7 @@ class Filters extends Component{
         event.preventDefault();
 
         const params = formatPostData(this.state);
-        const response = await axios.post("http://localhost:8000/api/queries/set_filters.php", params);
+        const response = await axios.post("/api/queries/set_filters.php", params);
     }
 
     render(){
