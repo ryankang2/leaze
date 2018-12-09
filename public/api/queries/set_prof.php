@@ -8,17 +8,17 @@
 
     //assume we can pass in the user id, and we output the information in output
     $user = $_POST["user_id"];
-    $firstname = $_POST["firstname"];
-    $lastname = $_POST["lastname"];
+    $firstname = htmlentities(addslashes($_POST["firstname"]));
+    $lastname = htmlentities(addslashes($_POST["lastname"]));
     $fullname = $firstname . $lastname;
     $age = $_POST["age"];
-    $school = $_POST["school"];
-    $major = $_POST["major"];
-    $year = $_POST["year"];
-    $bio = $_POST["bio"];
-    $facebook = $_POST["facebook"];
-    $instagram = $_POST["instagram"];
-    $twitter = $_POST["twitter"];
+    $school = htmlentities(addslashes($_POST["school"]));
+    $major = htmlentities(addslashes($_POST["major"]));
+    $year = htmlentities(addslashes($_POST["year"]));
+    $bio = htmlentities(addslashes($_POST["bio"]));
+    $facebook = htmlentities(addslashes($_POST["facebook"]));
+    $instagram = htmlentities(addslashes($_POST["instagram"]));
+    $twitter = htmlentities(addslashes($_POST["twitter"]));
 
     $fullname = $firstname . " " . $lastname;
     

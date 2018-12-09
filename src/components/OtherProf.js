@@ -4,6 +4,7 @@ import Navbar from "./Navbar.js"
 import ListingPreview from "./ListingPreview.js"
 import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
+import { bindActionCreators } from "redux";
 
 export default class OtherProfile extends React.Component {
   constructor(props){
@@ -23,6 +24,7 @@ export default class OtherProfile extends React.Component {
         showUPopup: false,
         showPPopup: false,
         postedListings: '',
+        matchPercent: '',
     };
   }
   async componentDidMount(){
@@ -46,6 +48,15 @@ export default class OtherProfile extends React.Component {
     this.setState({year: response.data.year})
     this.setState({bio: response.data.bio})
     this.setState({email: response.data.email})
+
+    const dualID = {
+      user1: userID,
+      user2: sessionStorage.getItem("user_id"),
+    }
+    const dualParams = formatPostData(dualID);
+    const matchResponse = await axios.post("http://localhost:8000/api/matching_algorithm.php", dualParams );
+    console.log("Match", matchResponse.data);
+    this.setState({matchPercent: matchResponse.data.result})
   }
 
   showUserListings(list){
@@ -79,15 +90,21 @@ export default class OtherProfile extends React.Component {
               <p rows="4" cols="50" id="biography"> {this.state.bio} </p>
             </div>
 
-            <div className="col-md-4" id="progressArea">
+            <div className="col-md-2" id="ratingArea">
+              {/* User Rating Area goes here */}    
+              <p id="matchPercent">Match Percent: {this.state.matchPercent}% </p>
+
+            </div>
+
+            <div className="col-md-4" id="socialArea">
               {/* User Profile Strength Percentage is here */}
-              <div id="progressAreaInner">
-                <div id="progressTextArea">
+              <div id="socialInner">
+                <div id="socialLinks">
                   <p>Social Media Links</p>
                   <a href={'https://' + this.state.facebook} target="_blank"><i id="iconLivin" className="fa fa-facebook-square fa-5x" aria-hidden="true"></i></a>
                   <a href={'https://' + this.state.instagram} target="_blank"><i id="iconLivin" className="fa fa-instagram fa-5x" aria-hidden="true"></i></a>
                   <a href={'https://' + this.state.twitter} target="_blank"><i id= "iconLivin" className="fa fa-twitter-square fa-5x" aria-hidden="true"></i></a>
-                  <a href={'mailto:' + this.state.email} target="_top"><i id="iconLivin" className="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>
+                  <a href={'mailto:' + this.state.email + '?subject=Interested in your LEaze posting!' + '&body=Hi ' + this.state.firstname + '! I saw your listing on LEaze and ...'} target="_top"><i id="iconLivin" className="fa fa-envelope-o fa-5x" aria-hidden="true"></i></a>
                 </div>
               </div>
 
@@ -101,14 +118,12 @@ export default class OtherProfile extends React.Component {
 
           {/* here lies the bottom row - Drexler works here */}
           <div className="row" id="listingsRow">
-            <div className="col-sm-12" id="postedListings">
+            <div className="col-sm-12" id="postedListingsO">
               {/* User's Posted Listings go here */}
               Posted Listings:
-              <div id="noListings">
-                  {this.state.postedListings}
-                  {/*Ariane's code goes here*/}
-                  {/* <ListingPreview /> */}
-              </div>
+                {this.state.postedListings}
+                {/*Ariane's code goes here*/}
+                {/* <ListingPreview /> */}
             </div>
           </div>
         </div>
