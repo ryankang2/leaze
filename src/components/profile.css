@@ -201,9 +201,9 @@ hr {
     position: absolute;
     left: 0vw;
     /* width: 100%; */
-    width:50% !important;
     height: 36vh;
     font: 18px "Arial";
+    width: 100%;
     float: left;
     font-weight: normal;
     overflow-y: auto;
@@ -231,15 +231,14 @@ hr {
     background: transparent;
     position: absolute;
     left: 50%;
-    width: 50%;
     height: 36vh;
+    width: 100%;
     font: 18px "Arial";
-    float: right;
+    float: left;
     font-weight: normal;
     text-decoration: underline;
+    
     overflow-y: auto;
-    width:50% !important;
-    text-align: center;
 }
 
 /* Scrollbar styles */

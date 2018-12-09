@@ -7,6 +7,7 @@ import {formatPostData} from "../helpers/formatPostData";
 import axios from "axios";
 import ListingPreview from "./ListingPreview";
 
+const groupSize = 3;
 
 export class Profile extends React.Component {
   constructor(props){
@@ -30,7 +31,7 @@ export class Profile extends React.Component {
         twitter: '',
         showUPopup: false,
         showPPopup: false,
-        postedlistings: [],
+        postedListings: [],
         favoriteListings: [],
     };
   }
@@ -71,7 +72,7 @@ export class Profile extends React.Component {
     var array = [];
     for(var i = 0; i < list.length; i++){
       var singleListing = <ListingPreview information = {list[i]}{...this.props} key={list[i].user_id_posted}/>
-      array.push(<div className="listingShow">{singleListing}</div>);
+      array.push(<div>{singleListing}</div>);
     }
     this.setState({
       postedListings: array,
@@ -82,7 +83,7 @@ export class Profile extends React.Component {
     var array = [];
     for(var i = 0; i < list.length; i++){
       var singleListing = <ListingPreview information = {list[i]}{...this.props} key={list[i].user_id_posted}/>
-      array.push(<div className="listingShow">{singleListing}</div>);
+      array.push(<div>{singleListing}</div>);
     }
     this.setState({
       favoriteListings: array,
@@ -110,8 +111,40 @@ export class Profile extends React.Component {
     }
   }
 
-  render() {
+  postedListings(postedListings){
+    var renderPosts = postedListings.map(function(listings) {
+      // map content to html elements
+        return <div className="col-sm-2">{listings}</div>
+          }).reduce(function(r, element, index) {
+              // create element groups with size 3
+              index % groupSize === 0 && r.push([]);
+              r[r.length - 1].push(element);
+              return r;
+          }, []).map(function(rowContent) {
+              // surround the group with 'row'
+              return <div className="row">{rowContent}</div>;
+          });
 
+    return renderPosts;
+  }
+
+  favoriteListings(favListings){
+    var renderFavorites = favListings.map(function(listings) {
+      // map content to html elements
+      return <div className="col-sm-2">{listings}</div>
+  }).reduce(function(r, element, index) {
+      // create element groups with size 3
+      index % groupSize === 0 && r.push([]);
+      r[r.length - 1].push(element);
+      return r;
+  }, []).map(function(rowContent) {
+      // surround the group with 'row'
+      return <div className="row">{rowContent}</div>;
+  });
+    return renderFavorites;
+  }
+
+  render() {
     return (
       <div>
         <Navbar />
@@ -160,16 +193,24 @@ export class Profile extends React.Component {
 
           {/* here lies the bottom row - Drexler works here */}
           <div className="row" id="listingsRow">
-            <div className="col-sm-6" id="postedListings">
+            <div id="postedListings">
               {/* User's Posted Listings go here */}
+              <div>
                 Posted Listings:
-                {this.state.postedListings}
+              </div>
+              <div>
+                {/* {this.state.postedListings} */}
+                {this.state.postedListings.length ? this.postedListings(this.state.postedListings) : <p>No Listings to show</p>}
+              </div>
             </div>
               
-            <div className="col-sm-6" id="favoriteListings">
-              {/* Ariane's code goes here */}
-              Favorite Listings:
-              {this.state.favoriteListings}
+            <div id="favoriteListings">
+              <div>
+                Favorite Listings:
+              </div>
+              <div>
+                {this.state.favoriteListings.length ? this.favoriteListings(this.state.favoriteListings) : <p>No Listings to show</p>}
+              </div>
             </div>
           </div>
         </div>
