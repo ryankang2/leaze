@@ -1,0 +1,187 @@
+#logTabs {
+    float: right;
+    position: relative;
+    width: 50%;
+    margin-right: 7%;
+}
+
+.logContainer {
+    display: block;
+    width: 100%;   
+}
+
+.btnSubmit {
+    font-size: 20px;
+    background-color: lightblue;
+    margin-top: 3%;
+}
+
+#divLastName {
+    margin-left: 10%;
+}
+
+.tabs {
+    margin-top: 2em; 
+}
+
+.tabs .tab {
+    width: 25%;
+}
+
+.tabcontent {
+    width: 100%;
+    border: 2px solid black;
+    position: relative;
+    float: right;
+    padding-bottom: 5%;
+}
+
+.FormField_name {
+    display: -webkit-inline-box; 
+}
+
+.FormField__Label {
+    display: block;
+    color: black;
+}
+
+/* Change this form to a classname */
+.FormFields {
+    margin-top: 2em;
+    margin-left: 10%;
+}
+.FormFieldsError{
+    margin-left:10%;
+}
+
+#password{
+    display: block;
+}
+
+#loginEmail{
+    display: block;
+}
+
+#submitDiv {
+    margin-top: 2%;
+}
+
+/* .FormField .col {
+    padding: 0px !important;
+} */
+
+.FormField__TermsLink {
+    margin-left: 5px;
+}
+
+#logContainer {
+    display: block;
+    width: 100%;   
+    margin-top: 5%;
+}
+
+#forgotPassword {
+    color: blue;
+    margin-top: 1em;
+    border: none;
+    background: none;
+    margin-left: 10%;
+    position: relative;
+    left: 15%;
+}
+
+#loginButton{
+    left: 28%;
+    position: relative;
+}
+
+#regButton{
+    position: relative;
+    left: 32%;
+}
+
+.tabs .tab a {
+    color: black;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    color: black;
+}
+
+.tabs .indicator {
+    background-color: #37916e;
+}
+
+.tab:hover {
+    background-color: #37916e;
+}
+
+#termsModal {
+    position: absolute;
+    display: none;
+    bottom: 18%;
+    height: 50%;
+    width: 50%;
+    background-color: #f7eddc;
+}
+
+#termsP {
+    margin: 2em;
+}
+
+#closeConf {
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    font-size: 20px;
+}
+
+#closeTerms {
+    font-size: 15px;
+    position: absolute;
+    right: 2%;
+    bottom: 2%;
+}
+
+.hidden{
+    display:none;
+}
+.show{
+    display:block;
+}
+
+#wrongInputRegister{
+    color:red
+}
+#wrongInputLogin{
+    color:red
+}
+
+#confRegister {
+    margin: auto;
+    padding: 30px!important;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1050;
+}
+
+.confButtons {
+    position: absolute;
+    left: 1%;
+    bottom: 1%;
+}
+
+#confWrongCode, #confCodeResent {
+    color: red;
+    display: none;
+}
+
+#confRegister {
+    display: none;
+}
+
+#correctCodeMsg {
+    color: green;
+    display: none;
+}

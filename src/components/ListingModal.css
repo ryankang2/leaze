@@ -1,0 +1,41 @@
+.userNameModal{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+    color: black;
+    font-weight: 600;
+    margin-left: -50%;
+}
+
+#matchModal{
+    grid-column-start:2;
+    grid-column-end:5;
+    grid-row-start:2;
+    left:10px;
+    font-size: 12px;
+    text-align: left;
+    margin-top: -4%!important;
+    margin-left: -21%!important;
+}
+.userPictureModal{
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start:1;
+    grid-column-end:2;
+    border-radius: 50%;
+    max-height: 35px;
+    min-height: 35px;
+    cursor: pointer;
+
+
+}
+.profileBox{
+    display:grid;
+}
+
+.strikeThrough{
+    text-decoration: line-through;
+}

@@ -1,0 +1,75 @@
+.searchBox{
+    width: 40vw !important;
+    background-color: white !important;
+    border-radius: 10px !important;
+}
+
+.settingsContainer{
+    display: block;
+    left: 200px;
+    /* float: right; */
+    width: 180px;
+    /* top:17px; */
+    margin-top: 15%;
+}
+
+.navbar{
+    height: 110px;
+    background-color: black;
+    border-radius: 0;
+}
+
+.container-fluid{
+    margin: 2%;
+}
+
+.navbar-left{
+    margin: 0 0;
+}
+
+
+.profileContainer{
+    display: block;
+    bottom: 2vw;
+    left: 2%;
+    float: right;
+    width: 180px;
+}
+
+.profileContainer > div{
+    color: white;
+    height: 35px;
+}
+
+.nav i{
+    font-size: 24px;
+}
+
+.logoPic{
+    height: 50px;
+    width: 50px;
+}
+
+.welcome{
+    height: 20px;
+}
+
+/* ul:not(.browser-default) li {
+    width: 35px;
+} */
+
+
+.searchIcon{
+    position: relative;
+    right: 25px;
+    height: 0px;
+    color: black;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 767px){
+    .form-group{
+        height: 0vh;
+    }
+}
+

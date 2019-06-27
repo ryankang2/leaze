@@ -1,0 +1,257 @@
+
+
+#starContainer {
+    margin: auto;
+    width: 6.25vw;
+    padding: 1vh 0 1vh 0;
+}
+
+.ratingStars {
+    display: inline-block;
+    height: 1.25vw;
+    width: 1.25vw;
+}
+
+#socialInner {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#socialLinks {
+    text-align: center;
+    padding-top: 0.5vh;
+    height: 100%;
+    overflow-y: auto;
+    font-size: 25px;
+}
+
+
+#mainContainer {
+    padding: 3.33vh 0 3.33vh 0;
+    position: fixed;
+    height: 80vh;
+    background-color: rgb(182, 168, 168);
+}
+
+#profileRow {
+    border-width: 1px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    height: 36vh;
+    width: 98vw;
+    top: 3.33vh;
+    right: 1vw;
+    left: 1vw;
+}
+
+#rowDivider {
+    height: 1.34vh;
+    position: absolute;
+    top: 39.33vh;
+    left: 2.5vw;
+    right: 2.5vw;
+}
+
+hr {
+    display: block;
+    width: 95vw;
+    border: 0.0625vh solid black;
+    margin: 0.5vh 0 0 0;
+}
+
+#listingsRow {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 36vh;
+    width: 98vw;
+    bottom: 3.33vh;
+    right: 1vw;
+    left: 1vw;
+}
+
+#profilePictureArea {
+    background: transparent;
+    position: absolute;
+    left: 0;
+    width: 16.33vw;
+    height: 36vh;
+}
+
+#profilePic {
+    border: 1px solid black;
+    border-radius: 10vw;
+    width: 13vw;
+    height: 13vw;
+    position: absolute;
+    left: 1.665vw;
+    right: 1.665vw;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.label-ucsd {
+    border: 1px solid black;
+    color: #f4e92d;
+    padding: 8px;
+    background: #1e65a9;
+    font: 1.25em "Arial Black";
+    position: absolute;
+    left: 6vw;
+    top: 21vh;
+}
+
+#bioArea {
+    position: absolute;
+    left: 16.33vw;
+    width: 32.66vw;
+    height: 36vh;
+    background:transparent;
+    font-size: 1.125em;
+}
+
+#bioAreaO {
+    position: absolute;
+    left: 16.33vw;
+    width: 43.66vw;
+    height: 36vh;
+    background:transparent;
+    font-size: 1.125em;
+}
+
+#userName {
+    font-size: 2em;
+    margin: 5vh 0 0 1vw;
+}
+
+#userInfo {
+    font-size: 1.33em;
+    margin: 0 0 0 1vw;
+}
+
+#biography {
+    margin: 4vh 0 0 1vw;
+    overflow-y: auto;
+}
+
+#noListings {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: scroll;
+}
+
+#ratingArea {
+    background:transparent;
+    position: absolute;
+    left: 46.99vw;
+    width: 16.33vw;
+    height: 36vh;
+}
+
+#matchPercent{
+    line-height: 10;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+#ratingString {
+    margin: 0;
+    padding: 4vh 0 1vh 0;
+    font: 1.5em Arial;
+    text-align: center;
+}
+
+#buttonU{
+    margin-left: 2.5vw;
+    margin-top: 40%;
+}
+
+#buttonP{
+    margin-top:1vh;
+    margin-left:1vw;
+}
+
+#socialArea {
+    border: 1px solid black;
+    background: #f9f3e7;
+    position: absolute;
+    left: 65.33vw;
+    width: 25.66vw;
+    height: 20vh;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#postedListings {
+    display: grid;
+    background: transparent;
+    position: absolute;
+    left: 0vw;
+    /* width: 100%; */
+    height: 36vh;
+    font: 18px "Arial";
+    float: left;
+    font-weight: normal;
+    overflow-y: auto;
+    text-decoration: underline;
+}
+
+#postedListingsO {
+    display: grid;
+    background: transparent;
+    position: absolute;
+    left: 25%;
+    width:50%;
+    height: 36vh;
+    font: 18px "Arial";
+    font-weight: normal;
+    overflow-y: auto;
+    text-decoration: underline;
+}
+
+#iconLivin {
+    font-size: 60px !important;
+    margin: 10px;
+}
+
+#favoriteListings {
+    display: grid;
+    background: transparent;
+    position: absolute;
+    left: 50vw;
+    width: 45vw;
+    height: 36vh;
+    font: 18px "Arial";
+    float: right;
+    font-weight: normal;
+    text-decoration: underline;
+    overflow-y: auto;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 24px;
+    background: #f7eddc;
+}
+
+::-webkit-scrollbar-track {
+    background: #948e84;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #aca59a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c5bdb0;
+}
